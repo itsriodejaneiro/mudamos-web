@@ -1,0 +1,57 @@
+/ section.not-centered#cycle-description
+/   .container
+/       table.table.table-striped
+/         thead
+/           tr
+/             th Nome
+/         tbody
+/           - @users.each do |u|
+/             tr
+/               td
+/                 bp = u.name
+
+- breadcrumb :users
+
+.row
+  .col-xs-12
+    .card-module
+      p
+        b.status-number= @users.total_count
+        | Número total de usuários cadastrados no Mudamos
+      .filters
+        span.active Por Ordem alfabética
+        .pull-right
+          = link_to 'Exportar CSV', admin_users_path(format: :csv), class: 'btn'
+.row
+  .col-xs-12
+    #administrators.card-module
+      .filters.clearfix
+        / select#bulk-actions.select-actions
+        /   option.disabled selected="true" Bulk Actions
+        /   option Editar
+        /   option Excluir
+        = render 'admin/shared/page_quantity'
+      table
+        thead
+          tr
+            / th
+            /   input#bulk-checkbox type="checkbox"
+            th Nome
+            th Email
+            th Setor
+            th Subsetor
+            th Ações
+        tbody
+          - @users.each do |u|
+            tr
+              td= u.name
+              td= u.email
+              td= u.profile.name
+              td= u.sub_profile.present? ? u.sub_profile.name : ''
+              td
+                select.select-actions.select2-disabled
+                  option.disabled selected="true" mais...
+                  option value=(admin_user_path(u)) Ver detalhes
+                  / option Excluir
+
+= render 'admin/shared/pagination', collection: @users

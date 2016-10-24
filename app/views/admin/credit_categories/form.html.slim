@@ -1,0 +1,13 @@
+- breadcrumb :credit_category_form, @credit_category
+
+= semantic_form_for [:admin, @credit_category] do |f|
+  .row
+    .col-xs-12
+      = f.input :name, label: 'Título'
+  .row.form-row
+    .col-xs-12
+      button type="submit" Salvar
+
+
+javascript:
+  admin.edit.init('#credit_content');

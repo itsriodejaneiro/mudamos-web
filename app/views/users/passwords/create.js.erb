@@ -1,0 +1,9 @@
+<%= render 'layouts/shared/flash_messages' %>
+
+<% if @success %>
+  document.stop_loading();
+  $('#modal-passwords-new').modal('hide')
+<% else %>
+  document.stop_loading();
+  document.set_errors(<%= resource.errors.to_json.html_safe %>, $('#modal-passwords-new').find('form#new_user'));
+<% end %>

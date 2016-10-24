@@ -1,0 +1,18 @@
+- breadcrumb :new_comment, @parent_comment, @cycle, @plugin_relation, @subject
+
+= semantic_form_for [:admin, @cycle, @plugin_relation, @subject, @parent_comment, @comment] do |f|
+  .row
+    .col-xs-12
+      .title
+        h2 Resposta
+  .row
+    .col-xs-12
+      = f.input :content, as: :text, input_html: { class: 'tinymce', rows: 8 }, label: false
+  .row
+    .col-xs-12
+      button.btn.btn-with-bg Adicionar Resposta
+
+javascript:
+  $(document).ready(function(){
+    admin.edit.init('.tinymce');
+  });

@@ -1,0 +1,110 @@
+- breadcrumb :subjects, @cycle, @plugin_relation
+
+.row
+  .col-xs-12
+    .title
+      h2 Assuntos
+    .row
+      .col-xs-12
+        .card-module
+          .filters.clearfix
+            .pull-right
+              = link_to 'Adicionar pergunta', [:new, :admin, @cycle, @plugin_relation, :subject], class: 'btn'
+
+.row
+  .col-xs-8
+    .card-module
+      .title
+        h3 Texto
+      table
+        thead
+          tr
+            th Pergunta
+            th Comentários
+            th Ações
+        tbody
+          - @subjects.each do |s|
+            tr
+              td= link_to s.title, [:admin, @cycle, @plugin_relation, s]
+              td= link_to s.comments.count, [:admin, @cycle, @plugin_relation, s]
+              td
+                = link_to 'Editar', [:edit, :admin, @cycle, @plugin_relation, s]
+                = link_to 'Remover', [:admin, @cycle, @plugin_relation, s], method: :delete, style: "margin-left: 10px;", data: { confirm: 'Tem certeza que deseja remover o assunto?' }
+      = render 'admin/shared/pagination', collection: @subjects
+
+  .col-xs-4
+    .card-module
+      h3 Comentário por setor
+      #dashboard-comment-sector
+
+javascript:
+
+  Highcharts.setOptions({
+    colors: ['#154080', '#5DACFF', '#7CADD1', '#A9E5F5', '#4D77A0'],
+  });
+
+javascript:
+  // DONUT - Usuários Por Setor
+  $('#dashboard-comment-sector').highcharts({
+    chart: {
+      type: 'pie'
+    },
+    title: {
+      text: null,
+      align: 'left'
+    },
+    plotOptions: {
+      pie: {
+        shadow: false,
+      }
+    },
+    tooltip: {
+      formatter: function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(2) +' %';
+      }
+    },
+    plotOptions: {
+      series: {
+        dataLabels: {
+          enabled: true,
+          formatter: function() {
+            if (this.percentage < 10){
+              return '';
+            } else{
+              return '<b>'+ this.percentage.toFixed(2) +' %' +'</b>';
+            }
+          },
+          distance: -20,
+          color:'white',
+          style: {
+            textShadow: false,
+            fontSize: '10px'
+          }
+        }
+      }
+    },
+    legend: {
+      layout: 'vertical',
+      itemWidth: 100,
+      align: 'center',
+      itemDistance: 0,
+      itemMarginTop: 10,
+      padding: 5,
+      itemStyle: {
+        fontWeight: 'normal',
+        fontSize: '10px'
+      },
+      symbolWidth: 11,
+      symbolRadius: 5
+    },
+    credits: {
+      enabled: false
+    },
+    series: [{
+      name: 'Assuntos',
+      data: #{{ @subjects.map { |x| [x.title, x.comments.count] } }},
+      size: '100%',
+      innerSize: '50%',
+      showInLegend:true
+    }]
+  });

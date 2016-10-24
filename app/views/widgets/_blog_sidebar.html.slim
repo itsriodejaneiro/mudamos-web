@@ -1,0 +1,36 @@
+.blog-sidebar
+  .row
+    .col-xs-12
+      .section-title style=("border-color: #{@cycle.color}" if @cycle) Destaques
+  - @posts_highlights.each do |bp|
+    .row
+      .col-xs-12
+        = link_to blog_post_dependent_path(bp), class: 'highlight-post' do
+          div= bp.title
+          .blog-post-details
+            i.icon-clock
+            span= bp.release_date.to_short_date
+  - unless @cycle
+    .row.filters-title
+      .col-xs-12
+        .section-title style=("border-color: #{@cycle.color}" if @cycle) Filtrar
+    .row
+      .col-xs-12
+        #accordion role="tablist" aria-multiselectable="true"
+          .panel
+            / .panel-heading role="tab" id="dateHeading"
+            /   = link_to '+ por data', "#dateFilter", class: 'filter-link', data: { toggle: "collapse", parent: "#accordion" }, aria: { expanded: "true", controls: "dateFilter" }
+            / #dateFilter.panel-collapse.collapse role="tabpanel" aria-labelledby="dateHeading"
+            .panel-heading role="tab" id="cycleHeading"
+              = link_to '+ temas', "#cycleFilter", class: 'filter-link', data: { toggle: "collapse", parent: "#accordion" }, aria: { expanded: "false", controls: "cycleFilter" }
+            #cycleFilter.panel-collapse.collapse.in role="tabpanel" aria-labelledby="cycleHeading"
+              - @cycles.each do |cycle|
+                .row
+                  .col-xs-12
+                    = link_to "+ #{cycle.name}", cycle_blog_posts_path(cycle), class: 'filter-link'
+              .row
+                .col-xs-12
+                  = link_to "+ Reforma Política do Século 21", "http://blog.plataformabrasil.org.br/", target: "_blank", class: 'filter-link'
+  / .row
+  /   .col-xs-12
+  /     = link_to '+ temas', blog_posts_path(filter: 'temas'), class: 'filter-link'

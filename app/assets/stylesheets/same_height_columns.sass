@@ -1,0 +1,54 @@
+@import "bootstrap/variables"
+@import "custom_variables"
+/* columns of same height styles */
+
+.row-full-height
+  height: 100%
+
+.col-full-height
+  height: 100%
+  vertical-align: middle 
+
+.row-same-height
+  display: table
+  width: calc(100% + #{$grid-gutter-width})
+  /* fix overflow */
+  table-layout: fixed
+  @media (max-width: $screen-xs-max)  
+    table-layout: auto
+.col-xs-height
+  display: table-cell
+  float: none !important
+  @media (max-width: $screen-xs-max)  
+    float: left !important
+
+@media (max-width: $screen-xs-max)
+.col-only-xs-height
+  display: table-cell
+  float: none !important
+
+@media (min-width: 768px)
+.col-sm-height
+  display: table-cell
+  float: none !important
+
+@media (min-width: 992px)
+.col-md-height
+  display: table-cell
+  float: none !important
+
+@media (min-width: 1200px)
+.col-lg-height
+  display: table-cell
+  float: none !important
+
+/* vertical alignment styles */
+
+.col-top
+  vertical-align: top
+
+.col-middle
+  vertical-align: middle
+
+.col-bottom
+  vertical-align: bottom

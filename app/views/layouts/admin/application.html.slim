@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    / title
+    /   | Mudamos
+    = stylesheet_link_tag    'admin/application', media: 'all'
+    = javascript_include_tag 'admin/application'
+    = csrf_meta_tags
+
+    = favicon_link_tag
+
+    meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=no"
+
+    = metamagic site: "Mudamos Admin", title: [:title, :site], separator: " | "
+  body class="#{params[:controller]}-#{params[:action]}" data-logged-in=admin_user_signed_in?.to_s
+    .body-container
+      - flash.each do |name, msg|
+        - if msg.respond_to? :html_safe
+          javascript:
+            document.flash_message("#{msg.html_safe}", "#{name}");
+      - if admin_user_signed_in?
+        .container
+          .row
+            - if @cycle and @cycle.persisted?
+              = render 'admin/shared/cycle_sidebar'
+            - else
+              = render 'admin/shared/base_sidebar'
+            .col-xs-9
+              = render 'admin/shared/top'
+              = yield
+      - else
+        = yield

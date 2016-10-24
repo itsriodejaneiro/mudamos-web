@@ -1,0 +1,52 @@
+- breadcrumb :comment, @comment, @cycle, @plugin_relation, @subject
+
+.row
+  .col-xs-12
+    .title
+      h2 Informações Gerais
+    .row
+      .col-xs-8
+        .card-module.card-height
+          row
+            .col-xs-3
+              .comment-user
+                .row
+                  .col-xs-12
+                    .user-infos
+                      - if @comment.is_anonymous
+                        .name= @comment.author
+                      - else
+                        = link_to @comment.author, [:admin, @cycle, @comment.user], class: 'name'
+                      p.anonymous= @comment.is_anonymous ? 'Anônimo' : 'Identificado'
+                      p.data= @comment.created_at.strftime('%d/%m/%Y às %H:%M')
+                .row
+                  .col-xs-12
+                    .like-box
+                      .col-xs-6
+                        i.icon-like
+                        span= @comment.likes.count
+                      .col-xs-6
+                        i.icon-dislike
+                        span= @comment.dislikes.count
+                / .row
+                /   .col-xs-12
+                /     select
+                /       option Ações
+                /       option value=admin_cycle_plugin_relation_subject_comment_path(@cycle, @plugin_relation, @subject, @comment) Ver Detalhes
+            .col-xs-9
+              p.comment-answer= @comment.content.html_safe
+
+      .col-xs-4
+        .card-module.card-height
+          - if @comments.any?
+            h3 Comentário por setor
+            #dashboard-comment-sector
+          - else
+            h3 Nenhum comentário
+
+= render 'admin/cycles/plugin_relations/subjects/comments/list'
+= render 'admin/cycles/plugin_relations/subjects/comments/chart'
+javascript:
+  $(document).ready(function(){
+    admin.helpers.init('.card-height');
+  });

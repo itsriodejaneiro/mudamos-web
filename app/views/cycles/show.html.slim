@@ -1,0 +1,78 @@
+- title = @cycle.title
+- description = strip_tags(@cycle.description.html_safe)
+- image = @cycle.picture(:header)
+
+- meta title: title, description: description, og: { title: title, image: image, description: description, locale: 'pt_BR', type: 'article' }, twitter: { card: 'summary', title: title, description: description, image: { src: image } }
+
+
+/ - img = SEG_IMAGES[params[:img].to_i]
+section.container-fluid#cycle-hero
+  .full-background-image style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('#{@cycle.picture(:header)}');"
+  .full-background-image.blur style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('#{@cycle.picture(:header)}'); opacity: 0;"
+
+section.not-centered#cycle-description
+  .container
+    .row
+      .col-xs-12.text-center
+        h2= @cycle.title
+    .row
+      .col-xs-12.col-sm-6.col-sm-offset-3.text-center
+        .cycle-description
+          = @cycle.description.html_safe
+          - if @cycle.blog_posts.find_by_slug('por-que-discutir-seguranca-publica')
+            .row
+              .col-xs-12
+                = link_to 'Saiba mais', cycle_blog_post_path(@cycle, BlogPost.find_by_slug('por-que-discutir-seguranca-publica')), style: "color: #{@cycle.color}"
+    .row
+      .col-xs-12.col-sm-10.col-sm-offset-1
+        .row.phases.row-same-height
+          .col-xs-12.col-sm-6.col-sm-height.col-top
+            .arrow
+            - @cycle.phases.each_with_index do |phase, i|
+              - next if i % 2 != 0
+              = render 'layouts/shared/phase_description', phase: phase, align: 'right', i: i
+          .col-xs-12.col-sm-6.col-sm-height.col-top style="padding-top: 100px"
+            - @cycle.phases.each_with_index do |phase, i|
+              - next if i % 2 == 0
+              = render 'layouts/shared/phase_description', phase: phase, align: 'left', i: i
+
+
+- if @cycle.current_phase.present?
+  - if @cycle.current_phase.plugin.plugin_type == 'Discussão'
+    section#discussion-widget
+      / .container
+      /   .row
+      /     .col-xs-12
+      /       h2.section-title.with-link style="border-color: #{@cycle.color};" = link_to 'Assuntos', cycle_subjects_path(@cycle)
+      .container
+        = render 'widgets/discussion', plugin_relation: @cycle.phases.first.plugin_relation
+  - elsif @cycle.current_phase.plugin.plugin_type == 'Relatoria'
+    section#compilation-widget
+      .container
+        .row
+          .col-xs-12
+            .report-call-to-action
+              a.report-download style="border: 5px solid #{@cycle.color};" href=cycle_plugin_relation_path(@cycle, @cycle.current_phase.plugin_relation)
+                span Veja gráficos sobre os participantes da Discussão.
+                span.action-tail style="border-top: 80px solid #{@cycle.color};" &nbsp
+                .hover-box style="background-color: #{@cycle.color};"
+              / a.download-icon href=""
+              /   .icon
+              /     i.icon-baixeaqui style="color: #{@cycle.color};"
+              /   | Relatorio_mudamos.pdf
+
+- if @cycle.blog_plugin.present? and @cycle.blog_posts.any?
+  section#blog-widget
+    .container
+      .row
+        .col-xs-12
+          h2.section-title.with-link style="border-color: #{@cycle.color};" = link_to 'Blog', cycle_blog_posts_path(@cycle)
+    .container
+      .row
+        = render partial: 'widgets/blog_post', collection: @cycle.blog_posts.released.limit(2), as: :blog_post, locals: { no_cycle: true, n: 2 }
+
+
+= render 'layouts/shared/modal', modal_id: 'subject-description', size: 'sm', cache: true
+
+
+= javascript_include_tag 'blur-fade'

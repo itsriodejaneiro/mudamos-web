@@ -1,0 +1,9 @@
+statusbar: false
+menubar: false
+toolbar: insertfile undo redo |  bold italic underline | bullist numlist | link | emoticons
+plugins:
+  -   emoticons
+  -   link
+  -   paste
+paste_as_text: true
+content_css: <%= ActionController::Base.helpers.asset_path('tinymce.css') %>

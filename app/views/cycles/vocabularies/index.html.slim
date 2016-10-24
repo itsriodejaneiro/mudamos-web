@@ -1,0 +1,40 @@
+- title = "Glossário sobre #{@cycle.title}"
+- description = 'Informe-se para o debate: um glossário sobre Segurança Pública'
+- image = @cycle.picture(:header)
+
+- meta title: title, description: description, og: { title: title, image: image, description: description, locale: 'pt_BR', type: 'article' }, twitter: { card: 'summary', title: title, description: description, image: { src: image } }
+
+section.container-fluid#vocabularies-index
+  .container
+    .row
+      .col-xs-12
+        .section-title style=("border-color: #{@cycle.color}" if @cycle) Glossário
+    .row
+      .col-xs-12.col-sm-3
+        - ('a'..'z').each do |letter|
+          = link_to "##{letter}", class: 'letter-link', style: "border-color: #{@cycle.color}", disabled: not(@vocabularies.pluck(:first_letter).include?(letter)) do
+            .background style="background-color: #{@cycle.color}"
+            = letter
+      .col-xs-12.col-sm-9
+        .intro
+          h2 Informe-se para o debate: um glossário sobre Segurança Pública
+          p Muitas as vezes, não sabemos exatamente o que significa um termo ou expressão para a lei. Se queremos propor uma mudança, devemos saber o que mudar. Para que falemos a mesma língua no debate sobre Segurança Pública, foi criado um glossário, assinado por nosso consultor especialista, Luiz Eduardo Soares. Os conceitos e as categorias que o participante encontrará ou são baseados no que está na Constituição Federal de 1988 ou são modelos abstratos. Isto é: não correspondem a experiências reais, mas são referências para o debate informado que MUDAMOS quer promover.
+          p Além de uma introdução ao tema e do texto integral da PEC 51, no glossário você encontrará, entre outros verbetes, definições para: Polícia, Ordem Pública, Arquitetura Institucional da Segurança Pública, Modelo Policial, Ciclo Completo, Política Criminal, Desmilitarizar e PEC-51. Informe-se e venha ajudar a construir uma nova proposta para Segurança Pública em MUDAMOS!
+        - @vocabularies.group_by { |x| x.first_letter }.each do |k, v|
+          .letter-results id="#{k}"
+            .row
+              .col-xs-1
+                .big-letter style="color: #{@cycle.color}; border-color: #{@cycle.color}" = k
+              .col-xs-11
+                - v.each do |v1|
+                  .row
+                    .col-xs-4.vocabulary-title id=(v1.id) = v1.title
+                    .col-xs-8.vocabulary-description style="border-color: #{@cycle.color}" = v1.description.html_safe
+    .row.vocabularies-note
+      .col-xs-12
+        .section-title style=("border-color: #{@cycle.color}" if @cycle) Nota sobre o Glossário
+    .row
+      .col-xs-12.intro
+        p Os conceitos ou as categorias aqui definidas, se não forem apenas a réplica do texto constitucional, são tipos ideais, modelos abstratos destinados a cumprir duplo propósito, formalmente descritivos e normativos: (1) descrever as linhas gerais dos objetos a que se referem, em termos formais e abstratos --fenômenos sociais, processos históricos, experiências individuais ou coletivas (como percepções, sensações, crenças, conhecimentos e paixões), e invenções culturais como instituições, normas e valores--; e (2) expor parâmetros normativos que orientam expectativas, circunscrevem as condições de possibilidade e assinalam os limites para a obediência voluntária, sobre a qual repousa a autoridade (cujo exercício prescinde da força e nega a violência) e que se traduz na legitimidade do poder, compreendido como instrumento que viabiliza a sociabilidade e opera a mediação entre liberdade individual e justiça, enquanto equidade. Os pressupostos da perspectiva adotada nas definições são a autonomia do sujeito e a racionalidade interlocucionária: a plausibilidade de ambos, sua indissociabilidade e seu valor intrínseco. Em outras palavras, os conceitos tais como descritos não correspondem a experiências reais, mas a (1) referências indispensáveis à abordagem analítica das práticas e à sua avaliação objetiva e moral, (2) assim como a metas desejáveis e necessárias, se comparadas a alternativas, e portanto justificáveis em diálogos livres entre interlocutores iguais, do ponto de vista de seu poder. Ou seja, o Estado de direito no Brasil não tem correspondido à realidade da sociedade brasileira, tão profundamente iníqua. Segurança pública tem sido outro nome da violência. Políticas de segurança com frequência sequer existem, preferindo-se, não raro, a reprodução inercial das rotinas reativas, herdadas de fontes quase imemoriais, organicamente comprometidas com as desigualdades e o racismo. E assim sucessivamente. Contudo, a distância dos tipos ideais o críticos a pode identificar, e medir, graças a eles. A possibilidade de outro mundo o cidadão a vislumbra contemplando-os.
+        p É importante acrescentar que, do ponto de vista das ciências sociais, há interpretações distintas, oriundas tanto do marxismo quanto, por exemplo, de paradigmas teóricos crítico-genealógicos, inspirados em Michel Foucault. Segundo estas perspectivas, os tipos ideais que descrevem o modelo normativo, na medida em que não correspondem às práticas empiricamente verificadas, apenas mascaram a realidade. Em vez de estruturas formalmente definidas por referência à Constituição, derivadas do modelo abstrato que desenha o Estado democrático de direito, seria mais apropriado observar processos historicamente vivenciados e, a partir deles, identificar o funcionamento efetivo do Estado, entendendo-o não como mecanismos, conceitos, valores e normas traídos por ações reais, mas como positividade instaurada no plano da experiência, cuja natureza não transcenderia a rotina degradante. Este argumento conduz à conclusão de que as polícias brasileiras são apenas, inelutável e exclusivamente, o que têm sido nas periferias, reduzindo-se à sua prática, inteiramente indiferente, senão contrárias, ao tipo ideal: instrumentos da violência do Estado contra negros e pobres, indutoras da reprodução do domínio de classe, fatores que aprofundam desigualdades sócio-econômicas e intensificam o racismo. Esta leitura, mesmo quando fiel à empiria, não incorpora a multidimensionalidade complexa da dinâmica história, a qual não se esgota nem na dimensão ideal-normativa nem na esfera das práticas, porque incorpora ambas as dimensões em seu tensionamento, em suas contradições. A Constituição brasileira, conquistada com o sacrifício de tantas vidas na resistência à ditadura, não é apenas a máscara civilizada da barbárie estatal que criminaliza a pobreza e extermina jovens, tampouco moldou uma realidade social à sua imagem e semelhança. Uma visão analiticamente mais aguda e teoricamente menos simplista exigiria que as duas dimensões fossem consideradas. A Constituição e suas determinações produzem, por mediações diversas, eventos e orientam práticas, interferindo na construção da realidade social, assim como a brutalidade feroz dos agentes do Estado intervém na vivência cotidiana da sociedade. Quando se atenta para a complexidade contraditória do social, quando se integram ambas as dimensões, passa a ser possível levar em conta, por exemplo, tanto o calvário de Amarildo --sua tortura e seu assassinato por policiais militares da UPP da Rocinha, no Rio de Janeiro--, quanto a identificação e a prisão de seus algozes. Se a brutalidade criminosa reduz-se ao mero funcionamento de instituições cuja função seria esta, brutalizar as classes populares, a mudança estaria descartada, a Constituição deixaria de representar um parâmetro para a crítica e a transformação dependeria de uma revolução, envolvendo a conquista do Estado (hipótese irrealista e incongruente, a considerar-se a história das revoluções e suas consequências no plano da repressão estatal) ou a formação de novos poderes (sobre cujo funcionamento em ambiente revolucionário nada se sabe que justifique qualquer otimismo relativamente ao respeito aos direitos humanos).
+        p Autor: Luiz Eduardo Soares

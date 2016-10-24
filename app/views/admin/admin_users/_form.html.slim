@@ -1,0 +1,18 @@
+= semantic_form_for [:admin, @admin_user] do |f|
+  .row
+    .col-xs-4.title
+      = f.input :name, label: 'Nome'
+    .col-xs-4.title
+  .row.form-row
+    .col-xs-4.title
+      = f.input :email
+  - if f.object.new_record?
+    .row.form-row
+      .col-xs-4.title
+        = f.input :password, label: 'Senha'
+      .col-xs-4.title
+        = f.input :password_confirmation, label: 'Confirmação de Senha'
+
+  .row.form-row
+    .col-xs-4
+      button type="submit" Salvar

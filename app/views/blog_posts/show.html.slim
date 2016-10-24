@@ -1,0 +1,31 @@
+- title = @blog_post.title
+- description = strip_tags(@blog_post.content.html_safe)
+- image = @blog_post.picture(:header)
+
+- meta title: title, description: description, og: { title: title, image: image, description: description, locale: 'pt_BR', type: 'article' }, twitter: { card: 'summary', title: title, description: description, image: { src: image } }
+
+section.container-fluid#blog-show
+  .big-image
+    = image_tag @blog_post.picture(:header)
+    / .full-background-image style="background-image: url('#{@blog_post.picture(:header)}')"
+    / .black-overlay
+    / .image-overlay
+  .container
+    .row
+      .col-xs-12
+        h1.title= @blog_post.title
+    .row
+      .col-xs-12
+        .blog-post-details
+          i.icon-clock
+          span= @blog_post.release_date.to_short_date
+          / i.icon-author
+          / span= @blog_post.author_name
+          / = link_to '#' do
+          /   i.icon-share
+          /   span Compartilhar
+    .row
+      .col-xs-12.col-sm-9.blog-post-content
+        = @blog_post.content.html_safe
+      .col-xs-12.col-sm-3
+        = render 'widgets/blog_sidebar'

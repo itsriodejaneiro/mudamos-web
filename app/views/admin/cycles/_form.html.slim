@@ -1,0 +1,103 @@
+#cycle-new
+  = semantic_form_for [:admin, @cycle] do |f|
+    #accodion-parent.accordion
+      .accordion-group
+        .accordion-trigger
+          a.accordion-toggle data-parent="#accordion-parent" data-toggle="collapse" href="#collapseOne"
+            .row
+              .col-xs-11
+                h4 Parte 1
+                .line
+              .col-xs-1
+                i.icon-close
+        #collapseOne.accordion-body.collapse.in
+          .accordion-content
+            .row.row-same-height
+              .col-xs-4.col-xs-height.col-top
+                .row
+                  .col-xs-12
+                    .title
+                      h2 Nome do Tema
+                .row
+                  .col-xs-12
+                    = f.input :title, label: false
+                .row
+                  .col-xs-12
+                    .title
+                      h2 Descrição
+                .row
+                  .col-xs-12
+                      = f.input :description, label: false
+                .row
+                  .col-xs-12
+                    .title
+                      h2 Cor
+                .row
+                  .col-xs-12
+                      = f.input :color, label: false
+              .col-xs-8.col-xs-height
+                .row
+                  .col-xs-12
+                    .title
+                      h2 Selecione uma Imagem
+                .row
+                  .col-xs-12
+                    = f.input :picture, as: :file, label: false, input_html: { class: 'image-upload' }
+                    .file-input-image
+                      = image_tag f.object.picture.url, class: 'setting-iamge'
+                    / = f.submit 'Salvar', class: "btn pull-right"
+                    button.upload-image
+                      .background
+                      | Atualizar Foto
+
+      .accordion-group
+        .accordion-trigger
+          a.accordion-toggle data-parent="#accordion-parent" data-toggle="collapse" href="#collapseTwo"
+            .row
+              .col-xs-11
+                h4 Parte 2
+                .line
+              .col-xs-1
+                i.icon-close
+        #collapseTwo.accordion-body.collapse.in
+          .accordion-content
+            .row
+              .col-xs-12
+                .row
+                  .col-xs-12
+                    .title
+                      h2 Fases
+                .row
+                  .col-xs-12.phases
+                    - if @cycle.errors[:phases].any?
+                      p.inline-errors= @cycle.errors[:phases].first
+                    #phases
+                      = f.semantic_fields_for :phases do |phase|
+                        = render 'phase_fields', f: phase
+                    .links
+                      = link_to_add_association 'Adicionar Fase', f, :phases, class: 'btn'
+                    / = f.input :plugins, input_html: { data: { tags: true } }, include_blank: 'Selecione os plugins...', label: false
+      - if f.object.new_record?
+        .accordion-group
+          .accordion-trigger
+            a.accordion-toggle data-parent="#accordion-parent" data-toggle="collapse" href="#collapseThree"
+              .row
+                .col-xs-11
+                  h4 Parte 3
+                  .line
+                .col-xs-1
+                  i.icon-close
+          #collapseThree.accordion-body.collapse.in
+            .accordion-content
+              .row
+                .col-xs-12
+                  .row
+                    .col-xs-12
+                      .title
+                        h2 Plugins sem Fase
+                  .row
+                    .col-xs-12
+                      = f.input :plugins, as: :select, multiple: true, include_blank: 'Selecione os Plugins', label: false, collection: Plugin.where.not(plugin_type: ["Discussão", "Relatoria"])
+      hr
+      .text-center
+        = f.submit "#{f.object.persisted? ? 'Atualizar' : 'Criar'} Ciclo", class: 'btn'

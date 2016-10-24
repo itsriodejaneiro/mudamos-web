@@ -1,0 +1,15 @@
+.row.search-bar
+  .container
+    .row.search-title-row.text-left
+      .col-xs-12
+        p.search-title
+          i.icon-search
+          | Buscar
+        p.search-sub-title Comece digitando algo...
+    .row
+      .col-xs-12.text-left
+        = text_field_tag :search, params[:search], onkeyup: "this.setAttribute('value', this.value);", autocomplete: :off
+    .close
+      i.icon-close
+
+.search-results

@@ -1,0 +1,20 @@
+= semantic_form_for [:admin, @cycle, @plugin_relation, @subject] do |f|
+  .row
+    .col-xs-8
+      .row
+        .col-xs-12
+          = f.input :title, label: 'Título'
+      .row
+        .col-xs-12
+          = f.input :enunciation, label: 'Descrição', as: :text, input_html: { rows: 5, style: 'height: auto;' }
+      .row
+        .col-xs-12
+          = f.input :question, label: 'Pergunta', input_html: { rows: 5, style: 'height: auto;' }
+      .row
+        .col-xs-12
+          button.btn.btn-with-bg= "#{f.object.new_record? ? 'Adicionar' : 'Atualizar'} Assunto"
+    .col-xs-4
+      - if @vocabulary_plugin_relation
+        = f.input :vocabulary, as: :select, collection: @vocabulary_plugin_relation.vocabularies, label: 'Glossário', include_blank: 'Selecione um item do Glossário'
+
+      = f.input :tag_description, label: 'Descrição do Título', input_html: { rows: 5, style: 'height: auto;' }

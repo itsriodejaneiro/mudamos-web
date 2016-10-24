@@ -1,0 +1,90 @@
+- title = @subject.title
+- description = strip_tags(@subject.enunciation + @subject.question)
+- image = @cycle.picture(:header)
+- next_subject = @cycle.next_subject @subject.id
+
+- meta title: title, description: description, og: { title: title, image: image, description: description, locale: 'pt_BR', type: 'article' }, twitter: { card: 'summary', title: title, description: description, image: { src: image } }
+
+#comments-basic-params data-share-params=(@basic_share_params.map { |k, v| "#{k}=#{v}" }.join('&'))
+
+section.container-fluid#subject-show
+  .container
+    .row
+      .col-xs-12
+        h1.section-title style=("border-color: #{@cycle.color}" if @cycle) = @subject.title
+  .row.subject-enunciation-area
+    .col-xs-12
+      .container
+        .row
+          .col-xs-12.col-sm-8.col-sm-offset-2
+            h4.enunciation= @subject.enunciation
+  .row.subject-question-area style="background-color: #{@cycle.color}"
+    .col-xs-12
+      .container
+        .row
+          .col-xs-12.col-sm-8.col-sm-offset-2
+            h3.question= @subject.question
+  .container
+    .row.new-base-comment-area
+      .col-xs-12
+        - unless @subject.plugin_relation.related.final_date < Time.zone.now
+          = render 'widgets/comment_form'
+  .container
+    .row.old-comments-area
+      .col-xs-12
+        h2.section-title style=("border-color: #{@cycle.color}" if @cycle) Comentários
+        .comment-filter
+          p.title Filtrar comentários por:
+          ul
+            li
+              a data-filter="" style="color: #{@cycle.color}" + Quentes
+            li
+              a data-filter="most_recent" style="color: #{@cycle.color}" + Recentes
+            li
+              a data-filter="most_answered" style="color: #{@cycle.color}" + Respondidos
+            li
+              a data-filter="most_liked" style="color: #{@cycle.color}" + Likes
+            li
+              a data-filter="most_disliked" style="color: #{@cycle.color}" + Dislikes
+    .row
+      .col-xs-12.col-sm-10
+        = render partial: 'widgets/comment', collection: @comments, as: :comment, locals: { color: @cycle.color }
+      .col-sm-2.hidden-xs
+        .next_subject id="#{next_subject.slug}"
+          .text
+            .row.title style="color: #{@cycle.color};"
+              .col-xs-12
+                | Próximo Assunto
+            .row.subject-title
+              .col-xs-12
+                = next_subject.title
+          .arrow-button.text-right style="color: #{@cycle.color}"
+            i.icon-arrow style="font-size: 30px"
+/ = tinymce
+javascript:
+  $(window).load(function() {
+    notify.comments.init();
+  });
+
+javascript:
+  $(document).ready(function() {
+    tinymce.init({
+      selector: 'textarea',
+      theme: 'modern',
+      statusbar: false,
+      menubar: false,
+      toolbar: "insertfile undo redo |  bold italic underline | bullist numlist | link | emoticons",
+      plugins: "emoticons, link, paste",
+      paste_as_text: true,
+      setup: function (ed) {
+        ed.on("focus", function (e) {
+          var mce = ed.id;
+          $("[id^=" + "'" + mce + "'"+ "]").closest('.mce-edit-area').css({ height: "120px" });
+        });
+        ed.on("blur", function (e) {
+          var mce = ed.id;
+          $("[id^=" + "'" + mce + "'"+ "]").closest('.mce-edit-area').css({ height: "40px" });
+        });
+      }
+    });
+  });

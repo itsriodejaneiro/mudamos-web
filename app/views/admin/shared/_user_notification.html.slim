@@ -1,0 +1,20 @@
+li#notification.admin-user.icon-item.notification style=("background-color: #{@cycle.color}" if @cycle and @cycle.persisted?)
+  a.icon-notifications
+    span.user-name= current_admin_user.name
+    i.icon-arrow
+  / span.notification-message 8
+  ul.notification-dropdown
+    - current_admin_user.notifications.order('created_at DESC').limit(10).each do |n|
+      li.notification-dropdown-item
+        = link_to n.view_url do
+          .notification-content
+            p
+              = n.description.html_safe
+
+            .notification-infos
+              span.notification-time= "Há #{distance_of_time_in_words(n.created_at, Time.zone.now)}"
+
+javascript:
+  $(function(){
+    notify.user.init();
+  });

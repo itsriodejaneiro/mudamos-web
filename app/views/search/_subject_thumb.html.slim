@@ -1,0 +1,5 @@
+.subject-search-result
+  h2.title= link_to subject.title, cycle_subject_path(subject.plugin_relation.cycle, subject)
+  span= "Tema: #{subject.plugin_relation.cycle.name}"
+  h4.enunciation= subject.enunciation
+  h3.question= subject.question

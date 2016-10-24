@@ -1,0 +1,28 @@
+- parent ||= nil
+- rows ||= 3
+- placeholder ||= 'Criar comentário'
+
+= semantic_form_for [@cycle, @subject, Comment.new], html: { id: "new_comment#{"_#{parent.id}" if parent.present?}" } do |f|
+  - if parent
+    = f.input :parent_id, as: :hidden, input_html: { value: parent.id }
+  = f.text_area :content,
+                rows: rows,
+                id: "comment_content#{"_#{parent.id}" if parent.present?}",
+                placeholder: placeholder,
+                label: false,
+                class: "tinymce new_comment#{"_#{parent.id}" if parent.present?}"
+  .text-right
+    - if not(user_signed_in?) or (user_signed_in? and @subject.subjects_users.for(current_user.id).empty?)
+      - label = capture do
+        span= "Comentar como '#{user_signed_in? ? current_user.alias_name : 'Pseudônimo'}'"
+      = input f, :is_anonymous, as: :check_box, label: label, wrapper_class: 'pull-right', label_style: "border-color: #{@cycle.color}; color: #{@cycle.color}", checked: user_signed_in? ? current_user.alias_as_default : false, input_id: "comment_is_anonymous#{"_#{parent.id}" if parent.present?}", label_for: "comment_is_anonymous#{"_#{parent.id}" if parent.present?}"
+    - else
+      - if @subject.subjects_users.for(current_user.id).first.is_anonymous
+        .is_anonymous.input.already-defined
+          span= "Para este assunto você optou pelo modo Anônimo. Seu pseudônimo é '#{user_signed_in? ? current_user.alias_name : 'Pseudônimo'}'"
+      - else
+        .is_anonymous.input.already-defined
+          span= "Você não pode mais comentar como anônimo nesse assunto."
+    button.new-comment-button.pull-right style="border-color: #{@cycle.color};"
+      .background style="background-color: #{@cycle.color};"
+      | Enviar

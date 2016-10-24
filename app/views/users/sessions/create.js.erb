@@ -1,0 +1,8 @@
+<%= render 'layouts/shared/flash_messages' %>
+
+<% if user_signed_in? %>
+  location.reload();
+<% else %>
+  var errors = { 'password': ['email ou senha estão incorretos.'] }
+  document.set_errors(errors, $('#modal-session-new').find('form#new_user'))
+<% end %>

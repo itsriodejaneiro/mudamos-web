@@ -1,0 +1,33 @@
+.col-xs-3
+  .sidebar-nav-wrapper
+    nav.sidebar-nav
+      ul.nav#accordion
+        li.sidebar-brand
+           = link_to admin_cycles_path do
+            = image_tag('mudamos-logo.svg')
+        = render 'admin/shared/user_notification'
+          / span= current_admin_user.name.capitalize
+        li= link_to 'Segurança Pública', [:admin, Cycle.find_by_name('Segurança Pública')]
+        li= link_to 'Lista de Temas', [:admin, :cycles]
+        li= link_to 'Destaques', [:admin, :grid_highlights]
+        li
+          #sub-sidebar-link role="tab"
+            a.collapsed#btn-1 role="button" data-toggle="collapse" data-parent="#accordion" href="#sub-sidebar-1" aria-expanded="false"  aria-controls="sub-sidebar"
+              | Institucional Mudamos
+              i.icon-plus
+          ul#sub-sidebar-1.nav.collapse.sub-sidebar role="tabpanel" arial-labelledby="sub-sidebar-link" style="height: 0px;"
+            li= link_to 'Editar', admin_settings_path
+            li= link_to 'Créditos', [:admin, :credits]
+            li
+              .sub-sub-sidebar-link role="tab"
+                a.collapsed#btn-2 role="button" data-toggle="collapse" data-parent="#sub-sidebar" href="#sub-sub-sidebar-1" aria-expanded="false"  aria-controls="sub-sub-sidebar"
+                  | Páginas Estáticas
+                  i.icon-plus
+              ul#sub-sub-sidebar-1.nav.collapse.sub-sub-sidebar role="tabpanel" arial-labelledby="sub-sub-sidebar-link" style="height: 0px;"
+                li= link_to 'Criar Nova', [:new, :admin, :static_page]
+                - @static_pages.each do |sp|
+                  = link_to sp.name, [:admin, sp]
+        li= link_to 'Blog', [:admin, :blog_posts]
+        li= link_to 'Usuários Gerais', admin_users_path
+        - if current_admin_user.Master?
+          li= link_to 'Administradores', admin_admin_users_path

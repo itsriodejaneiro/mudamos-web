@@ -1,0 +1,16 @@
+form
+  .row
+    .col-xs-12
+      .title
+        h2 Comentário
+  .row
+    .col-xs-12
+      input.tinymce
+  .row
+    .col-xs-12
+      button.btn.btn-with-bg Adicionar Comnentário
+
+javascript:
+  $(document).ready(function(){
+    admin.edit.init('.tinymce')
+  });

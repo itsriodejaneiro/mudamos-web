@@ -1,0 +1,96 @@
+- breadcrumb :user, @user
+
+.row#user-informations
+  .col-xs-12
+    .row
+      .col-xs-8
+        .title
+          h2 Dados do usuário da Plataforma
+        .card-module.user-module
+          .row
+            .col-xs-6
+              = image_tag @user.picture.url(:medium)
+              p.user-name= @user.name
+              p.user-location= "#{@user.city}, #{@user.state}"
+            .col-xs-6
+              .user-profile
+                p
+                  b Data de nascimento:
+                  = @user.birthday if @user.birthday
+                p
+                  b Gênero:
+                  = @user.gender
+                p
+                  b Email:
+                  = @user.email
+                p
+                  b Setor:
+                  = @user.profile.name if @user.profile
+                p
+                  b Subsetor:
+                  = @user.sub_profile.name if @user.sub_profile
+      .col-xs-4
+        .row
+          .col-xs-12
+            .title
+              h2 Anonimato
+            .card-module
+              .holder
+                p
+                  b.status-number= @user.anonymous_interactions.count
+              .anonymous
+                p
+                  b número de comentários
+                p.standard-user= @user.alias_as_default ? 'Usuário Anônimo por Padrão' : 'Usuário Não Anônimo por Padrão'
+                - if current_admin_user.Master?
+                  p
+                    b Nome Anônimo:
+                    = " #{@user.alias_name}"
+
+        .row
+          .col-xs-12
+            .title
+              h2 Login
+            .card-module
+              p
+                b Último Login:
+                = I18n.l(@user.last_sign_in_at, format: '%d %b %Y às %H:%M') if @user.last_sign_in_at
+              / p
+              /   b No Aplciativo:
+              /   | 24 Out 2015 às 15:00
+    .row
+      .col-xs-12
+          .title
+            h2 Lista de temas e interações
+          #administrators.card-module
+            - if @user.comments.any? or @user.dislikes.any? or @user.likes.any?
+              .filters.clearfix
+                = render 'admin/shared/page_quantity'
+              table
+                thead
+                  tr
+                    th Tema
+                    th Total de Comentários Criados
+                    th Total de Comentários Respondidos
+                    th colspan="2"
+                      | Recebidos
+                      .like-holder
+                        i.icon-like
+                        i.icon-dislike
+                    th colspan="2"
+                      | Dados
+                      .like-holder
+                          i.icon-like
+                          i.icon-dislike
+                tbody
+                  - @cycles.each do |c|
+                    tr
+                      td= c.name
+                      td.comment-td= c.comments.where(depth: 0, user_id: @user.id).count
+                      td.comment-td= c.comments.where(user_id: @user.id).where.not(depth: 0).count
+                      td= Like.where(comment_id: c.comments.where(user_id: @user.id)).count
+                      td= Dislike.where(comment_id: c.comments.where(user_id: @user.id)).count
+                      td= @user.likes.where(comment_id: c.comments.pluck(:id)).count
+                      td= @user.dislikes.where(comment_id: c.comments.pluck(:id)).count
+            - else
+              p.no-interactions O usuário não possui interações.

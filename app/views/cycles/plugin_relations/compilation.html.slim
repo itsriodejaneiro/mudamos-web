@@ -1,0 +1,193 @@
+.container#report-cycle
+  .row
+    .col-xs-12
+      h1.section-title style="border-color: #{@cycle.color};" Relatoria
+
+  - if @plugin_relation.compilation_file.file.exists?
+    .row
+      .col-xs-12
+        .report-call-to-action
+          a.report-download style="border: 5px solid #{@cycle.color};" href=@plugin_relation.compilation_file.file.url target="_blank"
+            span Faça o Download do relatório Mudamos
+            span.action-tail style="border-top: 80px solid #{@cycle.color};" &nbsp
+            .hover-box style="background-color: #{@cycle.color};"
+          a.download-icon href=""
+            .icon
+              i.icon-baixeaqui style="color: #{@cycle.color};"
+            | Relatorio_mudamos.pdf
+  .row
+    .report-content
+      .col-xs-6
+        .report-title
+          h2= @plugin_relation.compilation_file.title1
+      .col-xs-6
+        .report-menu
+          .ul
+             li data-item="signup-sector" style="color: #{@cycle.color}; border-bottom: 3px solid #{@cycle.color};" Setores
+             li.deactive data-item="signup-gender" style="color: #{@cycle.color}; border-bottom: 3px solid #{@cycle.color};" Gênero
+             li.deactive data-item="signup-age" style="color: #{@cycle.color}; border-bottom: 3px solid #{@cycle.color};" Idade
+             li.deactive data-item="signup-region" style="color: #{@cycle.color}; border-bottom: 3px solid #{@cycle.color};" Região
+        .report-container
+          .report-item.active
+            #signup-sector style="height: 500px;"
+          .report-item
+            #signup-gender style="height: 500px;"
+          .report-item
+            #signup-age style="height: 500px;"
+          .report-item
+            #signup-region style="height: 500px;"
+  .row
+    .report-content
+      .col-xs-6
+        .report-title style="height: 700px"
+          h2= @plugin_relation.compilation_file.title2
+      .col-xs-6
+        .report-menu
+          .ul
+             li data-item="subject-comment" style="color: #{@cycle.color}; border-bottom: 3px solid #{@cycle.color};" Comentátios
+             li.deactive data-item="subject-person" style="color: #{@cycle.color}; border-bottom: 3px solid #{@cycle.color};" Participantes
+             / li.deactive data-item="subject-likes" style="color: #{@cycle.color}; border-bottom: 3px solid #{@cycle.color};" Likes/Dislikes
+             li.deactive data-item="subject-sector" style="color: #{@cycle.color}; border-bottom: 3px solid #{@cycle.color};" Setores
+        .subject-menu
+          i.icon-arrow.arrow-left
+          .subject-holder
+            ul
+              - @cycle.subjects.each do |s|
+                li data-target="#subject-comment-#{s.id}" = s.title
+          i.icon-arrow.arrow-right
+
+        .report-container.subjects-charts
+          .with-sub-items#subject-comment
+            - @cycle.subjects.each_with_index do |s, i|
+              .report-item class=('active' if i == 0)
+                div style="height: 500px;" id="subject-comment-#{s.id}"
+          .with-sub-items#subject-person.hidden
+            - @cycle.subjects.each_with_index do |s, i|
+              .report-item class=('active' if i == 0)
+                div style="height: 500px;" id="subject-user-region-#{s.id}"
+          / .with-sub-items#subject-likes.hidden
+          /   - @cycle.subjects.each_with_index do |s, i|
+          /     .report-item class=('active' if i == 0)
+          /       div style="height: 500px;" id="subject-like-#{s.id}"
+          .with-sub-items#subject-sector.hidden
+            - @cycle.subjects.each_with_index do |s, i|
+              .report-item class=('active' if i == 0)
+                div style="height: 500px;" id="subject-user-profile-#{s.id}"
+  .row
+    .report-content
+      .col-xs-6
+        .report-title
+          h2= @plugin_relation.compilation_file.title1
+      .col-xs-6
+        .report-menu
+          .ul
+             li data-item="participation-signup" style="color: #{@cycle.color}; border-bottom: 3px solid #{@cycle.color};" Cadastrados
+             li.deactive data-item="participation-subject" style="color: #{@cycle.color}; border-bottom: 3px solid #{@cycle.color};" Assunto
+             / li.deactive data-item="participation-debate" style="color: #{@cycle.color}; border-bottom: 3px solid #{@cycle.color};" Debate
+        .subject-menu.subject-menu-single
+          i.icon-arrow.arrow-left
+          .subject-holder
+            ul
+              - @cycle.subjects.each do |s|
+                li data-target="#participation-subject-#{s.id}" = s.title
+          i.icon-arrow.arrow-right
+        .report-container.subjects-charts
+          .report-item.active
+            .icon-holder
+              .icon-item
+                i.icon-author
+                p Idendificados
+              .icon-item
+                i.icon-anonimo
+                p Anônimos
+            #participation-signup style="height: 500px;"
+          .report-item
+            .icon-holder
+              .icon-item
+                i.icon-author
+                p Idendificados
+              .icon-item
+                i.icon-anonimo
+                p Anônimos
+            .with-sub-items#participation-subject
+              - @cycle.subjects.each do |s|
+                div style="height: 500px;" id="participation-subject-#{s.id}" class="participation-subject"
+          / .report-item
+          /   .icon-holder
+          /     .icon-item
+          /       i.icon-author
+          /       p Idendificados
+          /     .icon-item
+          /       i.icon-anonimo
+          /       p Anônimos
+          /   #participation-debate style="height: 500px;"
+
+  .row
+    .col-xs-12
+      .report-footer
+        ul.pull-left
+          - @cycle.subjects.order('created_at ASC').each do |s|
+            - next unless s.file.exists?
+            li
+              a href=s.file.url
+                .icon
+                  i.icon-baixeaqui style="color: #{@cycle.color};"
+                = "Relatorio - #{s.title}.pdf"
+          li
+            a style="display: block" href=url_for(format: :csv)
+              .icon
+                i.icon-baixeaqui style="color: #{@cycle.color};"
+              | Microdados.csv
+        .pull-right.text-right
+          = link_to [@cycle, :subjects] do
+            .arrow-area
+              .arrow style="color: #{@cycle.color}; background-color: #{@cycle.color};"
+              i.icon-arrow style="color: #{@cycle.color};"
+            .text-area
+              span Veja como foram os debates
+
+- r, g, b = @cycle.color.hex_to_rgb
+- base_color = "#{r},#{g},#{b}"
+- grey_color = "87,87,87"
+- colors = ["rgba(#{base_color},1)", "rgba(#{base_color},0.5)", "rgba(#{base_color},0.2)", "rgba(#{grey_color},0.75)", "rgba(#{grey_color},0.5)", "rgba(#{grey_color},0.25)"]
+
+javascript:
+  $(document).ready(function () {
+    reports.init();
+  });
+
+- {'#signup-sector' => { type: 'pie', title: 'Cadastros por Setor', series: @user_profile_count_in_range, percentage: true, legend: true }, '#signup-gender' => { type: 'pie', title: 'Cadastros por Gênero', series: @user_gender_count_in_range, percentage: false, legend: true }, '#signup-region' => { type: 'pie', title: 'Cadastros por Estado', series: @user_state_count_in_range, percentage: true, legend: true }}.each_pair do |id, hash|
+  javascript:
+    $(document).ready(function () {
+      reports.charts.setChart("#{{ id }}","#{{ hash[:type] }}","#{{ hash[:title] }}", #{{ hash[:series] }}, #{{ hash[:percentage] }}, #{{ hash[:legend] }}, #{{ hash[:colors] || colors }})
+    });
+
+- { 'subject-comment-' => { data: @subjects_comments_region_count_in_range, title: 'Comentários por Região' }, 'subject-user-region-' => { data: @subjects_users_region_count_in_range, title: 'Participantes por Região' }, 'subject-user-profile-' => { data: @subjects_users_profile_count_in_range, title: 'Participantes por Setor' }}.each do |k, v|
+  - v[:data].each do |s|
+    - { "##{k}#{s[:subject_id]}" => { type: 'pie', title: v[:title], series: s[:series], percentage: false, legend: true } }.each do |id, hash|
+      javascript:
+        $(document).ready(function () {
+          reports.charts.setChart("#{{ id }}","#{{ hash[:type] }}","#{{ hash[:title] }}", #{{ hash[:series] }}, #{{ hash[:percentage] }}, #{{ hash[:legend] }}, #{{ hash[:colors] || colors }})
+        });
+
+/ - { 'subject-like-' => { data: @subjects_likes_and_dislikes_count_in_range, title: 'Likes e Dislikes' }}.each do |base_id, v|
+/   - v[:data].each do |v1|
+/     javascript:
+/       $(document).ready(function () {
+/         reports.charts.subjectLikes("##{{ base_id.to_s + v1[:subject_id].to_s }}", "#{{ v[:title] }}", #{{ v1[:series] }})
+/       });
+
+javascript:
+  $(document).ready(function () {
+    reports.charts.signupAge(#{{ @user_age_count_in_range }}, #{{ colors }})
+  })
+
+  $(document).ready(function () {
+    reports.charts.setAnonymous("#participation-signup", 'Identificados x Anônimos', #{{ @user_profile_anonymous_count_in_range }}, #{{ colors }})
+  })
+
+- @subjects_users_profile_anonymous_count_in_range.each do |s|
+  javascript:
+    $(document).ready(function () {
+      reports.charts.setAnonymous("#participation-subject-#{{s[:subject_id]}}", 'Identificados x Anônimos', #{{ s[:series] }}, #{{ colors }})
+    })

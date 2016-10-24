@@ -1,0 +1,64 @@
+- title = "Biblioteca sobre #{@cycle.title}"
+- description = 'Este espaço é dedicado a oferecer conteúdo - documentos, artigos, vídeos, entre outros - sobre os diversos temas relacionados à segurança pública, em especial aqueles levantados pela proposta de emenda constitucional 51 (PEC 51).'
+- image = @cycle.picture(:header)
+
+- meta title: title, description: description, og: { title: title, image: image, description: description, locale: 'pt_BR', type: 'article' }, twitter: { card: 'summary', title: title, description: description, image: { src: image } }
+
+
+section.container-fluid#materials-index
+  .container
+    .row
+      .col-xs-12
+        .section-title style=("border-color: #{@cycle.color}" if @cycle) Biblioteca
+    .row
+      .col-xs-12.col-sm-3
+        #accordion role="tablist" aria-multiselectable="true"
+          .panel
+            .panel-heading role="tab" id="themeHeading"
+              = link_to '+ tópicos', "#themeFilter", class: 'filter-link', data: { toggle: "collapse", parent: "#accordion" }, aria: { expanded: "true", controls: "themeFilter" }
+            #themeFilter.panel-collapse.collapse role="tabpanel" aria-labelledby="cycleHeading"
+              - Material.tags_on(:themes).order('name ASC').each do |t|
+                .row
+                  .col-xs-12
+                    = link_to "+ #{t.name}", cycle_materials_path(@cycle, filter: t.id), class: 'filter-link'
+      .col-xs-12.col-sm-9
+        .row
+          .col-xs-12.materials-intro
+            p Este espaço é dedicado a oferecer conteúdo - documentos, artigos, vídeos, entre outros - sobre os diversos temas relacionados à segurança pública, em especial aqueles levantados pela proposta de emenda constitucional 51 (PEC 51).
+            p Além do que já estiver publicado aqui, será possível incluir novos conteúdos no decorrer do ciclo.
+            p
+              = "Caso queira sugerir outros materiais para esta Biblioteca, por favor entre em contato com a "
+              = link_to 'Equipe Mudamos', 'mailto:contato@mudamos.org'
+              | .
+            p Esperamos que este espaço seja útil para a sua participação no debate!
+        .row.material-search
+          = semantic_form_for :search, url: request.path, html: { method: 'get' } do |f|
+            .col-xs-12
+              button.search-button
+                i.icon-search style="color: #{@cycle.color}"
+              = text_field_tag :search, params[:search], onkeyup: "this.setAttribute('value', this.value);", autocomplete: :off, placeholder: 'Procure na biblioteca...'
+        .row.material-results-count
+          .col-xs-12
+            b= "#{@materials.count}"
+            = " resultado#{'s' if @materials.count != 1} encontrado#{'s' if @materials.count != 1}"
+        - @materials.each do |m|
+          .row.material
+            .col-xs-1
+              .icon style="border-color: #{@cycle.color}"
+                i class="icon-#{m.category_icon}" style="color: #{@cycle.color}"
+            .col-xs-6.basic-content
+              = link_to m.title, m.external_link, target: "_blank"
+              - if m.publishing_date or m.source
+                .row
+                  .col-xs-12
+                    - if m.publishing_date
+                      span= m.publishing_date.to_short_date
+                    - if m.source
+                      span= "Fonte: #{m.source}"
+              - if m.author
+                .row
+                  .col-xs-12
+                    span= "Autor: #{m.author}"
+            - if m.description
+              .col-xs-5.with-left-line style="border-color: #{@cycle.color}"
+                p= m.description

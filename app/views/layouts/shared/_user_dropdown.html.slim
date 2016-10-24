@@ -1,0 +1,8 @@
+li.dropdown.user-dropdown class=("dropup" if params[:controller] == 'cycles' and params[:action] == 'index')
+  = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, role: 'button' do
+    = image_tag current_user.picture, class: 'user-menu-image'
+    = current_user.name.split(' ').first
+    span.caret
+  ul.dropdown-menu
+    li= link_to 'EDITAR PERFIL', edit_user_registration_path
+    li= link_to 'SAIR', destroy_user_session_path, method: :delete

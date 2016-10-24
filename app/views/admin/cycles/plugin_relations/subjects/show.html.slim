@@ -1,0 +1,26 @@
+- breadcrumb :subject, @subject, @cycle, @plugin_relation
+
+.row
+  .col-xs-12
+    .title
+      h2 Informações Gerais
+    .row
+      .col-xs-8
+        .card-module.card-height
+          .subject
+            = link_to [:edit, :admin, @cycle, @plugin_relation, @subject] do
+              i.icon-edit
+            p.title= @subject.title
+            p.description= @subject.enunciation.html_safe
+            p.question= @subject.question.html_safe
+      .col-xs-4
+        .card-module.card-height
+          h3 Comentário por setor
+          #dashboard-comment-sector
+
+= render 'admin/cycles/plugin_relations/subjects/comments/list'
+= render 'admin/cycles/plugin_relations/subjects/comments/chart'
+javascript:
+  $(document).ready(function(){
+    admin.helpers.init(".card-height");
+  });

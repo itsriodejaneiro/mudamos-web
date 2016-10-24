@@ -1,0 +1,62 @@
+= semantic_form_for @user || User.new, as: :user, url: user_registration_path, html: { autocomplete: :off }, remote: true do |f|
+  .col-xs-12.col-sm-8.pull-right
+    input type="password" style="display:none"
+    = input f, :name, label: 'Nome e Sobrenome'
+    = input f, :email, label: 'Email'
+    - if f.object.new_record?
+      = input f, :password, as: :password, label: 'Senha'
+    = input f, :birthday, label: 'Data de Nascimento', class: 'date_mask', value: f.object.birthday.present? ? f.object.birthday.strftime('%d/%m/%Y') : nil
+    = f.input :gender, label: false, as: :select, collection: User.genders.keys, include_blank: 'Gênero', input_html: { data: { search_disabled: true } }
+    = f.input :state, label: false, as: :select, collection: STATES, include_blank: 'Estado'
+    = f.input :city, label: false, as: :select, collection: f.object.state.present? ? City.where(uf: f.object.state).pluck(:name) : [], include_blank: 'Cidade', wrapper_html: { style: ('display: none;' if f.object.new_record?) }
+    = f.input :profile, label: false, collection: Profile.roots.pluck(:name, :id), include_blank: 'Setor de Atuação', input_html: { data: { search_disabled: true } }
+    .profile-description
+    = f.input :sub_profile, label: false, collection: (f.object.profile.present? and f.object.profile.children.any?) ? f.object.profile.children : [], include_blank: 'Subsetor de Atuação', wrapper_html: { style: ('display: none' unless f.object.profile.present? and f.object.profile.children.any?) }, input_html: { data: { search_disabled: true } }
+    .sub-profile-description
+    - if f.object.new_record?
+      - if terms = StaticPage.find('termos-de-uso') and privacy = StaticPage.find('politica-de-privacidade')
+        - label = capture do
+          span= "Li e concordo com os "
+          = link_to 'termos de uso', terms, target: '_blank'
+          span= " e com as "
+          = link_to 'políticas de privacidade', privacy, target: '_blank'
+        = input f, :terms, label: label, as: :check_box
+    button type="submit" onclick="javascript:document.start_loading();"
+      .arrow
+      .background
+      - if f.object.new_record?
+        | Entrar
+      - else
+        | Salvar Alterações
+  .col-xs-12.col-sm-4
+    = f.input :picture, as: :file, label: false, input_html: { class: 'image-upload' }
+    .file-input-image
+      - if cookies[:user_photo]
+        = image_tag cookies[:user_photo]
+      - else
+        = image_tag(f.object.picture? ? f.object.picture(:medium) : 'user.png')
+    button.upload-image
+      .arrow
+      .background
+      | Adicionar Foto
+
+    - names = AliasName.options.pluck(:name)
+    p.alias-name
+      | Você pode comentar como pseudônimo quando não quiser ser identificado. Seu pseudônimo no Mudamos é
+      span.big= f.object.alias_name.blank? ? names.first : f.object.alias_name
+    = f.input :alias_name, as: :hidden, input_html: { value: f.object.alias_name.blank? ? names.first : f.object.alias_name }
+    .alias-options
+      - if f.object.alias_name.blank?
+        - names.each do |n|
+          = "<option>#{n}</option>".html_safe
+      - else
+        option= f.object.alias_name
+    - if f.object.alias_name.blank?
+      button.alias-button
+        .arrow
+        .background
+        | Trocar Pseudônimo
+
+    - label = capture do
+      span Quero ser anônimo sempre.
+    = input f, :alias_as_default, as: :check_box, label: label

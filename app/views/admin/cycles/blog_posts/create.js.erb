@@ -1,0 +1,10 @@
+<%= render 'layouts/shared/flash_messages' %>
+
+$(document).ready(function() {
+  <% if @blog_post.errors.any? %>
+    document.stop_loading();
+    document.set_errors(<%= @blog_post.errors.to_json.html_safe %>, $('form#new_blog_post'), "blog_post");
+  <% else %>
+    location.href = "/admin/temas/<%= @cycle.slug %>/blog"
+  <% end %>
+});

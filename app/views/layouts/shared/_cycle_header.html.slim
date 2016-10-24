@@ -1,0 +1,50 @@
+nav.navbar.navbar-default.navbar-fixed-top
+  .row.primary-navbar style="background-color: #{@cycle.color}"
+    .col-xs-12
+      .container
+        .navbar-header
+          = link_to root_path, class: 'navbar-brand' do
+            = image_tag('mudamos-logo.svg')
+        ul.nav.navbar-nav.navbar-center
+          p.navbar-cycle-text= @cycle.title
+
+        ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            / li.navbar-text= "Olá, #{current_user.name}"
+            / li= link_to 'SAIR', destroy_user_session_path, method: :delete
+            = render 'layouts/shared/user_dropdown'
+            = render 'layouts/shared/user_notification'
+          - else
+            li= link_to 'ENTRAR', '#', onclick: 'javascript:document.open_login();'
+          li.icon-item.search= link_to '#' do
+            i.icon-search
+  .row.secondary-navbar
+    .col-xs-12.dark-bg
+      .container
+        ul.nav.navbar-nav.navbar-center.cycle-header
+          li= link_to 'HOME', cycle_path(@cycle)
+          - if @cycle.current_phase.present?
+            - if @cycle.current_phase.plugin.plugin_type == 'Discussão'
+              li= link_to 'ASSUNTOS', cycle_subjects_path(@cycle)
+            - elsif @cycle.current_phase.plugin.plugin_type == 'Relatoria'
+              li= link_to 'RELATORIA', cycle_plugin_relation_path(@cycle, @cycle.current_phase.plugin_relation)
+          - if @cycle.blog_plugin.present?
+            li= link_to 'BLOG', cycle_blog_posts_path(@cycle)
+
+          - if @cycle.past_phases.any? or @cycle.plugins.where(plugin_type: ["Biblioteca", "Glossário"]).where.not(plugin_type: 'Blog').any?
+            li.dropdown
+              = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, role: 'button' do
+                | INFORME-SE
+                .span.caret
+              ul.dropdown-menu.cycle
+                - @cycle.past_phases.each do |pp|
+                  - if pp.plugin.plugin_type == 'Discussão'
+                    li= link_to 'ASSUNTOS', cycle_subjects_path(@cycle)
+                  - elsif pp.plugin.plugin_type == 'Relatoria'
+                    li= link_to 'RELATORIA', cycle_plugin_relation_path(@cycle, @cycle.current_phase.plugin_relation)
+                - if @cycle.plugins.where(plugin_type: 'Biblioteca').any?
+                  li= link_to 'BIBLIOTECA', cycle_materials_path(@cycle)
+                - if @cycle.plugins.where(plugin_type: 'Glossário').any?
+                  li= link_to 'GLOSSÁRIO', cycle_vocabularies_path(@cycle)
+  = render 'layouts/search_bar'
+

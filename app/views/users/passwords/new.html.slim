@@ -1,0 +1,22 @@
+.row
+  .col-xs-12.col-sm-6.col-sm-offset-3
+    .section-title Esqueceu sua senha?
+.row
+  .col-xs-12.col-sm-6.col-sm-offset-3
+    = semantic_form_for User.new, as: :user, url: user_password_path, html: { autocomplete: :off, method: :post }, remote: true do |f|
+      = input f, :email, label: 'Email'
+      button type="submit"
+        .arrow
+        .background
+        | Enviar
+/ h2
+/   | Forgot your password?
+/ = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+/   = devise_error_messages!
+/   .field
+/     = f.label :email
+/     br
+/     = f.email_field :email, autofocus: true
+/   .actions
+/     = f.submit "Send me reset password instructions"
+/ = render "users/shared/links"

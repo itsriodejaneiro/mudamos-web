@@ -1,0 +1,1 @@
+TEST_USER_CLASS = :user

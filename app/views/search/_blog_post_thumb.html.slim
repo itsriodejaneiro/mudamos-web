@@ -1,0 +1,7 @@
+.row.blog-post-search-result
+  .col-xs-2
+    = image_tag blog_post.picture(:thumb)
+  .col-xs-10
+    h2= link_to blog_post.title, blog_post_dependent_path(blog_post)
+    span= "Blog #{blog_post.cycle_name}"
+    .blog-bottom-area= blog_post.content.html_safe

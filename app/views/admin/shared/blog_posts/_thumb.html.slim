@@ -1,0 +1,42 @@
+.row.admin-blog-post-thumb
+  .col-xs-12
+    .card-module
+      .row.row-same-height
+        .col-xs-7.col-xs-height
+          .blog-post-image style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('#{blog_post.picture.url}'); #{"border-left-color: #{blog_post.color}" if blog_post.color}"
+          h4.cycle-title= blog_post.cycle_name
+          h3.blog-post-title= link_to blog_post.title, (@cycle.present? ? [:admin, @cycle, blog_post] : [:admin, blog_post])
+          h4.cycle-release-date= blog_post.release_date.strftime('%d/%m/%Y')
+        .col-xs-5.col-xs-height.col-middle
+          ul.actions
+            / i.icon-destacado
+            / i.icon-publicar
+            - if blog_post.active
+              li= semantic_form_for (@cycle.present? ? [:admin, @cycle, blog_post] : [:admin, blog_post]), method: :put do |f|
+                = f.input :highlighted, as: :hidden, input_html: { value: !blog_post.highlighted }
+                button
+                  - if blog_post.highlighted
+                    i.icon-destacado
+                    span Destacado
+                  - else
+                    i.icon-destaque
+                    span Destacar
+            li= semantic_form_for (@cycle.present? ? [:admin, @cycle, blog_post] : [:admin, blog_post]), method: :put do |f|
+              = f.input :active, as: :hidden, input_html: { value: !blog_post.active }
+              button
+                - if blog_post.active
+                  i.icon-desabilitar
+                  span Desabilitar
+                - else
+                  i.icon-publicar
+                  span Publicar
+            li= link_to (@cycle.present? ? [:edit, :admin, @cycle, blog_post] : [:edit, :admin, blog_post]) do
+              i.icon-edit
+              span Editar
+            li= link_to (@cycle.present? ? [:admin, @cycle, blog_post] : [:admin, blog_post]), method: :delete, data: { confirm: 'Você tem certeza?' } do
+              i.icon-deletar
+              span Apagar
+    .row
+      .col-xs-12
+        p.blog-post-id= "ID: #{blog_post.id}"
+

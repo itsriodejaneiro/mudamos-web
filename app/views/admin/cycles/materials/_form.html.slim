@@ -1,0 +1,29 @@
+= semantic_form_for [:admin, @cycle, @plugin_relation, @material], html: { id: 'materials-form' } do |f|
+  .row
+    .col-xs-8
+      = f.input :title, label: 'Título'
+      = f.input :source, label: 'Fonte'
+      = f.input :external_link, label: 'Link'
+      = f.input :author, label: 'Autor'
+      = f.input :description, label: 'Texto'
+      .row.form-row
+        .col-xs-4
+          button type="submit" Salvar Material
+    .col-xs-4
+      = f.input :category, label: 'Categoria', as: :select, collection: Material.categories, include_blank: 'Selecione a categoria'
+      = f.input :themes, label: 'Temas', input_html: { data: { tags: true } }, collection: Material.tags_on(:themes), include_blank: 'Selecione os temas...'
+      = f.input :keywords, label: 'Palavras Chave', input_html: { data: { tags: true } }, collection: Material.tags_on(:keywords), include_blank: 'Selecione as palavras chave...'
+
+javascript:
+  $(document).ready(function(){
+    $("#tag-input").select2({
+      tags: true,
+      tokenSeparators: [';'],
+      multiple: true, 
+    });
+  });
+
+javascript:
+  $(document).ready(function(){
+    admin.edit.init("#material_description");
+  });

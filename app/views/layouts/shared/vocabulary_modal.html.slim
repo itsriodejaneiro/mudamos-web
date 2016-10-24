@@ -1,0 +1,12 @@
+.row
+  .col-xs-12
+    .section-title style=("border-color: #{@cycle.color}" if @cycle) = @subject.title
+.row
+  .col-xs-12.subject-tag-description
+    = @subject.tag_description.html_safe
+
+- if @subject.vocabulary.present?
+  .row
+    .col-xs-12.vocabulary-modal-link
+      span= "Leia mais no "
+      = link_to "Glossário", "#{cycle_vocabularies_path(@cycle)}##{@subject.vocabulary.id}"

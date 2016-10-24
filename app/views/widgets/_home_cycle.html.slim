@@ -1,0 +1,12 @@
+- target ||= nil
+
+.col-xs-12.col-sm-6
+  = link_to url, target: target do
+    .cycle-item
+      .full-background-image style="background-image: url('#{image}')"
+      .black-overlay
+      / .image-overlay
+      .cycle-title= name
+      .cycle-footer.text-center style="background-color: #{color}; border-color: #{color}"
+        .arrow
+        span= text

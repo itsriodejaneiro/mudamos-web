@@ -1,0 +1,143 @@
+- breadcrumb :settings_edit
+
+.row
+  .col-xs-4
+    .title
+      h2 Lead inicial
+  .col-xs-8
+    .title
+      h2 Selecione uma Imagem
+
+.row.row-same-height
+  .col-xs-4.col-xs-height.col-top
+    .card-background
+    .setting-static-content
+      .row
+        .col-xs-12.setting-title
+          button.edit-setting-button
+            i.icon-edit
+      .row
+        .col-xs-12.setting-content
+          = Setting.find_by_key('home_sub_title').value.html_safe
+    .setting-form
+      .row
+        .col-xs-12
+          = semantic_form_for [:admin, Setting.find_by_key("home_sub_title")] do |f|
+            = f.input :value, label: false, input_html: { rows: 5, style: "height: auto;" }
+            = f.submit 'Salvar', class: "btn"
+  .col-xs-8.col-xs-height
+    = semantic_form_for [:admin, Setting.find_by_key('home_picture')], html: { class: 'image-form' } do |f|
+      = f.input :picture, as: :file, label: false, input_html: { class: 'image-upload' }
+      .file-input-image
+        = image_tag Setting.find_by_key('home_picture').picture.url(:header), class: 'setting-image'
+      = f.submit 'Salvar', class: "btn pull-right"
+      button.upload-image
+        .background
+        | Atualizar Foto
+
+.row
+  .col-xs-12
+    .title
+      h2 Descrições
+    .row
+      .col-xs-12
+        .card-module
+          p style="margin: 0"
+            b SOBRE O MUDAMOS
+
+.row.row-same-height
+  - (1..3).each do |i|
+    .col-xs-4.col-xs-height.col-top
+      .card-background
+      .setting-static-content
+        .row
+          .col-xs-12.setting-title
+            button.edit-setting-button
+              i.icon-edit
+            = Setting.find_by_key("home_title#{i}").value.html_safe
+        .row
+          .col-xs-12.setting-content
+            = Setting.find_by_key("home_text#{i}").value.html_safe
+      .setting-form
+        .row
+          .col-xs-12
+            = semantic_form_for [:admin, Setting.find_by_key("home_title#{i}")] do |f|
+              = f.input :value, label: false, as: :string
+              = f.submit 'Salvar', class: "btn"
+        .row
+          .col-xs-12
+            = semantic_form_for [:admin, Setting.find_by_key("home_text#{i}")] do |f|
+              = f.input :value, label: false, input_html: { class: "setting-tinymce" }
+              = f.submit 'Salvar', class: "btn"
+
+.row
+  / .col-xs-4
+  /   .title
+  /     h2 Críticas e Sugestões
+  /   .card-module
+  /   .title
+  /     h2 Contato
+  /   .card-module
+  .col-xs-4
+    .title
+      h2 Links
+    .card-module
+      p style="margin: 0"
+        b REDES SOCIAIS
+      / .filters
+      /   span= link_to 'Adicionar Nova'
+    .card-module
+      table
+        tbody
+          - SocialLink.all.each do |sl|
+            tr
+              td
+                .setting-static-content
+                  .row
+                    .col-xs-12.text-left
+                      button.edit-setting-button
+                        i.icon-edit
+                      = sl.provider.capitalize
+                .setting-form
+                  = semantic_form_for [:admin, sl] do |f|
+                    = f.input :provider, label: "Rede Social"
+                    = f.input :link, label: "URL"
+                    = f.submit 'Salvar', class: "btn"
+                  = link_to 'Remover', [:admin, sl], method: :delete, class: 'btn'
+  .col-xs-4
+    .title
+      h2 Adicionar Nova Rede Social
+    .setting-form.card-module style="display: block"
+      = semantic_form_for [:admin, @social_link || SocialLink.new] do |f|
+        = f.input :provider, label: "Rede Social"
+        = f.input :description, label: "Descrição (para o Destaque)", as: :string
+        = f.input :link, label: "URL"
+        = f.input :icon_class, label: "Ícone", as: :select, collection: SocialLink.icons, input_html: { data: { 'search-disabled' => true, 'icon-select' => true } }
+        = f.submit 'Salvar', class: "btn"
+
+
+
+javascript:
+  $('button.edit-setting-button').click(function(){
+    var static = $(this).parents('.setting-static-content:first');
+    var form = static.next('.setting-form')
+
+    if(static.parents("table").length > 0) {
+      if(form.hasClass('in')) {
+        form.slideUp(function(){
+          form.removeClass("in")
+        });
+      } else {
+        form.slideDown(function(){
+          form.addClass("in")
+        });
+      }
+    } else {
+      var bg = static.prev('.card-background')
+      
+      form.show();
+      static.hide();
+      bg.hide();
+    }
+
+  });

@@ -1,0 +1,27 @@
+.search-content
+  .container
+    - if @results.any?
+      .row.filters
+        .col-xs-12
+          ul.nav.nav-tabs role="tablist"
+            - counter = 0
+            - @results.keys.each_with_index do |k, i|
+              - next if @results[k].empty?
+              - counter = counter + 1
+              li role="presentation" class=("active" if counter == 1)
+                = link_to "+ #{Search.translate_key(k).downcase}", "##{k}", data: { toggle: 'tab' }, aria: { controls: k.to_s }, role: 'tab', class: 'filter-link'
+      .row
+        .col-xs-12.col-sm-8.col-sm-offset-2
+          .tab-content
+            - counter = 0
+            - @results.each do |k, v|
+              - next if v.empty?
+              - counter = counter + 1
+              .tab-pane role="tabpanel" id=(k.to_s) class=("active" if counter == 1)
+                = render partial: "search/#{k.to_s.singularize}_thumb", collection: v, as: k.to_s.singularize.to_sym
+    - else
+      .no-results Nenhum resultado encontrado.
+
+- if Rails.env.production?
+  javascript:
+    fbq('track', 'Search');

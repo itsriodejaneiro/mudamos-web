@@ -1,0 +1,227 @@
+- breadcrumb :cycle, @cycle
+
+/ section.container-fluid
+.row
+  .col-xs-12
+    .title
+      h2 Informações de usuário e estatísticas
+    .row
+      .col-xs-12
+        .card-module
+          .col-xs-8
+            p 
+              b.status-number= @cycle.user_count_in_range(params[:start_date], params[:end_date]).values.sum
+              | Número total de usuários que interagiram com o tema
+            p 
+              b.status-number= @cycle.comment_count_in_range(params[:start_date], params[:end_date]).values.sum
+              | Número total de comentários no tema
+            .filters
+              span.active data-range="dia" Por dia
+              span data-range="mês" por Mês
+          .col-xs-4
+            .data-filter
+              span.date-display
+                span.flip-icon
+                  i.icon-arrow
+                = DateTime.parse(params[:start_date].to_s).strftime('%d/%m')  
+                |  a  
+                = DateTime.parse(params[:end_date].to_s).strftime('%d/%m')
+                i.icon-arrow
+              input type="text" name="daterange" value=""
+              i.icon-calendar
+        .row
+          .col-xs-8
+            .card-module
+              .dashboard-filter
+                .row
+                  .col-xs-8
+                    h3 
+                      | N° total de cadastros por
+                      b.type  dia 
+              #dashboard-signup-day
+              #dashboard-signup-month
+          .col-xs-4
+            .card-module
+              h3 Usuário por setor
+              #dashboard-user-sector
+    .row
+      .col-xs-12
+        .title
+          h2 Comentários e estatísticas
+    .row
+      .col-xs-12
+        .row
+          .col-xs-8
+            .card-module
+              h3 
+                | N° total de comentários por 
+                b.type dia
+              .dashboard-filter
+              #dashboard-comment-day
+              #dashboard-comment-month
+          .col-xs-4
+            .card-module
+              h3 Comentário por setor
+              #dashboard-comment-sector
+
+javascript:
+  admin.init();
+
+  Highcharts.setOptions({
+    colors: ['#154080', '#5DACFF', '#7CADD1', '#A9E5F5', '#4D77A0'],
+  });
+
+- { '#dashboard-signup-day' => @user_profile_count_in_range, '#dashboard-comment-day' => @comment_profile_count_in_range }.each do |id, hash|
+  javascript:
+    $("#{id}").highcharts({
+      chart: {
+        type: 'spline'
+      },
+      title: {
+        text: null,
+        align: 'left'
+      },
+      xAxis: {
+        categories: #{{ (params[:start_date].to_date..params[:end_date].to_date).to_a.map { |x| x.strftime('%d/%m/%Y') } }}
+      },
+      yAxis: {
+        labels:{enabled: true},
+        title: {
+          text: "#{id == '#dashboard-signup-day' ? 'Quantidade de Cadastros' : 'Quantidade de Comentários'}"
+        }
+      },
+      legend: {
+        itemMarginTop: 10,
+        align: 'center',
+        itemStyle: {
+          fontWeight: 'normal',
+          fontSize: '11px'                
+        },
+        itemMarginTop: 5,
+        symbolWidth: 12,
+        symbolRadius: 6
+      },
+      plotOptions: {
+        series: {
+          marker: {
+            fillColor: '#FFFFFF',
+            lineWidth: 2,
+            lineColor: null // inherit from series
+          }
+        }
+      },
+      credits: {
+        enabled: false
+      },
+      series: #{{ hash.map { |k, v| { name: k, marker: { symbol: 'circle' }, data: v.values } }.to_json }}
+    });
+
+
+- { '#dashboard-signup-month' => @user_profile_month_count_in_range, '#dashboard-comment-month' => @comment_profile_month_count_in_range }.each do |id, hash|
+  javascript:
+    // Stacked Bar Chart - Comentários por Mês
+    $("#{id}").highcharts({
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: null,
+        align: 'left'
+      },
+      xAxis: {
+        categories: #{{ (params[:start_month].to_date..params[:end_month].to_date).map(&:beginning_of_month).uniq.to_a.map { |x| I18n.l(x, format: '%b/%Y') } }}
+      },
+      yAxis: {
+        labels:{enabled: true},
+        title: {
+          text: "#{id == '#dashboard-signup-month' ? 'Quantidade de Cadastros' : 'Quantidade de Comentários'}"
+        }
+
+      },
+      legend: {
+        itemMarginTop: 10,
+        align: 'center',
+        itemStyle: {
+          fontWeight: 'normal',
+          fontSize: '11px'
+        },
+        symbolWidth: 12,
+        symbolRadius: 6
+      },
+      plotOptions: {
+        column: {
+          stacking: 'normal',
+        }
+      },
+      credits: {
+        enabled: false
+      },
+      series: #{{ hash.map { |k, v| { name: k, data: v.values } }.to_json }}
+    });
+
+
+- { '#dashboard-user-sector' => @user_profile_count_in_range, '#dashboard-comment-sector' => @comment_profile_count_in_range }.each do |id, hash|
+  javascript:
+    // DONUT - Usuários Por Setor 
+    $("#{id}").highcharts({
+      chart: {
+        type: 'pie'
+      },
+      title: {
+        text: null,
+        align: 'left'
+      },
+      plotOptions: {
+        pie: {
+          shadow: false,
+        }
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(2) +' %';
+        }
+      },
+      plotOptions: {
+        series: {
+          dataLabels: {
+            enabled: true,
+            formatter: function() {
+              if (this.percentage < 10){
+                return '';
+              } else{
+                return '<b>'+ this.percentage.toFixed(2) +' %' +'</b>';
+              }
+            },
+            distance: 0,
+            color:'white',
+            style: {
+              textShadow: false,
+              fontSize: '10px'
+            }
+          }
+        }
+      },
+      legend: {
+        layout: 'horizontal',
+        itemWidth: 100,
+        align: 'left',
+        itemMarginTop: 10,
+        padding: 2,
+        itemStyle: {
+          fontWeight: 'normal',
+          fontSize: '10px'
+        },
+        symbolWidth: 11,
+        symbolRadius: 5
+      },
+      credits: {
+        enabled: false
+      },
+      series: [{
+        name: 'Setores',
+        data: #{{ hash.map { |k,v| [k, v.values.sum] } }},
+        size: '100%',
+        innerSize: '50%',
+        showInLegend:true
+      }]
+    });

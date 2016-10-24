@@ -1,0 +1,31 @@
+.nested-fields.row
+  .col-xs-12
+    .row
+      .col-xs-6
+        = f.input :name
+        - f.object.plugin_relation ||= PluginRelation.new
+        = f.semantic_fields_for :plugin_relation do |p|
+          = p.input :plugin, as: :select, collection: Plugin.where(plugin_type: ["Discussão", "Relatoria"]), input_html: { class: 'select2', disabled: p.object.persisted? }
+      .col-xs-6
+        = f.input :description, as: :text, input_html: { rows: 5 }
+    .row
+      .col-xs-6
+        = f.input :initial_date, as: :date_picker
+      .col-xs-6
+        = f.input :final_date, as: :date_picker
+    - if f.object.new_record?
+      = link_to_remove_association "Remover Fase", f
+
+javascript:
+  $(document).ready(function(){
+    $('select[id^=cycle_phases_attributes_][id$=_plugin_relation_attributes_plugin_id]:last').each(function(){
+      var placeholder = $(this).find('option').eq(0).text()
+      options = {
+        placeholder: placeholder,
+        allowClear: true,
+        minimumResultsForSearch: -1
+      }
+
+      $(this).select2(options)
+    });
+  })

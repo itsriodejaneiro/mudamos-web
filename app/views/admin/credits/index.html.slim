@@ -1,0 +1,82 @@
+- breadcrumb :credits
+
+.row
+  .col-xs-12
+    .title
+      h2 Créditos
+    .row
+      .col-xs-12
+        .card-module
+          p 
+            b.status-number= @credits.total_count
+            | Número total de Créditos
+          .filters
+            .pull-right
+              = link_to 'Novo Crédito', new_admin_credit_path, :class => 'btn'
+
+.row
+  .col-xs-12
+    #credits.card-module
+      .filters
+        = render 'admin/shared/page_quantity'
+      table
+        thead
+          tr
+            th Nome
+            / th Conteúdo
+            / th URL
+            th Categoria
+            th Ações
+        tbody
+          - @credits.each do |c|
+            tr
+              td= c.name
+              / td
+              /   div style="max-height: 80px; position: relative; overflow: hidden;"= c.content
+              / td= c.url
+              td= c.credit_category.name
+              td
+                select.select-actions.select2-disabled
+                  option value="" Mais...
+                  option value=(edit_admin_credit_path(c)) Editar
+                  option value=(admin_credit_path(c)) method="delete" Excluir
+
+
+.row
+  .col-xs-12
+    .title
+      h2 Categorias de Créditos
+    .row
+      .col-xs-12
+        .card-module
+          p 
+            b.status-number= @categories.count
+            | Número total de Categorias de Créditos
+          .filters
+            .pull-right
+              = link_to 'Nova Categoria', new_admin_credit_category_path, :class => 'btn'
+
+.row
+  .col-xs-12
+    #credits-categories.card-module
+      table
+        thead
+          tr
+            th Nome
+            / th Conteúdo
+            / th URL
+            / th Categoria
+            th Ações
+        tbody
+          - @categories.each do |c|
+            tr
+              td= c.name
+              / td
+              /   div style="max-height: 80px; position: relative; overflow: hidden;"= c.content
+              / td= c.url
+              / td= c.credit_category.name
+              td
+                select.select-actions.select2-disabled
+                  option value="" Mais...
+                  option value=(edit_admin_credit_category_path(c)) Editar
+                  option value=(admin_credit_category_path(c)) method="delete" Excluir

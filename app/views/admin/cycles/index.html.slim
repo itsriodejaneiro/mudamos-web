@@ -1,0 +1,44 @@
+- breadcrumb :cycles
+
+
+.row
+  .col-xs-12
+    .filter-bar.card-module
+      .row
+        .col-xs-9
+          ul#cycle-list-filters
+          /   li.filter-item data-filter="alphabetical" Por Ordem Alfabética
+          /   li.filter-item data-filter="ongoing" Em Andamento
+          /   li.filter-item data-filter="closed" Encerrados
+          /   li
+          /     | Por Período
+          /     input name="daterange"
+
+          / = render 'admin/shared/page_quantity'
+        .col-xs-3
+          ul.right-side
+            - if current_admin_user.Master?
+              li
+                = link_to 'Adicionar Tema', [:new, :admin, :cycle], class: 'btn'
+.row
+  .col-xs-12
+    .title
+      h2 Temas em Ordem Alfabética
+.row
+   - @cycles.each do |c|
+    .col-xs-6
+      = link_to [:admin, c], class: 'cycle-box' do
+        .content-overlay
+        .content-description
+          h3= c.name
+          = c.description.html_safe
+        .content-media.full-background-image
+          = image_tag c.picture(:thumb)
+        .content-status style="background-color: #{c.color}"
+          span= c.status
+          span Ver detalhes
+
+
+/ = render 'admin/shared/pagination'
+javascript:
+  admin.dashboard.filter();

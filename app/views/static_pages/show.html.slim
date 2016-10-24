@@ -1,0 +1,13 @@
+- title = @cycle.present? ? "#{@cycle.title} - #{@static_page.title}" : @static_page.title
+- image = @cycle.present? ? @cycle.picture(:header) : Setting.find_by_key('home_picture').picture.url(:header)
+- description = strip_tags(@static_page.content).truncate(100)
+
+- meta title: title, description: description, og: { title: title, image: image, description: description, locale: 'pt_BR', type: 'article' }, twitter: { card: 'summary', title: title, description: description, image: { src: image } }
+
+section#static_page.container-fluid
+  .container
+    .row
+      .col-xs-12
+        h1.section-title= @static_page.title
+    .row
+      .col-xs-12.col-sm-8.col-sm-offset-2= @static_page.content.html_safe

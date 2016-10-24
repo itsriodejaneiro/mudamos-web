@@ -1,0 +1,77 @@
+- if @comments.any? or @comment.present?
+  .row
+    .col-xs-12
+      .title
+        h2 Comentários
+      .row
+        .col-xs-12
+          .card-module
+            - if @comment.present?
+                span.pull-right= link_to 'Adicionar Resposta', [:new, :admin, @cycle, @plugin_relation, @subject, @comment, :comment], class: 'btn'
+            - if @comments.any?
+              p
+                b.status-number= @comments.total_count
+                | Número total de Comentários
+              .filters
+                span= link_to 'Mais recente', url_for(params.merge(order: 'created_at'))
+                span= link_to 'Mais respostas', url_for(params.merge(order: 'children_count'))
+                span= link_to 'Mais likes', url_for(params.merge(order: 'likes_count'))
+                span= link_to 'Mais dislikes', url_for(params.merge(order: 'dislikes_count'))
+
+- if @comments.any?
+  .row
+    .col-xs-12
+      #administrators.card-module
+        .filters.clearfix
+          = render 'admin/shared/page_quantity'
+        table#comment
+          thead
+            tr
+              th Autor
+              th Comentário
+              th Resposta
+              th
+                .like-holder
+                  i.icon-like
+              th
+                .like-holder 
+                  i.icon-dislike
+              th Ações
+          tbody
+            - @comments.each do |c|
+              tr
+                td 
+                  a.name= c.author
+                  p.anonymous= c.is_anonymous ? 'Anônimo' : 'Identificado'
+                  p.data= c.created_at.strftime('%d/%m/%Y às %H:%M')
+
+                td
+                  .comments-dotdotdot
+                    p.comment= c.content.html_safe
+                  a.read-more Ler Mais
+                  a.read-less Esconder
+                td= c.children.count
+                td= c.likes.count
+                td= c.dislikes.count
+                td
+                  select.select-actions.select2-disabled
+                    option value="" Mais...
+                    option value=admin_cycle_plugin_relation_subject_comment_path(@cycle, @plugin_relation, @subject, c) Ver Detalhes
+
+        = render 'admin/shared/pagination', collection: @comments
+  javascript:
+    $(document).ready(function() {
+      admin.helpers.truncate('.comments-dotdotdot');
+    });
+    
+- else
+  .row
+    .col-xs-12
+      .title
+        h2 Comentários
+      .row
+        .col-xs-12
+          .card-module
+            p Nenhum comentário
+
+

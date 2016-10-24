@@ -1,0 +1,53 @@
+- breadcrumb :admin_users
+
+.row
+  .col-xs-12
+    .title
+      h2 Informações de usuário e estatísticas
+    .row
+      .col-xs-12
+        .card-module
+          p
+            b.status-number= @admin_users.total_count
+            | Número total de Administradores
+          .filters
+            span= link_to 'Por Ordem alfabética', url_for(params.merge(order_by_type: 'false'))
+            span= link_to 'Por tipo', url_for(params.merge(order_by_type: 'true'))
+            .pull-right
+              = link_to 'Novo Admin', new_admin_admin_user_path, :class => 'btn'
+            .pull-right
+              = link_to 'Exportar CSV', admin_admin_users_path(format: :csv), class: 'btn'
+.row
+  .col-xs-12
+    #administrators.card-module
+      .filters
+        select#bulk-actions.select-actions.select2-disabled
+          option.disabled selected="true" Bulk Actions
+          option value=bulk_destroy_admin_admin_users_path method="delete" Excluir
+        = render 'admin/shared/page_quantity'
+      table
+        thead
+          tr
+            th
+              input#bulk-checkbox type="checkbox"
+            th Nome
+            th Email
+            th Tipo Admin
+            th Último Login
+            th Ações
+        tbody
+          - @admin_users.each do |au|
+            tr
+              td
+                input.check_box type="checkbox" data-id=au.id
+              td= au.name
+              td= au.email
+              td= au.admin_type
+              td= au.last_sign_in_at.present? ? au.last_sign_in_at.strftime('%d/%m/%Y') : 'Nunca fez login'
+              td
+                select.select-actions.select2-disabled
+                  option value="" Mais...
+                  option value=(edit_admin_admin_user_path(au)) Editar
+                  option value=(admin_admin_user_path(au)) method="delete" Excluir
+
+= render 'admin/shared/pagination', collection: @admin_users

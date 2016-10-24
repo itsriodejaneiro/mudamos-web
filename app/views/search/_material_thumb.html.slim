@@ -1,0 +1,21 @@
+.material-search-result
+  .material.row
+    .col-xs-1
+      .icon style="border-color: #{material.cycle.color}"
+        i class="icon-#{material.category_icon}" style="color: #{material.cycle.color}"
+    .col-xs-6.basic-content
+      = link_to material.title, material.external_link, target: "_blank"
+      - if material.publishing_date or material.source
+        .row
+          .col-xs-12
+            - if material.publishing_date
+              span= material.publishing_date.to_short_date
+            - if material.source
+              span= "Fonte: #{material.source}"
+      - if material.author
+        .row
+          .col-xs-12
+            span= "Autor: #{material.author}"
+    - if material.description
+      .col-xs-5.with-left-line style="border-color: #{material.cycle.color}"
+        p= material.description

@@ -1,0 +1,81 @@
+- breadcrumb :compilation, @cycle, @plugin_relation
+
+.row
+  .col-xs-12
+    .title
+      h2 Editar títulos dos gráficos
+
+- (1..3).each do |i|
+  .row.compilation
+    .col-xs-8
+      .card-background
+      .setting-static-content
+        .row
+          .col-xs-12.setting-title
+            button.edit-setting-button
+              i.icon-edit
+            span= @plugin_relation.compilation_file.send("title#{i}".to_sym)
+      .setting-form
+        .row
+          .col-xs-12
+            = semantic_form_for [:admin, @cycle, @plugin_relation, @plugin_relation.compilation_file] do |f|
+              = f.input "title#{i}".to_sym, label: false, as: :string
+              = f.submit 'Salvar', class: "btn"
+
+javascript:
+  $('button.edit-setting-button').click(function(){
+    var static = $(this).parents('.setting-static-content:first');
+    var form = static.next('.setting-form')
+
+    if(static.parents("table").length > 0) {
+      if(form.hasClass('in')) {
+        form.slideUp(function(){
+          form.removeClass("in")
+        });
+      } else {
+        form.slideDown(function(){
+          form.addClass("in")
+        });
+      }
+    } else {
+      var bg = static.prev('.card-background')
+
+      form.show();
+      static.hide();
+      bg.hide();
+    }
+
+  });
+
+
+.row
+  .col-xs-12
+    .title
+      h2 Relatório Geral em PDF
+
+.row.compilation
+  .col-xs-8
+    .card-module
+      .row
+        .col-xs-12
+          = semantic_form_for [:admin, @cycle, @plugin_relation, @plugin_relation.compilation_file] do |f|
+            = f.input :file, label: false
+            .pull-left style="margin-top: 30px" = f.object.file_file_name
+            = f.submit 'Salvar', class: "btn pull-right"
+
+
+
+- @cycle.subjects.order('created_at ASC').each do |s|
+  .row
+    .col-xs-12
+      .title
+        h2= "Relatório do #{s.title} em PDF"
+  .row.compilation
+    .col-xs-8
+      .card-module
+        .row
+          .col-xs-12
+            = semantic_form_for [:admin, @cycle, s.plugin_relation, s] do |f|
+              = f.input :file, label: false
+              .pull-left style="margin-top: 30px" = f.object.file_file_name
+              = f.submit 'Salvar', class: "btn pull-right"

@@ -1,0 +1,71 @@
+javascript:
+
+  Highcharts.setOptions({
+    colors: ['#154080', '#5DACFF', '#7CADD1', '#A9E5F5', '#4D77A0'],
+  });
+
+javascript:
+  // DONUT - Usuários Por Setor
+  $('#dashboard-comment-sector').highcharts({
+    chart: {
+      type: 'pie'
+    },
+    title: {
+      text: null,
+      align: 'left'
+    },
+    plotOptions: {
+      pie: {
+        shadow: false,
+      }
+    },
+    tooltip: {
+      formatter: function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(2) +' %';
+      }
+    },
+    plotOptions: {
+      series: {
+        dataLabels: {
+          enabled: true,
+          formatter: function() {
+            if (this.percentage < 10){
+              return '';
+            } else{
+              return '<b>'+ this.percentage.toFixed(2) +' %' +'</b>';
+            }
+          },
+          distance: -20,
+          color:'white',
+          style: {
+            textShadow: false,
+            fontSize: '10px'
+          }
+        }
+      }
+    },
+    legend: {
+      layout: 'vertical',
+      itemWidth: 100,
+      align: 'center',
+      itemDistance: 0,
+      itemMarginTop: 10,
+      padding: 5,
+      itemStyle: {
+        fontWeight: 'normal',
+        fontSize: '10px'
+      },
+      symbolWidth: 11,
+      symbolRadius: 5
+    },
+    credits: {
+      enabled: false
+    },
+    series: [{
+      name: 'Setores',
+      data: #{{ @comment_profile_count_in_range.map { |k, v| [k, v.nil? ? 0 : v.count] } }},
+      size: '100%',
+      innerSize: '50%',
+      showInLegend:true
+    }]
+  });

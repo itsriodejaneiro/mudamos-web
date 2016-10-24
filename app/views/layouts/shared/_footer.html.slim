@@ -1,0 +1,39 @@
+nav.navbar.footer-nav
+  .container
+    ul.nav.navbar-nav
+      / li= link_to 'Termos de uso', use_terms_path
+      / li= link_to 'Política de Privacidade', privacy_policy_path
+      - @footer_pages.each do |page|
+        li= link_to page.name, page
+    ul.nav.navbar-nav.navbar-right
+      - if @cycle
+        li= link_to 'Críticas e Sugestões', cycle_blog_post_path(@cycle, BlogPost.find('sobre-a-ombudsperson-silvia-ramos'))
+      li= link_to 'Creditos', credits_path
+      li= link_to 'Contato', 'mailto:contato@mudamos.org'
+  .container
+    hr
+  .container
+    ul.nav.navbar-nav
+      / li= link_to image_tag('creative_commons.png'), '#'
+      li= render 'outsiders/creative_commons'
+    ul.nav.navbar-nav.navbar-right.social-footer-links
+      - @social_links.each do |sl|
+        li= link_to sl.link, target: '_blank' do
+          i class=sl.icon_class
+/ section.container#footer
+/   .row
+/     .col-xs-4.col-lg-1
+/       =link_to 'CONTATO', '#'
+/     .col-xs-4.col-lg-2
+/       =link_to 'TERMOS DE USO', '#'
+/     .col-xs-2.col-lg-3
+/       =link_to 'POLÍTICA DE PRIVACIDADE' , '#'
+/   .row
+/     hr
+/   .row
+/     .col-xs-2.col-lg-4
+/       =link_to image_tag('creative_commons.png'), '#'
+/     .col-xs-2.col-lg-1.col-lg-offset-7
+/       =link_to (fa_icon 'facebook', class: 'fa-2x') , '#'
+/       | &nbsp; &nbsp;
+/       =link_to (fa_icon 'twitter', class: 'fa-2x') , '#'

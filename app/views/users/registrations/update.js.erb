@@ -1,0 +1,11 @@
+<%= render 'layouts/shared/flash_messages' %>
+
+<% if resource.errors.empty? %>
+  <% flash[:success] = "Conta atualizada com sucesso." %>
+  location.reload();
+<% else %>
+  document.stop_loading();
+  document.set_errors(<%= resource.errors.to_json.html_safe %>, $('form#edit_user'));
+<% end %>
+
+

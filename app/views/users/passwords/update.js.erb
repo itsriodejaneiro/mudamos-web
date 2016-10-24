@@ -1,0 +1,8 @@
+<%= render 'layouts/shared/flash_messages' %>
+
+<% if resource.errors.empty? %>
+  location.reload();
+<% else %>
+  document.stop_loading();
+  document.set_errors(<%= resource.errors.to_json.html_safe %>, $('#modal-passwords-edit').find('form#new_user'));
+<% end %>

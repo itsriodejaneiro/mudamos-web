@@ -1,0 +1,70 @@
+- title = 'Mudamos'
+- description = strip_tags(Setting.find_by_key('home_sub_title').value)
+
+- if set = Setting.find_by_key('home_picture')
+  - image = Setting.find_by_key('home_picture').picture.url(:header)
+- else
+  - image = image_url('Floresta_1.jpg')
+
+- meta title: title, description: description, og: { title: title, image: image, description: description, locale: 'pt_BR', type: 'article' }, twitter: { card: 'summary', title: title, description: description, image: { src: image } }
+
+section.container-fluid#hero
+  .full-background-image style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('#{image}')"
+  .container
+    .logo= image_tag('mudamos-logo.svg')
+    .row
+      .col-xs-12.col-md-10
+        h2= Setting.find_by_key('home_sub_title').value
+
+section.container-fluid#about
+  .full-background-image.parallax-window data-parallax="scroll" data-image-src=image
+
+  - (1..3).each do |i|
+    .row.card
+      .col-xs-12
+        .container
+          .row
+            .hidden-xs class=('col-xs-2' if i%2 != 0) class=('col-xs-2 pull-right' if i%2 == 0)
+              - if i%2 != 0
+                .arrow
+              - else
+                .arrow-left
+            .col-xs-12.col-sm-8 class=('col-sm-offset-2' if i%2 == 0)
+              h3 class=('text-right' if i%2 == 0) = Setting.find_by_key("home_title#{i}").value.html_safe
+              = Setting.find_by_key("home_text#{i}").value.html_safe
+
+section.container-fluid#highlights
+  .container
+    .row
+      .col-xs-12
+        h2.section-title Destaques
+    .row.grid
+      - array = ([Cycle.first] + [BlogPost.released.reverse]).flatten
+      - array.insert(1, @social_links.find_by_provider('facebook'))
+      - array.insert(4, @social_links.find_by_provider('twitter'))
+
+      = render 'widgets/grid_item', background_image: true, type: 'double-h', object: @highlights[0]
+      = render 'widgets/grid_item', object: @highlights[1]
+      = render 'widgets/grid_item', object: @highlights[2], color: 'blue', with_text: true
+      = render 'widgets/grid_item', object: @highlights[3], color: 'white', type: 'double-v', small_image: true, small_title: true, with_text: true
+      = render 'widgets/grid_item', object: @highlights[4]
+      = render 'widgets/grid_item', object: @highlights[5], color: 'white', type: 'double-h', with_text: true
+      = render 'widgets/grid_item', color: 'dark-grey', with_text: true, object: @highlights[6], extra_class: 'hero-title-item'
+      = render 'widgets/grid_item', object: @highlights[7], type: 'double', background_image: true, extra_class: 'pull-right'
+      = render 'widgets/grid_item', color: 'blue', extra_class: 'hero-title-item', object: @highlights[8]
+      = render 'widgets/grid_item', color: 'light-grey', with_text: true, object: @highlights[9]
+
+section.container-fluid#cycles
+  .container
+    .row
+      .col-xs-12
+        h2.section-title Temas
+    .row
+
+      - @cycles.each do |c|
+        = render 'widgets/home_cycle', image: c.picture(:thumb), name: c.name, url: cycle_path(c), color: c.color, text: c.finished? ? 'Veja como foi' : 'Participe'
+
+      = render 'widgets/home_cycle', image: image_path('placeholder_home2.jpg'), name: 'Reforma Política do Século 21', url: 'https://plataformabrasil.org.br/', color: 'rgb(184,202,0)', text: 'Veja como foi', target: '_blank'
+
+
+= javascript_include_tag 'navbar-sticky'

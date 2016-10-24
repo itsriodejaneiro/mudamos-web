@@ -1,0 +1,66 @@
+.row.row-same-height
+  .col-xs-12.col-sm-6.login-column.col-xs-height
+    .row
+      .col-xs-12.col-sm-8.col-sm-offset-2
+        .section-title Login
+    .row
+      .col-xs-12.col-sm-8.col-sm-offset-2
+        = semantic_form_for User.new, as: :user, url: user_session_path, html: { autocomplete: :off }, remote: true do |f|
+          input type="password" style="display:none"
+          = input f, :email, label: 'Email'
+          = input f, :password, as: :password, label: 'Senha'
+          / = f.input :email
+          / = f.input :password
+          button type="submit"
+            .arrow
+            .background
+            | Entrar
+    .row
+      .col-xs-12.col-sm-8.col-sm-offset-2
+        = link_to '#', onclick: 'javascript:document.open_forgot_password();', class: 'arrow-link' do
+          span Esqueci minha senha
+    .row
+      .col-xs-12.col-sm-8.col-sm-offset-2.social-login
+          = link_to user_omniauth_authorize_path('facebook'), class: 'facebook-social-link' do
+            i.icon-facebook
+            span Login via Facebook
+          / = link_to user_omniauth_authorize_path('twitter'), class: 'twitter-social-link' do
+          /   i.icon-twitter
+          /   span Login via Twitter
+  .col-xs-12.col-sm-6.col-xs-height
+    .row
+      .col-xs-12.col-sm-8.col-sm-offset-2
+        .section-title Cadastro
+    .row
+      .col-xs-12.col-sm-8.col-sm-offset-2
+        - if Rails.env.development?
+          - @new_user = User.new name: 'Usuário Teste', email: 'teste@teste.teste', password: 'teste1234', birthday: '30/10/1989'
+        = semantic_form_for (@new_user || User.new), as: :user, url: user_registration_path, html: { autocomplete: :off, id: 'new_user_registration' }, remote: true do |f|
+          input type="password" style="display:none"
+          = f.input :first_step, as: :hidden, input_html: { value: true }
+          = input f, :name, label: 'Nome e Sobrenome'
+          = input f, :email, label: 'Email'
+          = input f, :password, as: :password, label: 'Senha'
+          = input f, :birthday, label: 'Data de Nascimento', class: 'date_mask'
+          button type="submit"
+            .arrow
+            .background
+            | Próximo passo
+          / = f.input :email
+          / = f.input :password
+/ = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+/   .field
+/     = f.label :email
+/     br
+/     = f.email_field :email, autofocus: true
+/   .field
+/     = f.label :password
+/     br
+/     = f.password_field :password, autocomplete: "off"
+/   - if devise_mapping.rememberable?
+/     .field
+/       = f.check_box :remember_me
+/       = f.label :remember_me
+/   .actions
+/     = f.submit "Log in"
+/ = render "users/shared/links"

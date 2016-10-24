@@ -1,0 +1,158 @@
+- breadcrumb :vocabularies, @cycle, @plugin_relation
+
+#glossario-biblioteca
+  #accordion-parent.accordion
+    / .accordion-group
+    /   .accordion-trigger
+    /     a.accordion-toggle.collapsed data-parent="#accordion-parent" data-toggle="collapse" href="#collapseOne"
+    /       .row
+    /         .col-xs-11
+    /           h4 Título
+    /           .line
+    /         .col-xs-1
+    /           i.icon-close
+    /   #collapseOne.accordion-body.collapse
+    /     .accordion-content
+    /       .row
+    /         .col-xs-12
+    /           .card-module
+    /             i.icon-edit
+    /             #edit-title.editable-content.mce-hidden
+    /               p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sed nesciunt atque, saepe iusto ipsum, et quae, numquam voluptatum a assumenda blanditiis dolore! Ea fugit molestias quisquam, minima adipisci quidem.  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos praesentium quas sunt, adipisci commodi maxime unde modi ex ipsum doloribus doloremque quae tempore reiciendis quam voluptatum, eius vitae temporibus accusantium.
+    /             .pull-right
+    /               a.btn.hidden.mce-button Salvar Alterações
+    / .accordion-group
+    /   .accordion-trigger
+    /     a.accordion-toggle.collapsed data-parent="#accordion-parent" data-toggle="collapse" href="#collapseTwo"
+    /       .row
+    /         .col-xs-11
+    /           h4 Texto Inicial
+    /           .line
+    /         .col-xs-1
+    /           i.icon-close
+    /   #collapseTwo.accordion-body.collapse
+    /     .accordion-content
+    /       .row
+    /         .col-xs-12
+    /           .card-module
+    /             i.icon-edit
+    /             #edit-text.editable-content
+    /               p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sed nesciunt atque, saepe iusto ipsum, et quae, numquam voluptatum a assumenda blanditiis dolore! Ea fugit molestias quisquam, minima adipisci quidem.  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos praesentium quas sunt, adipisci commodi maxime unde modi ex ipsum doloribus doloremque quae tempore reiciendis quam voluptatum, eius vitae temporibus accusantium.
+    /             .pull-right
+    /               a.btn.hidden.mce-button Salvar Alterações
+    / .accordion-group
+    /   .accordion-trigger
+    /     a.accordion-toggle.collapsed data-parent="#accordion-parent" data-toggle="collapse" href="#collapseThree"
+    /       .row
+    /         .col-xs-11
+    /           h4 Nota
+    /           .line
+    /         .col-xs-1
+    /           i.icon-close
+    /   #collapseThree.accordion-body.collapse
+    /     .accordion-content
+    /       .row
+    /         .col-xs-12
+    /           .card-module
+    /             i.icon-edit
+    /             #edit-note.editable-content
+    /               p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sed nesciunt atque, saepe iusto ipsum, et quae, numquam voluptatum a assumenda blanditiis dolore! Ea fugit molestias quisquam, minima adipisci quidem.  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos praesentium quas sunt, adipisci commodi maxime unde modi ex ipsum doloribus doloremque quae tempore reiciendis quam voluptatum, eius vitae temporibus accusantium.
+    /             .pull-right
+    /               a.btn.hidden.mce-button Salvar Alterações
+    .accordion-group
+      .accordion-trigger
+        a.accordion-toggle data-parent="#accordion-parent" data-toggle="collapse" href="#collapseFour"
+          .row
+            .col-xs-11
+              h4 Verbetes
+              .line
+            .col-xs-1
+              i.icon-close
+      #collapseFour.accordion-body.collapse.in
+        .accordion-content
+          .row
+            .col-xs-12
+              .card-module
+                b.status-number= @vocabularies.total_count
+                | Número total de verbetes
+                .row
+                  .col-xs-12
+                    / - ('a'..'z').each do |letter|
+                    /   = link_to "#{letter}", '#', class: "letter-link"
+                    / .pull-right
+                    /   a.btn Exportar CSV
+                    .pull-right
+                      / a.btn Adicionar Verbete
+                      = link_to 'Adicionar Verbete', new_admin_cycle_plugin_relation_vocabulary_path, class: 'btn'
+                  //  - ('a'..'z').each do |letter|
+                  //    = link_to "#{letter}", class: 'letter-link', style: "border-color: #{@cycle.color}", disabled: not(@vocabularies.pluck(:first_letter).include?(letter)) do
+                  //      .background style="background-color: #{@cycle.color}"
+                  //      = letter
+          .row
+            .col-xs-12
+              #administrators.card-module
+                .filters.clearfix
+                  = render 'admin/shared/page_quantity'
+                table
+                  thead
+                    tr
+                      th Título
+                      th Texto
+                      th Ações
+                  tbody
+                    - @vocabularies.each do |v|
+                      tr
+                        td= v.title
+                        td.comments-dotdotdot
+                          p.comment= v.description.html_safe
+                          a.read-more Ler Mais
+                          a.read-less Esconder
+                        td
+                          select.select-actions.select2-disabled
+                            option.disabled selected="true" mais...
+                            option value=edit_admin_cycle_plugin_relation_vocabulary_path(@cycle, @plugin_relation, v) Editar
+                            option value=admin_cycle_plugin_relation_vocabulary_path(@cycle, @plugin_relation, v) method="delete" Excluir
+          = render 'admin/shared/pagination', collection: @vocabularies
+
+
+javascript:
+  admin.edit.init();
+javascript:
+  tinyMCE.init({
+    selector: ".editable-content",
+    plugins: ["autolink lists link image preview anchor", "fullscreen hr code visualblocks visualchars", "table paste"],
+    file_browser_callback: function(field_name, url, type, win) {
+      return this.set_amazon_direct_upload($('#' + field_name));
+    },
+    toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    content_css: "#{ActionController::Base.helpers.asset_path('tinymce.css')}",
+    setup: function(ed) {
+        ed.on('init', function(e) {
+            e.target.hide();
+        });
+    }
+  });
+  javascript:
+    $(document).ready(function() {
+      $(".comments-dotdotdot").dotdotdot({
+        //after: "a.read-more",
+        height: parseInt( $('.comments-dotdotdot').css('line-height'), 10) * 3,
+        lastCharacter: {
+            remove: [ ' ', ',', ';', '.', '!', '?' ],
+            noEllipsis: []
+        }
+      });
+
+      //$('a.read-more').on( 'click', function(event) {
+      //  event.preventDefault();
+      //  $(this).parent().trigger("destroy");
+      //  $(this).hide();
+      //  $(this).parent().find('a.read-less').show();
+      //});
+
+      //$('a.read-less').on( 'click', function(event) {
+      //  event.preventDefault();
+      //  $(this).hide();
+      //  $(this).parent().parent().find('a.read-more').show();
+      //});
+    });

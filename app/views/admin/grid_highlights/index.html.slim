@@ -1,0 +1,17 @@
+- breadcrumb :highlights
+
+#highlights
+  .row.grid
+    .col-xs-12
+      = render 'widgets/grid_item', background_image: true, type: 'double-h', object: @highlights[0], admin: true
+      = render 'widgets/grid_item', object: @highlights[1], admin: true
+      = render 'widgets/grid_item', object: @highlights[2], color: 'blue', with_text: true, admin: true
+      = render 'widgets/grid_item', object: @highlights[3], color: 'white', type: 'double-v', small_image: true, small_title: true, with_text: true, admin: true
+      = render 'widgets/grid_item', object: @highlights[4], admin: true
+      = render 'widgets/grid_item', object: @highlights[5], color: 'white', type: 'double-h', with_text: true, admin: true
+      = render 'widgets/grid_item', color: 'dark-grey', with_text: true, object: @highlights[6], extra_class: 'hero-title-item', admin: true
+      = render 'widgets/grid_item', object: @highlights[7], type: 'double', background_image: true, extra_class: 'pull-right', admin: true
+      = render 'widgets/grid_item', color: 'blue', extra_class: 'hero-title-item', object: @highlights[8], admin: true
+      = render 'widgets/grid_item', color: 'light-grey', with_text: true, object: @highlights[9], admin: true
+
+= javascript_include_tag 'admin/highlights'

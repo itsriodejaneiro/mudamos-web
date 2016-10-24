@@ -1,0 +1,43 @@
+section#admin-signin.container-fluid
+  .full-background-image style="background-image: url('#{asset_path('Floresta_1.jpg')}')"
+  .container
+    .row
+      .col-xs-5
+        .logo
+          = image_tag 'mudamos-logo.svg'
+          h2 Bem vindo, admin.
+      .col-xs-7
+        .login-content
+          .section-title
+            | Login
+          .row
+            .col-xs-12
+              = semantic_form_for resource, as: resource_name, url: session_path(resource_name), html: { autocomplete: :off } do |f|
+                input type="password" style="display:none"
+                = input f, :email, label: 'Email'
+                = input f, :password, as: :password, label: 'Senha'
+                / = f.input :email
+                / = f.input :password
+                a.arrow-link href="#" onclick="javascript:document.open_forgot_password();"
+                  span Esqueci minha senha
+                button type="submit"
+                  .arrow
+                  .background
+                  | Entrar
+
+        / = semantic_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        /   .field
+        /     = f.label :email
+        /     br
+        /     = f.email_field :email, autofocus: true
+        /   .field
+        /     = f.label :password
+        /     br
+        /     = f.password_field :password, autocomplete: "off"
+        /   - if devise_mapping.rememberable?
+        /     .field
+        /       = f.check_box :remember_me
+        /       = f.label :remember_me
+        /   .actions
+        /     = f.submit "Log in"
+        / = render "admin/admin_users/shared/links"

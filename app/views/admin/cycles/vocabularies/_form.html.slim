@@ -1,0 +1,13 @@
+= semantic_form_for [:admin, @cycle, @plugin_relation, @vocabulary] do |f|
+  .row
+    .col-xs-12
+      = f.input :title, label: 'Título'
+      = f.input :description, label: 'Texto', input_html: { class: 'tinymce', rows: 5, style: 'height: auto;' }
+  .row.form-row
+    .col-xs-12
+      button type="submit" Salvar
+
+javascript:
+  $(document).ready(fuction(){
+    admin.edit.init('#vocabulary_description');
+  })

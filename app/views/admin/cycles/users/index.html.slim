@@ -1,0 +1,39 @@
+- breadcrumb :users, @cycle
+
+.row
+  .col-xs-12
+    .card-module
+      p 
+        b.status-number= @users.total_count
+        | Número total de usuários que interagiram no tema
+      .filters
+        span.active Por Ordem alfabética
+        .pull-right
+          = link_to 'Exportar CSV', admin_cycle_users_path(@cycle, format: :csv), class: 'btn'
+.row
+  .col-xs-12
+    #administrators.card-module
+      .filters.clearfix
+        = render 'admin/shared/page_quantity'
+            option 30
+      table
+        thead
+          tr
+            th Nome
+            th Email
+            th Setor
+            th Subsetor
+            th Ações
+        tbody
+          - @users.each do |u|
+            tr
+              td= u.name
+              td= u.email
+              td= u.profile.name
+              td= u.sub_profile.present? ? u.sub_profile.name : ''
+              td
+                select.select-actions.select2-disabled
+                  option.disabled selected="true" mais...
+                  option value=(admin_cycle_user_path(@cycle, u)) Ver detalhes
+
+= render 'admin/shared/pagination', collection: @users

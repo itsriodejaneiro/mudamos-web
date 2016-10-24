@@ -1,0 +1,9 @@
+.vocabulary-search-result
+  .letter-results
+    .row
+      .col-xs-1
+        .big-letter.text-left style="color: #{vocabulary.cycle.color}; border-color: #{vocabulary.cycle.color}" = vocabulary.first_letter
+      .col-xs-11
+        .row
+          .col-xs-3.vocabulary-title.text-left id=(vocabulary.id) = vocabulary.title
+          .col-xs-9.vocabulary-description.text-left style="border-color: #{vocabulary.cycle.color}" = vocabulary.description.html_safe

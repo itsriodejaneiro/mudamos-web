@@ -1,0 +1,7 @@
+- content ||= ''
+
+.modal.fade id=(modal_id || 'modal') role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  .modal-dialog class=("modal-#{size || 'md'}")
+    .modal-content.container = content.html_safe
+    .close type='button' data-dismiss='modal'
+      i.icon-close

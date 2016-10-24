@@ -1,0 +1,35 @@
+- title = "Assuntos - #{@cycle.title}"
+- image = @cycle.picture(:header)
+
+- meta title: title, description: description, og: { title: title, image: image, description: description, locale: 'pt_BR', type: 'article' }, twitter: { card: 'summary', title: title, description: description, image: { src: image } }
+
+section.container-fluid#subjects-index
+  .container
+    .row
+      .col-xs-12
+        h1.section-title style="border-color: #{@cycle.color};" Assuntos
+    .row.masonry
+      - @subjects.each do |s|
+        .col-xs-12.col-sm-6.masonry-item
+          .subject-card style="color: #{s.plugin_relation.related.cycle.color}"
+            h2.title
+              = link_to s.title, cycle_subject_path(@cycle, s)
+              i.icon-informations.vocabulary-modal data-subject-id=(s.id) data-cycle-id=(@cycle.id) style="font-weight: bold; margin-left: 10px; color: #{@cycle.color};"
+            h4.enunciation= s.enunciation
+            h3.question= s.question
+            .bottom-area
+              .footer
+                = link_to cycle_subject_path(@cycle, s), style: "color: #{s.plugin_relation.related.cycle.color}" do
+                  .arrow-area
+                    .arrow style="color: #{s.plugin_relation.related.cycle.color}; background-color: #{s.plugin_relation.related.cycle.color}"
+                  .text-area
+                    span Participe!
+
+= render 'layouts/shared/modal', modal_id: 'subject-description', size: 'sm', cache: true
+
+javascript:
+  $(window).load(function(){
+    $('.masonry').masonry({
+      itemSelector: ".masonry-item"
+    })
+  })

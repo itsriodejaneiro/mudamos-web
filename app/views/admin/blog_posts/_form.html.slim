@@ -1,0 +1,79 @@
+javascript:
+  tinyMCE.init({
+    selector: "textarea#blog_post_content",
+    plugins: ["autolink lists link image preview anchor", "fullscreen hr code visualblocks visualchars", "table paste"],
+    file_browser_callback: function(field_name, url, type, win) {
+      return this.set_amazon_direct_upload($('#' + field_name));
+    },
+    toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    content_css: "#{ActionController::Base.helpers.asset_path('tinymce.css')}",
+    setup: function(ed){
+      ed.on('init', function(){
+        $(ed.getBody()).on('focus', function(){
+          parent = $(this).parents('li#blog_post_content_input:first');
+          parent.find('p.inline-errors').slideUp(300, function(){
+            $(this).remove();
+          })
+        })
+      })
+    }
+  });
+
+  $(document).ready(function(){
+    $('#blog_post_release_date').datepicker({
+      language: 'pt-BR',
+      orientation: 'auto bottom',
+      format: 'dd/mm/yyyy',
+      todayHighlight: false,
+      startDate: '-2y',
+      endDate: '+2y'
+    })
+  })
+
+= semantic_form_for [:admin, @blog_post], as: :blog_post do |f|
+  .row
+    .col-xs-8
+      .row
+        .col-xs-12
+          .title
+            h2 Selecione uma imagem
+      .row
+        .col-xs-12
+          .file-input-image-container
+            = f.input :picture, as: :file, label: false, input_html: { class: 'image-upload' }
+            .file-input-image
+              = image_tag(f.object.picture? ? f.object.picture(:medium) : nil)
+          button.upload-image
+            .arrow
+            .background
+            | Adicionar Foto
+          - if f.object.errors[:picture].any?
+            p.inline-errors= f.object.errors[:picture].first
+      .row
+        .col-xs-12
+          .title
+            h2 Título
+      .row
+        .col-xs-12
+          = f.input :title, label: false, placeholder: 'Título'
+      .row
+        .col-xs-12
+          .title
+            h2 Conteúdo do Post
+      .row
+        .col-xs-12
+          = f.input :content, label: false, input_html: { class: "tinymce", rows: 3 }
+      .row
+        .col-xs-12
+          = f.button onclick: 'javascript: document.start_loading();'
+    .col-xs-4
+      .row
+        .col-xs-12
+          = f.input :plugin_relation_id,
+                    label: false,
+                    as: :select,
+                    collection: @plugin_relations_cycles,
+                    include_blank: 'Ciclo'
+      .row
+        .col-xs-12
+          = f.input :release_date, label: false, placeholder: 'Selecione uma data', input_html: { value: (f.object.release_date.strftime('%d/%m/%Y') if f.object.release_date.present?) }, as: :string

@@ -1,0 +1,46 @@
+#simple-menu
+  nav.navbar.navbar-default.navbar-fixed-top.base-navbar
+    .container
+      .navbar-header.non-cycle-header
+        button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#base-navbar-collapse" aria-expanded="false"
+          span class="sr-only" Toggle navigation
+          span class="icon-bar"
+          span class="icon-bar"
+          span class="icon-bar"
+        = link_to root_path, class: 'navbar-brand' do
+          = image_tag('mudamos-logo.svg')
+
+      .collapse.navbar-collapse#base-navbar-collapse.non-cycle-header
+        ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            = render 'layouts/shared/user_dropdown'
+            = render 'layouts/shared/user_notification'
+          - else
+            li= link_to 'ENTRAR', '#', onclick: 'javascript:document.open_login();'
+          li.icon-item.search style="opacity: 0" = link_to '#' do
+            i.icon-search
+        ul.nav.navbar-nav.navbar-center.non-cycle
+          - if params[:controller] == 'cycles' and params[:action] == 'index'
+            li= link_to 'SOBRE', '#', :'scroll-to' => '#about'
+            li= link_to 'DESTAQUES', '#', :'scroll-to' => '#highlights'
+          - else
+            li= link_to 'SOBRE', root_path + '#about'
+            li= link_to 'DESTAQUES', root_path + '#highlights'
+          li.dropdown class=("dropup" if params[:controller] == 'cycles' and params[:action] == 'index')
+            = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, role: 'button' do
+              | TEMAS
+              span.caret
+            ul.dropdown-menu
+              - @cycles.each do |c|
+                li= link_to c.title, c
+              li= link_to 'Reforma Política do Século 21', 'https://plataformabrasil.org.br/', target: '_blank'
+          li= link_to 'BLOG', blog_posts_path
+    = render 'layouts/search_bar'
+
+- if params[:controller] == 'cycles' and params[:action] == 'index'
+  = javascript_include_tag 'base_header_scroll_to'
+
+/ javascript:
+/   $(document).ready(function() {
+/     $('#simple-menu').sidr();
+/   });

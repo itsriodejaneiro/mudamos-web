@@ -1,0 +1,38 @@
+div style="width: 100%; padding: 50px 0; text-align: center; background-color: #2766fc"
+  img style="display: block; max-width: 300px; margin: auto;" src=image_url('mudamos-logo-new1-01.png', host: root_url)
+
+p style="width: 100%;"
+  b Olá
+  - if @target_user
+    b= " #{@target_user.name}"
+  b ,
+
+p style="width: 100%;"
+  | Seu comentário foi respondido na
+  = " "
+  a href=root_url style="color: #2766fc" plataforma
+  | . Acesse e ajude a construir um debate relevante sobre temas de interesse público!
+
+div style="text-align: center; padding: 20px; width: 100%;"
+  a href=("#{root_url}/#{@notification.view_url}" if @notification) style="background-color: transparent; border: 2px solid #2766fc; padding: 10px 30px; font-size: 12px; text-decoration: none;" CONFIRA!
+
+p style="width: 100%;" Até já,
+p style="width: 100%;"
+  = "Equipe "
+  a href=root_url style="color: #2766fc" MUDAMOS.org
+
+hr
+
+div style="color: #9b9b9b; text-align: center; width: 100%;"
+  p style="width: 100%;" Este e-mail foi mandado para informar sobre sua conta no site Mudamos.
+  ul style="list-style-type: none; padding: 0; width: 100%;"
+    li style="list-style-type: none; display: inline-block;"
+      a href=static_page_url(StaticPage.find_by_slug 'politica-de-privacidade') style="color: #2766fc" Política de privacidade
+      = " | "
+    li style="list-style-type: none; display: inline-block; margin-left: 5px"
+      a href=static_page_url(StaticPage.find_by_slug 'termos-de-uso') style="color: #2766fc" Termos de uso
+      = " | "
+    li style="list-style-type: none; display: inline-block; margin-left: 5px"
+      a href=blog_posts_url style="color: #2766fc" Blog
+  p style="width: 100%;" Copyright 2015 ITS. Todos os direitos reservados. Estamos localizados na Praia do Flamengo, 100 - Cobertura
+

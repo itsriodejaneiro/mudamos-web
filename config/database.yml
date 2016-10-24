@@ -1,0 +1,35 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+
+development:
+  <<: *default
+  database: mudamos_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: mudamos_test
+
+staging:
+  <<: *default
+  database: mudamos_staging
+  username: mudamos
+  password: <%= ENV['MUDAMOS_DATABASE_PASSWORD'] %>
+
+production:
+  <<: *default
+  database: mudamos_production
+  username: mudamos
+  password: <%= ENV['MUDAMOS_DATABASE_PASSWORD'] %>

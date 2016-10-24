@@ -1,0 +1,22 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700);
+
+$font-family-sans-serif: 'Roboto', sans-serif;
+$font-family-serif: 'Roboto', serif;
+// $font-family-monospace: 'latin_modern_mono_10', monospace
+
+
+$color-blue: #2766fc;
+$color-dark-blue: #154080;
+$color-dark-grey: #222222;
+$color-light-grey: #9b9b9b;
+$color-grid-dark-grey: #e0e0e0;
+$color-grid-light-grey: #f5f5f5;
+
+$navbar-height: 60px;
+$navbar-default-bg: rgba($color-dark-grey, 0.7);
+$navbar-default-border: none;
+$navbar-default-link-color: white;
+$navbar-default-link-hover-color: white;
+
+$secondary-navbar-height: 40px;
+

@@ -1,0 +1,49 @@
+- breadcrumb :blog_post, @blog_post, @cycle
+
+.row
+  .col-xs-9
+    .row
+      .col-xs-12
+        .big-image
+          = image_tag @blog_post.picture(:header)
+    .row
+      .col-xs-12
+        .card-module
+          = @blog_post.content.html_safe
+  .col-xs-3
+    .card-module.admin-blog-show-actions.bordered
+      .table
+        .tr
+          .td.show-action.border-right.border-bottom
+            = semantic_form_for [:admin, @cycle, @blog_post], method: :put do |f|
+              = f.input :highlighted, as: :hidden, input_html: { value: !@blog_post.highlighted }
+              button
+                - if @blog_post.highlighted
+                  i.icon-destacado
+                  span Destacado
+                - else
+                  i.icon-destaque
+                  span Destacar
+          .td.show-action.border-bottom
+            = link_to [:edit, :admin, @cycle, @blog_post] do
+              i.icon-edit
+              span Editar
+        .tr
+          .td.show-action.border-right
+            = semantic_form_for [:admin, @cycle, @blog_post], method: :put do |f|
+              = f.input :active, as: :hidden, input_html: { value: !@blog_post.active }
+              button
+                - if @blog_post.active
+                  i.icon-desabilitar
+                  span Desabilitar
+                - else
+                  i.icon-publicar
+                  span Publicar
+          .td.show-action
+            = link_to [:admin, @cycle, @blog_post], method: :delete do
+              i.icon-deletar
+              span Apagar
+    .card-module.bordered.admin-blog-show-box
+      b= @blog_post.cycle.name
+    .card-module.bordered.admin-blog-show-box
+      = "Postado em #{@blog_post.release_date.strftime('%d/%m/%Y')}"

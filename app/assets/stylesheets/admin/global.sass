@@ -1,0 +1,1710 @@
+@import "bourbon"
+@import "bootstrap/variables"
+@import "admin/custom_variables"
+@import "ico-font"
+
+
+body
+  background-color: #EAEEF3
+
+h1,h2,h3,h4,h5,h6,a,p,span,b,strong,li
+  font-family: $font-family-sans-serif
+  -webkit-font-smoothing: antialiased
+
+p
+  font-size: 14px
+
+select
+  .disabled
+    display: none
+@mixin arrow($color, $direction)
+  background-color: $color
+  position: relative
+  @if $direction == 'left'
+    +transform(rotate(180deg))
+  &:after
+    @extend [class^="icon-"]
+    @extend .icon-arrow:before
+    color: $color
+    position: absolute
+    top: 50%
+    right: 0
+    margin-right: -3px
+
+@mixin small-arrow($color, $direction: '')
+  +arrow($color, $direction)
+  height: 2px
+  &:after
+    font-size: 24px
+    margin-top: -12px
+
+
+@mixin medium-arrow($color, $direction: '')
+  +arrow($color, $direction)
+  height: 4px
+  &:after
+    font-size: 48px
+    margin-top: -24px
+
+@mixin big-arrow($color, $direction: '')
+  +arrow($color, $direction)
+  height: 6px
+  &:after
+    font-size: 64px
+    margin-top: -32px
+
+.arrow-link
+  position: relative
+  font-family: $font-family-sans-serif
+  font-style: italic
+  // text-transform: uppercase
+  font-weight: 700
+  color: $color-blue
+  font-size: 16px
+  line-height: 22px
+  display: block
+  margin-top: 30px
+  .arrow, span
+    vertical-align: middle
+  .arrow
+    @include small-arrow($color-blue)
+    width: 30px
+    display: inline-block
+    margin-right: 10px
+  &:hover
+    text-decoration: none
+    span
+      text-decoration: underline
+form
+  .file.input
+    display: none
+  .user-image, .file-input-image
+    position: relative
+    width: 100%
+    max-width: 200px
+    max-height: 200px
+    margin-top: 15px
+    overflow: hidden
+    img
+      width: 100%
+      // max-height: 100%
+  li.input
+    list-style-type: none
+    position: relative
+    margin-top: 15px
+  li.input.float-label-input
+    width: 100%
+    +transition(all 0.3s ease)
+    label
+      position: absolute
+      left: 0
+      font-size: 16px
+      top: 10px
+      color: $color-light-grey
+      font-weight: 400
+      font-family: $font-family-sans-serif
+      pointer-events: none
+      +transition(all 0.3s ease)
+    input
+      width: 100%
+      border: 0
+      border-bottom: 1px solid
+      color: black
+      padding: 15px 0 5px 0
+      font-size: 16px
+      font-family: $font-family-sans-serif
+      +transition(border-color 0.3s ease)
+      &:focus
+        outline: 0
+    input:focus, input[value]:not([value=""])
+      border-color: $color-blue
+    input:focus + label, input[value]:not([value=""]) + label
+      font-size: 12px !important
+      top: -5px !important
+      left: 0
+  .input.error
+    input, select
+      border-bottom-color: red
+  .inline-errors
+    font-size: 12px
+    color: red
+    margin-top: 5px
+  select
+    border: 0
+    // border-bottom: 1px black solid
+    // padding: 15px 0
+    // background: transparent
+    width: 100%
+    &:focus
+      outline: none
+    &[value]
+      color: $color-dark-grey
+  textarea
+    padding: 10px
+    height: 40px
+    width: 100%
+    font-family: $font-family-serif
+    font-size: 14px
+    border-radius: 2px
+    border: 1px solid $color-grid-dark-grey
+    &:focus
+      outline: 0
+  textarea.textarea-medium
+    height: 80px
+  textarea.textarea-large
+    height: 120px
+
+  .check_box
+    min-height: 55px
+    input[type="checkbox"]
+      display: none
+    label
+      margin-top: 20px
+      font-family: $font-family-sans-serif
+      text-transform: uppercase
+      font-weight: 400
+      font-style: italic
+      pointer-events: auto !important
+      border-color: $color-blue
+      color: $color-blue
+      span, a
+        font-size: 16px
+        line-height: 24px
+        vertical-align: middle
+      span
+        color: black
+      a
+        color: $color-blue
+    label:before
+      vertical-align: middle
+      content: ''
+      display: inline-block
+      width: 20px
+      height: 20px
+      margin-right: 15px
+      left: 0
+      background-color: white
+      border: 1px solid black
+      border-color: inherit
+    label:after
+      content: "\2713"
+      position: absolute
+      top: -4px
+      left: -2px
+      font-size: 24px
+      color: inherit
+      visibility: hidden
+    input[type=checkbox]:checked + label:after
+      visibility: visible
+    &.error
+      margin-bottom: 30px
+    .inline-errors
+      position: absolute
+      bottom: -14px
+  .alias-name
+    font-size: 14px
+    font-family: $font-family-sans-serif
+    margin-bottom: -20px
+    margin-top: 30px
+    span
+      color: $color-blue
+      text-transform: uppercase
+      font-weight: 700
+      margin: 5px 0
+      display: block
+  .alias-options
+    display: none
+  .profile-description, .sub-profile-description
+    margin: 5px 5px 15px 5px
+    font-size: 14px
+
+form button, .btn, form input[type="submit"]
+  vertical-align: middle
+  margin-top: 30px
+  border: none
+  background: transparent
+  font-size: 12px
+  text-transform: uppercase
+  font-family: $font-family-sans-serif
+  // font-style: italic
+  font-weight: 400
+  // color: $color-blue
+  border: 1px solid $color-blue
+  padding: 6px 32px
+  +transition(all 0.3s ease)
+  position: relative
+  z-index: 1
+  display: block
+  &:focus
+    outline: 0
+  &:hover
+    // background-color: $color-blue
+    color: white
+    .background
+      background-color: $color-blue
+      opacity: 1
+  .background
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    +transition(all 0.3s ease)
+    opacity: 0
+    background-color: $color-blue
+    z-index: -1
+  .arrow
+    display: none
+
+.btn-with-bg
+  background-color: white
+
+form
+  input[type="submit"].btn
+    display: inline-block
+    width: auto
+
+.btn
+  color: $color-dark-grey
+  border-radius: 2px
+  &:hover
+    background-color: $color-blue
+.filters
+  .btn
+    margin-top: 0px
+    margin-left: 15px
+    padding: 6px 15px
+    font-size: 12px
+.section-title
+  margin: 0
+  margin-top: 18px
+  margin-bottom: 30px
+  font-size: 30px
+  font-weight: 700
+  font-family: $font-family-sans-serif
+  // font-style: italic
+  text-transform: uppercase
+  display: inline-block
+  position: relative
+  border-color: $color-blue
+  a
+    color: black
+  &.with-link
+    &:hover
+      a
+        text-decoration: none
+      &:after
+        width: 100%
+  @media (max-width: $screen-xs-max)
+    text-align: center !important
+  &:after
+    +transition(0.3s ease all)
+    content: ""
+    width: 50px
+    border-bottom: 3px solid $color-blue
+    border-color: inherit
+    position: absolute
+    top: -18px
+    left: 0
+
+.full-background-image
+  background-position: center, center
+  background-repeat: no-repeat
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+  width: 100%
+  height: 100%
+  position: absolute
+  top: 0
+  left: 0
+  z-index: -1
+.arrow-link
+  position: relative
+  font-family: $font-family-sans-serif
+  font-weight: 700
+  color: $color-blue
+  font-size: 16px
+  line-height: 22px
+  display: block
+  margin-top: 30px
+  .arrow, span
+    vertical-align: middle
+  .arrow
+    width: 30px
+    display: inline-block
+    margin-right: 10px
+  &:hover
+    text-decoration: none
+    span
+      text-decoration: underline
+
+section#admin-signin
+  display: table-cell
+  vertical-align: middle
+  padding: 20px
+  position: relative
+  height: 100vh
+  width: 100vw
+  h2
+    color: white
+    font-size: 50px
+    font-weight: 700
+    line-height: 60px
+  .logo
+    position: absolute
+    top: 80px
+    width: 15%
+    img
+      width: 100%
+  .logo
+    position: relative
+    top: inherit
+    width: 95%
+  h2
+    font-size: 25px
+    margin-top: -20px
+    text-align: center
+    -webkit-margin-before: 0
+  .section-title
+    font-size: 20px
+    margin-bottom: 0px
+  .login-content
+    position: relative
+    padding: 50px 100px
+    background-color: #fff
+    margin-top: 25px
+    width: 570px
+    border: 1px solid #999
+    border: 1px solid rgba(0, 0, 0, 0.2)
+    border-radius: 5px
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5)
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5)
+    background-clip: padding-box
+    outline: 0
+    form
+      margin: 0 15px
+      button
+        font-size: 12px
+        padding: 6px 29px
+  .arrow-link
+    font-style: normal
+a.action-button
+  vertical-align: middle
+  border: none
+  background: transparent
+  font-size: 10px
+  text-transform: uppercase
+  font-family: $font-family-sans-serif
+  font-weight: 400
+  border: 1px solid $color-blue
+  padding: 5px 15px
+  +transition(all 0.3s ease)
+  position: relative
+  z-index: 1
+  &:focus
+    outline: 0
+  &:hover
+    background-color: $color-blue
+    color: white
+    .background
+      background-color: $color-blue
+      opacity: 1
+  .background
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    +transition(all 0.3s ease)
+    opacity: 0
+    background-color: $color-blue
+    z-index: -1
+
+.top-bar
+  display: inline-block
+  width: 100%
+  margin-bottom: 20px
+  .search
+    background-color: #F5F6F9
+    width: 100%
+    padding: 7px 30px
+    a
+      font-size: 11px
+      color: $color-dark-grey
+      font-weight: normal
+  .breadcrumbs
+    text-transform: uppercase
+    margin: 0
+    padding: 15px 30px
+    background-color: #FFF
+    color: $color-dark-blue
+    font-size: 14px
+    a
+      font-weight: 300
+      color: $color-dark-blue
+      padding-right: 5px
+    .current
+      padding-left: 5px
+
+.col-xs-height
+  padding: $grid-gutter-width/2 $grid-gutter-width
+  .setting-image
+    width: calc(100% + #{$grid-gutter-width})
+    margin-top: -$grid-gutter-width/2
+    margin-left: -$grid-gutter-width/2
+    margin-bottom: -$grid-gutter-width/2
+
+.col-xs-height, .compilation
+  .card-background
+    width: calc(100% - #{$grid-gutter-width})
+    // height: calc(100% - #{$grid-gutter-width})
+    height: 100%
+    background-color: #fff
+    // top: $grid-gutter-width/2
+    top: 0
+    left: $grid-gutter-width/2
+    position: absolute
+    border-radius: 5px
+    z-index: -1
+
+.compilation
+  padding: 15px 0
+  .card-module
+    z-index: 1 !important
+  .setting-static-content
+    padding: 0 30px
+    .setting-title > span
+      font-size: 20px
+      font-weight: 400
+  .file.input
+    display: block
+
+.setting-image
+  width: 100%
+  border-radius: 5px
+
+.card-module
+  width: 100%
+  position: relative
+  display: block
+  padding: 20px 30px
+  background-color: #fff
+  border-radius: 5px
+  margin-bottom: 15px
+  overflow: hidden
+  // z-index: -1
+  &.bordered
+    border: 1px solid #ccc
+  h3
+    margin-top: 0px
+    margin-bottom: 20px
+    font-size: 14px
+.filter-bar
+  margin-top: 30px
+  .pull-right
+    top: 5px
+    position: absolute
+    right: 0
+    span
+      margin-right: 15px
+
+  ul
+    margin: 0px
+    -webkit-padding-start: 0px
+  ul.right-side
+    float: right
+    .btn
+      margin-top: 0px
+      padding: 6px 15px
+  li
+    font-size: 10px
+    display: inline-block
+    color: $color-dark-blue
+    text-transform: uppercase
+    padding: 0 15px
+    cursor: pointer
+    font-weight: 400
+  li:first-child
+    padding-left: 0
+  li:hover
+    color: $color-blue
+.title
+  h2, label
+    display: inline-block
+    color: $color-dark-blue
+    font-size: 14px
+    font-weight: 300
+    margin-bottom: 15px
+  label
+    display: block
+.status-number
+  font-size: 26px
+  padding-right: 10px
+.filters
+  span
+    padding: 10px 30px 0px 0px
+    color: $color-dark-blue
+    text-transform: uppercase
+    font-size: 12px
+    cursor: pointer
+    &:hover
+      color: $color-blue
+  .active
+    color: $color-blue
+.data-filter
+  float: right
+  margin-top: 11%
+  .date-display
+    font-size: 12px
+    vertical-align: text-top
+    .icon-arrow
+      padding: 0px 5px
+    .flip-icon
+      display: inline-block
+      -moz-transform: scale(-1, 1)
+      -webkit-transform: scale(-1, 1)
+      -o-transform: scale(-1, 1)
+      -ms-transform: scale(-1, 1)
+      transform: scale(-1, 1)
+  .icon-calendar
+    cursor: pointer
+    margin-left: 10px
+    font-size: 16px
+    font-weight: 400
+  input
+    width: 0px
+    opacity: 0
+    position: absolute
+    right: 30px
+.cycle-box
+  margin-bottom: 30px
+  display: inline-block
+  border-radius: 5px
+  overflow: hidden
+  width: 408px
+  text-decoration: none
+  margin-right: 30px
+  transition: all 0.3s ease
+  // .content-overlay
+  //   display: block
+  //   position: absolute
+  //   background-color: #000
+  //   width: inherit
+  //   height: 100%
+  //   opacity: 0
+  //   border-radius: 5px
+  //   transition: all 0.3s ease
+  .content-description
+    padding: 20px 30px
+    background-color: #fff
+    font-size: 12px !important
+    color: $color-dark-grey !important
+    font-weight: 300 !important
+    height: 180px
+    overflow: hidden
+    p
+      font-weight: 300 !important
+      text-align: justify !important
+      font-size: 12px !important
+      color: $color-dark-grey !important
+      font-weight: 300 !important
+  .content-media
+    position: relative
+    height: 90px
+    padding: 0px
+    overflow: hidden
+    background-image: url('https://mudamos-its-development-images.s3.amazonaws.com/uploads/development/cycles/1/pictures/thumb.jpg')
+    img
+      max-width: 408px
+  .content-status
+    height: 30px
+    // background-color: #f86048
+    padding: 7px 30px
+    font-size: 12px
+    color: #fff
+    font-weight: 300
+    span:nth-child(2)
+      text-rendering: optimizeLegibility
+      font-weight: 700
+      float: right
+  .content-status.theme-2
+    background-color: #b8ca00
+
+.cycle-box:hover,
+.cycle-box:focus
+  text-decoration: none
+// .cycle-box:hover
+//   .content-overlay
+//     opacity: 0.5
+.cycle-box:nth-child(even)
+  margin-right: 0px
+
+.sidebar-nav-wrapper
+  display: inline-block
+  position: fixed
+  width: 265px
+  height: 100vh
+  margin: 0px
+  background-color: $color-blue
+  padding-bottom: 10px
+  // overflow-y: auto
+  overflow-y: scroll
+  @media (max-width: $screen-sm-max)
+    width: 190px
+  // &::-webkit-scrollbar
+  //   background-color: #EAEEF3
+.sidebar-nav
+  background-color: $color-dark-grey
+  min-height: 99vh
+  ul
+    position: relative
+    list-style: none
+    padding: 0
+    margin: 0
+    height: 100%
+    li
+      a
+        padding: 30px
+        border-bottom: 1px solid #4A4B4C
+        background-color: $color-dark-grey
+        color: #edf0f5
+        font-weight: 400
+        font-size: 12px
+        text-transform: uppercase
+        vertical-align: middle
+        text-align: left
+        transition: 0.3s all ease
+        cursor: pointer
+        display: block
+        &:hover,
+        &:focus,
+        &:active,
+        &[data-toggle="collapse"]
+          text-decoration: none
+          background-color: #363637
+        i
+          float: right
+          transition: 0.3s all ease
+          transform: rotate(-45deg)
+      a[data-toggle="collapse"].collapsed
+        background: $color-dark-grey
+      a[data-toggle="collapse"].collapsed:hover
+        background-color: #363637
+      a.collapsed
+        i
+          transform: rotate(0deg)
+    .sub-sidebar
+      a
+        text-transform: capitalize
+        padding: 15px 30px 15px 60px
+        border-bottom: none
+    .sub-sub-sidebar
+      a
+        text-transform: normal
+        padding: 7px 0px 7px 90px
+  .sidebar-brand
+    a
+      text-align: center
+      background-color: $color-blue
+      padding: 10px
+      border-bottom: 1px solid rgba(255,255,255,0.25)
+      img
+        width: 100px
+      &:hover,
+      &:active
+        background-color: $color-blue
+  .admin-user
+    text-align: left
+    background-color: $color-blue
+    text-transform: none
+    border-bottom: none
+    color: #FFF
+    i
+      cursor: pointer
+    span
+      margin-left: 15px
+      font-weight: 400
+      font-size: 12px
+    &:hover
+      background-color: darken($color-blue, 5%)
+  .sub-item
+    li
+      padding: 30px 0px
+#dashboard-comment-month,
+#dashboard-comment-day,
+#dashboard-signup-month,
+#dashboard-signup-day
+  width: 495px
+  max-width: 100%
+  height: 400px
+#dashboard-coment-sector,
+#dashboard-user-sector
+  width: 100%
+  height: 400px
+
+.flash_message
+  text-align: center
+  position: fixed
+  z-index: 2004
+  top: 0
+  left: 0
+  width: 100%
+  padding: 15px
+  color: white
+  display: none
+  cursor: pointer
+  background-color: $color-dark-grey
+  font-size: 16px
+  font-family: $font-family-sans-serif
+  &.flash_success, &.flash_notice
+    .container
+      &:before
+        content: "\e910"
+  &.flash_error, &.flash_alert
+    .container
+      &:before
+        content: "\e90f"
+  .container
+    position: relative
+    vertical-align: middle
+    i
+      margin-right: 10px
+    &:before
+      vertical-align: middle
+      margin: 0 30px
+      color: inherit
+      display: inline-block
+      font-family: 'icomoon'
+      speak: none
+      font-style: normal
+      font-weight: normal
+      font-variant: normal
+      text-transform: none
+      line-height: 1
+
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased
+      -moz-osx-font-smoothing: grayscale
+      font-size: 40px
+    &:after
+      content: "×"
+      color: inherit
+      font-size: 32px
+      float: right
+      position: absolute
+      right: 0
+      top: 50%
+      +transform(translateY(-50%))
+    &:hover:after
+      font-size: 40px
+      right: -4px
+
+
+.admin-blog-post-thumb
+  color: white
+  .card-module
+    z-index: 1
+    margin-bottom: 0
+  .blog-post-image
+    z-index: -1
+    position: absolute
+    left: -15px
+    top: -20px
+    width: calc(100%)
+    height: calc(100% + 40px)
+    -webkit-background-size: cover
+    -moz-background-size: cover
+    -o-background-size: cover
+    background-size: cover
+    border-left: 8px solid $color-blue
+  h3, h4
+    margin: 15px 0
+    a
+      color: white
+  h4
+    text-transform: uppercase
+    font-size: 12px
+  h3
+    font-size: 20px
+    font-weight: 300
+  ul.actions
+    padding: 0
+    margin: 0
+    text-align: center
+    vertical-align: middle
+    form, button
+      margin: 0
+    li
+      display: inline-block
+      margin: 0 10px
+      font-size: 10px
+      vertical-align: middle
+      a, input[type="submit"], button
+        border: none
+        background-color: transparent
+        color: #4A4A4A
+        padding: 0
+        i
+          display: block
+          font-size: 26px
+          margin-bottom: 10px
+        span
+          font-size: 10px
+          text-transform: none
+        &:hover
+          text-decoration: none
+          span
+            text-decoration: underline
+  .blog-post-id
+    color: black
+    font-size: 12px
+    margin-top: 5px
+
+.admin-blog-show-actions
+  padding: 0
+  .table
+    display: table
+    margin: 0
+  .tr
+    display: table-row
+  .td
+    display: table-cell
+    padding: 20px 0
+  .show-action
+    width: 50%
+    text-align: center
+    vertical-align: middle
+    display: inline-block
+    height: 120px
+    &.border-right
+      border-right: 1px solid #ccc
+    &.border-bottom
+      border-bottom: 1px solid #ccc
+    form
+      text-align: center
+      margin: 0
+      display: inline-block
+    a, input[type="submit"], button
+      text-align: center
+      border: none
+      background-color: transparent
+      color: #4A4A4A
+      padding: 0
+      display: inline-block
+      margin: 0
+      i
+        display: block
+        font-size: 30px
+        margin-bottom: 10px
+        line-height: 50px
+      span
+        font-size: 10px
+        text-transform: none
+      &:hover
+        text-decoration: none
+        span
+          text-decoration: underline
+
+.admin-blog-show-box
+  padding: 20px
+  font-size: 12px
+
+#blog_post_content_ifr
+  height: 250px !important
+
+form .user-image, form .file-input-image
+  // width: 100%
+  max-width: 100%
+  max-height: 160px
+  height: 160px
+  background-color: $color-light-grey
+
+form
+  margin-bottom: 30px
+  .title h2
+    margin-bottom: 0
+  input
+    width: 100%
+    padding: 10px
+    border-radius: 2px
+    border: 1px solid #cccccc
+  .error
+    input, select
+      border-bottom-color: #cccccc !important
+  .select2-selection.select2-selection
+    height: 40px
+    line-height: 40px
+    .select2-selection__rendered, .select2-selection__arrow
+      height: 40px
+      line-height: 40px
+
+.big-image
+  margin-bottom: 15px
+  position: relative
+  // width: calc(100% + #{$grid-gutter-width})
+  // margin-left: - $grid-gutter-width/2
+  width: 100%
+  max-height: 300px
+  overflow: hidden
+  img
+    width: 100%
+
+
+
+#highlights
+  padding: 60px 0
+  z-index: 1
+  // background-color: white
+  .grid-item
+    padding: 30px
+    position: relative
+    overflow: hidden
+    cursor: pointer
+    // &:hover
+    //   a
+    //     text-decoration: underline
+    .full-background-image
+      z-index: -1
+    .small-title
+      text-align: right
+      text-transform: uppercase
+      font-size: 16px
+      line-height: 20px
+      font-family: $font-family-sans-serif
+      border-bottom: 2px solid $color-blue
+      color: $color-blue
+      padding-bottom: 5px
+      font-weight: 700
+      margin-bottom: 20px
+    .medium-title
+      font-family: $font-family-sans-serif
+      font-size: 20px
+      font-weight: 700
+      line-height: 25px
+      margin-bottom: 20px
+      text-transform: uppercase
+    .big-title
+      color: white
+      text-transform: uppercase
+      font-family: $font-family-sans-serif
+      font-weight: 700
+      font-size: 30px
+      line-height: 36px
+      @media (max-width: $screen-sm-max)
+        font-size: 24px
+    .content
+      p
+        font-family: $font-family-serif
+        font-size: 14px
+        line-height: 22px
+
+    .small-image
+      margin: 0 0 20px 0
+      width: 100%
+      position: relative
+      max-height: 200px
+      overflow: hidden
+      img
+        width: 100%
+      .black-overlay, .image-overlay
+        z-index: 1
+    &.hero-title-item
+      .content
+        display: table-cell
+        vertical-align: middle
+        text-align: center
+        height: calc(100% - 90px)
+        position: absolute
+        left: 30px
+        width: calc(100% - 60px)
+      .big-title
+        text-align: center
+        position: absolute
+        top: 50%
+        +transform(translateY(-50%))
+        margin-top: -15px
+        font-style: italic
+        left: 0
+        width: 100%
+        padding: 0 30px
+    &.social-item
+      cursor: pointer
+      text-align: center
+      // &:hover
+      //   a
+      //     text-decoration: underline
+      .row
+        margin-bottom: 20px
+      .social-title
+        font-size: 20px
+        line-height: 26px
+        font-family: $font-family-sans-serif
+        font-weight: 700
+        text-transform: uppercase
+      .link
+        font-size: 16px
+        font-family: $font-family-sans-serif
+        line-height: 22px
+        font-weight: 700
+      i
+        font-size: 30px
+    .footer
+      text-align: left
+      position: absolute
+      bottom: 0
+      height: 60px
+      width: 100%
+      left: 0
+      padding: 20px
+      a
+        font-family: $font-family-sans-serif
+        font-style: italic
+        text-transform: uppercase
+        font-weight: 700
+        color: $color-blue
+        font-size: 16px
+        line-height: 22px
+        .arrow, span
+          vertical-align: middle
+        .arrow
+          width: 30px
+          @include small-arrow($color-blue)
+          display: inline-block
+          margin-right: 10px
+          &::before
+            margin-left: -15px
+        // &:hover
+        //   text-decoration: none
+        //   span
+        //     text-decoration: underline
+      &.blue
+        a
+          color: white
+          .arrow
+            width: 30px
+            @include small-arrow(white)
+            display: inline-block
+            margin-right: 10px
+            &::before
+              margin-left: -15px
+  .light-grey
+    background-color: $color-grid-light-grey
+    .arrow
+      &::after
+        border-color: $color-grid-light-grey !important
+  .dark-grey
+    background-color: $color-grid-dark-grey
+    .big-title
+      color: black
+    .arrow
+      &::after
+        border-color: $color-grid-dark-grey !important
+  .white
+    background-color: white
+    .arrow
+      &::after
+        border-color: white !important
+  .blue
+    background-color: $color-blue
+    .arrow
+      &::after
+        border-color: $color-blue !important
+    .content, .medium-title, .big-title
+      color: white
+  .blue-text, .blue-text a
+    color: $color-blue
+  .admin-overlay
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background-color: rgba(0,0,0,0.8)
+    z-index: 1
+    opacity: 0
+    +transition(opacity 0.3s ease)
+    &:hover
+      opacity: 1
+    .overlay-actions
+      text-align: center
+      color: white
+      position: absolute
+      left: 50%
+      top: 50%
+      +transform(translateY(-50%))
+      +transform(translateX(-50%))
+      i
+        display: block
+        font-size: 18px
+        margin-bottom: 15px
+      span
+        display: block
+        font-size: 12px
+    .admin-form
+      text-align: center
+      position: absolute
+      top: 50%
+      left: 50%
+      +transform(translateY(-50%) translateX(-50%))
+      width: calc(100% - 60px)
+      li, select
+        width: 100%
+
+#user-informations
+  .user-module
+    padding: 30px 30px 28px 30px
+  p
+    font-size: 12px
+    font-weight: 300
+  b
+    font-weight: 400
+  .anonymous
+    p
+      margin: 5px 0px
+  img
+    background-color: $color-light-grey
+    width: 65px
+    height: 65px
+    border-radius: 5px
+    margin-bottom: 15px
+  .user-name
+    font-size: 24px
+    font-weight: 700
+  .user-profile
+
+  .standard-user
+    color: $color-dark-blue
+    font-size: 10px
+    margin-top: 0
+  .holder
+    display: table
+    height: 70px
+    float: left
+    p
+      display: table-cell
+      vertical-align: middle
+  .no-interactions
+    font-weight: 500
+    font-size: 22px
+    color: $color-dark-grey
+    text-align: center
+table
+  width: 100%
+  border: 1px solid $color-grid-light-grey
+  tr
+    &:nth-child(odd)
+      background-color: $color-grid-light-grey
+    th,td
+      text-align: center
+      padding: 15px
+      font-size: 12px
+    th
+      background: #fff
+      font-weight: 400
+    td.comment-td
+      color: $color-blue
+      text-decoration: underline
+    .like-holder
+      margin-top: 10px
+      i
+        padding: 0px 15px
+        color: $color-blue
+        font-weight: 300
+      i.icon-like
+        padding-left: 0px
+      i.icon-dislike
+        padding-right: 0px
+    p.data,
+    p.anonymous
+      font-size: 10px
+      margin: 0px
+      text-align: left
+    a
+      color: $color_blue
+      text-decoration: underline
+      transition: 0.3s all ease
+      &:hover
+        color: $color_dark_blue
+  #bulk-checkbox
+    // display: none
+    // &::before
+    //   content: ''
+    //   display: inline-block
+    //   height: 15px
+    //   width: 15px
+    //   background-color: #FFF
+    //   border: 1px solid $color-dark-blue
+    //   border-radius: 2px
+    &::after
+      content: ''
+      position: absolute
+      display: inline-block
+      top: 81px
+      border-top: 5px solid $color-dark-grey
+      border-left: 4px solid transparent
+      border-right: 4px solid transparent
+      margin-left: 20px
+
+ul.pagination
+  text-align: center
+  li
+    display: inline-block
+    padding: 10px
+    .arrow-link
+      color: $color-dark-grey
+      margin-top: 0px
+    .arrow
+      background-color: $color-dark-grey
+      &:after
+        color: $color-dark-grey
+        font-size: 16px
+        margin-top: -8px
+        margin-right: -2px
+    .arrow-link.left
+      transform: rotate(180deg)
+      padding-bottom: 2px
+
+#administrators
+  .filters
+    margin-bottom: 15px
+    span
+      font-size: 10px
+      color: $color-dark-grey
+      cursor: auto
+      padding-right: 15px
+  // .select2
+  //   display: none
+  // .select2-hidden-accessible
+  //   background-color: #fff
+  //   border-radius: 2px
+  //   font-size: 12px
+  //   font-weight: 400
+  //   padding: 3px
+  //   border: 1px solid $color-grid-dark-grey
+  //   height: auto
+  //   width: auto
+  //   margin: 0
+  //   position: relative
+.select-actions
+  background-color: #fff
+  border-radius: 2px
+  font-size: 12px
+  font-weight: 400
+  padding: 3px
+  // border: 1px solid $color-grid-dark-grey
+.form-row
+  margin-top: 30px
+  button
+    background-color: #fff
+    margin-top: 0px
+    padding: 5px 15px
+    &:hover
+      background-color: $color-blue
+
+#admin-form
+  .select2
+    display: none !important
+  select#admin-level
+    // display: none
+    width: 100%
+    padding: 10px
+    border-radius: 2px
+    border: 1px solid $color-grid-dark-grey
+    background-color: #fff
+
+.setting-static-content
+  .setting-title
+    margin-top: 15px
+    margin-bottom: 15px
+    font-weight: 600
+    font-size: 12px
+  .setting-content > *, .setting-content > * > *
+    font-size: 12px !important
+    a, button
+      color: $color-blue !important
+    button
+      margin: 0
+      padding: 0
+      font-weight: 400
+      text-transform: uppercase
+      display: inline
+      &:hover
+        text-decoration: underline
+  .edit-setting-button
+    border: 0
+    background: none
+    float: right
+    &:focus
+      outline: 0
+    &:hover
+      text-transform: underline
+
+.setting-form
+  display: none
+  li
+    text-align: left
+  label
+    font-weight: 400
+
+.accordion-group
+  margin-bottom: 30px
+  .accordion-trigger
+    margin-bottom: 15px
+    .line
+      display: inline-block
+      vertical-align: middle
+      height: 1px
+      width: 84%
+      background-color: $color-grid-dark-grey
+    h4
+      display: inline-block
+      margin: 0px
+      width: 15%
+      color: $color-dark-blue
+      font-size: 14px
+      font-weight: 400
+    .accordion-toggle
+      i
+        float: right
+        margin-top: 5px
+        font-size: 12px
+        font-weight: 400
+        transform: rotate(0deg)
+        transition: 0.3s all ease
+        &:hover
+          color: $color-blue
+    .accordion-toggle.collapsed
+      i
+        transform: rotate(45deg)
+
+#glossario-biblioteca
+  .editable-content
+    padding-right: 60px
+    margin-bottom: 30px
+  .icon-edit
+    position: absolute
+    right: 30px
+    cursor: pointer
+    color: $color-dark-grey
+    transition: 0.3s all ease
+    font-weight: 400
+    &:hover
+      color: $color-blue
+    a.letter-link
+      display: inline-block
+      padding: 5px 2px
+      text-transform: uppercase
+      &:hover
+        color: $color-dark-blue
+  .btn
+    margin-top: 0px
+    padding: 5px 15px
+    margin-left: 15px
+  .materials
+    .btn,
+    .filters
+      margin-top: 10px
+  .mce-tinymce
+    margin-bottom: 30px
+    padding: 0px 1px
+
+#materials-form, #new_cycle
+  .select2-selection.select2-selection,
+  .select2-selection.select2-selection .select2-selection__rendered,
+  .select2-selection.select2-selection .select2-selection__arrow
+    height: auto
+    line-height: -1
+    min-height: 40px
+  // select
+  //   height: auto
+  .select2-selection__choice
+    font-size: 10px
+    line-height: 28px
+    span.select2-selection__choice__remove
+      line-height: 28px
+
+
+.modal-header
+  .close
+    margin-top: -20px
+    height: 15px
+    width: 15px
+    position: absolute
+    right: 20px
+.select2-container--default .select2-selection--single .select2-selection__placeholder
+  vertical-align: -webkit-baseline-middle
+  line-height: 3
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple
+  border-radius: 2px!important
+  border: 1px solid $color-grid-dark-grey !important
+.select2-container--default .select2-selection--single .select2-selection__arrow b
+  margin-top: 12px
+
+.subject
+  i
+    position: absolute
+    top: 20px
+    right: 20px
+    font-size: 14px
+    font-weight: 400
+    cursor: pointer
+    color: $color-dark-grey
+    transition: 0.3s all ease
+    &:hover
+      color: $color-blue
+  .title
+    font-size: 26px
+    font-weight: 700
+    text-transform: uppercase
+  .description
+    font-size: 12px
+  .question
+    font-size: 26px
+    line-height: 1.3
+    margin-bottom: 0px
+
+.comment-user
+  .user-infos
+    display: inline-block
+    margin-bottom: 15px
+    a.name,
+    p.anonymous,
+    p.data
+      margin-bottom: 0px
+    a.name
+      color: $color-blue
+      text-decoration: underline
+    p.anonymous
+      color: lighten($color-dark-blue, 40)
+      font-size: 12px
+    p.data
+      font-size: 10px
+  .like-box
+    display: inline-block
+    padding: 10px 0px
+    text-align: center
+    margin-bottom: 15px
+    border-top: 1px solid $color-grid-dark-grey
+    border-bottom: 1px solid $color-grid-dark-grey
+    i
+      color: $color-blue
+      display: inline-block
+      font-weight: 400
+  select
+    width: 100%
+
+table#comment
+  tr td:first-child,
+  tr td:nth-child(2)
+    text-align: left
+  tr th:first-child,
+  tr td:first-child
+    width: 20%
+  tr th:nth-child(2),
+  tr td:nth-child(2)
+    width: 40%
+    max-height: 300px
+    word-wrap: break-word
+  tr th:last-child,
+  tr td:last-child
+    width: 15%
+  tr th:nth-child(4),
+  tr td:nth-child(4),
+  tr th:nth-child(5),
+  tr td:nth-child(5)
+    width: 5%
+  i
+    padding: 0px
+  a.read-more,
+  a.read-less
+    cursor: pointer
+    // display: none
+    &:hover
+      color: $color-dark-blue
+  a.read-less
+    display: none
+
+#cycle-list-filters
+input[name="daterange"]
+  margin-left: -70px
+  opacity: 0
+  cursor: pointer
+
+
+form.formtastic.setting.image-form
+  margin: 0 -15px
+  .file-input-image
+    margin-top: -15px
+    height: auto
+    max-height: none
+  button.upload-image
+    background-color: white
+    position: absolute
+    bottom: 91px
+    right: 30px
+    // margin-left: -15px
+    // width: calc(100% + 30px)
+  input[type="submit"]
+    margin-bottom: -15px
+
+form.formtastic.cycle
+  .file-input-image
+    height: 300px
+    max-height: 300px
+    overflow: hidden
+  button.upload-image
+    float: right
+
+.color.input
+  input
+    padding: 0
+    border: 0
+    background: transparent
+    height: 40px
+    &:focus
+      outline: 0
+
+form
+  .links
+    a
+      display: inline-block
+  textarea
+    height: auto
+  .phases
+    .nested-fields
+      border-bottom: 1px solid $color-grid-dark-grey
+      margin-bottom: 30px
+      padding-bottom: 30px
+    .nested-fields:last
+      border-bottom: 0
+      margin-bottom: 0
+
+form
+  hr
+    width: 100%
+    height: 1px
+    border: 0
+    outline: 0
+    background-color: $color-grid-dark-grey
+
+#notification
+  a
+    background-color: transparent
+    border-bottom: none
+    padding: 15px 30px
+    text-transform: capitalize
+    font-weight: 400
+    i
+      transform: rotate(90deg)
+
+  .notification-message
+    box-sizing: border-box
+    background: $color-grid-light-grey
+    width: 15px
+    height: 15px
+    display: inline-block
+    position: absolute
+    margin-top: -50px
+    border-radius: 2px
+    text-align: center
+    color: $color-dark-grey
+    font-size: 8px
+    line-height: 2
+    cursor: pointer
+    &:hover
+      background: darken($color-grid-light-grey, 5%)
+
+  a.notification-icon
+    cursor: pointer
+  ul.notification-dropdown
+    height: auto
+  .notification-dropdown
+    position: absolute
+    display: none
+    background: $color-grid-light-grey
+    width: 310px
+    max-height: 330px
+    overflow-y: auto
+    overflow-x: hidden
+    border-radius: 4px
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.5)
+    -webkit-padding-start: 0px
+    z-index: 1
+    transition: 0.3s all ease
+    opacity: 0
+    // &:before
+    //   content: ''
+    //   position: absolute
+    //   display: inline-block
+    //   border-bottom: 8px solid $color-grid-dark-grey
+    //   border-left: 8px solid transparent
+    //   border-right: 8px solid transparent
+    //   top: -8px
+    //   left: 28px
+    .notification-dropdown-item
+      position: relative
+      padding: 15px
+      background: $color-grid-light-grey
+      border-bottom: 1px solid $color-grid-dark-grey
+      width: 310px
+      &:hover
+        background: lighten($color-blue, 35%)
+      a
+        display: inline-block
+        width: 100%
+        cursor: pointer
+        padding: 0px 15px
+
+      .notification-media
+        position: relative
+        display: inline-block
+        float: left
+        width: 50px
+        height: 50px
+        margin-right: 10px
+        background: rgb(248, 96, 72)
+        img
+          max-width: 100%
+          max-height: 100%
+
+      .notification-content
+        position: relative
+        display: inline-block
+        width: 230px
+        height: auto
+        text-align: left
+        margin-top: 0 !important
+        p
+          color: #000
+          line-height: 16px
+          font-size: 12px
+          margin-bottom: 0px
+          text-transform: lowercase
+        b
+          text-transform: uppercase
+        span
+          color: $color-blue
+          line-height: 16px
+          font-size: 12px
+          font-weight: 300
+          padding: 0
+        span.notification-cycle
+          float: right
+          color: $color-dark-grey
+        .notification-infos
+          margin-top: 15px
+    .notification-dropdown-item::last-child
+      border: none
+    .notification-dropdown-item.seen
+      background: darken($color-grid-light-grey, 5%)
+      &:hover
+        background: lighten($color-blue, 35%)
+
+  .notification-dropdown.open
+    display: inline-block
+    // margin-top: 10px
+    position: fixed
+    opacity: 1

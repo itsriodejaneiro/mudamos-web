@@ -1,0 +1,50 @@
+- liked = user_signed_in? ? comment.liked_by?(current_user) : false
+- disliked = user_signed_in? ? comment.disliked_by?(current_user) : false
+- color ||= comment.subject.plugin_relation.cycle.color
+
+.row id=("comment-#{comment.id}") data-cycle-slug="#{comment.subject.plugin_relation.cycle.slug}" data-subject-slug="#{comment.subject.slug}" data-base-url="#{cycle_subject_url(comment.subject.plugin_relation.cycle, comment.subject)}" data-comment-share-params="comments=#{comment.parents_url_params}" class="#{'selected-comment' if @selected_comment_id == comment.id.to_s}"
+  .col-xs-12
+    .row.reading-comment style="border-color: #{color}"
+      .col-xs-2.user-area style="border-color: #{color}"
+        .img
+          = image_tag(comment.photo)
+        h5= comment.author
+        -if comment.user.profile.present?
+          label style="color: #{color}" Setor:
+          p= comment.user.profile.name
+        - if comment.user.sub_profile.present?
+          label style="color: #{color}" Subsetor:
+          p= comment.user.sub_profile.name
+      .col-xs-10.content-area
+        .content
+          .comment-content.comment-dotdotdot
+            - if comment.content.include? '<p>'
+              = comment.content.gsub('<p></p>', '').gsub('<p>&nbsp;</p>', '').gsub("\r\n", '').html_safe
+            - else
+              p= comment.content.gsub('<p></p>', '').gsub('<p>&nbsp;</p>', '').gsub("\r\n", '').html_safe
+          = link_to 'Continuar Lendo [...]', cycle_subject_path(comment.subject.plugin_relation.cycle, comment.subject, comments: comment.parents_url_params), style: "color: #{color}"
+        .extra-area style="border-color: #{color}"
+          i.icon-clock style= "color: #{color}"
+          span= comment.created_at.to_short_date
+          span= comment.created_at.to_short_time
+          - unless comment.depth > 2
+            span style= "color: #{color}"
+              b= comment.descendants.count
+              = " respostas"
+
+          span.like_button style="color: #{color};" class="#{user_signed_in? ? 'toggleable' : ''}" onclick="#{'document.open_login(); document.flash_message("Você precisa estar logado para curtir um comentário.", "error")' unless user_signed_in?}"
+            i.icon-like class="#{liked ? 'toggled' : ''}"
+          span.like_counter
+            ="%02d" % comment.likes_count
+          span.dislike_button style="color: #{color};" class="#{user_signed_in? ? 'toggleable' : ''}" onclick="#{'document.open_login(); document.flash_message("Você precisa estar logado para não curtir um comentário.", "error")' unless user_signed_in?}"
+            i.icon-dislike class="#{disliked ? 'toggled' : ''}"
+          span.dislike_counter
+            ="%02d" % comment.dislikes_count
+          / span.share-comment
+          /   button
+          /     i.icon-share
+          /   span.share_list
+          /     a.facebook href="#"
+          /       i.icon-facebook
+          /     a.copy-to-clipboard
+          /       span Copiar Link

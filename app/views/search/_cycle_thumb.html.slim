@@ -1,0 +1,6 @@
+.row.cycle-search-result
+  .col-xs-2
+    = image_tag cycle.picture(:thumb)
+  .col-xs-10
+    h2= link_to cycle.name, cycle_path(cycle)
+    .cycle-bottom-description= cycle.description.html_safe

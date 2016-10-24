@@ -1,0 +1,81 @@
+- breadcrumb :materials, @cycle, @plugin_relation
+
+#glossario-biblioteca
+  .row
+    .col-xs-12
+      .title
+        h2 Texto Inicial
+      .row
+        .col-xs-12
+          .card-module
+            i.icon-edit
+            #edit-title.editable-content
+              p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sed nesciunt atque, saepe iusto ipsum, et quae, numquam voluptatum a assumenda blanditiis dolore! Ea fugit molestias quisquam, minima adipisci quidem.  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos praesentium quas sunt, adipisci commodi maxime unde modi ex ipsum doloribus doloremque quae tempore reiciendis quam voluptatum, eius vitae temporibus accusantium.
+            .pull-right
+              a.btn.hidden.mce-button Salvar Alterações
+
+  .row
+    .col-xs-12
+      .title
+        h2 Materiais
+      .row
+        .col-xs-12
+          .card-module.materials
+            b.status-number= @materials.total_count
+            | Número total de materiais
+            .pull-right
+              = link_to 'Adicionar Material', new_admin_cycle_plugin_relation_material_path, class: 'btn'
+            / .pull-right
+            /   a.btn Adicionar Categoria
+            .row
+              .col-xs-12
+                / .filters
+                /   span= link_to 'Por Ordem alfabética', url_for(params.merge(order_by_type: 'false'))
+                /   span= link_to 'Por Tópico', url_for(params.merge(order_by_type: 'true'))
+                /   span= link_to 'Por Categoria', '#'
+  .row
+    .col-xs-12
+      #administrators.card-module
+        .filters.clearfix
+          = render 'admin/shared/page_quantity'
+        table
+          thead
+            tr
+              th Título
+              th Conteúdo
+              th Categoria
+              th Link
+              th Ações
+          tbody
+            - @materials.each do |m|
+              tr
+                td= m.title
+                td= m.description
+                td= m.category
+                td= link_to 'Ver link', m.external_link, target: '_blank'
+                td 
+                  select.select-actions.select2-disabled
+                    option.disabled selected="true" mais...
+                    option value=edit_admin_cycle_plugin_relation_material_path(@cycle, @plugin_relation, m) Editar
+                    option value=admin_cycle_plugin_relation_material_path(@cycle, @plugin_relation, m) method="delete" Excluir
+        = render 'admin/shared/pagination', collection: @materials
+
+  / = render 'admin/shared/pagination', collection: @users
+
+javascript:
+  admin.edit.init();
+javascript:
+  tinyMCE.init({
+    selector: ".editable-content",
+    plugins: ["autolink lists link image preview anchor", "fullscreen hr code visualblocks visualchars", "table paste"],
+    file_browser_callback: function(field_name, url, type, win) {
+      return this.set_amazon_direct_upload($('#' + field_name));
+    },
+    toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    content_css: "#{ActionController::Base.helpers.asset_path('tinymce.css')}",
+    setup: function(ed) {
+        ed.on('init', function(e) {
+            e.target.hide();
+        });
+    }
+  });

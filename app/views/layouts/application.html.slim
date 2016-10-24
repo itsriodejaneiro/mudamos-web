@@ -1,0 +1,58 @@
+doctype html
+html
+  head
+    / title
+    /   | Mudamos
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+    = favicon_link_tag
+
+    meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=no"
+
+    = metamagic site: "Mudamos", title: [:title, :site], separator: " | "
+    = metamagic
+  body class="#{params[:controller]}-#{params[:action]}" data-controller="#{params[:controller]}" data-action="#{params[:action]}" data-logged-in=user_signed_in?.to_s data-cycle=(@cycle.id if @cycle) data-subject=(@subject.id if @subject)
+
+    #fb-root
+    = render 'outsiders/facebook_initializer'
+    
+    - flash.each do |name, msg|
+      - if msg.respond_to? :html_safe
+        javascript:
+          document.flash_message("#{msg.html_safe}", "#{name}");
+
+    - if Rails.env.production?
+      = render 'outsiders/analytics'
+      = render 'outsiders/facebook_pixel'
+      
+      - if session.delete(:new_user_created)
+        javascript:
+          fbq('track', 'CompleteRegistration');
+
+
+    .body-container
+      - if @cycle
+        = render 'layouts/shared/cycle_header'
+      - else
+        = render 'layouts/shared/base_header'
+      = yield
+      = render 'layouts/shared/footer'
+
+      - unless user_signed_in?
+        = render 'layouts/shared/modal', modal_id: 'modal-session-new', size: 'md', cache: true, content: render(file: 'users/sessions/new')
+        - if request.path == new_user_session_path
+          javascript:
+            $('#modal-session-new').modal('show');
+
+        = render 'layouts/shared/modal', modal_id: 'modal-registration-new', size: 'sm', cache: true, content: render(file: 'users/registrations/new')
+        - if request.path == new_user_registration_path or params.keys.include?('signup')
+          javascript:
+            $('#modal-registration-new').modal('show');
+
+        = render 'layouts/shared/modal', modal_id: 'modal-passwords-new', size: 'sm', cache: true, content: render(file: 'users/passwords/new')
+      - if @reset_password_user
+        = render 'layouts/shared/modal', modal_id: 'modal-passwords-edit', size: 'sm', cache: true, content: render(file: 'users/passwords/edit')
+        javascript:
+          $('#modal-passwords-edit').modal('show');

@@ -1,0 +1,16 @@
+- breadcrumb :static_page, @static_page
+
+.row
+  .col-xs-12
+    .card-module
+      p style="margin-bottom: 0;"
+        b= @static_page.title
+
+.row
+  .col-xs-12
+    .card-module style="max-height: 400px;" = @static_page.content.html_safe
+
+.row
+  .col-xs-12
+    .pull-right= link_to 'Editar Página', [:edit, :admin, @static_page], class: 'btn'
+    .pull-left= link_to 'Excluir Página', [:admin, @static_page], class: 'btn', method: :delete, data: { confirm: 'Tem certeza?' }

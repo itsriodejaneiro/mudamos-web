@@ -1,0 +1,35 @@
+- no_cycle ||= nil
+- no_color ||= false
+
+.col-xs-12 class="col-md-#{(12/n).to_i}"
+  .blog-post
+    .top-line style=("background-color: #{blog_post.color}" if blog_post.color)
+    - unless no_cycle
+      .row
+        .col-xs-12 style=""
+          h5.cycle-title= blog_post.cycle_name
+    .row
+      .col-xs-12
+        = link_to blog_post_dependent_path(blog_post) do
+          .img
+            .full-background-image style="background-image: url('#{image_path(blog_post.picture(:thumb))}')"
+    .blog-bottom-area
+      .row
+        .col-xs-12
+          = link_to blog_post_dependent_path(blog_post) do
+            h4.blog-title= blog_post.title
+      .row
+        .col-xs-12
+          .blog-post-details
+            i.icon-clock
+            span= blog_post.release_date.to_short_date
+            / i.icon-author
+            / span= blog_post.author_name
+      .row
+        .col-xs-12
+          .blog-content= blog_post.content.gsub(/(<iframe)(.+)(<\/iframe>)/, '').html_safe
+    .row
+      .col-xs-12.read-more-link
+        = link_to blog_post_dependent_path(blog_post), style: ("color: #{blog_post.color}" if (blog_post.color and not no_color)) do
+          .arrow style=("border-color: #{blog_post.color}; background-color: #{blog_post.color}" if (blog_post.color and not no_color))
+          span Leia mais

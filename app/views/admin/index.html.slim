@@ -1,0 +1,66 @@
+modal-dialog.modal-md
+  .modal-content.container
+    .row.row-same-height
+      .col-xs-12.col-sm-6.login-column.col-xs-height
+        .row
+          .col-xs-12.col-sm-8.col-sm-offset-2
+            .section-title
+              | Login
+        .row
+          .col-xs-12.col-sm-8.col-sm-offset-2
+            form#new_user.formtastic.user accept-charset="UTF-8" action="/users/sign_in" autocomplete="off" data-remote="true" method="post" novalidate="novalidate" 
+              input name="utf8" type="hidden" value="✓" /
+              input style="display:none" type="password" /
+              li#user_attribute_input.email.input.float-label-input style="" 
+                input#user_email autocomplete="off" html="{:value=>&quot;&quot;}" name="user[email]" type="text" value="" /
+                label for="user_email"  Email
+              li#user_attribute_input.password.password.input.float-label-input style="" 
+                input#user_password autocomplete="off" html="{:value=>nil}" name="user[password]" type="password" /
+                label for="user_password"  Senha
+              button type="submit" 
+                .arrow
+                .background
+                | Entrar
+        .row
+          .col-xs-12.col-sm-8.col-sm-offset-2
+            a.arrow-link href="#" onclick="javascript:document.open_forgot_password();" 
+            .arrow
+            span Esqueci minha senha
+        .row
+          .col-xs-12.col-sm-8.col-sm-offset-2.social-login
+            a.facebook-social-link href="/users/auth/facebook" 
+              i.icon-facebook
+              span Login via Facebook
+            a.twitter-social-link href="/users/auth/twitter" 
+              i.icon-twitter
+              span Login via Twitter
+      .col-xs-12.col-sm-6.col-xs-height
+        .row
+          .col-xs-12.col-sm-8.col-sm-offset-2
+            .section-title
+              | Cadastro
+        .row
+          .col-xs-12.col-sm-8.col-sm-offset-2
+            form#new_user_registration.formtastic.user accept-charset="UTF-8" action="/users" autocomplete="off" data-remote="true" method="post" novalidate="novalidate" 
+              input name="utf8" type="hidden" value="✓" /
+              input style="display:none" type="password" /
+              li#user_first_step_input.hidden.input.optional
+                input#user_first_step name="user[first_step]" type="hidden" value="true" /
+              li#user_attribute_input.name.input.float-label-input style="" 
+                input#user_name autocomplete="off" html="{:value=>nil}" name="user[name]" type="text" /
+                label for="user_name"  Nome e Sobrenome
+              li#user_attribute_input.email.input.float-label-input style="" 
+                input#user_email autocomplete="off" html="{:value=>&quot;&quot;}" name="user[email]" type="text" value="" /
+                label for="user_email"  Email
+              li#user_attribute_input.password.password.input.float-label-input style="" 
+                input#user_password autocomplete="off" html="{:value=>nil}" name="user[password]" type="password" /
+                label for="user_password"  Senha
+              li#user_attribute_input.birthday.input.float-label-input style="" 
+                input#user_birthday.date_mask autocomplete="off" html="{:value=>nil}" name="user[birthday]" type="text" /
+                label for="user_birthday"  Data de Nascimento
+              button type="submit" 
+                .arrow
+                .background
+                | Próximo passo
+  .close data-dismiss="modal" type="button" 
+    i.icon-close

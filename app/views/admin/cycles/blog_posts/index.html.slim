@@ -1,0 +1,39 @@
+- breadcrumb :blog_posts, @cycle
+
+.row
+  .col-xs-12
+    .card-module
+      .pull-right
+        = link_to 'Criar Post', [:new, :admin, @cycle, :blog_post], class: 'btn'
+      p
+        b.status-number= @blog_posts.count
+        | Número total de Posts no Blog
+      .filters
+        span.active Mais Recentes
+
+= render partial: 'admin/shared/blog_posts/thumb', collection: @blog_posts, as: :blog_post
+
+/ section.not-centered#cycle-description
+/   .container
+/     h1 Lista de Posts no Blog
+/     a.btn.btn-default.btn-primary href="#{new_admin_blog_post_path}" role="button" Criar novo Post
+
+/     table.table.table-striped
+/       thead
+/         tr
+/           th Ciclo
+/           th Titulo
+/           th Data de Publicação
+/           th
+/       tbody
+/         - @blog_posts.each do |bp|
+/           tr
+/             td
+/               bp = bp.cycle.nil? ? 'não informado' : bp.cycle.name
+/             td
+/               bp = bp.title
+/             td
+/               bp = bp.release_date
+/             td
+/               bp
+/                 a.btn.btn-default.btn-warning href="#{edit_admin_blog_post_path(bp)}" role="button" Editar

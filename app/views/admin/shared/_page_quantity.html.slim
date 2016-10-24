@@ -1,0 +1,5 @@
+.pull-right
+  span Mostrar
+  select.select-actions.select2-disabled
+    - [10, 30, 50].each do |qty|
+      option selected=(params[:page_size].to_i == qty ? 'selected' : false) value=url_for(params.merge(page_size: qty)) = qty

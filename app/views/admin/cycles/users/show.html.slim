@@ -1,0 +1,102 @@
+- breadcrumb :user, @user, @cycle
+
+.row#user-informations
+  .col-xs-12
+    .row
+      .col-xs-8
+        .title
+          h2 Dados do usuário da Plataforma
+        .card-module.user-module
+          .row
+            .col-xs-6
+              = image_tag @user.picture.url(:medium)
+              p.user-name= @user.name
+              p.user-location= "#{@user.city}, #{@user.state}"
+            .col-xs-6
+              .user-profile
+                p
+                  b Data de nascimento:
+                  = @user.birthday if @user.birthday
+                p
+                  b Gênero:
+                  = @user.gender
+                p
+                  b Email:
+                  = @user.email
+                p
+                  b Setor:
+                  = @user.profile.name if @user.profile
+                p
+                  b Subsetor:
+                  = @user.sub_profile.name if @user.sub_profile
+      .col-xs-4
+        .row
+          .col-xs-12
+            .title
+              h2 Anonimato
+            .card-module
+              .holder
+                p
+                  b.status-number= @user.anonymous_interactions.count
+              .anonymous
+                p
+                  b número de comentários
+                p.standard-user= @user.alias_as_default ? 'Usuário Anônimo por Padrão' : 'Usuário Não Anônimo por Padrão'
+                - if current_admin_user.Master?
+                  p
+                    b Nome Anônimo:
+                    = " #{@user.alias_name}"
+
+        .row
+          .col-xs-12
+            .title
+              h2 Login
+            .card-module
+              p
+                b Último Login:
+                = I18n.l(@user.last_sign_in_at, format: '%d %b %Y às %H:%M') if @user.last_sign_in_at
+              / p
+              /   b No Aplciativo:
+              /   | 24 Out 2015 às 15:00
+    .row
+      .col-xs-12
+          .title
+            h2 Comentários
+          .card-module
+            p
+              b.status-number= @comments.total_count
+              | Número total de comentários
+            .filters
+              span= link_to 'Mais recente', url_for(params.merge(order: 'created_at'))
+              span= link_to 'Mais respostas', url_for(params.merge(order: 'children_count'))
+              span= link_to 'Mais likes', url_for(params.merge(order: 'likes_count'))
+              span= link_to 'Mais dislikes', url_for(params.merge(order: 'dislikes_count'))
+          #administrators.card-module
+            - if @comments.any?
+              .filters.clearfix
+                = render 'admin/shared/page_quantity'
+              table
+                thead
+                  tr
+                    th Data
+                    th Comentário
+                    th Respostas
+                    th
+                      .like-holder
+                        i.icon-like
+                    th
+                      .like-holder
+                        i.icon-dislike
+                    th Ações
+                tbody
+                  - @comments.each do |c|
+                    tr
+                      td= c.created_at.strftime('%d/%m/%Y')
+                      td= strip_tags(c.content).truncate(250, separator: ' ', omission: '...(continua)')
+                      td= c.children.count
+                      td= c.likes_count
+                      td= c.dislikes_count
+                      td= link_to 'Ver detalhes', [:admin, @cycle, c.subject.plugin_relation, c.subject, c]
+              = render 'admin/shared/pagination', collection: @comments
+            - else
+              p.no-interactions O usuário não possui interações.

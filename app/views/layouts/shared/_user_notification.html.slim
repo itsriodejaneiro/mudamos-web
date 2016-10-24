@@ -1,0 +1,18 @@
+li.icon-item.notification
+  a.notification-icon
+    i.icon-notifications
+  span.notification-message= @notifications.unread.count
+  ul.notification-dropdown
+    - @notifications.each do |n|
+      li.notification-dropdown-item
+        a href="#{n.notification.view_url}"
+          .notification-media
+            = image_tag(n.notification.picture_url)
+          .notification-content
+            p= n.notification.title.html_safe
+            span= "há #{distance_of_time_in_words(n.created_at, Time.zone.now)}"
+
+javascript:
+  $(function(){
+    notify.user.init();
+  });

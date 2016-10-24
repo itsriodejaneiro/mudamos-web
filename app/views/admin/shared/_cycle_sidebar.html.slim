@@ -1,0 +1,30 @@
+.col-xs-3
+  .sidebar-nav-wrapper style="background-color: #{@cycle.color}"
+    nav.sidebar-nav
+      ul.nav
+        li.sidebar-brand style="background-color: #{@cycle.color}"
+          = link_to admin_cycles_path, style:"background-color: #{@cycle.color}" do
+            = image_tag('mudamos-logo.svg')
+        / li.admin-user style="background-color: #{@cycle.color}"
+        /   i.icon-notifications
+        /   span= current_admin_user.name.capitalize
+        = render 'admin/shared/user_notification'
+        li= link_to 'Dashboard', [:admin, @cycle]
+        / li
+        /   a href="#" Configurações
+        - if current_admin_user.Master?
+          li
+            .sub-sidebar-link role="tab"
+              a.collapsed#btn-1 role="button" data-toggle="collapse" data-parent="#accordion" href="#sub-sidebar-1" aria-expanded="false"  aria-controls="sub-sidebar"
+                | Institucional
+                i.icon-plus
+          ul#sub-sidebar-1.nav.collapse.sub-sidebar role="tabpanel" arial-labelledby="sub-sidebar-link" style="height: 0px;"
+            li
+              = link_to "Editar Tema", [:edit, :admin, @cycle]
+            / li
+            /   a href="#" Créditos
+        - @cycle.plugin_relations.each do |pr|
+          li= link_to pr.plugin.name, [:admin, @cycle, pr]
+        li= link_to 'Usuários', [:admin, @cycle, :users]
+        / li= link_to 'Gráficos Personalizados', [:admin, @cycle, :charts]
+

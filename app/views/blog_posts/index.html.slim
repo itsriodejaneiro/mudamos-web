@@ -1,0 +1,40 @@
+- title = @cycle.present? ? "Blog #{@cycle.title}" : 'Blog'
+- image = @cycle.present? ? @cycle.picture(:header) : image_path('Floresta_1.jpg')
+
+- meta title: title, description: description, og: { title: title, image: image, description: description, locale: 'pt_BR', type: 'article' }, twitter: { card: 'summary', title: title, description: description, image: { src: image } }
+
+section.container-fluid#blog-index
+  .container
+    .row
+      .col-xs-12
+        .section-title style=("border-color: #{@cycle.color}" if @cycle) Blog
+  .container-fluid.big-blog-post
+    .full-background-image style="background-image: url('#{@big_blog_post.picture(:header)}')"
+    .black-overlay
+    / .image-overlay
+    .container
+      .big-post-area
+        .row
+          .col-xs-12
+            .big-post-title= @big_blog_post.title
+        .row
+          .col-xs-12
+            .big-post-read-more
+              = link_to blog_post_dependent_path(@big_blog_post) do
+                .arrow
+                span Leia mais
+  .container
+    .row
+      .col-xs-12.col-sm-9
+        .row
+          .col-xs-12
+            = render partial: 'widgets/blog_post', collection: @blog_posts, as: :blog_post, locals: { n: 2, no_color: (@cycle.nil?), no_cycle: @cycle.present? }
+        - unless @blog_posts.total_pages <= 1
+          .row.pagination
+            .col-xs-12
+              = link_to_previous_page @blog_posts, 'Anterior'
+              = link_to_next_page @blog_posts, 'Próxima'
+              .total-pages= "#{@blog_posts.current_page} / #{@blog_posts.total_pages}"
+      .col-xs-12.col-sm-3
+        = render 'widgets/blog_sidebar'
+

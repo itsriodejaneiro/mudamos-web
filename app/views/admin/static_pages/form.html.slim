@@ -1,0 +1,19 @@
+- breadcrumb :static_page_form, @static_page
+
+= semantic_form_for [:admin, @static_page] do |f|
+  .row
+    .col-xs-12
+      = f.input :name, label: 'Nome (como aparece no link)'
+      = f.input :title, label: 'Título'
+      / .row
+      /   .col-xs-6
+      /     = f.input :show_on_footer, label: 'Mostrar no Footer'
+      /   .col-xs-6
+      /     = f.input :show_on_header, label: 'Mostrar no Header'
+      = f.input :content, label: 'Conteúdo', input_html: { style: 'height: 400px;' }
+  .row.form-row
+    .col-xs-12
+      button type="submit" Salvar
+
+javascript:
+  admin.edit.init('#static_page_content');

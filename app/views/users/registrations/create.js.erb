@@ -1,0 +1,30 @@
+<%= render 'layouts/shared/flash_messages' %>
+
+$(document).ready(function() {
+  <% if resource.first_step %>
+    <% if resource.valid? %>
+      $('#modal-registration-new').modal('show');
+
+      <% params[:user].each do |k, v| %>
+        var elem = $("#modal-registration-new").find("#user_<%= k %>");
+        elem.val("<%= v %>");
+        elem.attr({
+          'value': "<%= v %>"
+        });
+      <% end %>
+    <% else %>
+      document.set_errors(<%= resource.errors.to_json.html_safe %>, $('#modal-session-new').find('form#new_user_registration'));
+    <% end %>
+  <% else %>
+    <% if resource.persisted? %>
+      <% if cookies[:after_login_path] %>
+        window.location.replace(Cookies.get('after_login_path'));
+      <% else %>
+        location.reload();
+      <% end %>
+    <% else %>
+      document.set_errors(<%= resource.errors.to_json.html_safe %>, $('#modal-registration-new').find('form#new_user'));
+    <% end %>
+  <% end %>
+});
+

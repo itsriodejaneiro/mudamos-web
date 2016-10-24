@@ -1,0 +1,27 @@
+.container
+  .page-header
+    h1
+      'Métricas MUDAMOS.ORG
+      small Análises sobre o uso do sistema
+  .row
+    .col-xs-5
+      .row
+        .jumbotron
+          h1=User.count
+          p Usuários Cadastrados
+          p
+            a.btn.btn-primary.btn-lg href="#{admin_stats_users_path(format: :csv)}" role="button" Baixar CSV
+          p
+            small CSV contendo Usuários, número de comentários e perfil
+    .col-xs-5.pull-right
+      .row
+        .jumbotron
+          h1=Comment.count
+          p Comentários Escritos
+          p
+            a.btn.btn-primary.btn-lg href="#{admin_stats_comments_path(format: :csv)}" role="button" Baixar CSV
+          p
+            small CSV contendo Comentários, temas e assuntos
+
+
+

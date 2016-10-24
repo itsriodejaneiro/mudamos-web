@@ -1,0 +1,23 @@
+- title = "Créditos"
+- image = @cycle.present? ? @cycle.picture(:header) : Setting.find_by_key('home_picture').picture.url(:header)
+
+- meta title: title, description: description, og: { title: title, image: image, description: description, locale: 'pt_BR', type: 'article' }, twitter: { card: 'summary', title: title, description: description, image: { src: image } }
+
+section#static_page.container-fluid
+  .container
+    - @categories.each do |cat|
+      .row
+        .col-xs-12
+          h1.section-title= cat.name
+      .credits-companies
+        - cat.credits.each do |c|
+          .row
+            .col-xs-12
+              .credit-items
+                .credit-content
+                  p.title= c.name
+                  - if c.url.present?
+                    p.url
+                      span= "URL: "
+                      = link_to c.url, c.url
+                .credit-reference= c.content.html_safe

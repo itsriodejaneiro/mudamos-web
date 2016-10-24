@@ -1,0 +1,79 @@
+- color ||= nil
+- background_image ||= nil
+- type ||= 'single'
+- with_text ||= nil
+- small_title ||= nil
+- small_image ||= nil
+- extra_class ||= nil
+- blog ||= object.blog
+- vocabulary ||= object.vocabulary
+- cycle ||= nil
+- if object.vocabulary and cycle.nil?
+  - cycle = object.target_object
+- object ||= nil
+- admin ||= nil
+
+- grid_object_id ||= nil
+- if admin
+  - grid_highlight = object
+  - grid_object_id = object.id
+
+- if object
+  - if object.vocabulary or object.blog
+    - object = nil
+  - else
+    - object = object.target_object
+
+
+
+.grid-item class=(type if type) class=('light-grey social-item' if object.is_a? SocialLink) class=(color if color) class=extra_class id=("#{object.class}-#{object.id}" if object.present?) data-grid-highlight-id=grid_object_id class="#{'admin' if admin}"
+  - if background_image
+    .full-background-image style="background-image: url('#{grid_item_image(object)}')"
+    .black-overlay
+    .image-overlay
+
+  - if small_title
+    .small-title= grid_item_small_title(object)
+
+  - if small_image
+    .small-image.hidden-xs
+      = image_tag grid_item_image(object)
+      .black-overlay
+      .image-overlay
+
+  - unless object.is_a? SocialLink
+    div class=grid_item_title_class(type, background_image, blog, vocabulary) class=('blue-text' if color == 'white' and not type == 'double-v')
+      = grid_item_title_content object, blog, vocabulary
+    - if with_text
+      .content
+        = grid_item_content(object)
+    .footer class=grid_item_footer_color(color, background_image)
+      = link_to grid_item_link(object, blog, vocabulary, cycle) do
+        .arrow
+        span= grid_item_link_name(object)
+
+  - else
+    .row
+      .col-xs-12.blue-text
+        i class="icon-#{object.provider}"
+    .row
+      .col-xs-12.blue-text.link
+        = link_to object.name, object.link, target: '_blank'
+    .row.hidden-sm
+      .col-xs-12
+        .social-title= object.description
+
+  - if admin
+    .admin-overlay
+      / .overlay-actions
+      /   i.icon-edit
+      /   span Editar Destaque
+
+      .admin-form
+        = semantic_form_for [:admin, grid_highlight], html: { method: :put }, method: :put do |f|
+          = f.input :target_object_type, as: :select, label: false, collection: [['Post do Blog', 'BlogPost'], ['Blog', 'blog'], ['Glossário', 'vocabulary'], ['Ciclo', 'Cycle'], ['Rede Social', 'SocialLink']]
+          = f.input :target_object_id, as: :select, label: false, input_html: { name: 'grid_highlight[target_object_id]_BlogPost' }, collection: @blog_posts, include_blank: true
+          = f.input :target_object_id, as: :select, label: false, input_html: { name: 'grid_highlight[target_object_id]_SocialLink' }, collection: @social_links, include_blank: true
+          = f.input :target_object_id, as: :select, label: false, input_html: { name: 'grid_highlight[target_object_id]_Cycle' }, collection: @cycles, include_blank: true
+          = f.submit 'Atualizar', class: 'btn btn-with-bg'
+

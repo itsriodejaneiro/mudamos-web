@@ -1,0 +1,8 @@
+.row
+  .col-xs-12
+    nav
+      ul.pagination
+        li= link_to_previous_page collection, "<span class='arrow'></span>".html_safe, class: 'arrow-link left', params: params
+        li
+          span= "#{collection.current_page} / #{collection.total_pages}"
+        li= link_to_next_page collection, "<span class='arrow'></span>".html_safe, class: 'arrow-link', params: params
