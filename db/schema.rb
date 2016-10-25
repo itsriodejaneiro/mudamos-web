@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202181513) do
+ActiveRecord::Schema.define(version: 20161025114526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
+  enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
   enable_extension "pg_stat_statements"
-  enable_extension "pg_trgm"
-  enable_extension "unaccent"
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
