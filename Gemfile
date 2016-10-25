@@ -39,6 +39,7 @@ gem 'google-api-client', :require => 'google/api_client'
 
 gem 'cpf_cnpj'
 
+gem 'libv8'
 gem 'therubyracer'
 gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 

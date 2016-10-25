@@ -305,7 +305,7 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
-    libv8 (3.16.14.13)
+    libv8 (3.16.14.15)
     little-plugger (1.1.4)
     logging (2.0.0)
       little-plugger (~> 1.1)
@@ -560,6 +560,7 @@ DEPENDENCIES
   kaminari
   koala
   less-rails
+  libv8
   metamagic
   newrelic_rpm
   omniauth
@@ -591,3 +592,9 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   vcr
   web-console (~> 2.0)
+
+RUBY VERSION
+   ruby 2.2.1p85
+
+BUNDLED WITH
+   1.13.5
