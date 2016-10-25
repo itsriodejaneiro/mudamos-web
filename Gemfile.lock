@@ -419,6 +419,10 @@ GEM
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     retriable (1.4.1)
+    rspec (3.4.0)
+      rspec-core (~> 3.4.0)
+      rspec-expectations (~> 3.4.0)
+      rspec-mocks (~> 3.4.0)
     rspec-core (3.4.1)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -575,6 +579,7 @@ DEPENDENCIES
   rails (= 4.2.3)
   rails_12factor
   remotipart
+  rspec
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
