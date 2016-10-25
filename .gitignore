@@ -25,3 +25,6 @@
 
 # Ignore tempo
 /temp
+
+# Local storage
+public/uploads

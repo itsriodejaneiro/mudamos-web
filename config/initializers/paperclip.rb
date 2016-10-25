@@ -7,7 +7,7 @@ PAPERCLIP_BASIC_DEFAULTS = {
   convert_options: { all: "-quality 75 -strip" }
 }
 
-PAPERCLIP_FOG_DEFAULTS = {
+paperclip_options = {
   storage: :fog,
   fog_credentials: {
     aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
@@ -24,8 +24,19 @@ PAPERCLIP_FOG_DEFAULTS = {
   }
 }
 
-Paperclip::Attachment.default_options.merge! PAPERCLIP_BASIC_DEFAULTS
-
-unless Rails.env.test?
-  Paperclip::Attachment.default_options.merge! PAPERCLIP_FOG_DEFAULTS
+if ENV["FOG_PROVIDER"] =~ /local/i
+  paperclip_options = {
+    storage: :fog,
+    fog_credentials: {
+      provider: "Local",
+      local_root: "#{Rails.root}/public"
+    },
+    fog_directory: "",
+    fog_host: ENV.fetch("FOG_HOST", "//localhost:3000")
+  }
 end
+
+PAPERCLIP_FOG_DEFAULTS = paperclip_options
+
+Paperclip::Attachment.default_options.merge! PAPERCLIP_BASIC_DEFAULTS
+Paperclip::Attachment.default_options.merge! PAPERCLIP_FOG_DEFAULTS
