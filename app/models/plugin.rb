@@ -20,6 +20,6 @@ class Plugin < ActiveRecord::Base
   validates_presence_of :name, :plugin_type
 
   def self.plugin_types
-    ['Discussão', 'Blog', 'Relatoria', 'Biblioteca', 'Glossário']
+    PluginTypeRepository.new.available_types
   end
 end

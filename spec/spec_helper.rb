@@ -19,6 +19,8 @@
 require 'factory_girl'
 require 'shoulda-matchers'
 require 'paperclip/matchers'
+require 'rspec/collection_matchers'
+require 'rspec/its'
 
 RSpec.configure do |config|
   config.after(:suite) do
@@ -50,6 +52,9 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
+
+  config.filter_run :focus
+  config.run_all_when_everything_filtered = true
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
