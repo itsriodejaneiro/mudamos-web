@@ -1,0 +1,29 @@
+---
+plugins:
+  - name: Blog
+    plugin_type: Blog
+    can_be_readonly: false
+    icon_class: ""
+
+  - name: Discussão
+    plugin_type: Discussão
+    can_be_readonly: false
+    icon_class: discussion
+
+  - name: Relatoria
+    plugin_type: Relatoria
+    can_be_readonly: false
+    icon_class: compilation
+
+  - name: Biblioteca
+    plugin_type: Biblioteca
+    can_be_readonly: false
+
+  - name: Glossário
+    plugin_type: Glossário
+    can_be_readonly: false
+
+  - name: Petição
+    plugin_type: Petição
+    can_be_readonly: false
+    icon_class: petition
