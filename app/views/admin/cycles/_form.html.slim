@@ -97,7 +97,7 @@
                         h2 Plugins sem Fase
                   .row
                     .col-xs-12
-                      = f.input :plugins, as: :select, multiple: true, include_blank: 'Selecione os Plugins', label: false, collection: Plugin.where.not(plugin_type: ["Discussão", "Relatoria"])
+                      = f.input :plugins, as: :select, multiple: true, include_blank: 'Selecione os Plugins', label: false, collection: plugin_repository.all_without_phases
       hr
       .text-center
         = f.submit "#{f.object.persisted? ? 'Atualizar' : 'Criar'} Ciclo", class: 'btn'
