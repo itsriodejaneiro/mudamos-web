@@ -1,0 +1,20 @@
+- breadcrumb :petitions, @cycle, @plugin_relation
+
+.row
+  .col-xs-12
+    .title
+      h2 Petição
+    .row
+      .col-xs-12
+        .card-module
+          .filters.clearfix
+            .pull-right
+              = link_to 'Baixar documento', @petition.document_url, class: 'btn', target: '_blank'
+
+.row
+  .col-xs-12
+    .card-module
+      .title
+        h3 Conteúdo
+
+      div= @petition.body.html_safe
