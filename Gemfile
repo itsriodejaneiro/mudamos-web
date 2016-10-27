@@ -39,6 +39,7 @@ gem 'google-api-client', :require => 'google/api_client'
 
 gem 'cpf_cnpj'
 
+gem 'libv8'
 gem 'therubyracer'
 gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 
@@ -69,6 +70,7 @@ group :development, :test, :staging do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'rspec'
   gem 'rspec-rails'
   gem 'pry-rails'
 

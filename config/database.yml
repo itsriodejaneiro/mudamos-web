@@ -7,6 +7,11 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  url: <%= ENV["MUDAMOS_DATABASE_URL"] %>
+  host: <%= ENV["MUDAMOS_DATABASE_HOST"] %>
+  post: <%= ENV["MUDAMOS_DATABASE_PORT"] %>
+  user: <%= ENV["MUDAMOS_DATABASE_USER"] %>
+  password: <%= ENV["MUDAMOS_DATABASE_PASSWORD"] %>
   # For details on connection pooling, see rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5

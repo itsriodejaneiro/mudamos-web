@@ -25,3 +25,11 @@
 
 # Ignore tempo
 /temp
+
+.env
+.env.*
+!.env.test
+!.env.sample
+
+# Local storage
+public/uploads

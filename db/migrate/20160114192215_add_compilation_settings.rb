@@ -1,9 +1,25 @@
 class AddCompilationSettings < ActiveRecord::Migration
   def change
     plugin = Plugin.where(plugin_type: 'Relatoria').first
-    phase = Cycle.find('seguranca-publica').phases.find 2
+
+    unless plugin
+      puts "Plugin 'relatoria' not found. Skipping."
+      return
+    end
+
+    begin
+      phase = Cycle.find('seguranca-publica').phases.find 2
+    rescue ActiveRecord::RecordNotFound
+      puts "Cyle phase not found. Skipping."
+      return
+    end
 
     plugin_relation = PluginRelation.where(plugin: plugin, related: phase).first
+
+    unless plugin_relation
+      puts "Plugin relation not found. Skipping."
+      return
+    end
 
     [
       'Perfil de Cadastrados na Plataforma',

@@ -12,7 +12,12 @@ class AddPlugins < ActiveRecord::Migration
       can_be_readonly: false
     )
 
-    cycle = Cycle.find('seguranca-publica')
+    begin
+      cycle = Cycle.find('seguranca-publica')
+    rescue ActiveRecord::RecordNotFound
+      puts "Cycle seguranca-publica not found. Skipping."
+      return
+    end
 
     PluginRelation.create(
       related: cycle,
