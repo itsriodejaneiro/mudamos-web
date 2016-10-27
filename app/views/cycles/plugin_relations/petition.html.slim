@@ -1,0 +1,28 @@
+- title = "Petição - #{@cycle.title}"
+- image = @cycle.picture(:header)
+
+- meta title: title, og: { title: title, image: image, locale: 'pt_BR', type: 'article' }, twitter: { card: 'summary', title: title, image: { src: image } }
+
+section.container-fluid#petition-index
+  .container
+    .row
+      .col-xs-12
+        h1.section-title style="border-color: #{@cycle.color};" Petição
+    .row
+      .col-xs-12.col-sm-6
+        a.download-document href=@petition.document_url target="_blank"
+          i.icon-baixeaqui style="color: #{@cycle.color};"
+          span Faça o Download da PLIP
+    .row
+      .col-xs-12.call-wrapper
+        .call-to-action.plip-sign
+          a.main-call style="border: 5px solid #{@cycle.color};" href='#'
+            span Assine a PLIP agora
+            span.action-tail style="border-top: 80px solid #{@cycle.color};" &nbsp
+            .hover-box style="background-color: #{@cycle.color};"
+
+    .row.plip-row
+      .col-xs-12
+        h2.section-title.plip-title style="border-color: #{@cycle.color};" PLIP: Projeto de Lei de Iniciativa Popular
+
+        .petition-container= @petition.body.html_safe

@@ -1447,6 +1447,30 @@ section#static_page
     margin-bottom: 5px
 
 
+#petition-index
+  padding-top: $navbar-height + 90px
+  padding-bottom: 50px
+
+  .call-wrapper
+    margin-top: 40px
+
+  a.download-document
+    color: $gray-dark
+    font-size: 16px
+    text-decoration: none
+
+    .icon-baixeaqui
+      display: inline-block
+      margin-right: 10px
+      transform: rotate(90deg)
+
+  .plip-row
+    margin-top: 30px
+
+    .plip-title
+      font-size: 18px
+
+
 #subjects-index
   background-color: $color-grid-dark-grey
   padding-top: $navbar-height + 90px
@@ -2624,3 +2648,78 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
       max-width: 700px
       .hover-box
         width: 720px
+
+.call-to-action
+  text-align: center
+  a.main-call
+    border: 5px solid $color-dark-grey
+    font-size: 40px
+    color: $color-dark-grey
+    display: inline-block
+    padding: 25px 15px
+    text-transform: uppercase
+    max-width: 700px
+    height: 180px
+    font-weight: 700
+    overflow: hidden
+    transition: 0.3s all ease
+    cursor: pointer
+    .hover-box
+      width: 720px
+      height: 200px
+      margin-left: -20px
+      transition: 0.3s all ease
+      margin-top: 200px
+    .action-tail
+      position: absolute
+      width: 20px
+      height: 20px
+      border-top: 80px solid #CA3030
+      border-right: 60px solid transparent
+      top: 175px
+      left: 240px
+      z-index: 1
+      &:after
+        content: ""
+        position: absolute
+        width: 20px
+        height: 20px
+        border-top: 64px solid #FFFFFF
+        border-right: 49px solid transparent
+        top: -82px
+        margin-left: 5px
+        z-index: 0
+        transition: 0.05s all ease
+    &:hover
+      a.main-call
+      color: #FFF
+      .hover-box
+        margin-top: -165px
+      .action-tail:after
+        border-top: 0px solid #FFFFFF
+  a.action-icon
+    text-align: left
+    display: block
+    margin: 80px auto 0px
+    width: 550px
+
+  &.plip-sign
+    margin-bottom: 75px
+    a.main-call
+      width: 550px
+      height: 130px
+
+      .action-tail
+        top: 125px
+
+      @media (max-width: $screen-xs-max)
+        width: 320px
+        height: 172px
+
+        .action-tail
+          top: 167px
+          left: 150px
+
+      &:hover
+        .hover-box
+          margin-top: -150px
