@@ -18,6 +18,20 @@ FactoryGirl.define do
     plugin_type "MyString"
     can_be_readonly false
     icon_class 'discussion'
-  end
 
+    trait :report do
+      name "Relatoria"
+      plugin_type "Relatoria"
+    end
+
+    trait :petition do
+      name "Petição"
+      plugin_type "Petição"
+    end
+
+    trait :discussion do
+      name "Discussão"
+      plugin_type "Discussão"
+    end
+  end
 end

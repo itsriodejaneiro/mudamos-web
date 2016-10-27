@@ -17,9 +17,4 @@
         h3.phase-plugin-title class=align = phase.name
         p= phase.description.html_safe
     .row.cycle-more
-      .col-xs-12
-        - if phase.plugin.plugin_type == 'Relatoria' and phase.initial_date < Time.zone.now
-          = link_to 'Saiba mais', cycle_plugin_relation_path(@cycle, @cycle.plugin_relations.find('relatoria')), style: "color: #{@cycle.color}"
-        - elsif phase.plugin.plugin_type == 'Discussão' and phase.initial_date < Time.zone.now
-          = link_to 'Saiba mais', [@cycle, :subjects], style: "color: #{@cycle.color}"
-        / = link_to 'Saiba mais', cycle_blog_post_path(@cycle, BlogPost.find_by_slug('como-funciona-o-ciclo-sobre-seguranca-publica')), style: "color: #{@cycle.color}"
+      .col-xs-12= link_to_plugin_page phase
