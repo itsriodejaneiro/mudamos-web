@@ -210,45 +210,13 @@ end
 #   )
 # end
 
-unless plugin_blog = Plugin.find_by_name('Blog')
-  plugin_blog = FactoryGirl.create(:plugin,
-    name:'Blog',
-    plugin_type:'Blog',
-    icon_class: ''
-  )
-end
+Rake::Task["plugins:sync"].execute
 
-unless plugin_discussao = Plugin.find_by_name('Discussão')
-  plugin_discussao = FactoryGirl.create(:plugin,
-    name:'Discussão',
-    plugin_type:'Discussão',
-    icon_class: 'discussion'
-  )
-end
-
-unless plugin_relatoria = Plugin.find_by_name('Relatoria')
-  plugin_relatoria = FactoryGirl.create(:plugin,
-    name:'Relatoria',
-    plugin_type:'Relatoria',
-    icon_class: 'compilation'
-  )
-end
-
-unless plugin_biblioteca = Plugin.find_by_name('Biblioteca')
-  plugin_biblioteca = FactoryGirl.create(:plugin,
-    name: 'Biblioteca',
-    plugin_type: 'Biblioteca',
-    can_be_readonly: false
-  )
-end
-
-unless plugin_glossario = Plugin.find_by_name('Glossário')
-  plugin_glossario = FactoryGirl.create(:plugin,
-    name: 'Glossário',
-    plugin_type: 'Glossário',
-    can_be_readonly: false
-  )
-end
+plugin_blog = Plugin.find_by_name('Blog')
+plugin_discussao = Plugin.find_by_name('Discussão')
+plugin_relatoria = Plugin.find_by_name('Relatoria')
+plugin_biblioteca = Plugin.find_by_name('Biblioteca')
+plugin_glossario = Plugin.find_by_name('Glossário')
 
 # unless plugin_rf = Plugin.find_by_name('Blog Reforma Política')
 #   plugin_rf = FactoryGirl.create(:plugin,

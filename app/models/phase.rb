@@ -91,8 +91,11 @@ class Phase < ActiveRecord::Base
     end
 
     def valid_plugin_type
-      unless ["Discussão", "Relatoria"].include? self.plugin_relation.plugin.plugin_type
-        self.plugin_relation.errors.add :plugin, "deve ser do tipo discussão ou relatoria."
+      allowed_types = PluginTypeRepository.new.available_types_with_phases
+      unless allowed_types.include? self.plugin_relation.plugin.plugin_type
+        self.plugin_relation.errors.add :plugin, "deve ser do tipo #{allowed_types.join(', ')}."
+        # Adding errors to the relation, won't halt persistence
+        errors.add :base, "tipo de plugin inválido"
       end
     end
 end

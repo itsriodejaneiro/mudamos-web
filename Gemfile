@@ -72,6 +72,8 @@ group :development, :test, :staging do
   gem 'spring'
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rspec-its'
+  gem 'rspec-collection_matchers'
   gem 'pry-rails'
 
   gem 'dotenv-rails'
