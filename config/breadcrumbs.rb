@@ -3,7 +3,7 @@ crumb :cycles do
 end
 
 crumb :cycle do |c|
-  link c.name, admin_cycles_path(c)
+  link c.name, admin_cycle_path(c)
   parent :cycles
 end
 
@@ -150,6 +150,11 @@ end
 
 crumb :subjects do |c, pr|
   link 'Assuntos', admin_cycle_plugin_relation_subjects_path(c, pr)
+  parent :cycle, c
+end
+
+crumb :petitions do |c, pr|
+  link 'Petição', admin_cycle_plugin_relation_petitions_path(c, pr)
   parent :cycle, c
 end
 
