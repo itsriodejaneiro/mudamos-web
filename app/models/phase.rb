@@ -49,6 +49,10 @@ class Phase < ActiveRecord::Base
     where{ initial_date > Time.zone.now }
   }
 
+  scope :initiated, -> {
+    where { initial_date <= Time.zone.now }
+  }
+
   def finished?
     self.final_date < Time.zone.now
   end
