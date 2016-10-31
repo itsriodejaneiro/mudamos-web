@@ -67,5 +67,16 @@ module PlataformaBrasil
     config.action_mailer.default_url_options = { host: ENV["SMTP_DOMAIN"] }
 
     config.cache_store = :file_store, "#{Rails.root}/temp"
+
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '/api/v2/apidocs', :headers => :any, :methods => [:get, :options]
+
+        if Rails.env.development?
+          resource '*', :headers => :any, :methods => [:get, :post, :options]
+        end
+      end
+    end
   end
 end

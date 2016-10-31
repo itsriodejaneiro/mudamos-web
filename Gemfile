@@ -29,6 +29,11 @@ gem 'paperclip'
 # gem 'paperclip-compression'
 # gem 'rspec_api_documentation'
 
+gem 'swagger-blocks'
+gem 'rack-cors', :require => 'rack/cors'
+
+gem 'grape-entity'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
