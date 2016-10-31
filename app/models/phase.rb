@@ -69,6 +69,10 @@ class Phase < ActiveRecord::Base
     [:finished, :in_progress, :shortly]
   end
 
+  def self.human_statuses
+    ["Em andamento", "Em breve", "Encerrado"].freeze
+  end
+
   def current_status
     if self.in_progress?
       'Em andamento'

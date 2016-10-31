@@ -10,6 +10,7 @@ module Api
         expose :cycle_id
         expose :name
         expose :description
+        expose :current_status, as: :status
 
         with_options format_with: :iso_date do
           expose :initial_date
@@ -31,6 +32,11 @@ module Api
 
           property :description do
             key :type, :string
+          end
+
+          property :status do
+            key :type, :string
+            key :enum, ::Phase.human_statuses
           end
 
           property :initial_date do
