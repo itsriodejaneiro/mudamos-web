@@ -97,6 +97,11 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    namespace :v2 do
+      resources :apidocs, only: %i(index)
+      resources :plips, only: %i(index)
+    end
   end
 
 
