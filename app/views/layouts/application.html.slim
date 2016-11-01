@@ -17,7 +17,8 @@ html
 
     #fb-root
     = render 'outsiders/facebook_initializer'
-    
+    = render 'outsiders/twitter'
+
     - flash.each do |name, msg|
       - if msg.respond_to? :html_safe
         javascript:
@@ -26,7 +27,7 @@ html
     - if Rails.env.production?
       = render 'outsiders/analytics'
       = render 'outsiders/facebook_pixel'
-      
+
       - if session.delete(:new_user_created)
         javascript:
           fbq('track', 'CompleteRegistration');
