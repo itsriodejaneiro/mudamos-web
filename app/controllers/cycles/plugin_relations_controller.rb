@@ -57,9 +57,14 @@ class Cycles::PluginRelationsController < ApplicationController
 
     def set_petition_info
       petition
+      phase
     end
 
     def petition
       @petition ||= petition_repository.mock
+    end
+
+    def phase
+      @phase ||= @plugin_relation.related
     end
 end

@@ -1464,7 +1464,26 @@ section#static_page
       margin-right: 10px
       transform: rotate(90deg)
 
+  .more-details-row
+    margin-top: 50px
+
+  a.toggle-details
+    background-color: white
+    padding-right: 10px
+
+    &.area-open
+      i
+        transform: rotate(90deg)
+
+    i
+      display: inline-block
+      margin-right: 10px
+
+  hr.toggle-details
+    margin-top: -10px
+
   .plip-row
+    display: none
     margin-top: 30px
 
     .plip-title
@@ -2666,7 +2685,7 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
     cursor: pointer
     .hover-box
       width: 720px
-      height: 200px
+      height: 300px
       margin-left: -20px
       transition: 0.3s all ease
       margin-top: 200px
@@ -2677,7 +2696,7 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
       border-top: 80px solid #CA3030
       border-right: 60px solid transparent
       top: 175px
-      left: 240px
+      left: 360px
       z-index: 1
       &:after
         content: ""
@@ -2707,19 +2726,19 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
     margin-bottom: 75px
     a.main-call
       width: 550px
-      height: 130px
+      height: 170px
 
       .action-tail
-        top: 125px
+        top: 165px
 
       @media (max-width: $screen-xs-max)
         width: 320px
-        height: 172px
+        height: 280px
 
         .action-tail
-          top: 167px
+          top: 275px
           left: 150px
 
       &:hover
         .hover-box
-          margin-top: -150px
+          margin-top: -275px
