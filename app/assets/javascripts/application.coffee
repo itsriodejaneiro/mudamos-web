@@ -49,6 +49,7 @@
 #= require highcharts
 #= require pattern-fill
 #= require reports
+#= require area-toggler
 
 document.expiration_default_time = 300
 

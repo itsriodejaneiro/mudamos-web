@@ -1,5 +1,11 @@
 class Cycles::PluginRelationsController < ApplicationController
 
+  attr_writer :petition_repository
+
+  def petition_repository
+    @petition_repository ||= PetitionRepository.new
+  end
+
   def show
     @cycle = Cycle.find params[:cycle_id]
     @plugin_relation = @cycle.plugin_relations.find params[:id]
@@ -17,6 +23,9 @@ class Cycles::PluginRelationsController < ApplicationController
           send_csv @cycle.comments.to_public_csv, "comentarios-#{@cycle.slug}"
         }
       end
+    when 'Petição'
+      set_petition_info
+      render 'petition'
     when 'Biblioteca'
       # redirect_to [:admin, @cycle, @plugin_relation, :materials]
     when 'Glossário'
@@ -46,4 +55,16 @@ class Cycles::PluginRelationsController < ApplicationController
       @subjects_users_profile_anonymous_count_in_range = Rails.cache.fetch("#{@cycle.slug}_subjects_users_profile_anonymous_count_in_range")
     end
 
+    def set_petition_info
+      petition
+      phase
+    end
+
+    def petition
+      @petition ||= petition_repository.mock
+    end
+
+    def phase
+      @phase ||= @plugin_relation.related
+    end
 end
