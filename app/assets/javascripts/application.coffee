@@ -10,6 +10,7 @@
 # Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 # about supported directives.
 #
+#= require routes
 #= require jquery
 #= require jquery_ujs
 #= require jquery.remotipart
@@ -50,6 +51,7 @@
 #= require pattern-fill
 #= require reports
 #= require area-toggler
+#= require sign_petition
 
 document.expiration_default_time = 300
 

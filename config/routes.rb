@@ -13,7 +13,9 @@ module BaseRouting
       resources :materials, only: [:index], path: 'biblioteca', controller: 'cycles/materials'
       resources :vocabularies, only: [:index], path: 'glossário', controller: 'cycles/vocabularies'
 
-      resources :plugin_relations, only: [:show], path: 'plugins', controller: 'cycles/plugin_relations'
+      resources :plugin_relations, only: [:show], path: 'plugins', controller: 'cycles/plugin_relations' do
+        post '/sign', to: 'cycles/plugin_relations/petitions#sign'
+      end
     end
   end
 end

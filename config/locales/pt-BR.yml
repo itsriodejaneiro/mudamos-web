@@ -99,6 +99,7 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      invalid_plugin_type: "o tipo de plugin é inválido. Plugin permitido: %{plugin_type}"
       accepted: deve ser aceito
       blank: não pode ficar em branco
       present: deve ficar em branco
@@ -210,3 +211,15 @@ pt-BR:
     v2:
       errors:
         internal_error: Houve um error desconhecido
+
+  activerecord:
+    attributes:
+      petition_plugin/presignature:
+        plugin_relation: Relacionamento do plugin
+    models:
+      petition_plugin/presignature:
+        one: Pré assinatura
+        other: Pré assinaturas
+      plugin_relation:
+        one: Relacionamento do plugin
+        other: Relacionamentos do plugin

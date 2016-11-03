@@ -6,6 +6,12 @@ class Cycles::PluginRelationsController < ApplicationController
     @petition_repository ||= PetitionRepository.new
   end
 
+  attr_writer :presignature_repository
+
+  def presignature_repository
+    @presignature_repository ||= PetitionPlugin::PresignatureRepository.new
+  end
+
   def show
     @cycle = Cycle.find params[:cycle_id]
     @plugin_relation = @cycle.plugin_relations.find params[:id]
@@ -58,6 +64,7 @@ class Cycles::PluginRelationsController < ApplicationController
     def set_petition_info
       petition
       phase
+      user_signed_petition
     end
 
     def petition
@@ -66,5 +73,13 @@ class Cycles::PluginRelationsController < ApplicationController
 
     def phase
       @phase ||= @plugin_relation.related
+    end
+
+    def user_signed_petition
+      if @user_signed_petition.nil? && current_user
+        @user_signed_petition = presignature_repository.user_signed_petition?(current_user.id, @plugin_relation.id)
+      end
+
+      @user_signed_petition
     end
 end
