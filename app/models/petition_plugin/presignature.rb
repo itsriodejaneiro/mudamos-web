@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: petition_plugin_presignatures
+#
+#  id                 :integer          not null, primary key
+#  user_id            :integer          not null
+#  plugin_relation_id :integer          not null
+#  deleted_at         :datetime
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
 class PetitionPlugin::Presignature < ActiveRecord::Base
   acts_as_paranoid
 
