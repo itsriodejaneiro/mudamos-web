@@ -1,5 +1,7 @@
 class Admin::Cycles::PluginRelations::SubjectsController < Admin::ApplicationController
   before_action :set_vocabulary_plugin_relation, only: [:new, :create, :edit, :update]
+  before_action :admin_must_be_master!, only: [:new, :create, :edit, :update, :destroy]
+
   def index
     @subjects = @plugin_relation.subjects.page(params[:page]).per(qty)
   end
@@ -10,7 +12,7 @@ class Admin::Cycles::PluginRelations::SubjectsController < Admin::ApplicationCon
     params[:order] ||= 'created_at'
     @comments = @subject.comments.order("#{params[:order]} DESC")
 
-    @comment_profile_count_in_range = @comments.includes(:user, user: :profile).group_by { |x| x.user.profile.name }
+    @comment_profile_count_in_range = @comments.includes(:user, user: :profile).group_by { |x| (x.user.present? and x.user.profile.present?) ? x.user.profile.name : nil }
 
     @comments = @comments.page(params[:page]).per(qty)
   end

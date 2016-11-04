@@ -12,7 +12,9 @@
         = f.input :password, label: 'Senha'
       .col-xs-4.title
         = f.input :password_confirmation, label: 'Confirmação de Senha'
-
+  .row.form-row
+    .col-xs-4.title
+      = f.input :admin_type, as: :select, collection: AdminUser.admin_types.keys
   .row.form-row
     .col-xs-4
       button type="submit" Salvar
