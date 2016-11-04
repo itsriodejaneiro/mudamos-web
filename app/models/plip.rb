@@ -24,4 +24,10 @@ class Plip
   def cycle
     phase.cycle
   end
+
+  # Mocked plip id.
+  # This represents the plip version
+  def id
+    1
+  end
 end

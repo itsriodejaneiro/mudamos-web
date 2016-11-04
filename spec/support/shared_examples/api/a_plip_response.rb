@@ -3,6 +3,7 @@
 #   let(:phase) { "a phase" }
 #   subject(:plip_response) { {} }
 RSpec.shared_examples_for "a plip response" do
+  its([:id]) { is_expected.to be_present }
   its([:document_url]) { is_expected.to be_present }
   its([:content]) { is_expected.to be_present }
 
