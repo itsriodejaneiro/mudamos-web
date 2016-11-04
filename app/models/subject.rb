@@ -64,4 +64,17 @@ class Subject < ActiveRecord::Base
     rel = subjects_users.for(user.id).first
     rel.is_anonymous? if rel
   end
+
+  def all_attributes
+    attrs = self.attributes.except(
+      "file_file_size",
+      "file_updated_at",
+      "file_content_type",
+      "file_file_name"
+    ).keys
+
+    if self.plugin_relation.cycle.plugin_relations.where(plugin: compilation).any?
+      attrs.push 'file'
+    end
+  end
 end
