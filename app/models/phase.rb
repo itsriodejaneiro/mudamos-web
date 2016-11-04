@@ -49,6 +49,10 @@ class Phase < ActiveRecord::Base
     where{ initial_date > Time.zone.now }
   }
 
+  scope :initiated, -> {
+    where { initial_date <= Time.zone.now }
+  }
+
   def finished?
     self.final_date < Time.zone.now
   end
@@ -63,6 +67,10 @@ class Phase < ActiveRecord::Base
 
   def self.statuses
     [:finished, :in_progress, :shortly]
+  end
+
+  def self.human_statuses
+    ["Em andamento", "Em breve", "Encerrado"].freeze
   end
 
   def current_status
