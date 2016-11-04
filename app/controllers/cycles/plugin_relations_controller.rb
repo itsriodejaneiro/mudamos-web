@@ -47,7 +47,10 @@ class Cycles::PluginRelationsController < ApplicationController
       range_start = @cycle.initial_date
       range_end = @cycle.final_date
 
-      # ChartableCache.clear_cache @cycle
+      if params[:clear_cache] == true or params[:clear_cache] == 'true'
+        ChartableCache.clear_cache @cycle
+      end
+      
       ChartableCache.set_cache range_start, range_end, @cycle
 
       @user_profile_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_profile_count_in_range")
