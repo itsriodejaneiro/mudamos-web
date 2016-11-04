@@ -34,6 +34,8 @@ gem 'rack-cors', :require => 'rack/cors'
 
 gem 'grape-entity'
 
+gem 'js-routes'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'

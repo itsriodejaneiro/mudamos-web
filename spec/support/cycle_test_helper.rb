@@ -30,6 +30,8 @@ module CycleTestHelper
     cycle.phases = phases
     cycle.tap(&:save!)
   end
+
+  module_function :create_cycle_with_phase
 end
 
 RSpec.configure do |config|

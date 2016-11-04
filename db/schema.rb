@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025114526) do
+ActiveRecord::Schema.define(version: 20161103133825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -291,6 +291,19 @@ ActiveRecord::Schema.define(version: 20161025114526) do
 
   add_index "permissions", ["deleted_at"], name: "index_permissions_on_deleted_at", using: :btree
 
+  create_table "petition_plugin_presignatures", force: :cascade do |t|
+    t.integer  "user_id",            null: false
+    t.integer  "plugin_relation_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "petition_plugin_presignatures", ["deleted_at"], name: "index_petition_plugin_presignatures_on_deleted_at", using: :btree
+  add_index "petition_plugin_presignatures", ["plugin_relation_id"], name: "index_petition_plugin_presignatures_on_plugin_relation_id", using: :btree
+  add_index "petition_plugin_presignatures", ["user_id", "plugin_relation_id"], name: "index_presignatures_plugin_and_users", using: :btree
+  add_index "petition_plugin_presignatures", ["user_id"], name: "index_petition_plugin_presignatures_on_user_id", using: :btree
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
     t.integer  "searchable_id"
@@ -551,6 +564,8 @@ ActiveRecord::Schema.define(version: 20161025114526) do
   add_foreign_key "likes", "users"
   add_foreign_key "materials", "cycles"
   add_foreign_key "materials", "plugin_relations"
+  add_foreign_key "petition_plugin_presignatures", "plugin_relations", on_delete: :cascade
+  add_foreign_key "petition_plugin_presignatures", "users", on_delete: :cascade
   add_foreign_key "reports", "comments"
   add_foreign_key "reports", "users"
   add_foreign_key "social_links", "cycles"

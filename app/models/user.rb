@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
   attr_encrypted :name, :cpf, :state, :city, :alias_name, :email, key: ENV['ENCRYPTION_KEY']
 
   include PgSearch
+  include PetitionPlugin::PresignatureRelations
+
   pg_search_scope :user_search,
                   against: [
                     :encrypted_name

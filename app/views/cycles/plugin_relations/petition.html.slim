@@ -9,13 +9,24 @@ section.container-fluid#petition-index
     .row
       .col-xs-12
         h1.section-title style="border-color: #{@cycle.color};"= @phase.description
-    .row
-      .col-xs-12.call-wrapper
-        .call-to-action.plip-sign
-          a.main-call style="border: 5px solid #{@cycle.color};" href='#'
-            span=@phase.name
-            span.action-tail style="border-top: 80px solid #{@cycle.color};" &nbsp
-            .hover-box style="background-color: #{@cycle.color};"
+
+    - if @user_signed_petition
+      .row.medium-gap.text-center
+        .col-xs-12
+          | Recebemos sua pré-assinatura! Por um requisito legal, agora você precisa baixar o App da Mudamos para confirmar a assinatura
+      .row.medium-gap.text-center
+        .col-xs-12.col-sm-6
+          a.store-badge.app href="#"
+        .col-xs-12.col-sm-6
+          a.store-badge.play href="#"
+    - else
+      .row
+        .col-xs-12.call-wrapper
+          .call-to-action.plip-sign
+            a.main-call.sign-petition style="border: 5px solid #{@cycle.color};" href='#'
+              span=@phase.name
+              span.action-tail style="border-top: 80px solid #{@cycle.color};" &nbsp
+              .hover-box style="background-color: #{@cycle.color};"
 
     .row.medium-gap
       .col-xs-12.col-sm-2.share-col
