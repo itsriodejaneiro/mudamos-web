@@ -14,7 +14,8 @@ section.container-fluid#hero
     .logo= image_tag('mudamos-logo.svg')
     .row
       .col-xs-12.col-md-10
-        h2= Setting.find_by_key('home_sub_title').value
+        h2 style="color: #fff;"
+          a{href="https://mudamos-its-production-images.s3.amazonaws.com/uploads/production/compilation_files/1/files/original.pdf?1472596045" style="color: #fff"} =Setting.find_by_key('home_sub_title').value
 
 section.container-fluid#about
   .full-background-image.parallax-window data-parallax="scroll" data-image-src=image
