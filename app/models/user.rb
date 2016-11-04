@@ -288,6 +288,10 @@ class User < ActiveRecord::Base
     h.push('anonymous_picture_url')
     h.push('profile')
     h.push('sub_profile')
+
+    [:name, :cpf, :state, :city, :alias_name, :email].each do |attr|
+      h.push(attr.to_s)
+    end
     h
   end
 
