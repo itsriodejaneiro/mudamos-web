@@ -46,7 +46,7 @@ class Subject < ActiveRecord::Base
     order("RANDOM()")
   }
 
-  has_attached_file :file, preserve_files: true
+  has_attached_file :file, preserve_files: true, default_url: ''
   validates_attachment :file, content_type: { content_type: ["application/pdf"] }
 
   validates_presence_of :question, :plugin_relation, :title
@@ -73,7 +73,7 @@ class Subject < ActiveRecord::Base
       "file_file_name"
     ).keys
 
-    if self.plugin_relation.cycle.plugin_relations.where(plugin: compilation).any?
+    if self.plugin_relation.cycle.plugin_relations.where(plugin: Plugin.where(plugin_type: 'Relatoria').first).any?
       attrs.push 'file'
     end
   end
