@@ -1489,6 +1489,9 @@ section#static_page
     .plip-title
       font-size: 18px
 
+  @media (max-width: $screen-sm-min)
+    .share-col
+      margin-top: 15px
 
 #subjects-index
   background-color: $color-grid-dark-grey
@@ -2737,8 +2740,14 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
 
         .action-tail
           top: 275px
-          left: 150px
+          left: 30%
 
       &:hover
         .hover-box
           margin-top: -275px
+
+.fb-share-button, .twitter-share-button
+  vertical-align: top
+
+.medium-gap
+  margin-top: 50px

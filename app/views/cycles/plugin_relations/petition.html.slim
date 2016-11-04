@@ -17,8 +17,12 @@ section.container-fluid#petition-index
             span.action-tail style="border-top: 80px solid #{@cycle.color};" &nbsp
             .hover-box style="background-color: #{@cycle.color};"
 
-    .row
-      .col-xs-12.col-sm-6
+    .row.medium-gap
+      .col-xs-12.col-sm-2.share-col
+        div class="fb-share-button" data-layout="button_count" data-size="small" data-mobile-iframe="false"
+      .col-xs-12.col-sm-2.share-col
+        a href="https://twitter.com/share" class="twitter-share-button" data-size="small" data-lang="pt" data-show-count="true"
+      .col-xs-12.col-sm-4.share-col
         a.download-document href=@petition.document_url target="_blank"
           i.icon-baixeaqui style="color: #{@cycle.color};"
           span Faça o Download da PLIP
