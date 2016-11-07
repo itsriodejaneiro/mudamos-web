@@ -71,8 +71,9 @@ class Admin::Cycles::MaterialsController < Admin::ApplicationController
         :category,
         :description,
         :position,
-        :themes,
-        :keywords
+        :external_link,
+        theme_ids: [],
+        keyword_ids: []
       )
     end
 end
