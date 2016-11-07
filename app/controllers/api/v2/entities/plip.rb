@@ -6,12 +6,17 @@ module Api
 
         root 'plips', 'plip'
 
+        expose :id
         expose :document_url
         expose :content
         expose :cycle, using: Api::V2::Entities::Cycle
         expose :phase, using: Api::V2::Entities::Phase
 
         swagger_schema :'Api::V2::Entities::Plip' do
+          property :id do
+            key :type, :integer
+          end
+
           property :document_url do
             key :type, :string
             format "url"
