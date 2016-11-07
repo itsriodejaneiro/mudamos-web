@@ -44,4 +44,24 @@ namespace :users do
       AdminUser.find_by_email(e).update_column(:admin_type, 1)
     end
   end
+
+  desc "Exports user data -- output_path defaults to STDOUT"
+  task :export, [:output_path] => :environment do |_, args|
+    output = args[:output_path] && File.new(args[:output_path], "w") || STDOUT
+
+    users = -> do
+      User.find_each(batch_size: 500).map do |user|
+        {
+          password: user.encrypted_password,
+          name: user.name,
+          cpf: user.cpf,
+          email: user.email
+        }
+      end
+    end
+
+    IO.open(output.fileno, "w") do |f|
+      f.write users.call.to_json
+    end
+  end
 end
