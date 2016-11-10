@@ -6,6 +6,7 @@
 
 * [PR 37]: Add new project setup script
 * [PR 38]: Add new petition plugin
+  - Run `rake plugins:sync`
 * [PR 39]: Add admin petition page
 * [PR 40]: Add 'saiba mais' petition page to the site
 * [PR 41]: Add Plip api
