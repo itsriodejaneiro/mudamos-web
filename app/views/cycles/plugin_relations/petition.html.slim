@@ -50,4 +50,4 @@ section.container-fluid#petition-index
       .col-xs-12
         h2.section-title.plip-title style="border-color: #{@cycle.color};" Detalhes sobre o Projeto de Lei de Iniciativa Popular
 
-        .petition-container= @petition.body.html_safe
+        .petition-container.plip-body= markdown @petition.body
