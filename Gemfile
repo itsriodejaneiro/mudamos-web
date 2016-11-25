@@ -29,6 +29,9 @@ gem 'paperclip'
 # gem 'paperclip-compression'
 # gem 'rspec_api_documentation'
 
+# Markdown
+gem 'redcarpet'
+
 gem 'swagger-blocks'
 gem 'rack-cors', :require => 'rack/cors'
 
