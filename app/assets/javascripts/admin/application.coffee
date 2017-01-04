@@ -42,6 +42,7 @@
 #= require admin/admin.js
 #= require cocoon
 #= requite admin/notification.js
+#= require simplemde.min
 
 document.expiration_default_time = 300
 

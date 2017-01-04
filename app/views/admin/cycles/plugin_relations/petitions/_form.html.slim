@@ -1,0 +1,23 @@
+= semantic_form_for @petition, url: (@petition.new_record? ? admin_cycle_plugin_relation_petitions_path : admin_cycle_plugin_relation_petition_path(plugin_relation_id: @plugin_relation.id, id: @petition.id)) do |f|
+  .row
+    .col-xs-8
+      = f.input :call_to_action, label: 'Chamada para ação'
+    .col-xs-4
+      = f.input :signatures_required, as: :number, label: 'Número de assinaturas necessárias'
+  .row
+    .col-xs-12
+      = f.input :document_url, as: :url, label: 'URL do documento'
+  .row
+    .col-xs-12
+      = f.input :presentation, as: :text, label: 'Apresentaçao'
+  .row
+    .col-xs-12
+      = f.input :body, as: :text, label: 'Texto completo'
+  .row
+    .col-xs-12
+      button.btn.btn-with-bg= 'Salvar'
+  javascript: 
+    new SimpleMDE({
+      element: document.getElementById("petition_plugin_information_body"),
+      toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "guide"]
+    });
