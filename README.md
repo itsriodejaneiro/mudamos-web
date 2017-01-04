@@ -23,3 +23,9 @@ Follow the instructions, and use the created user to access the admin area.
 ### Running the web server
 
 - `rails s`
+
+### Testing emails on development
+
+ 1 - Run `gem install mailcatcher`
+ 2 - Run `mailcatcher`
+ 3 - Go to `http://localhost:1080/`
