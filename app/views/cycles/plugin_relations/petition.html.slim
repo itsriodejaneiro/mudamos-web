@@ -1,5 +1,5 @@
-- title = @phase.description
-- description = @phase.name
+- title = @phase.name
+- description = @phase.description
 - image = @cycle.picture(:header)
 
 - meta title: title, description: description, og: { title: title, description: description, image: image, locale: 'pt_BR', type: 'article' }, twitter: { description: description, card: 'summary', title: title, image: { src: image } }
@@ -8,7 +8,10 @@ section.container-fluid#petition-index
   .container
     .row
       .col-xs-12
-        h1.section-title style="border-color: #{@cycle.color};"= @phase.description
+        h1.section-title style="border-color: #{@cycle.color};"= @phase.name
+    .row
+      .col-xs-12
+        h3 style="border-color: #{@cycle.color};"= @phase.description
 
     - if @user_signed_petition
       .row.medium-gap.text-center
@@ -24,9 +27,18 @@ section.container-fluid#petition-index
         .col-xs-12.call-wrapper
           .call-to-action.plip-sign
             a.main-call.sign-petition style="border: 5px solid #{@cycle.color};" href='#'
-              span=@phase.name
+              span=@petition.call_to_action
               span.action-tail style="border-top: 80px solid #{@cycle.color};" &nbsp
               .hover-box style="background-color: #{@cycle.color};"
+
+    .row.medium-gap
+      .col-xs-12
+        .pull-right
+          strong Número de assinaturas necessárias: 
+          = @petition.signatures_required
+    .row
+      .col-xs-12
+        = @petition.presentation
 
     .row.medium-gap
       .col-xs-12.col-sm-2.share-col
