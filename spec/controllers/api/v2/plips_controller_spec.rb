@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Api::V2::PlipsController do
   describe "GET index" do
-    let!(:cycle) { create_cycle_with_phase phases: [{ plugin_type: :petition }]}
+    let!(:cycle) { create_cycle_with_phase phases: [{ plugin_type: :petition, with_petition_information: true }]}
     let(:make_request) { get :index }
 
     it_behaves_like "a successfull api response", 200 do
@@ -19,7 +19,7 @@ RSpec.describe Api::V2::PlipsController do
       it { is_expected.to_not have_key "X-Next-Page" }
 
       context "with more plips" do
-        let!(:another_cycle) { create_cycle_with_phase phases: [{ plugin_type: :petition }]}
+        let!(:another_cycle) { create_cycle_with_phase phases: [{ plugin_type: :petition, with_petition_information: true }]}
 
         its(["X-Next-Page"]) { is_expected.to eq "2" }
       end

@@ -1,11 +1,5 @@
 class Cycles::PluginRelationsController < ApplicationController
 
-  attr_writer :petition_repository
-
-  def petition_repository
-    @petition_repository ||= PetitionRepository.new
-  end
-
   attr_writer :presignature_repository
 
   def presignature_repository
