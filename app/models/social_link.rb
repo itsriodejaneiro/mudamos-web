@@ -31,7 +31,8 @@ class SocialLink < ActiveRecord::Base
       'icon-youtube',
       'icon-instagram',
       'icon-tumblr',
-      'icon-pinterest'
+      'icon-pinterest',
+      'icon-github'
     ]
   end
 end
