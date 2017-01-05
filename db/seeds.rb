@@ -150,6 +150,14 @@ SocialLink.where(
   description: 'SIGA NOSSO TWITTER'
 ).first_or_create
 
+SocialLink.where(
+  provider: 'github',
+  name: 'itsriodejaneiro',
+  link: 'https://github.com/itsriodejaneiro',
+  icon_class: 'icon-github',
+  description: 'MUDAMOS no Github'
+).first_or_create
+
 seg_pub_file = File.new "#{Rails.root}/app/assets/images/IMG_9209.jpg", "r"
 
 seg_publica_cycle = Cycle.where(
