@@ -12,12 +12,7 @@
       = f.input :presentation, as: :text, label: 'Apresentaçao'
   .row
     .col-xs-12
-      = f.input :body, as: :text, label: 'Texto completo'
+      = f.input :body, as: :text, label: 'Texto completo', input_html: { class: 'markdown-input' }
   .row
     .col-xs-12
       button.btn.btn-with-bg= 'Salvar'
-  javascript: 
-    new SimpleMDE({
-      element: document.getElementById("petition_plugin_information_body"),
-      toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "guide"]
-    });

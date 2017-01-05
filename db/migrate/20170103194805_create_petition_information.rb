@@ -6,7 +6,7 @@ class CreatePetitionInformation < ActiveRecord::Migration
       t.timestamps null: false
       t.string :call_to_action, null: false
       t.integer :signatures_required, null: false
-      t.string :presentation, null: false
+      t.text :presentation, null: false
       t.string :document_url, null: false
       t.text :body, null: false
     end

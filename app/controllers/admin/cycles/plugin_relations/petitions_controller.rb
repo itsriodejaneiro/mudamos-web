@@ -19,13 +19,13 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
       flash[:success] = "Petição salva com sucesso."
       redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     else
-      flash[:error] = "Ocorreu algum erro ao criar a petição."
+      flash[:error] = "Ocorreu algum erro ao atualizar a petição."
       render :edit
     end
   end
 
   def create
-    @petition = PetitionPlugin::Information.new.tap { |i| i.plugin_relation_id = @plugin_relation.id }
+    @petition = PetitionPlugin::Information.new(plugin_relation_id: @plugin_relation.id)
     @petition.update_attributes petition_params
 
     if @petition.save
