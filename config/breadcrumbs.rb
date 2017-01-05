@@ -1,5 +1,5 @@
 crumb :cycles do
-  link 'Temas', admin_cycles_path
+  link 'Ciclos', admin_cycles_path
 end
 
 crumb :cycle do |c|

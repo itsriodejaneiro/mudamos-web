@@ -33,7 +33,7 @@ class Search
     when :users
       'Usuários'
     when :cycles
-      'Temas'
+      'Ciclos'
     when :subjects
       'Assuntos'
     when :blog_posts

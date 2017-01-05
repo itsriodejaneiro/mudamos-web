@@ -8,7 +8,7 @@
         = render 'admin/shared/user_notification'
           / span= current_admin_user.name.capitalize
         li= link_to 'Segurança Pública', [:admin, Cycle.find_by_name('Segurança Pública')]
-        li= link_to 'Lista de Temas', [:admin, :cycles]
+        li= link_to 'Lista de Ciclos', [:admin, :cycles]
         li= link_to 'Destaques', [:admin, :grid_highlights]
         li
           #sub-sidebar-link role="tab"
