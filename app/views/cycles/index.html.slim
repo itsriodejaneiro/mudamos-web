@@ -75,7 +75,7 @@ section.container-fluid#cycles
       - @cycles.each do |c|
         = render 'widgets/home_cycle', image: c.picture(:thumb), name: c.name, url: cycle_path(c), color: c.color, text: c.finished? ? 'Veja como foi' : 'Participe'
 
-      = render 'widgets/home_cycle', image: image_path('placeholder_home2.jpg'), name: 'Reforma Política do Século 21', url: 'https://plataformabrasil.org.br/', color: 'rgb(184,202,0)', text: 'Veja como foi', target: '_blank'
+      = render 'widgets/home_cycle', image: image_path('placeholder_home2.jpg'), name: 'Reforma Política do Século 21', url: 'http://plataformabrasil.org.br/', color: 'rgb(184,202,0)', text: 'Veja como foi', target: '_blank'
 
 
 = javascript_include_tag 'navbar-sticky'
