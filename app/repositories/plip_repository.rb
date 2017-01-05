@@ -1,8 +1,6 @@
 class PlipRepository
   include Repository
 
-  attr_accessor :petition_repository
-
   def all_initiated(page: 1, limit: 10)
     phases = Phase
       .initiated
