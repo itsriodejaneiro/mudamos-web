@@ -53,7 +53,7 @@ Rails.application.routes.draw do
         resources :vocabularies, path: 'termos', controller: 'cycles/vocabularies'
         resources :settings, only: [:create, :update], controller: 'cycles/plugin_relations/settings'
         resources :compilation_files, only: [:update], controller: 'cycles/plugin_relations/compilation_files'
-        resources :petitions, only: [:index], controller: 'cycles/plugin_relations/petitions'
+        resources :petitions, only: [:index, :new, :create, :edit, :update], controller: 'cycles/plugin_relations/petitions'
       end
       resources :charts, only: [:index], controller: 'cycles/charts', path: 'graficos-personalizados'
     end

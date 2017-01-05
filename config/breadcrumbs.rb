@@ -158,6 +158,16 @@ crumb :petitions do |c, pr|
   parent :cycle, c
 end
 
+crumb :new_petition do |c, pr|
+  link 'Editar', admin_cycle_plugin_relation_petitions_path(c, pr)
+  parent :petitions, c, pr
+end
+
+crumb :edit_petition do |c, pr, petition|
+  link 'Editar', edit_admin_cycle_plugin_relation_petition_path(c, pr, petition)
+  parent :petitions, c, pr
+end
+
 crumb :new_subject do |c, pr|
   link 'Novo', new_admin_cycle_plugin_relation_subject_path(c, pr)
   parent :subjects, c, pr

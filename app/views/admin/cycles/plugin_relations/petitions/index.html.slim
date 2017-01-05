@@ -9,12 +9,38 @@
         .card-module
           .filters.clearfix
             .pull-right
-              = link_to 'Baixar documento', @petition.document_url, class: 'btn', target: '_blank'
+              - if @petition.present?
+                = link_to 'Editar Petição', edit_admin_cycle_plugin_relation_petition_path(plugin_relation_id: @plugin_relation.id, id: @petition.id)
+              - else
+                = link_to 'Editar Petição', [:new, :admin, @cycle, @plugin_relation, :petition], class: 'btn'
 
-.row
-  .col-xs-12
-    .card-module
-      .title
-        h3 Conteúdo
-
-      .plip-body= markdown @petition.body
+- if @petition.present?
+ .row
+   .col-xs-7
+     .card-module
+       .title
+         h3 Chamada para ação
+       = @petition.call_to_action
+   .col-xs-5
+     .card-module
+       .title
+         h3 Número de assinaturas necessárias
+       = @petition.signatures_required
+ .row
+   .col-xs-12
+     .card-module
+       .title
+         h3 Apresentação
+       = @petition.presentation
+ .row
+   .col-xs-12
+     .card-module
+       .title
+         h3 Texto completo 
+       .filters.clearfix
+         .pull-right
+           = link_to 'Baixar documento', @petition.document_url, class: 'btn', target: '_blank' if @petition.document_url
+       - if @petition.body
+         .plip-body= markdown @petition.body
+- else
+  = 'Petição em branco, edite para adicionar conteúdo.'
