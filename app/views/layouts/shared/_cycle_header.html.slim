@@ -41,7 +41,7 @@ nav.navbar.navbar-default.navbar-fixed-top
                   - if pp.plugin.plugin_type == 'Discussão'
                     li= link_to 'ASSUNTOS', cycle_subjects_path(@cycle)
                   - elsif pp.plugin.plugin_type == 'Relatoria'
-                    li= link_to 'RELATORIA', cycle_plugin_relation_path(@cycle, @cycle.current_phase.plugin_relation)
+                    li= link_to 'RELATORIA', cycle_plugin_relation_path(@cycle, pp.plugin_relation)
                 - if @cycle.plugins.where(plugin_type: 'Biblioteca').any?
                   li= link_to 'BIBLIOTECA', cycle_materials_path(@cycle)
                 - if @cycle.plugins.where(plugin_type: 'Glossário').any?
