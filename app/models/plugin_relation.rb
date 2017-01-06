@@ -18,6 +18,9 @@ class PluginRelation < ActiveRecord::Base
   acts_as_paranoid
 
   extend FriendlyId
+  include PetitionPlugin::PresignatureRelations
+  include PetitionPlugin::InformationRelations
+
   friendly_id :plugin_name, use: :scoped, scope: [:related_id, :related_type]
 
   belongs_to :related, polymorphic: true

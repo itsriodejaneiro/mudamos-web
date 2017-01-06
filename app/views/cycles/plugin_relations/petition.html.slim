@@ -1,0 +1,65 @@
+- title = @phase.name
+- description = @phase.description
+- image = @cycle.picture(:header)
+
+- meta title: title, description: description, og: { title: title, description: description, image: image, locale: 'pt_BR', type: 'article' }, twitter: { description: description, card: 'summary', title: title, image: { src: image } }
+
+section.container-fluid#petition-index
+  .container
+    .row
+      .col-xs-12
+        h1.section-title style="border-color: #{@cycle.color};"= @phase.name
+    .row
+      .col-xs-12
+        h3 style="border-color: #{@cycle.color};"= @phase.description
+
+    - if @user_signed_petition
+      .row.medium-gap.text-center
+        .col-xs-12
+          | Recebemos sua pré-assinatura! Por um requisito legal, agora você precisa baixar o App da Mudamos para confirmar a assinatura
+      .row.medium-gap.text-center
+        .col-xs-12.col-sm-6
+          a.store-badge.app href="#"
+        .col-xs-12.col-sm-6
+          a.store-badge.play href="#"
+    - else
+      .row
+        .col-xs-12.call-wrapper
+          .call-to-action.plip-sign
+            a.main-call.sign-petition style="border: 5px solid #{@cycle.color};" href='#'
+              span=@petition.call_to_action
+              span.action-tail style="border-top: 80px solid #{@cycle.color};" &nbsp
+              .hover-box style="background-color: #{@cycle.color};"
+
+    .row.medium-gap
+      .col-xs-12
+        .pull-right
+          strong Número de assinaturas necessárias: 
+          = @petition.signatures_required
+    .row
+      .col-xs-12
+        = @petition.presentation
+
+    .row.medium-gap
+      .col-xs-12.col-sm-2.share-col
+        div class="fb-share-button" data-layout="button_count" data-size="small" data-mobile-iframe="false"
+      .col-xs-12.col-sm-2.share-col
+        a href="https://twitter.com/share" class="twitter-share-button" data-size="small" data-lang="pt" data-show-count="true"
+      .col-xs-12.col-sm-4.share-col
+        a.download-document href=@petition.document_url target="_blank"
+          i.icon-baixeaqui style="color: #{@cycle.color};"
+          span Faça o Download da PLIP
+
+    .row.more-details-row
+      .col-xs-12
+        a.toggle-details.area-toggler href="#" style="color: #{@cycle.color};" data-container=".plip-row"
+          i class="icon-arrow"
+          | Saiba mais sobre esse projeto
+
+        hr.toggle-details
+
+    .row.plip-row
+      .col-xs-12
+        h2.section-title.plip-title style="border-color: #{@cycle.color};" Detalhes sobre o Projeto de Lei de Iniciativa Popular
+
+        .petition-container.plip-body= markdown @petition.body

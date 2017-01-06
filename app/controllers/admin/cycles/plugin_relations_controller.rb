@@ -13,6 +13,8 @@ class Admin::Cycles::PluginRelationsController < Admin::ApplicationController
       redirect_to [:admin, @cycle, @plugin_relation, :vocabularies]
     when 'Blog'
       redirect_to [:admin, @cycle, :blog_posts]
+    when 'Petição'
+      redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     end
   end
 

@@ -48,9 +48,10 @@
       .content
         = grid_item_content(object)
     .footer class=grid_item_footer_color(color, background_image)
-      = link_to grid_item_link(object, blog, vocabulary, cycle) do
-        .arrow
-        span= grid_item_link_name(object)
+      - if cycle
+        = link_to grid_item_link(object, blog, vocabulary, cycle) do
+          .arrow
+          span= grid_item_link_name(object)
 
   - else
     .row

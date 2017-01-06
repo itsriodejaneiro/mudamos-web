@@ -22,7 +22,7 @@ section.not-centered#cycle-description
           - if @cycle.blog_posts.find_by_slug('por-que-discutir-seguranca-publica')
             .row
               .col-xs-12
-                = link_to 'Saiba mais', cycle_blog_post_path(@cycle, BlogPost.find_by_slug('por-que-discutir-seguranca-publica')), style: "color: #{@cycle.color}"
+                = link_to 'Saiba mais', "https://mudamos-its-production-images.s3.amazonaws.com/uploads/production/compilation_files/1/files/original.pdf?1472596045", style: "color: #{@cycle.color}"
     .row
       .col-xs-12.col-sm-10.col-sm-offset-1
         .row.phases.row-same-height

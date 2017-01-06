@@ -13,6 +13,10 @@
 #  title              :string
 #  vocabulary_id      :integer
 #  tag_description    :text
+#  file_file_name     :string
+#  file_content_type  :string
+#  file_file_size     :integer
+#  file_updated_at    :datetime
 #
 
 class Subject < ActiveRecord::Base
@@ -42,7 +46,7 @@ class Subject < ActiveRecord::Base
     order("RANDOM()")
   }
 
-  has_attached_file :file, preserve_files: true
+  has_attached_file :file, preserve_files: true, default_url: ''
   validates_attachment :file, content_type: { content_type: ["application/pdf"] }
 
   validates_presence_of :question, :plugin_relation, :title
@@ -59,5 +63,18 @@ class Subject < ActiveRecord::Base
   def is_anonymous_for(user)
     rel = subjects_users.for(user.id).first
     rel.is_anonymous? if rel
+  end
+
+  def all_attributes
+    attrs = self.attributes.except(
+      "file_file_size",
+      "file_updated_at",
+      "file_content_type",
+      "file_file_name"
+    ).keys
+
+    if self.plugin_relation.cycle.plugin_relations.where(plugin: Plugin.where(plugin_type: 'Relatoria').first).any?
+      attrs.push 'file'
+    end
   end
 end

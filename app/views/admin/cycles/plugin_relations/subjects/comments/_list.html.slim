@@ -30,17 +30,19 @@
               th Autor
               th Comentário
               th Resposta
+              th Setor
+              th Subsetor
               th
                 .like-holder
                   i.icon-like
               th
-                .like-holder 
+                .like-holder
                   i.icon-dislike
               th Ações
           tbody
             - @comments.each do |c|
               tr
-                td 
+                td
                   a.name= c.author
                   p.anonymous= c.is_anonymous ? 'Anônimo' : 'Identificado'
                   p.data= c.created_at.strftime('%d/%m/%Y às %H:%M')
@@ -51,19 +53,22 @@
                   a.read-more Ler Mais
                   a.read-less Esconder
                 td= c.children.count
+                td= c.user.profile.name if c.user.present? and c.user.profile.present?
+                td= c.user.sub_profile.name if c.user.present? and c.user.sub_profile.present?
                 td= c.likes.count
                 td= c.dislikes.count
                 td
                   select.select-actions.select2-disabled
                     option value="" Mais...
                     option value=admin_cycle_plugin_relation_subject_comment_path(@cycle, @plugin_relation, @subject, c) Ver Detalhes
+                    option method="copy" value="copy" data-comment-share-params="comments=#{c.parents_url_params}" data-base-url="#{cycle_subject_url(c.subject.plugin_relation.cycle, c.subject)}" Copiar Link
 
         = render 'admin/shared/pagination', collection: @comments
   javascript:
     $(document).ready(function() {
       admin.helpers.truncate('.comments-dotdotdot');
     });
-    
+
 - else
   .row
     .col-xs-12

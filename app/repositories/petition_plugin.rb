@@ -1,0 +1,2 @@
+module PetitionPlugin
+end

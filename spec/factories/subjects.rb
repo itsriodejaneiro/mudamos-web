@@ -13,6 +13,10 @@
 #  title              :string
 #  vocabulary_id      :integer
 #  tag_description    :text
+#  file_file_name     :string
+#  file_content_type  :string
+#  file_file_size     :integer
+#  file_updated_at    :datetime
 #
 
 FactoryGirl.define do

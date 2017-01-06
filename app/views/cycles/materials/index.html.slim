@@ -61,4 +61,4 @@ section.container-fluid#materials-index
                     span= "Autor: #{m.author}"
             - if m.description
               .col-xs-5.with-left-line style="border-color: #{@cycle.color}"
-                p= m.description
+                p= m.description.html_safe

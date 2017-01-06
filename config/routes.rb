@@ -13,7 +13,9 @@ module BaseRouting
       resources :materials, only: [:index], path: 'biblioteca', controller: 'cycles/materials'
       resources :vocabularies, only: [:index], path: 'glossário', controller: 'cycles/vocabularies'
 
-      resources :plugin_relations, only: [:show], path: 'plugins', controller: 'cycles/plugin_relations'
+      resources :plugin_relations, only: [:show], path: 'plugins', controller: 'cycles/plugin_relations' do
+        post '/sign', to: 'cycles/plugin_relations/petitions#sign'
+      end
     end
   end
 end
@@ -51,6 +53,7 @@ Rails.application.routes.draw do
         resources :vocabularies, path: 'termos', controller: 'cycles/vocabularies'
         resources :settings, only: [:create, :update], controller: 'cycles/plugin_relations/settings'
         resources :compilation_files, only: [:update], controller: 'cycles/plugin_relations/compilation_files'
+        resources :petitions, only: [:index, :new, :create, :edit, :update], controller: 'cycles/plugin_relations/petitions'
       end
       resources :charts, only: [:index], controller: 'cycles/charts', path: 'graficos-personalizados'
     end
@@ -95,6 +98,11 @@ Rails.application.routes.draw do
           match '/dislikes', to: 'cycles/subjects/comments/dislikes#destroy', via: :delete
         end
       end
+    end
+
+    namespace :v2 do
+      resources :apidocs, only: %i(index)
+      resources :plips, only: %i(index)
     end
   end
 

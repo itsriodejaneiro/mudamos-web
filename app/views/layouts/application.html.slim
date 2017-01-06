@@ -13,11 +13,12 @@ html
 
     = metamagic site: "Mudamos", title: [:title, :site], separator: " | "
     = metamagic
-  body class="#{params[:controller]}-#{params[:action]}" data-controller="#{params[:controller]}" data-action="#{params[:action]}" data-logged-in=user_signed_in?.to_s data-cycle=(@cycle.id if @cycle) data-subject=(@subject.id if @subject)
+  body class="#{params[:controller]}-#{params[:action]}" data-controller="#{params[:controller]}" data-action="#{params[:action]}" data-logged-in=user_signed_in?.to_s data-cycle=(@cycle.id if @cycle) data-subject=(@subject.id if @subject) data-plugin-relation=(@plugin_relation.id if @plugin_relation)
 
     #fb-root
     = render 'outsiders/facebook_initializer'
-    
+    = render 'outsiders/twitter'
+
     - flash.each do |name, msg|
       - if msg.respond_to? :html_safe
         javascript:
@@ -26,7 +27,7 @@ html
     - if Rails.env.production?
       = render 'outsiders/analytics'
       = render 'outsiders/facebook_pixel'
-      
+
       - if session.delete(:new_user_created)
         javascript:
           fbq('track', 'CompleteRegistration');

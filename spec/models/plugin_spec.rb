@@ -29,4 +29,12 @@ RSpec.describe Plugin, type: :model do
       should have_many(attr).dependent(:destroy)
     end
   end
+
+  describe ".plugin_types" do
+    let(:plugin_type_repository) { PluginTypeRepository.new }
+
+    subject { described_class.plugin_types }
+
+    it { is_expected.to eq plugin_type_repository.available_types }
+  end
 end

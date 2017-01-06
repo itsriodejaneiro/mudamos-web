@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202181513) do
+ActiveRecord::Schema.define(version: 20170103194805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "unaccent"
+  enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
   enable_extension "pg_stat_statements"
-  enable_extension "pg_trgm"
-  enable_extension "unaccent"
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
@@ -291,6 +291,34 @@ ActiveRecord::Schema.define(version: 20160202181513) do
 
   add_index "permissions", ["deleted_at"], name: "index_permissions_on_deleted_at", using: :btree
 
+  create_table "petition_plugin_information", force: :cascade do |t|
+    t.integer  "plugin_relation_id",  null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "call_to_action",      null: false
+    t.integer  "signatures_required", null: false
+    t.text     "presentation",        null: false
+    t.string   "document_url",        null: false
+    t.text     "body",                null: false
+  end
+
+  add_index "petition_plugin_information", ["deleted_at"], name: "index_petition_plugin_information_on_deleted_at", using: :btree
+  add_index "petition_plugin_information", ["plugin_relation_id"], name: "index_petition_plugin_information_on_plugin_relation_id", using: :btree
+
+  create_table "petition_plugin_presignatures", force: :cascade do |t|
+    t.integer  "user_id",            null: false
+    t.integer  "plugin_relation_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "petition_plugin_presignatures", ["deleted_at"], name: "index_petition_plugin_presignatures_on_deleted_at", using: :btree
+  add_index "petition_plugin_presignatures", ["plugin_relation_id"], name: "index_petition_plugin_presignatures_on_plugin_relation_id", using: :btree
+  add_index "petition_plugin_presignatures", ["user_id", "plugin_relation_id"], name: "index_presignatures_plugin_and_users", using: :btree
+  add_index "petition_plugin_presignatures", ["user_id"], name: "index_petition_plugin_presignatures_on_user_id", using: :btree
+
   create_table "pg_search_documents", force: :cascade do |t|
     t.text     "content"
     t.integer  "searchable_id"
@@ -551,6 +579,9 @@ ActiveRecord::Schema.define(version: 20160202181513) do
   add_foreign_key "likes", "users"
   add_foreign_key "materials", "cycles"
   add_foreign_key "materials", "plugin_relations"
+  add_foreign_key "petition_plugin_information", "plugin_relations", on_delete: :cascade
+  add_foreign_key "petition_plugin_presignatures", "plugin_relations", on_delete: :cascade
+  add_foreign_key "petition_plugin_presignatures", "users", on_delete: :cascade
   add_foreign_key "reports", "comments"
   add_foreign_key "reports", "users"
   add_foreign_key "social_links", "cycles"

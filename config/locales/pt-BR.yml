@@ -10,7 +10,7 @@ pt-BR:
     - Sex
     - Sáb
     abbr_month_names:
-    - 
+    -
     - Jan
     - Fev
     - Mar
@@ -36,7 +36,7 @@ pt-BR:
       long: "%d de %B de %Y"
       short: "%d de %B"
     month_names:
-    - 
+    -
     - Janeiro
     - Fevereiro
     - Março
@@ -99,6 +99,7 @@ pt-BR:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      invalid_plugin_type: "o tipo de plugin é inválido. Plugin permitido: %{plugin_type}"
       accepted: deve ser aceito
       blank: não pode ficar em branco
       present: deve ficar em branco
@@ -205,3 +206,20 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+
+  api:
+    v2:
+      errors:
+        internal_error: Houve um error desconhecido
+
+  activerecord:
+    attributes:
+      petition_plugin/presignature:
+        plugin_relation: Relacionamento do plugin
+    models:
+      petition_plugin/presignature:
+        one: Pré assinatura
+        other: Pré assinaturas
+      plugin_relation:
+        one: Relacionamento do plugin
+        other: Relacionamentos do plugin

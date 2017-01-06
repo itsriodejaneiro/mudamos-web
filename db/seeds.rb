@@ -150,13 +150,21 @@ SocialLink.where(
   description: 'SIGA NOSSO TWITTER'
 ).first_or_create
 
+SocialLink.where(
+  provider: 'github',
+  name: 'itsriodejaneiro',
+  link: 'https://github.com/itsriodejaneiro',
+  icon_class: 'icon-github',
+  description: 'MUDAMOS no Github'
+).first_or_create
+
 seg_pub_file = File.new "#{Rails.root}/app/assets/images/IMG_9209.jpg", "r"
 
 seg_publica_cycle = Cycle.where(
   name: 'Segurança Pública',
   subdomain: 'seguranca-publica' ,
   title: 'Segurança Pública'
-).first_or_create(
+).first_or_initialize(
   about: Faker::Lorem.paragraph ,
   initial_date: Time.now,
   final_date:Time.now + 1.year,
@@ -180,21 +188,26 @@ seg_publica_cycle = Cycle.where(
 # )
 
 if seg_publica_cycle.phases.empty?
-  FactoryGirl.create(:phase,
+  phases = []
+
+  phases << FactoryGirl.build(:phase,
     cycle: seg_publica_cycle,
     initial_date: Time.zone.parse('2015-10-26 00:00T-0300'),
-    final_date: Time.zone.parse('2016-2-26 00:00T-0300'),
+    final_date: Time.zone.parse('2016-03-26 00:00T-0300'),
     name: 'Participação',
     description: 'Responda às perguntas e ajude a construir uma proposta de mudança.'
   )
 
-  FactoryGirl.create(:phase,
+  phases << FactoryGirl.build(:phase,
     cycle: seg_publica_cycle,
-    initial_date: Time.zone.parse('2016-02-29 00:00T-0300'),
-    final_date: Time.zone.parse('2016-04-29 00:00T-0300'),
+    initial_date: Time.zone.parse('2016-04-06 00:00T-0300'),
+    final_date: Time.zone.parse('2016-11-30 00:00T-0300'),
     name: 'Relatoria',
     description: 'Organização de todas contribuições em documentos que representarão o debate.'
   )
+
+  seg_publica_cycle.phases = phases
+  seg_publica_cycle.save!
 end
 
 # if ref_politica_cycle.phases.empty?
@@ -205,29 +218,13 @@ end
 #   )
 # end
 
-unless plugin_blog = Plugin.find_by_name('Blog')
-  plugin_blog = FactoryGirl.create(:plugin,
-    name:'Blog',
-    plugin_type:'Blog',
-    icon_class: ''
-  )
-end
+Rake::Task["plugins:sync"].execute
 
-unless plugin_discussao = Plugin.find_by_name('Discussão')
-  plugin_discussao = FactoryGirl.create(:plugin,
-    name:'Discussão',
-    plugin_type:'Discussão',
-    icon_class: 'discussion'
-  )
-end
-
-unless plugin_relatoria = Plugin.find_by_name('Relatoria')
-  plugin_relatoria = FactoryGirl.create(:plugin,
-    name:'Relatoria',
-    plugin_type:'Relatoria',
-    icon_class: 'compilation'
-  )
-end
+plugin_blog = Plugin.find_by_name('Blog')
+plugin_discussao = Plugin.find_by_name('Discussão')
+plugin_relatoria = Plugin.find_by_name('Relatoria')
+plugin_biblioteca = Plugin.find_by_name('Biblioteca')
+plugin_glossario = Plugin.find_by_name('Glossário')
 
 # unless plugin_rf = Plugin.find_by_name('Blog Reforma Política')
 #   plugin_rf = FactoryGirl.create(:plugin,
@@ -263,6 +260,28 @@ unless plugin_relation_relatoria_sp = PluginRelation.where(
   plugin_relation_relatoria_sp = FactoryGirl.create(:cycle_plugin_relation,
     related: Phase.where(name: 'Relatoria', cycle: seg_publica_cycle).first,
     plugin: plugin_relatoria
+  )
+end
+
+unless plugin_relation_biblioteca = PluginRelation.where(
+  related: seg_publica_cycle,
+  plugin: plugin_biblioteca
+).first
+  plugin_relation_biblioteca = FactoryGirl.create(:cycle_plugin_relation,
+    related: seg_publica_cycle,
+    plugin: plugin_biblioteca,
+    is_readonly: false
+  )
+end
+
+unless plugin_relation_glossario = PluginRelation.where(
+  related: seg_publica_cycle,
+  plugin: plugin_glossario
+).first
+  plugin_relation_glossario = FactoryGirl.create(:cycle_plugin_relation,
+    related: seg_publica_cycle,
+    plugin: plugin_glossario,
+    is_readonly: false
   )
 end
 
@@ -708,4 +727,23 @@ materials_csv.each do |row|
     description: row[7]
   )
   m.save
+end
+
+Vocabulary.find_each do |v|
+  v.update_column(:plugin_relation_id, plugin_relation_glossario.id)
+end
+
+Material.find_each do |m|
+  m.update_column(:plugin_relation_id, plugin_relation_biblioteca.id)
+end
+
+[
+  'Perfil de Cadastrados na Plataforma',
+  'Adesão dos Participantes aos Assuntos',
+  'Participação de Anônimos X Identificados'
+].each_with_index do |title, i|
+  Setting.create(
+    key: "cycle_#{plugin_relation_relatoria_sp.id}_compilation_title_#{i + 1}",
+    value: title
+  )
 end

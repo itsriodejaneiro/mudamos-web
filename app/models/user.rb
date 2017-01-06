@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
   attr_encrypted :name, :cpf, :state, :city, :alias_name, :email, key: ENV['ENCRYPTION_KEY']
 
   include PgSearch
+  include PetitionPlugin::PresignatureRelations
+
   pg_search_scope :user_search,
                   against: [
                     :encrypted_name
@@ -282,10 +284,19 @@ class User < ActiveRecord::Base
       'profile_id',
       'sub_profile_id'
     ]
+
+    [:encrypted_name, :encrypted_cpf, :encrypted_state, :encrypted_city, :encrypted_alias_name, :encrypted_email].each do |attr|
+      h = h - [attr.to_s]
+    end
+
     h.push("picture")
     h.push('anonymous_picture_url')
     h.push('profile')
     h.push('sub_profile')
+
+    [:name, :cpf, :state, :city, :alias_name, :email].each do |attr|
+      h.push(attr.to_s)
+    end
     h
   end
 

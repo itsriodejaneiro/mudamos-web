@@ -1,9 +1,9 @@
 crumb :cycles do
-  link 'Temas', admin_cycles_path
+  link 'Ciclos', admin_cycles_path
 end
 
 crumb :cycle do |c|
-  link c.name, admin_cycles_path(c)
+  link c.name, admin_cycle_path(c)
   parent :cycles
 end
 
@@ -151,6 +151,21 @@ end
 crumb :subjects do |c, pr|
   link 'Assuntos', admin_cycle_plugin_relation_subjects_path(c, pr)
   parent :cycle, c
+end
+
+crumb :petitions do |c, pr|
+  link 'Petição', admin_cycle_plugin_relation_petitions_path(c, pr)
+  parent :cycle, c
+end
+
+crumb :new_petition do |c, pr|
+  link 'Editar', admin_cycle_plugin_relation_petitions_path(c, pr)
+  parent :petitions, c, pr
+end
+
+crumb :edit_petition do |c, pr, petition|
+  link 'Editar', edit_admin_cycle_plugin_relation_petition_path(c, pr, petition)
+  parent :petitions, c, pr
 end
 
 crumb :new_subject do |c, pr|

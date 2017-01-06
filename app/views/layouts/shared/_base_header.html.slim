@@ -21,11 +21,11 @@
             i.icon-search
         ul.nav.navbar-nav.navbar-center.non-cycle
           - if params[:controller] == 'cycles' and params[:action] == 'index'
-            li= link_to 'SOBRE', '#', :'scroll-to' => '#about'
             li= link_to 'DESTAQUES', '#', :'scroll-to' => '#highlights'
+            li= link_to 'SOBRE', '#', :'scroll-to' => '#about'
           - else
-            li= link_to 'SOBRE', root_path + '#about'
             li= link_to 'DESTAQUES', root_path + '#highlights'
+            li= link_to 'SOBRE', root_path + '#about'
           li.dropdown class=("dropup" if params[:controller] == 'cycles' and params[:action] == 'index')
             = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, role: 'button' do
               | TEMAS
@@ -33,7 +33,7 @@
             ul.dropdown-menu
               - @cycles.each do |c|
                 li= link_to c.title, c
-              li= link_to 'Reforma Política do Século 21', 'https://plataformabrasil.org.br/', target: '_blank'
+              li= link_to 'Reforma Política do Século 21', 'http://plataformabrasil.org.br/', target: '_blank'
           li= link_to 'BLOG', blog_posts_path
     = render 'layouts/search_bar'
 

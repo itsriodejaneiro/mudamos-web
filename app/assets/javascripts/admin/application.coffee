@@ -42,6 +42,8 @@
 #= require admin/admin.js
 #= require cocoon
 #= requite admin/notification.js
+#= require simplemde.min
+#= require admin/init-simplemde
 
 document.expiration_default_time = 300
 
@@ -82,7 +84,7 @@ $ ->
 
     if $(this).data('tags') == true
       options['tags'] = true
-    
+
     $(this).select2 options
 
 
@@ -95,11 +97,11 @@ formatState = (opt) ->
 $ ->
   $('select.select-actions').not('#bulk-actions').change ->
     select = this
-    method = $(this).children("[value='" + $(this).val() + "']").attr('method')
+    option = $(this).children("[value='" + $(this).val() + "']")
+    method = option.attr('method')
 
     if method == '' or method == undefined
       method = 'get'
-    
 
     if method == 'delete'
       r = confirm('Você tem certeza?')
@@ -108,7 +110,7 @@ $ ->
 
     return unless r
 
-    document.start_loading()
+    document.start_loading() unless method == "copy"
 
     if $(this).val() != "" and method == 'get'
       window.location.href = $(this).val()
@@ -122,6 +124,19 @@ $ ->
           select.selectedIndex = 0
         complete: ->
           document.stop_loading()
+    else if method == 'copy'
+      temp = $("<input>")
+      $("body").append(temp)
+
+      base_url = option.data('base-url')
+      comment_share_params = option.data('comment-share-params')
+      url = base_url + "?" + comment_share_params
+
+      temp.val(url).select()
+      document.execCommand("copy")
+      temp.remove()
+
+      document.flash_message('URL copiada.', 'success')
     else
       $.ajax
         type: method,

@@ -49,6 +49,10 @@ class Phase < ActiveRecord::Base
     where{ initial_date > Time.zone.now }
   }
 
+  scope :initiated, -> {
+    where { initial_date <= Time.zone.now }
+  }
+
   def finished?
     self.final_date < Time.zone.now
   end
@@ -63,6 +67,10 @@ class Phase < ActiveRecord::Base
 
   def self.statuses
     [:finished, :in_progress, :shortly]
+  end
+
+  def self.human_statuses
+    ["Em andamento", "Em breve", "Encerrado"].freeze
   end
 
   def current_status
@@ -91,8 +99,11 @@ class Phase < ActiveRecord::Base
     end
 
     def valid_plugin_type
-      unless ["Discussão", "Relatoria"].include? self.plugin_relation.plugin.plugin_type
-        self.plugin_relation.errors.add :plugin, "deve ser do tipo discussão ou relatoria."
+      allowed_types = PluginTypeRepository.new.available_types_with_phases
+      unless allowed_types.include? self.plugin_relation.plugin.plugin_type
+        self.plugin_relation.errors.add :plugin, "deve ser do tipo #{allowed_types.join(', ')}."
+        # Adding errors to the relation, won't halt persistence
+        errors.add :base, "tipo de plugin inválido"
       end
     end
 end

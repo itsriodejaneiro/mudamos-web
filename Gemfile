@@ -29,6 +29,16 @@ gem 'paperclip'
 # gem 'paperclip-compression'
 # gem 'rspec_api_documentation'
 
+# Markdown
+gem 'redcarpet'
+
+gem 'swagger-blocks'
+gem 'rack-cors', :require => 'rack/cors'
+
+gem 'grape-entity'
+
+gem 'js-routes'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'koala'
@@ -39,6 +49,7 @@ gem 'google-api-client', :require => 'google/api_client'
 
 gem 'cpf_cnpj'
 
+gem 'libv8'
 gem 'therubyracer'
 gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 
@@ -60,6 +71,8 @@ gem "select2-rails"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'simplemde-rails'
+
 group :development, :test, :staging do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   #gem 'byebug'
@@ -69,7 +82,10 @@ group :development, :test, :staging do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'rspec'
   gem 'rspec-rails'
+  gem 'rspec-its'
+  gem 'rspec-collection_matchers'
   gem 'pry-rails'
 
   gem 'dotenv-rails'

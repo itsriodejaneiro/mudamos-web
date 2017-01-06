@@ -7,9 +7,10 @@
     .row
       .col-xs-12
         .card-module
-          .filters.clearfix
-            .pull-right
-              = link_to 'Adicionar pergunta', [:new, :admin, @cycle, @plugin_relation, :subject], class: 'btn'
+          - if current_admin_user.Master?
+            .filters.clearfix
+              .pull-right
+                = link_to 'Adicionar pergunta', [:new, :admin, @cycle, @plugin_relation, :subject], class: 'btn'
 
 .row
   .col-xs-8
@@ -21,15 +22,17 @@
           tr
             th Pergunta
             th Comentários
-            th Ações
+            - if current_admin_user.Master?
+              th Ações
         tbody
           - @subjects.each do |s|
             tr
               td= link_to s.title, [:admin, @cycle, @plugin_relation, s]
               td= link_to s.comments.count, [:admin, @cycle, @plugin_relation, s]
-              td
-                = link_to 'Editar', [:edit, :admin, @cycle, @plugin_relation, s]
-                = link_to 'Remover', [:admin, @cycle, @plugin_relation, s], method: :delete, style: "margin-left: 10px;", data: { confirm: 'Tem certeza que deseja remover o assunto?' }
+              - if current_admin_user.Master?
+                td
+                  = link_to 'Editar', [:edit, :admin, @cycle, @plugin_relation, s]
+                  = link_to 'Remover', [:admin, @cycle, @plugin_relation, s], method: :delete, style: "margin-left: 10px;", data: { confirm: 'Tem certeza que deseja remover o assunto?' }
       = render 'admin/shared/pagination', collection: @subjects
 
   .col-xs-4

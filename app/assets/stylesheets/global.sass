@@ -1447,6 +1447,52 @@ section#static_page
     margin-bottom: 5px
 
 
+#petition-index
+  padding-top: $navbar-height + 90px
+  padding-bottom: 50px
+
+  .call-wrapper
+    margin-top: 40px
+
+  a.download-document
+    color: $gray-dark
+    font-size: 16px
+    text-decoration: none
+
+    .icon-baixeaqui
+      display: inline-block
+      margin-right: 10px
+      transform: rotate(90deg)
+
+  .more-details-row
+    margin-top: 50px
+
+  a.toggle-details
+    background-color: white
+    padding-right: 10px
+
+    &.area-open
+      i
+        transform: rotate(90deg)
+
+    i
+      display: inline-block
+      margin-right: 10px
+
+  hr.toggle-details
+    margin-top: -10px
+
+  .plip-row
+    display: none
+    margin-top: 30px
+
+    .plip-title
+      font-size: 18px
+
+  @media (max-width: $screen-sm-min)
+    .share-col
+      margin-top: 15px
+
 #subjects-index
   background-color: $color-grid-dark-grey
   padding-top: $navbar-height + 90px
@@ -2482,7 +2528,7 @@ a.copy-to-clipboard
       width: 450px
       padding: 10px 60px
       color: #f86048
-      font-size: 16px
+      font-size: 20px
       transition: 0.3s all ease
     li.active
       margin-left: -450px
@@ -2528,6 +2574,7 @@ a.copy-to-clipboard
         margin-left: 99px
       p
         margin: 10px 0px 0px 0px
+        font-family: $font-family-sans-serif
   .report-footer
     padding: 30px 0px 60px 0px
     .arrow-area
@@ -2624,3 +2671,99 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
       max-width: 700px
       .hover-box
         width: 720px
+
+.call-to-action
+  text-align: center
+  a.main-call
+    border: 5px solid $color-dark-grey
+    font-size: 40px
+    color: $color-dark-grey
+    display: inline-block
+    padding: 25px 15px
+    text-transform: uppercase
+    max-width: 700px
+    height: 180px
+    font-weight: 700
+    overflow: hidden
+    transition: 0.3s all ease
+    cursor: pointer
+    .hover-box
+      width: 720px
+      height: 300px
+      margin-left: -20px
+      transition: 0.3s all ease
+      margin-top: 200px
+    .action-tail
+      position: absolute
+      width: 20px
+      height: 20px
+      border-top: 80px solid #CA3030
+      border-right: 60px solid transparent
+      top: 175px
+      left: 360px
+      z-index: 1
+      &:after
+        content: ""
+        position: absolute
+        width: 20px
+        height: 20px
+        border-top: 64px solid #FFFFFF
+        border-right: 49px solid transparent
+        top: -82px
+        margin-left: 5px
+        z-index: 0
+        transition: 0.05s all ease
+    &:hover
+      a.main-call
+      color: #FFF
+      .hover-box
+        margin-top: -165px
+      .action-tail:after
+        border-top: 0px solid #FFFFFF
+  a.action-icon
+    text-align: left
+    display: block
+    margin: 80px auto 0px
+    width: 550px
+
+  &.plip-sign
+    margin-bottom: 75px
+    a.main-call
+      width: 550px
+      height: 170px
+
+      .action-tail
+        top: 165px
+
+      @media (max-width: $screen-xs-max)
+        width: 320px
+        height: 280px
+
+        .action-tail
+          top: 275px
+          left: 30%
+
+      &:hover
+        .hover-box
+          margin-top: -275px
+
+.fb-share-button, .twitter-share-button
+  vertical-align: top
+
+.medium-gap
+  margin-top: 50px
+
+.store-badge
+  display: inline-block
+
+  &.app
+    background-image: image-url("app-store-badge.svg")
+    height: 40px
+    width: 135px
+
+  &.play
+    background-image: image-url("google-play-badge.png")
+    background-size: 100%
+    margin-top: -10px
+    height: 59px
+    width: 153px

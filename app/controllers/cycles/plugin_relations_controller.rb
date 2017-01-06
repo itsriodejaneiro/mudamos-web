@@ -1,5 +1,11 @@
 class Cycles::PluginRelationsController < ApplicationController
 
+  attr_writer :presignature_repository
+
+  def presignature_repository
+    @presignature_repository ||= PetitionPlugin::PresignatureRepository.new
+  end
+
   def show
     @cycle = Cycle.find params[:cycle_id]
     @plugin_relation = @cycle.plugin_relations.find params[:id]
@@ -17,6 +23,9 @@ class Cycles::PluginRelationsController < ApplicationController
           send_csv @cycle.comments.to_public_csv, "comentarios-#{@cycle.slug}"
         }
       end
+    when 'Petição'
+      set_petition_info
+      render 'petition'
     when 'Biblioteca'
       # redirect_to [:admin, @cycle, @plugin_relation, :materials]
     when 'Glossário'
@@ -32,7 +41,10 @@ class Cycles::PluginRelationsController < ApplicationController
       range_start = @cycle.initial_date
       range_end = @cycle.final_date
 
-      # ChartableCache.clear_cache @cycle
+      if params[:clear_cache] == true or params[:clear_cache] == 'true'
+        ChartableCache.clear_cache @cycle
+      end
+      
       ChartableCache.set_cache range_start, range_end, @cycle
 
       @user_profile_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_profile_count_in_range")
@@ -46,4 +58,25 @@ class Cycles::PluginRelationsController < ApplicationController
       @subjects_users_profile_anonymous_count_in_range = Rails.cache.fetch("#{@cycle.slug}_subjects_users_profile_anonymous_count_in_range")
     end
 
+    def set_petition_info
+      petition
+      phase
+      user_signed_petition
+    end
+
+    def petition
+      @petition ||= phase.plugin_relation.petition_information
+    end
+
+    def phase
+      @phase ||= @plugin_relation.related
+    end
+
+    def user_signed_petition
+      if @user_signed_petition.nil? && current_user
+        @user_signed_petition = presignature_repository.user_signed_petition?(current_user.id, @plugin_relation.id)
+      end
+
+      @user_signed_petition
+    end
 end
