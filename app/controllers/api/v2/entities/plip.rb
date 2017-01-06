@@ -9,6 +9,9 @@ module Api
         expose :id
         expose :document_url
         expose :content
+        expose :presentation
+        expose :signatures_required
+        expose :call_to_action
         expose :cycle, using: Api::V2::Entities::Cycle
         expose :phase, using: Api::V2::Entities::Phase
 
@@ -23,6 +26,18 @@ module Api
           end
 
           property :content do
+            key :type, :string
+          end
+
+          property :presentation do
+            key :type, :string
+          end
+
+          property :signatures_required do
+            key :type, :string
+          end
+
+          property :call_to_action do
             key :type, :string
           end
 

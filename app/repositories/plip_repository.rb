@@ -20,7 +20,10 @@ class PlipRepository
 
       Plip.new document_url: petition.document_url,
                content: petition.body,
-               phase: phase
+               phase: phase,
+               presentation: petition.presentation,
+               signatures_required: petition.signatures_required,
+               call_to_action: petition.call_to_action
     end
 
     Pagination.new items: plips, page: page, limit: limit, has_next: has_next
