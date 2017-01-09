@@ -30,6 +30,11 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
   end
 
   def create
+    if @plugin_relation.petition_detail
+      flash[:error] = "Esta petição já foi salva por outra pessoa, tente novamente clicando em Editar Petição"
+      return redirect_to [:admin, @cycle, @plugin_relation, :petitions]
+    end
+
     @petition = PetitionPlugin::Detail.new(plugin_relation_id: @plugin_relation.id)
     @petition.update_attributes petition_params
 
