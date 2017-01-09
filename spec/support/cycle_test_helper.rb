@@ -22,7 +22,7 @@ module CycleTestHelper
       plugin_relation = FactoryGirl.build(:base_plugin_relation, plugin: plugin)
       
       if phase_attrs[:with_petition_information]
-        plugin_relation.petition_information = FactoryGirl.build(:petition_plugin_information, plugin_relation: plugin_relation)
+        plugin_relation.petition_detail = FactoryGirl.build(:petition_plugin_detail, plugin_relation: plugin_relation)
       end
 
       phase = FactoryGirl.build(:phase, cycle: cycle, plugin_relation: plugin_relation)

@@ -3,15 +3,16 @@ class PlipRepository
 
   def all_initiated(page: 1, limit: 10)
 
-    # TODO Still need to fix this query, I think we need to add the version on the query
     phases = Phase
       .initiated
       .includes(:plugin_relation)
       .includes(:cycle)
       .joins(plugin_relation: :plugin)
       .joins(plugin_relation: :petition_detail)
+      .joins(plugin_relation: { petition_detail: :petition_detail_versions })
       .where(plugin_relation: { plugin: { plugin_type: PluginTypeRepository::ALL_TYPES[:petition] }})
       .where.not(petition_plugin_details: { id: nil })
+      .where.not(petition_plugin_detail_versions: { id: nil })
       .page(page)
       .per(limit)
 
@@ -21,7 +22,7 @@ class PlipRepository
       petition = phase.plugin_relation.petition_detail
 
       Plip.new document_url: petition.current_version.document_url,
-        content: petition.current_version.body,
+               content: petition.current_version.body,
                phase: phase,
                presentation: petition.presentation,
                signatures_required: petition.signatures_required,
