@@ -21,7 +21,8 @@ class PlipRepository
     plips = phases.map do |phase|
       petition = phase.plugin_relation.petition_detail
 
-      Plip.new document_url: petition.current_version.document_url,
+      Plip.new id: petition.current_version.id,
+               document_url: petition.current_version.document_url,
                content: petition.current_version.body,
                phase: phase,
                presentation: petition.presentation,
