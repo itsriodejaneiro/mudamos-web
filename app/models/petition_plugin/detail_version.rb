@@ -16,6 +16,5 @@ class PetitionPlugin::DetailVersion < ActiveRecord::Base
 
   belongs_to :petition_plugin_detail
 
-  validates :document_url, presence: true
   validates :body, presence: true
 end

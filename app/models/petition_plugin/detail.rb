@@ -27,6 +27,6 @@ class PetitionPlugin::Detail < ActiveRecord::Base
   validate :plugin_type_petition
 
   def current_version
-    petition_detail_versions.last
+    petition_detail_versions.where(published: true).last
   end
 end

@@ -18,9 +18,11 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
     current_version = @petition.current_version
     if current_version.nil? || current_version.body != petition_versionable_params[:body]
       @petition.petition_detail_versions << PetitionPlugin::DetailVersion.new(petition_versionable_params)
+
     end
 
     if @petition.save
+      enqueue_pdf_generation
       flash[:success] = "Petição salva com sucesso."
       redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     else
@@ -41,6 +43,7 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
     @petition.petition_detail_versions << PetitionPlugin::DetailVersion.new(petition_versionable_params)
 
     if @petition.save
+      enqueue_pdf_generation
       flash[:success] = "Petição salva com sucesso."
       redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     else
@@ -59,5 +62,10 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
   def petition_versionable_params
     params.require(:petition_plugin_detail).require(:current_version)
       .permit(:document_url, :body)
+  end
+
+  def enqueue_pdf_generation
+    version = @petition.petition_detail_versions.where(published: false).first
+    PetitionPdfGenerationWorker.perform_async id: version.id
   end
 end
