@@ -65,7 +65,7 @@ class Cycles::PluginRelationsController < ApplicationController
     end
 
     def petition
-      @petition ||= phase.plugin_relation.petition_information
+      @petition ||= phase.plugin_relation.petition_detail
     end
 
     def phase
