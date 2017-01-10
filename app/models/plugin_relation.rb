@@ -54,6 +54,14 @@ class PluginRelation < ActiveRecord::Base
 
   after_create :create_compilation_file, if: -> { self.plugin.present? and self.plugin.plugin_type == 'Relatoria' }
 
+  def ready?
+    if plugin.plugin_type == 'Petição'
+      petition_detail.present? && petition_detail.published_version.present?
+    else
+      true
+    end
+  end
+
   private
 
     def create_compilation_file
