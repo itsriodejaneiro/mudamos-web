@@ -8,6 +8,9 @@ FactoryGirl.define do
     call_to_action 'Assine o projeto'
     signatures_required 4000
     presentation 'Apresentação'
-    petition_detail_versions { [ FactoryGirl.build(:petition_plugin_detail_version) ] }
+
+    trait :with_version do
+      petition_detail_versions { [ FactoryGirl.build(:petition_plugin_detail_version) ] }
+    end
   end
 end

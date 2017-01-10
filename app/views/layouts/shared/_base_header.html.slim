@@ -28,7 +28,7 @@
             li= link_to 'SOBRE', root_path + '#about'
           li.dropdown class=("dropup" if params[:controller] == 'cycles' and params[:action] == 'index')
             = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, role: 'button' do
-              | TEMAS
+              | CICLOS 
               span.caret
             ul.dropdown-menu
               - @cycles.each do |c|
