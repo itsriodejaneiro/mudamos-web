@@ -46,7 +46,7 @@ section.container-fluid#petition-index
       .col-xs-12.col-sm-2.share-col
         a href="https://twitter.com/share" class="twitter-share-button" data-size="small" data-lang="pt" data-show-count="true"
       .col-xs-12.col-sm-4.share-col
-        a.download-document href=@petition.current_version.document_url target="_blank"
+        a.download-document href=@petition.published_version.document_url target="_blank"
           i.icon-baixeaqui style="color: #{@cycle.color};"
           span Faça o Download da PLIP
 
@@ -62,4 +62,4 @@ section.container-fluid#petition-index
       .col-xs-12
         h2.section-title.plip-title style="border-color: #{@cycle.color};" Detalhes sobre o Projeto de Lei de Iniciativa Popular
 
-        .petition-container.plip-body= markdown @petition.current_version.body
+        .petition-container.plip-body= markdown @petition.published_version.body

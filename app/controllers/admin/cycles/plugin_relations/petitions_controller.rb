@@ -60,8 +60,7 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
   end
 
   def petition_versionable_params
-    params.require(:petition_plugin_detail).require(:current_version)
-      .permit(:document_url, :body)
+    params.require(:petition_plugin_detail).require(:current_version).permit(:body)
   end
 
   def enqueue_pdf_generation

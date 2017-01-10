@@ -39,8 +39,11 @@
          h3 Texto completo 
        .filters.clearfix
          .pull-right
-           = link_to 'Baixar documento', @petition.current_version.document_url, class: 'btn', target: '_blank' if @petition.current_version.document_url if @petition.current_version && @petition.current_version.published
-       - if @petition.current_version && @petition.current_version.published && @petition.current_version.body
+           - if @petition.published_version
+             = link_to 'Baixar documento', @petition.published_version.document_url, class: 'btn', target: '_blank'
+           - else
+             = 'Nenhuma versão publicada ainda'
+       - if @petition.current_version
          .plip-body= markdown @petition.current_version.body
 - else
   = 'Petição em branco, edite para adicionar conteúdo.'
