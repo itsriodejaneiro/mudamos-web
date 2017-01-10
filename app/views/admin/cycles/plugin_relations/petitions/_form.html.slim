@@ -6,13 +6,14 @@
       = f.input :signatures_required, as: :number, label: 'Número de assinaturas necessárias'
   .row
     .col-xs-12
-      = f.input :document_url, as: :url, label: 'URL do documento'
-  .row
-    .col-xs-12
       = f.input :presentation, as: :text, label: 'Apresentaçao'
-  .row
-    .col-xs-12
-      = f.input :body, as: :text, label: 'Texto completo', input_html: { class: 'markdown-input' }
+  = f.fields_for :current_version, @petition.current_version do |version_form|
+    .row
+      .col-xs-12
+        = version_form.input :document_url, as: :url, label: 'URL do documento'
+    .row
+      .col-xs-12
+        = version_form.input :body, as: :text, label: 'Texto completo', input_html: { class: 'markdown-input' }
   .row
     .col-xs-12
       button.btn.btn-with-bg= 'Salvar'

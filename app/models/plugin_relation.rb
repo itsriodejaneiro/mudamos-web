@@ -19,7 +19,7 @@ class PluginRelation < ActiveRecord::Base
 
   extend FriendlyId
   include PetitionPlugin::PresignatureRelations
-  include PetitionPlugin::InformationRelations
+  include PetitionPlugin::DetailRelations
 
   friendly_id :plugin_name, use: :scoped, scope: [:related_id, :related_type]
 

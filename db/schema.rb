@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170103194805) do
+ActiveRecord::Schema.define(version: 20170110135857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -291,7 +291,19 @@ ActiveRecord::Schema.define(version: 20170103194805) do
 
   add_index "permissions", ["deleted_at"], name: "index_permissions_on_deleted_at", using: :btree
 
-  create_table "petition_plugin_information", force: :cascade do |t|
+  create_table "petition_plugin_detail_versions", force: :cascade do |t|
+    t.integer  "petition_plugin_detail_id", null: false
+    t.string   "document_url",              null: false
+    t.text     "body",                      null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.datetime "deleted_at"
+  end
+
+  add_index "petition_plugin_detail_versions", ["deleted_at"], name: "index_petition_plugin_detail_versions_on_deleted_at", using: :btree
+  add_index "petition_plugin_detail_versions", ["petition_plugin_detail_id"], name: "idx_petition_plg_detail_versions_on_petition_plg_detail_id", using: :btree
+
+  create_table "petition_plugin_details", force: :cascade do |t|
     t.integer  "plugin_relation_id",  null: false
     t.datetime "deleted_at"
     t.datetime "created_at",          null: false
@@ -299,12 +311,10 @@ ActiveRecord::Schema.define(version: 20170103194805) do
     t.string   "call_to_action",      null: false
     t.integer  "signatures_required", null: false
     t.text     "presentation",        null: false
-    t.string   "document_url",        null: false
-    t.text     "body",                null: false
   end
 
-  add_index "petition_plugin_information", ["deleted_at"], name: "index_petition_plugin_information_on_deleted_at", using: :btree
-  add_index "petition_plugin_information", ["plugin_relation_id"], name: "index_petition_plugin_information_on_plugin_relation_id", using: :btree
+  add_index "petition_plugin_details", ["deleted_at"], name: "index_petition_plugin_details_on_deleted_at", using: :btree
+  add_index "petition_plugin_details", ["plugin_relation_id"], name: "index_petition_plugin_details_on_plugin_relation_id", using: :btree
 
   create_table "petition_plugin_presignatures", force: :cascade do |t|
     t.integer  "user_id",            null: false
@@ -579,7 +589,8 @@ ActiveRecord::Schema.define(version: 20170103194805) do
   add_foreign_key "likes", "users"
   add_foreign_key "materials", "cycles"
   add_foreign_key "materials", "plugin_relations"
-  add_foreign_key "petition_plugin_information", "plugin_relations", on_delete: :cascade
+  add_foreign_key "petition_plugin_detail_versions", "petition_plugin_details", on_delete: :cascade
+  add_foreign_key "petition_plugin_details", "plugin_relations", on_delete: :cascade
   add_foreign_key "petition_plugin_presignatures", "plugin_relations", on_delete: :cascade
   add_foreign_key "petition_plugin_presignatures", "users", on_delete: :cascade
   add_foreign_key "reports", "comments"

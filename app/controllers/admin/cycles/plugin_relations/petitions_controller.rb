@@ -1,21 +1,20 @@
 class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationController
   def index
-    @petition = @plugin_relation.petition_information
+    @petition = @plugin_relation.petition_detail
   end
 
   def new
-    @petition = PetitionPlugin::Information.new
+    @petition = PetitionPlugin::Detail.new
   end
 
   def edit
-    @petition = @plugin_relation.petition_information
+    @petition = @plugin_relation.petition_detail
   end
 
   def update
-    @petition = @plugin_relation.petition_information
-    @petition.update_attributes petition_params
+    @petition = @plugin_relation.petition_detail
 
-    if @petition.save
+    if detail_updater.perform @petition, petition_params, petition_versionable_params
       flash[:success] = "Petição salva com sucesso."
       redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     else
@@ -25,10 +24,14 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
   end
 
   def create
-    @petition = PetitionPlugin::Information.new(plugin_relation_id: @plugin_relation.id)
-    @petition.update_attributes petition_params
+    if @plugin_relation.petition_detail
+      flash[:error] = "Esta petição já foi salva por outra pessoa, tente novamente clicando em Editar Petição"
+      return redirect_to [:admin, @cycle, @plugin_relation, :petitions]
+    end
 
-    if @petition.save
+    @petition = PetitionPlugin::Detail.new(plugin_relation_id: @plugin_relation.id)
+
+    if detail_updater.perform @petition, petition_params, petition_versionable_params
       flash[:success] = "Petição salva com sucesso."
       redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     else
@@ -40,7 +43,16 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
   private
 
   def petition_params
-    params.require(:petition_plugin_information)
-      .permit(:call_to_action, :signatures_required, :document_url, :presentation, :body)
+    params.require(:petition_plugin_detail)
+      .permit(:call_to_action, :signatures_required, :presentation)
+  end
+
+  def petition_versionable_params
+    params.require(:petition_plugin_detail).require(:current_version)
+      .permit(:document_url, :body)
+  end
+
+  def detail_updater
+    @detail_updater ||= PetitionPlugin::DetailUpdater.new
   end
 end

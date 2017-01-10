@@ -1,4 +1,8 @@
 class Plip
+  # @!attribute [rw] id
+  #   @return [Number]
+  attr_accessor :id
+
   # @!attribute [rw] document_url
   #   @return [String]
   attr_accessor :document_url
@@ -26,7 +30,8 @@ class Plip
   # @param document_url [String]
   # @param content [String]
   # @param phase [Phase]
-  def initialize(document_url:, content:, phase:, presentation:, signatures_required:, call_to_action:)
+  def initialize(id: ,document_url:, content:, phase:, presentation:, signatures_required:, call_to_action:)
+    @id = id
     @document_url = document_url
     @content = content
     @phase = phase
@@ -38,11 +43,5 @@ class Plip
   # @return [Cycle]
   def cycle
     phase.cycle
-  end
-
-  # Mocked plip id.
-  # This represents the plip version
-  def id
-    1
   end
 end
