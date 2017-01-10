@@ -66,6 +66,6 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
 
   def enqueue_pdf_generation
     version = @petition.petition_detail_versions.where(published: false).first
-    PetitionPdfGenerationWorker.perform_async id: version.id
+    PetitionPdfGenerationWorker.perform_async id: version.id if version
   end
 end

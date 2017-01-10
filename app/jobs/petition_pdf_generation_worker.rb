@@ -1,21 +1,20 @@
 class PetitionPdfGenerationWorker
   include Shoryuken::Worker
-  shoryuken_options queue: Rails.application.secrets.queues['petition_pdf_generation']
+  shoryuken_options queue: Rails.application.secrets.queues['petition_pdf_generation'], auto_delete: true
+
+  attr_reader :petition_pdf_service
+
+  def initialize(petition_pdf_service: PetitionPdfService.new)
+    @petition_pdf_service = petition_pdf_service
+  end
 
   def perform(sqs_msg, body)
     petition_detail_version_id = JSON.parse(body)['id']
+    puts "Processing plugin detail version: #{petition_detail_version_id}"
 
+    version = PetitionPlugin::DetailVersion.find petition_detail_version_id
 
-    puts petition_detail_version_id
-
-    petition_detail_version = PetitionPlugin::DetailVersion.find petition_detail_version_id
-    pdf = Kramdown::Document.new(petition_detail_version.body).to_pdf
-
-    s3 = Aws::S3::Resource.new
-    obj = s3.bucket(Rails.application.secrets.buckets['petition_pdf']).object("#{petition_detail_version_id}.pdf")
-    metadata = obj.put(body: pdf)
-
-    document_url = "teste"#metadata.url
-    petition_detail_version.update published: true, document_url: document_url
+    document_url = petition_pdf_service.generate(version) 
+    version.update published: true, document_url: document_url
   end
 end
