@@ -10,7 +10,7 @@ class PetitionPdfGenerationWorker
 
   def perform(sqs_msg, body)
     petition_detail_version_id = JSON.parse(body)['id']
-    puts "Processing plugin detail version: #{petition_detail_version_id}"
+    Rails.logger.info "Processing plugin detail version: #{petition_detail_version_id}"
 
     version = PetitionPlugin::DetailVersion.find petition_detail_version_id
 
