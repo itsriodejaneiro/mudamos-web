@@ -13,6 +13,7 @@ class PlipRepository
       .where(plugin_relation: { plugin: { plugin_type: PluginTypeRepository::ALL_TYPES[:petition] }})
       .where.not(petition_plugin_details: { id: nil })
       .where.not(petition_plugin_detail_versions: { id: nil })
+      .where(petition_plugin_detail_versions: { published: true })
       .page(page)
       .per(limit)
 
@@ -22,8 +23,8 @@ class PlipRepository
       petition = phase.plugin_relation.petition_detail
 
       Plip.new id: petition.current_version.id,
-               document_url: petition.current_version.document_url,
-               content: petition.current_version.body,
+               document_url: petition.published_version.document_url,
+               content: petition.published_version.body,
                phase: phase,
                presentation: petition.presentation,
                signatures_required: petition.signatures_required,
