@@ -1,8 +1,9 @@
 require "rails_helper"
 
 RSpec.describe PetitionPdfGenerationWorker do
-  let(:petition_pdf_service) { spy }
-  let(:worker) { described_class.new petition_pdf_service: petition_pdf_service }
+  let(:petition_pdf_service) { instance_spy PetitionPdfService }
+  let(:detail_version_repository) { instance_spy PetitionPlugin::DetailVersionRepository }
+  let(:worker) { described_class.new petition_pdf_service: petition_pdf_service, repository: detail_version_repository }
 
   describe "#perform" do
     let!(:cycle) { create_cycle_with_phase phases: [{ plugin_type: :petition }] }
@@ -14,9 +15,12 @@ RSpec.describe PetitionPdfGenerationWorker do
 
     subject { worker.perform nil, "{ \"id\": #{version.id} }" }
 
-    before { allow(petition_pdf_service).to receive(:generate).and_return document_url }
+    before do
+      allow(petition_pdf_service).to receive(:generate).and_return document_url
+      allow(detail_version_repository).to receive(:find_by_id!).with(version.id).and_return(version)
+    end
 
-    it "generates the pdf and publishs the version" do
+    it "generates the pdf and publishes the version" do
 
       aggregate_failures do
         subject
@@ -29,12 +33,6 @@ RSpec.describe PetitionPdfGenerationWorker do
       subject { worker.perform nil, "{" }
 
       it { expect { subject }.to raise_error JSON::ParserError }
-    end
-
-    context "when the record does not exists" do
-      subject { worker.perform nil, "{ \"id\": -1 }" }
-
-      it { expect { subject }.to raise_error ActiveRecord::RecordNotFound }
     end
   end
 end
