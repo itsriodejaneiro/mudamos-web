@@ -39,6 +39,17 @@ Follow the instructions, and use the created user to access the admin area.
   - 'AWS_SECRET_ACCESS_KEY': AWS secret access key used to access the aws resources
   - 'AWS_REGION': The region where the AWS resources are
 
+### Queue configurations
+
+## Petition pdf generation
+
+Recommended values:
+ * Default Visibility Timeout: 60 secs
+ * Message Retention Period: 4 days (SQS default)
+ * Maximum Message Size: 256 KB (SQS default)
+ * Delivery Delay: 0 secs (SQS default)
+ * Receive Message Wait Time: 0 secs (SQS default)
+
 ### Running the workers
 
 `bundle exec shoryuken -C config/shoryuken.yml -R`
