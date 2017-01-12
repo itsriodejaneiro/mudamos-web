@@ -6,13 +6,12 @@ RSpec.describe PetitionPdfGenerationWorker do
   let(:worker) { described_class.new petition_pdf_service: petition_pdf_service, repository: detail_version_repository }
 
   describe "#perform" do
-    let(:version) { instance_spy PetitionPlugin::Detail }
+    let(:version) { spy PetitionPlugin::Detail.new, id: 1 }
 
     let(:document_url) { "https://teste.s3-us-west-2.amazonaws.com/seguranca-publica-peticao-1-1.pdf" }
 
     before do
       allow(petition_pdf_service).to receive(:generate).and_return document_url
-      allow(version).to receive(:id).and_return 1
       allow(detail_version_repository).to receive(:find_by_id!).with(version.id).and_return(version)
     end
 
