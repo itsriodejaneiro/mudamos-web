@@ -92,6 +92,7 @@ group :development, :test, :staging do
   gem 'rspec-its'
   gem 'rspec-collection_matchers'
   gem 'pry-rails'
+  gem 'pry-nav'
 
   gem 'dotenv-rails'
 end

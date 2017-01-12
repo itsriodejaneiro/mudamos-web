@@ -6,27 +6,21 @@ RSpec.describe PetitionPdfGenerationWorker do
   let(:worker) { described_class.new petition_pdf_service: petition_pdf_service, repository: detail_version_repository }
 
   describe "#perform" do
-    let!(:cycle) { create_cycle_with_phase phases: [{ plugin_type: :petition }] }
-    let!(:phase) { cycle.phases.first }
-    let!(:detail) { create :petition_plugin_detail, plugin_relation: phase.plugin_relation }
-    let!(:version) { create :petition_plugin_detail_version, petition_plugin_detail: detail, published: false }
+    let(:version) { instance_spy PetitionPlugin::Detail }
 
     let(:document_url) { "https://teste.s3-us-west-2.amazonaws.com/seguranca-publica-peticao-1-1.pdf" }
 
-    subject { worker.perform nil, "{ \"id\": #{version.id} }" }
-
     before do
       allow(petition_pdf_service).to receive(:generate).and_return document_url
+      allow(version).to receive(:id).and_return 1
       allow(detail_version_repository).to receive(:find_by_id!).with(version.id).and_return(version)
     end
 
-    it "generates the pdf and publishes the version" do
+    subject { worker.perform nil, "{ \"id\": #{version.id} }" }
 
-      aggregate_failures do
-        subject
-        expect(version.reload.published).to eq true
-        expect(version.reload.document_url).to eq document_url
-      end
+    it "generates the pdf and publishes the version" do
+      subject
+      expect(version).to have_received(:update).with(published: true, document_url: document_url)
     end
 
     context "when the body is invalid" do
