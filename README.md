@@ -29,3 +29,27 @@ Follow the instructions, and use the created user to access the admin area.
  1 - Run `gem install mailcatcher`
  2 - Run `mailcatcher`
  3 - Go to `http://localhost:1080/`
+
+### Environment variables
+        
+  - 'PETITION_PDF_GENERATION_QUEUE': Name of the sqs queue used for the generation of the PDFs of the petitions
+  - 'PETITION_PDF_GENERATION_QUEUE_PRIORITY': The priority of the sqs queue for the generation of the PDFs of the petitions
+  - 'PETITION_PDF_BUCKET': Name of the bucket where the petition's pdfs are stored
+  - 'AWS_ACCESS_KEY_ID': AWS access key id used to access the aws resources
+  - 'AWS_SECRET_ACCESS_KEY': AWS secret access key used to access the aws resources
+  - 'AWS_REGION': The region where the AWS resources are
+
+### Queue configurations
+
+## Petition pdf generation
+
+Recommended values:
+ * Default Visibility Timeout: 60 secs
+ * Message Retention Period: 4 days (SQS default)
+ * Maximum Message Size: 256 KB (SQS default)
+ * Delivery Delay: 0 secs (SQS default)
+ * Receive Message Wait Time: 0 secs (SQS default)
+
+### Running the workers
+
+`bundle exec shoryuken -C config/shoryuken.yml -R`

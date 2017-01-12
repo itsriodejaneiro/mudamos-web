@@ -58,11 +58,11 @@ class Phase < ActiveRecord::Base
   end
 
   def in_progress?
-    (self.initial_date <= Time.zone.now) and (self.final_date >= Time.zone.now)
+    ((self.initial_date <= Time.zone.now) and (self.final_date >= Time.zone.now)) && self.plugin_relation.ready?
   end
 
   def shortly?
-    self.initial_date > Time.zone.now
+    self.initial_date > Time.zone.now || !self.plugin_relation.ready?
   end
 
   def self.statuses

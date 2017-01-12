@@ -72,6 +72,11 @@ gem "select2-rails"
 # gem 'capistrano-rails', group: :development
 
 gem 'simplemde-rails'
+gem 'prawn'
+gem 'prawn-table'
+gem 'kramdown'
+gem 'shoryuken'
+gem 'aws-sdk', '~> 2'
 
 group :development, :test, :staging do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -87,6 +92,7 @@ group :development, :test, :staging do
   gem 'rspec-its'
   gem 'rspec-collection_matchers'
   gem 'pry-rails'
+  gem 'pry-nav'
 
   gem 'dotenv-rails'
 end

@@ -1,0 +1,5 @@
+concurrency: <%= ENV["SHORYUKEN_CONCURRENCY"] %>
+delay: <%= ENV["SHORYUKEN_DELAY"] %>
+queues:
+  # [ queue_name, priority ]
+  - [ <%= ENV["PETITION_PDF_GENERATION_QUEUE"] %>, <%= ENV["PETITION_PDF_GENERATION_QUEUE_PRIORITY"] || 1 %> ]

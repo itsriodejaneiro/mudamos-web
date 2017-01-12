@@ -29,4 +29,8 @@ class PetitionPlugin::Detail < ActiveRecord::Base
   def current_version
     petition_detail_versions.last
   end
+
+  def published_version
+    petition_detail_versions.where(published: true).last
+  end
 end

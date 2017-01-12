@@ -292,12 +292,13 @@ ActiveRecord::Schema.define(version: 20170110135857) do
   add_index "permissions", ["deleted_at"], name: "index_permissions_on_deleted_at", using: :btree
 
   create_table "petition_plugin_detail_versions", force: :cascade do |t|
-    t.integer  "petition_plugin_detail_id", null: false
-    t.string   "document_url",              null: false
-    t.text     "body",                      null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "petition_plugin_detail_id",                 null: false
+    t.string   "document_url"
+    t.text     "body",                                      null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.datetime "deleted_at"
+    t.boolean  "published",                 default: false
   end
 
   add_index "petition_plugin_detail_versions", ["deleted_at"], name: "index_petition_plugin_detail_versions_on_deleted_at", using: :btree

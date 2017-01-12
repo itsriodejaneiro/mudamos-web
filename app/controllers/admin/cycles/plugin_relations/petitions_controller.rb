@@ -14,7 +14,9 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
   def update
     @petition = @plugin_relation.petition_detail
 
-    if detail_updater.perform @petition, petition_params, petition_versionable_params
+    response = detail_updater.perform @petition, petition_params, petition_body
+    if response.success
+      enqueue_pdf_generation response
       flash[:success] = "Petição salva com sucesso."
       redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     else
@@ -31,7 +33,9 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
 
     @petition = PetitionPlugin::Detail.new(plugin_relation_id: @plugin_relation.id)
 
-    if detail_updater.perform @petition, petition_params, petition_versionable_params
+    response = detail_updater.perform @petition, petition_params, petition_body
+    if response.success
+      enqueue_pdf_generation response
       flash[:success] = "Petição salva com sucesso."
       redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     else
@@ -47,9 +51,12 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
       .permit(:call_to_action, :signatures_required, :presentation)
   end
 
-  def petition_versionable_params
-    params.require(:petition_plugin_detail).require(:current_version)
-      .permit(:document_url, :body)
+  def petition_body 
+    params.require(:petition_plugin_detail).require(:current_version).permit(:body)[:body]
+  end
+
+  def enqueue_pdf_generation(use_case_response)
+    PetitionPdfGenerationWorker.perform_async id: use_case_response.version.id if use_case_response.version
   end
 
   def detail_updater

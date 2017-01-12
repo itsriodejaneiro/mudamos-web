@@ -14,8 +14,7 @@
 class PetitionPlugin::DetailVersion < ActiveRecord::Base
   acts_as_paranoid
 
-  belongs_to :petition_plugin_detail
+  belongs_to :petition_plugin_detail, class_name: 'PetitionPlugin::Detail'
 
-  validates :document_url, presence: true
   validates :body, presence: true
 end
