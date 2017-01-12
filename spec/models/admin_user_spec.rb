@@ -25,8 +25,8 @@ require 'rails_helper'
 
 RSpec.describe AdminUser, type: :model do
 
-  subject { FactoryGirl.build_stubbed(:admin_users) }
-  let(:admin_users) { FactoryGirl.build(:admin_users) }
+  subject { FactoryGirl.build_stubbed(:admin_user) }
+  let(:admin_user) { FactoryGirl.build(:admin_user) }
 
   include_examples 'paranoia'
 
@@ -49,7 +49,7 @@ RSpec.describe AdminUser, type: :model do
   ['teste@example.com', 'TeStE@ExAmPlE.CoM', 'TESTE@EXAMPLE.COM', 'tEsTe@eXaMpLe.cOm'].each do |e|
     describe "when the e-mail is #{e}" do
       before(:each) do
-        @admin_user = FactoryGirl.build(:admin_users, email: e)
+        @admin_user = FactoryGirl.build(:admin_user, email: e)
         @admin_user.save
       end
 
