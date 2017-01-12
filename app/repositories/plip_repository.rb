@@ -22,7 +22,7 @@ class PlipRepository
     plips = phases.map do |phase|
       petition = phase.plugin_relation.petition_detail
 
-      Plip.new id: petition.current_version.id,
+      Plip.new id: petition.published_version.id,
                document_url: petition.published_version.document_url,
                content: petition.published_version.body,
                phase: phase,
