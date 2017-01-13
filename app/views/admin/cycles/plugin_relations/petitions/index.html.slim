@@ -45,5 +45,24 @@
              = 'Nenhuma versão publicada ainda'
        - if @petition.current_version
          .plip-body= markdown @petition.current_version.body
+ - if @petition.past_versions.length > 0 
+   .row
+     .col-xs-12
+       .card-module
+         .title
+           h3
+             a#past_versions_title href="#"
+               | Versões anteriores
+         div#past_versions style="display: none"
+           ul.list-unstyled
+             - @petition.past_versions.each do |version|
+               li
+                 = link_to version.created_at.strftime("%d/%m/%Y - %H:%M"), version.document_url
+     javascript:
+       $("#past_versions_title").click(function(e) {
+         $("#past_versions").slideToggle();
+         e.preventDefault();
+         return false;
+       });
 - else
   = 'Petição em branco, edite para adicionar conteúdo.'

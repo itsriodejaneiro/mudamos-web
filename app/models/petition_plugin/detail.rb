@@ -26,6 +26,10 @@ class PetitionPlugin::Detail < ActiveRecord::Base
 
   validate :plugin_type_petition
 
+  def past_versions
+    petition_detail_versions.where "created_at < ?", published_version.created_at
+  end
+
   def current_version
     petition_detail_versions.last
   end

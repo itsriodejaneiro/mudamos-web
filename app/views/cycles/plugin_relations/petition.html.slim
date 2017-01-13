@@ -64,7 +64,25 @@ section.container-fluid#petition-index
           h2.section-title.plip-title style="border-color: #{@cycle.color};" Detalhes sobre o Projeto de Lei de Iniciativa Popular
 
           .petition-container.plip-body= markdown @petition.published_version.body
+
+      - if @petition.past_versions.length > 0
+        .row.medium-gap
+          .col-xs-12
+            h4 style="border-color: #{@cycle.color};"
+              a#past_versions_title href="#" Versões anteriores
+            div#past_versions style="display: none"
+              ul.list-unstyled
+                - @petition.past_versions.each do |version|
+                  li
+                    = link_to version.created_at.strftime("%d/%m/%Y - %H:%M"), version.document_url
+
     - else
         .row.medium-gap.text-center
           .col-xs-12
             ="Esta petição ainda não foi publicada, aguarde enquanto a edição do documento seja finalizada e tente novamento mais tarde."
+javascript:
+  $("#past_versions_title").click(function(e) {
+    $("#past_versions").slideToggle();
+    e.preventDefault();
+    return false;
+  });
