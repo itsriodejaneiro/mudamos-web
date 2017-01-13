@@ -28,7 +28,7 @@ RSpec.describe Phase, type: :model do
   include_examples 'friendly_id', :name
   include_examples 'paranoia'
 
-  [:name, :description, :tooltip, :initial_date, :final_date, :cycle].each do |attr|
+  [:name, :description, :initial_date, :final_date, :cycle].each do |attr|
     it "should validate #{attr}" do
       should validate_presence_of attr
     end
