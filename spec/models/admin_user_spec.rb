@@ -41,7 +41,7 @@ RSpec.describe AdminUser, type: :model do
   # UNIQUENESS
   [:email].each do |attr|
     it "should validate the uniqueness of #{attr}" do
-      admin_user.should validate_uniqueness_of attr
+      admin_user.should validate_uniqueness_of(attr).case_insensitive
     end
   end
 
