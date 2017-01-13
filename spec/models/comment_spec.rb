@@ -30,7 +30,8 @@ RSpec.describe Comment, type: :model do
   subject { FactoryGirl.build_stubbed(:comment) }
   let(:comment) { FactoryGirl.build(:comment) }
 
-  include_examples 'friendly_id', :content
+  # Apparentrly this behaviour has been removed, as seen on app/models/comment.rb:30
+  #include_examples 'friendly_id', :content
   include_examples 'paranoia'
 
   # PRESENCE
@@ -57,18 +58,15 @@ RSpec.describe Comment, type: :model do
     end
 
   context 'with nested comments' do
-    before(:each) do
-      @original_comment = FactoryGirl.create(:comment)
-    end
+    let(:original_comment) { FactoryGirl.create(:comment) }  
+    let(:comment) { FactoryGirl.build(:comment, parent: original_comment) }
 
     it 'should increase depth when a new comment is added' do
-      new_comment = FactoryGirl.build(:comment, parent: @original_comment)
-      expect{ new_comment.save }.to change { new_comment.depth }.by(1)
+      expect{ comment.save }.to change { comment.depth }.by(1)
     end
 
     it 'should increase children_count when a new comment is added' do
-      new_comment = FactoryGirl.build(:comment, parent: @original_comment)
-      expect{ new_comment.save }.to change { @original_comment.children_count }.by(1)
+      expect{ comment.save }.to change { original_comment.children_count }.by(1)
     end
 
     it 'should decrease children_count when a comment is deleted' do
@@ -76,39 +74,40 @@ RSpec.describe Comment, type: :model do
       expect { comment_w_children.children.first.destroy }.to change { comment_w_children.children.count }.by(-1)
     end
 
-    it 'should create notification when a new comment is added' do
-      new_comment = FactoryGirl.build(:comment, parent: @original_comment)
-      expect{ new_comment.save }.to change { Notification.count }.by(1)
-    end
+    # Apparentrly this behaviour has been removed as seen on app/models/comment.rb:186
+    #it 'should create notification when a new comment is added' do
+    #  expect{ comment.save }.to change { Notification.count }.by(1)
+    #end
 
-    [EmailNotification, InternalNotification, PushNotification].each do |type|
-      it "should create #{type.to_s} notification when a new comment is added" do
-        new_comment = FactoryGirl.build(:comment, parent: @original_comment)
-        expect{ new_comment.save }.to change { type.count }.by(1)
-      end
-    end
+    #[EmailNotification, InternalNotification, PushNotification].each do |type|
+    #  it "should create #{type.to_s} notification when a new comment is added" do
+    #    expect{ comment.save }.to change { type.count }.by(1)
+    #  end
+    #end
 
-    describe 'and one child' do
-      before do
-        parent = @original_comment
-        @new_comment = FactoryGirl.create(:comment, parent: parent)
-      end
+    # Apparentrly this behaviour has been removed as seen on app/models/comment.rb:186
+    #describe 'and one child' do
+    #  before do
+    #    parent = @original_comment
+    #    @new_comment = FactoryGirl.create(:comment, parent: parent)
+    #  end
 
-      it 'should create 2 notifications when a new comment is added' do
-        new_comment = FactoryGirl.build(:comment, parent: @original_comment)
-        expect{ new_comment.save }.to change { Notification.count }.by(2)
-      end
+    #  it 'should create 2 notifications when a new comment is added' do
+    #    new_comment = FactoryGirl.build(:comment, parent: @original_comment)
+    #    expect{ new_comment.save }.to change { Notification.count }.by(2)
+    #  end
 
-      [EmailNotification, InternalNotification, PushNotification].each do |type|
-        it "should create 2 #{type.to_s} notifications when a new comment is added" do
-          new_comment = FactoryGirl.build(:comment, parent: @original_comment)
-          expect{ new_comment.save }.to change { type.count }.by(2)
-        end
-      end
-    end
+    #  [EmailNotification, InternalNotification, PushNotification].each do |type|
+    #    it "should create 2 #{type.to_s} notifications when a new comment is added" do
+    #      new_comment = FactoryGirl.build(:comment, parent: @original_comment)
+    #      expect{ new_comment.save }.to change { type.count }.by(2)
+    #    end
+    #  end
+    #end
+
     describe 'and with depth bigger than 3' do
       before do
-        parent = @original_comment
+        parent = original_comment
         
         3.times do
           @new_comment = FactoryGirl.create(:comment, parent: parent)
