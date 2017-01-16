@@ -1,5 +1,19 @@
 ## Next
 
+## [1.3.0] - 16/01/2017
+
+* [PR #93]: Access to old petition versions (Issue 82 and 92)
+* [PR #91]: Removing strikethrough from the markdown editor (Issue 90)
+* [PR #89]: Petition automatic pdf upload (Issue 81)
+  - Run `rake db:migrate`
+  - Deploy shoryuken
+  - Configure aws queues
+* [PR #88]: Improvements on README file
+* [PR #87]: Issue 80
+  - Run `rake db:migrate`
+* [PR #84]: Adding missing fields to the plips api
+* [PR #77]: Renaming menu label TEMAS to CICLOS
+
 ## [1.2.0] - 05/01/2017
 
 * [PR #58]: Logo change
