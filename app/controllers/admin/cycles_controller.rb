@@ -74,7 +74,7 @@ class Admin::CyclesController < Admin::ApplicationController
     @cycle = Cycle.new cycle_params
 
     if @cycle.phases.empty?
-      @cycle.errors[:phases] << "não pode ficar em branco"
+      @cycle.errors[:phases] << I18n.t("errors.messages.blank")
       flash[:error] = "Erro ao criar Ciclo."
       return render :new
     end
