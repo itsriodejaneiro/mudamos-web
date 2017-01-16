@@ -31,7 +31,7 @@ RSpec.describe Cycle, type: :model do
   include_examples 'paranoia'
 
   # PRESENCE
-  # the name property is also required and has a validation, but as seen on Cycle#set_name, the name is setted with the value of the title
+  # the name property is also required and has a validation, but as seen on Cycle#set_name, the name is set with the value of the title
   # before de validation, so we can't include this field on the below list
   [:title, :initial_date, :final_date, :color, :description].each do |attr|
     it "should validate the presence of #{attr} " do
