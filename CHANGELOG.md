@@ -1,5 +1,8 @@
 ## Next
 
+* [PR #104]: Sending message for user synchronization with the mobile platform (Issue 98) 
+ - Configure `USER_SYNC_QUEUE` queue
+
 ## [1.3.0] - 16/01/2017
 
 * [PR #93]: Access to old petition versions (Issue 82 and 92)
