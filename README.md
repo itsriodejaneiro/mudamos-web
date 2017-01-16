@@ -31,7 +31,8 @@ Follow the instructions, and use the created user to access the admin area.
  3 - Go to `http://localhost:1080/`
 
 ### Environment variables
-        
+
+  - 'USER_SYNC_QUEUE': Name of the sqs queue used for the user synchronization with the mobile platform
   - 'PETITION_PDF_GENERATION_QUEUE': Name of the sqs queue used for the generation of the PDFs of the petitions
   - 'PETITION_PDF_GENERATION_QUEUE_PRIORITY': The priority of the sqs queue for the generation of the PDFs of the petitions
   - 'PETITION_PDF_BUCKET': Name of the bucket where the petition's pdfs are stored
