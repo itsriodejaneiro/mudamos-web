@@ -183,11 +183,6 @@ RSpec.describe Phase, type: :model do
       before { allow_any_instance_of(PluginRelation).to receive(:ready?).and_return false }
       it { is_expected.to be false }
     end
-
-    context "when the phase does not have a plugin relation yet" do
-      let!(:plugin_relation) { nil }
-      it { is_expected.to be false }
-    end
   end
 
   describe "#shortly?" do
@@ -206,12 +201,6 @@ RSpec.describe Phase, type: :model do
     context "when the phase already started but the plugin is not ready yet" do
       let(:phase) { create :phase, initial_date: Time.now - 2.days, final_date: Time.now + 4.days }
       before { allow_any_instance_of(PluginRelation).to receive(:ready?).and_return false }
-      it { is_expected.to be true } 
-    end
-
-    context "when the phase already started but it does not have a plugin relation yet" do
-      let(:phase) { create :phase, initial_date: Time.now - 2.days, final_date: Time.now + 4.days }
-      let!(:plugin_relation) { nil }
       it { is_expected.to be true } 
     end
   end
