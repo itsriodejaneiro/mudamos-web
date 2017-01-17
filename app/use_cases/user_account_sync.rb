@@ -1,5 +1,5 @@
-class UserSyncService
-  def sync(user)
+class UserAccountSync
+  def perform(user)
     send_message user
   end
 

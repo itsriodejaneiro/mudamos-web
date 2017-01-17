@@ -2,10 +2,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_permitted_parameters
   respond_to :js
 
-  attr_reader :user_sync_service
+  attr_reader :user_account_sync
 
-  def initialize(user_sync_service: UserSyncService.new)
-    @user_sync_service = user_sync_service
+  def initialize(user_account_sync: UserAccountSync.new)
+    @user_account_sync = user_account_sync
   end
 
   def new
@@ -31,7 +31,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
         if resource.save
           # synchronize the user with the mobile platform
-          user_sync_service.sync resource
+          user_account_sync.perform resource
 
           if Rails.env.production?
             session[:new_user_created] = true
