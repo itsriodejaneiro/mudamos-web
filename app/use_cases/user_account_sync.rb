@@ -1,21 +1,21 @@
+# This use case sends the user data to the queue that the mobile platform api uses
+# to "pre-register" the user on their database
+#
 class UserAccountSync
+  attr_reader :sqs_service
+
+  def initialize(sqs_service: AwsService::SQS.new)
+    @sqs_service = sqs_service
+  end
+
   def perform(user)
-    send_message user
+    raise ArgumentError.new("user is empty") unless user.present?
+
+    payload = payload(user)
+    sqs_service.publish_message ENV["USER_SYNC_QUEUE"], payload
   end
 
   private
-
-  def send_message(user)
-    payload = payload(user)
-
-    sqs = Aws::SQS::Client.new
-
-    queue_url = sqs.get_queue_url(queue_name: ENV["USER_SYNC_QUEUE"])
-    sqs.send_message(
-      queue_url: queue_url.queue_url,
-      message_body: JSON.generate(payload)
-    )
-  end
 
   def payload(user)
     {
@@ -23,6 +23,7 @@ class UserAccountSync
       name: user.name,
       email: user.email,
       profile: user.profile.name,
+      sub_profile: user.sub_profile.try(:name),
       gender: user.gender,
       birthday: user.birthday.strftime("%Y-%m-%d"),
       picture_url: user.picture.url,
