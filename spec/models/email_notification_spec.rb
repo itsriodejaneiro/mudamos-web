@@ -17,6 +17,9 @@
 require 'rails_helper'
 
 RSpec.describe EmailNotification, type: :model do
+
+  before { allow(StaticPage).to receive(:find_by_slug).and_return(FactoryGirl.create(:static_page)) }
+
   [:comment, :like, :dislike].each do |obj|
     fac_name = "#{obj}_email_notification"
     include_examples 'paranoia', fac_name
@@ -33,11 +36,13 @@ RSpec.describe EmailNotification, type: :model do
       end
     end
 
-    it 'should set the send_at attribute after notify method is called' do
-      notification = FactoryGirl.create(fac_name)
-      Timecop.freeze(Time.now)
-      expect{ notification.notify }.to change{ notification.sent_at }.from(nil).to(Time.now)
-      Timecop.return
+    describe "#save" do
+      it "sents the notification and updates its sent_at attribute" do
+        notification = FactoryGirl.build(fac_name)
+        Timecop.freeze(Time.now)
+        expect{ notification.save }.to change{ notification.sent_at }.from(nil).to(Time.now)
+        Timecop.return
+      end
     end
   end
 

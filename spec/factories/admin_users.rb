@@ -22,7 +22,7 @@
 #
 
 FactoryGirl.define do
-  factory :admin_users do
+  factory :admin_user do
     sequence(:name) { |n| "Test Admin User#{n}" }
     sequence(:email) { |n| "test#{n}@example.com" }
     password "12345678"

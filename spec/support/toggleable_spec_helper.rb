@@ -32,7 +32,10 @@ RSpec.shared_examples 'a toggleable' do
           expect { @toggleable.save }.to change { Notification.count }.by(1)
         end
 
-        [EmailNotification, InternalNotification, PushNotification].each do |type|
+        #[EmailNotification, InternalNotification, PushNotification].each do |type|
+        # Apparently only InternalNotification is supported right now,
+        # as seen on app/models/concerns/toggleable_with_notification.rb:70
+        [InternalNotification].each do |type|
           it "should create #{type.to_s} notification" do
             expect{ @toggleable.save }.to change { type.count }.by(1)
           end

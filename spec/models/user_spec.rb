@@ -126,7 +126,7 @@ RSpec.describe User, type: :model do
   end
 
   # making sure the DEVISE MODULES are all loaded
-  [:database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable].each do |mod|
+  [:database_authenticatable, :registerable, :recoverable, :rememberable, :trackable].each do |mod|
     it "should include the devise module #{mod}" do
       expect(user.devise_modules).to include(mod)
     end

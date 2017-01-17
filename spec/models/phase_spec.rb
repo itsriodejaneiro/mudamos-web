@@ -28,7 +28,7 @@ RSpec.describe Phase, type: :model do
   include_examples 'friendly_id', :name
   include_examples 'paranoia'
 
-  [:name, :description, :tooltip, :initial_date, :final_date, :cycle].each do |attr|
+  [:name, :description, :initial_date, :final_date, :cycle].each do |attr|
     it "should validate #{attr}" do
       should validate_presence_of attr
     end
@@ -107,7 +107,8 @@ RSpec.describe Phase, type: :model do
     before(:each) do
       Phase.statuses.each do |status|
         2.times do
-          FactoryGirl.create("#{status}_phase".to_sym)
+          phase = FactoryGirl.create("#{status}_phase".to_sym)
+          FactoryGirl.create(:base_plugin_relation, related: phase)
         end
       end
     end
@@ -144,7 +145,10 @@ RSpec.describe Phase, type: :model do
   }.each do |k, v|
     describe "a phase with #{k} status" do
       before(:each) do
-        @resource = FactoryGirl.create("#{k}_phase")
+        phase = FactoryGirl.create("#{k}_phase")
+        FactoryGirl.create(:base_plugin_relation, related: phase)
+
+        @resource = phase.reload
       end
 
       it "should return the #{v} current_status" do
@@ -157,4 +161,47 @@ RSpec.describe Phase, type: :model do
     
   end
 
+  describe "#in_progress?" do
+    let(:phase) { create :phase, initial_date: Time.now - 2.days, final_date: Time.now + 2.days }
+    let!(:plugin_relation) { create :base_plugin_relation, related: phase }
+
+    subject { phase.reload.in_progress? }
+
+    it { is_expected.to be true }
+
+    context "when the initial_date is after today" do
+      let(:phase) { create :phase, initial_date: Time.now + 1.days, final_date: Time.now + 2.days }
+      it { is_expected.to be false }
+    end
+
+    context "when the final_date is after today" do
+      let(:phase) { create :phase, initial_date: Time.now - 2.days, final_date: Time.now - 1.days }
+      it { is_expected.to be false }
+    end
+
+    context "when the period is correct but the plugin is not ready yet" do
+      before { allow_any_instance_of(PluginRelation).to receive(:ready?).and_return false }
+      it { is_expected.to be false }
+    end
+  end
+
+  describe "#shortly?" do
+    let(:phase) { create :phase, initial_date: Time.now + 2.days, final_date: Time.now + 4.days }
+    let!(:plugin_relation) { create :base_plugin_relation, related: phase }
+
+    subject { phase.reload.shortly? }
+
+    it { is_expected.to be true } 
+
+    context "when the initial_date is before now" do
+      let(:phase) { create :phase, initial_date: Time.now - 2.days, final_date: Time.now + 4.days }
+      it { is_expected.to be false } 
+    end
+
+    context "when the phase already started but the plugin is not ready yet" do
+      let(:phase) { create :phase, initial_date: Time.now - 2.days, final_date: Time.now + 4.days }
+      before { allow_any_instance_of(PluginRelation).to receive(:ready?).and_return false }
+      it { is_expected.to be true } 
+    end
+  end
 end

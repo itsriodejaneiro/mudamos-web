@@ -13,7 +13,9 @@
 
 FactoryGirl.define do
   factory :grid_highlight do
-    target_object ""
+    target_object nil
+    blog false
+    vocabulary false
   end
 
 end

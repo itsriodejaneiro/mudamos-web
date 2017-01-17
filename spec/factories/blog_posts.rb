@@ -26,7 +26,10 @@ file = File.new "#{Rails.root}/app/assets/images/test/test_image.jpg", "r"
 
 FactoryGirl.define do
   factory :blog_post do
-    sequence(:plugin_relation) {FactoryGirl.create(:cycle_blog_plugin_relation)}
+    plugin_relation do 
+      cycle = CycleTestHelper.create_cycle_with_phase(phases: [{ plugin_type: :report }])
+      FactoryGirl.create :cycle_blog_plugin_relation, related: cycle
+    end
     sequence(:title) { |n| "#{Faker::Lorem.paragraph}-#{n}"}
     sequence(:content) {|n| "#{Faker::Lorem.paragraphs(4).map{|n| '<p>'+n+'</p>'}}#{n}"}
     sequence(:release_date) {Time.now}
