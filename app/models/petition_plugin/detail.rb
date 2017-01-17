@@ -27,7 +27,7 @@ class PetitionPlugin::Detail < ActiveRecord::Base
   validate :plugin_type_petition
 
   def past_versions
-    return [] unless published_version.present?
+    return PetitionPlugin::DetailVersion.none unless published_version.present?
     petition_detail_versions.where "created_at < ?", published_version.created_at
   end
 
