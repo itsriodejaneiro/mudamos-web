@@ -46,7 +46,9 @@ RSpec.describe Material, type: :model do
         unless method == :tag_list
           ['Simple Value', 'Array;of;values'].each do |val|
             it "calling #{method}= #{val} should increment by #{val.split(';').count}" do
-              expect{ material.send("#{method}=",val) }.to change{ material.send("#{method}").count }.by(val.split(";").count)
+              expect{ material.send("#{method}=",val) }
+                .to change{ material.send("#{method}").count }
+                .by(val.split(";").count - material.send("#{method}").count)
             end
           end
         end

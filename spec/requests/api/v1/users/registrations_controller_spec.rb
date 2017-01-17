@@ -181,9 +181,6 @@ describe 'Api::V1::User::RegistrationsController', type: :request do
               expected_response = g[v]
             end
 
-            if k == :birthday
-              expected_response = v.strftime("%d/%m/%Y")
-            end
             expect( controller.resource.send k  ).to eq( expected_response )
           end
         end

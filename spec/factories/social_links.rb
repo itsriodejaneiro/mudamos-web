@@ -19,7 +19,7 @@ FactoryGirl.define do
     sequence(:link)     { |n| "Link #{n}"}
     icon_class "class"
     description "Visit us!!"
-    sequence(:cycle) {|n| FactoryGirl.create(:cycle)}
+    cycle { CycleTestHelper.create_cycle_with_phase(phases: [{ plugin_type: :report }]) }
   end
 
 end

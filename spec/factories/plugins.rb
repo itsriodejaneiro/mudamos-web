@@ -33,5 +33,10 @@ FactoryGirl.define do
       name "Discussão"
       plugin_type "Discussão"
     end
+
+    trait :blog do
+      name "Blog"
+      plugin_type "Blog"
+    end
   end
 end

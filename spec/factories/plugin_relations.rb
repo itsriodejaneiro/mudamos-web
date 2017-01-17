@@ -22,7 +22,17 @@ FactoryGirl.define do
 
     [:phase, :cycle].each do |rel|
       factory "#{rel}_plugin_relation".to_sym do
-        association :related, factory: rel
+
+        related do
+          cycle = CycleTestHelper.create_cycle_with_phase(phases: [{ plugin_type: :report }])
+
+          if rel == :cycle
+            cycle
+          else
+            cycle.phases.first
+          end
+        end
+
         ['blog', 'discussion', 'compilation', 'static_page'].each do |type|
           factory "#{rel}_#{type}_plugin_relation".to_sym do
             association :plugin , plugin_type: type.camelcase

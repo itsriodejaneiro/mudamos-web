@@ -18,11 +18,9 @@
 FactoryGirl.define do
   factory :static_page do
     name "MyString"
-cycle nil
-content "MyText"
-show_on_footer false
-show_on_header false
-deleted_at "2016-01-14 14:00:11"
+    cycle nil
+    content "MyText"
+    show_on_footer false
+    show_on_header false
   end
-
 end
