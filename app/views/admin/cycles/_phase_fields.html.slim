@@ -6,6 +6,8 @@
         - f.object.plugin_relation ||= PluginRelation.new
         = f.semantic_fields_for :plugin_relation do |p|
           = p.input :plugin, as: :select, collection: plugin_repository.all_with_phases, input_html: { class: 'select2', disabled: p.object.persisted? }
+        - if f.object.errors[:plugin_relation].any?
+          p.inline-errors= f.object.errors[:plugin_relation].first
       .col-xs-6
         = f.input :description, as: :text, input_html: { rows: 5 }
     .row

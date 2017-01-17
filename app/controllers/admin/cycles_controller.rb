@@ -72,9 +72,22 @@ class Admin::CyclesController < Admin::ApplicationController
 
   def create
     @cycle = Cycle.new cycle_params
+
+    empty_plugin_relation = false
     @cycle.phases.map do |x|
       x.cycle = @cycle
-      x.plugin_relation.related = x
+
+      if x.plugin_relation
+        x.plugin_relation.related = x
+      else
+        x.errors[:plugin_relation] << I18n.t("errors.messages.blank")
+        empty_plugin_relation = true
+      end
+    end
+
+    if empty_plugin_relation
+      flash[:error] = "Erro ao criar Ciclo."
+      return render :new
     end
 
     @cycle_plugin_relations = params[:cycle][:plugin_ids].reject { |x| x.blank? }.map do |id|
@@ -100,9 +113,21 @@ class Admin::CyclesController < Admin::ApplicationController
     @cycle = Cycle.find params[:id]
     @cycle.assign_attributes(cycle_params)
 
+    empty_plugin_relation = false
     @cycle.phases.map do |x|
       x.cycle = @cycle
-      x.plugin_relation.related = x
+
+      if x.plugin_relation
+        x.plugin_relation.related = x
+      else
+        x.errors[:plugin_relation] << I18n.t("errors.messages.blank")
+        empty_plugin_relation = true
+      end
+    end
+
+    if empty_plugin_relation
+      flash[:error] = "Erro ao criar Ciclo."
+      return render :new
     end
 
     # @cycle_plugin_relations = params[:cycle][:plugin_ids].reject { |x| x.blank? }.map do |id|
