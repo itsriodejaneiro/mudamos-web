@@ -2,6 +2,7 @@
 
 ## [1.3.0] - 17/01/2017
 
+* [PR #112]: Fixing detail past version bug and fixing migrations order
 * [PR #94]: Improving test suite Issue 94
 * [PR #93]: Access to old petition versions (Issue 82 and 92)
 * [PR #91]: Removing strikethrough from the markdown editor (Issue 90)
