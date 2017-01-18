@@ -8,10 +8,13 @@ RSpec.describe PetitionPdfGenerationWorker do
   describe "#perform" do
     let(:version) { spy PetitionPlugin::Detail.new, id: 1 }
 
-    let(:document_url) { "https://teste.s3-us-west-2.amazonaws.com/seguranca-publica-peticao-1-1.pdf" }
+    let(:document_name) { "seguranca-publica-peticao-1-1" }
+    let(:document_url) { "https://teste.s3-us-west-2.amazonaws.com/#{document_name}.pdf" }
+    let(:sha) { "asdasdasdasd" }
+    let(:generated_version) { PetitionPdfService::Result.new document_name, sha, document_url  }
 
     before do
-      allow(petition_pdf_service).to receive(:generate).and_return document_url
+      allow(petition_pdf_service).to receive(:generate).and_return generated_version
       allow(detail_version_repository).to receive(:find_by_id!).with(version.id).and_return(version)
     end
 
@@ -19,7 +22,7 @@ RSpec.describe PetitionPdfGenerationWorker do
 
     it "generates the pdf and publishes the version" do
       subject
-      expect(version).to have_received(:update).with(published: true, document_url: document_url)
+      expect(version).to have_received(:update).with(published: true, sha: sha, document_url: document_url)
     end
 
     context "when the body is invalid" do
