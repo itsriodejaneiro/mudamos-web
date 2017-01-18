@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #106]: Fixing system handling of cycle creation when some plugin is not selected by the user
+
 ## [1.3.0] - 16/01/2017
 
 * [PR #93]: Access to old petition versions (Issue 82 and 92)
