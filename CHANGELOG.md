@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #113]: Fixing blog post creation
+
 ## [1.3.0] - 17/01/2017
 
 * [PR #112]: Fixing detail past version bug and fixing migrations order
