@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #106]: Fixing system handling of cycle creation when some plugin is not selected by the user
 * [PR #113]: Fixing blog post creation
 
 ## [1.3.0] - 17/01/2017
