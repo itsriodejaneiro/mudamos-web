@@ -73,6 +73,12 @@ class Admin::CyclesController < Admin::ApplicationController
   def create
     @cycle = Cycle.new cycle_params
 
+    if @cycle.phases.empty?
+      @cycle.errors[:phases] << I18n.t("errors.messages.blank")
+      flash[:error] = "Erro ao criar Ciclo."
+      return render :new
+    end
+    
     empty_plugin_relation = false
     @cycle.phases.map do |x|
       x.cycle = @cycle

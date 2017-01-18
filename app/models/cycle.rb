@@ -60,7 +60,7 @@ class Cycle < ActiveRecord::Base
   validates_attachment :picture, presence: true, content_type: { content_type: ["image/jpeg", "image/gif", "image/png", "image/jpg"] }
 
   validates_uniqueness_of :color
-  validates_presence_of :name, :title, :initial_date, :final_date, :color, :description, :phases
+  validates_presence_of :name, :title, :initial_date, :final_date, :color, :description
   validate :validate_dates, unless: -> { self.initial_date.nil? || self.final_date.nil? }
 
   before_validation :set_dates, if: -> { self.phases.present? }

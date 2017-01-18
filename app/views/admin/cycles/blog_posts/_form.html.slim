@@ -76,6 +76,7 @@ javascript:
                     collection: @plugin_relations_cycles,
                     include_blank: 'Ciclo',
                     input_html: { disabled: 'disabled' }
+          = f.hidden_field :plugin_relation_id
       .row
         .col-xs-12
           = f.input :release_date, label: false, placeholder: 'Selecione uma data', input_html: { value: (f.object.release_date.strftime('%d/%m/%Y') if f.object.release_date.present?) }, as: :string
