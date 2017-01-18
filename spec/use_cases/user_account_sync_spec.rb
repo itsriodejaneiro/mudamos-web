@@ -22,9 +22,12 @@ RSpec.describe UserAccountSync do
     }
 
     let(:queue_name) { "user_sync_queue" }
-    before { ENV["USER_SYNC_QUEUE"] = queue_name }
 
-    subject { use_case.perform user }
+    subject do
+      with_env user_sync_queue: queue_name do
+        use_case.perform user
+      end
+    end
 
     it "publishes the message with the correct payload" do
       subject
