@@ -1,5 +1,11 @@
 ## Next
 
+* [PR #117]: Adding synchronization of the petitions to the mobile api (issue 117)
+ - Configure queue `PETITION_PUBLISHER_QUEUE`
+ - Configure queue `PETITION_MOBILE_SYNC_QUEUE`
+ - Set `MOBILE_API_URL` environment var
+ - Set `MOBILE_API_TIMEOUT` environment var (optional)
+ - Run `rake db:migrate`
 * [PR #105]: Adding remaining days to the petition page (issue 105)
 * [PR #106]: Fixing system handling of cycle creation when some plugin is not selected by the user
 * [PR #113]: Fixing blog post creation
