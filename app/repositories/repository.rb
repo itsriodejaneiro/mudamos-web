@@ -22,4 +22,8 @@ module Repository
   def find_by_id!(id)
     model_class.find id
   end
+
+  def find_by_id(id)
+    model_class.find_by_id id
+  end
 end

@@ -83,6 +83,9 @@ class Phase < ActiveRecord::Base
     end
   end
 
+  def remaining_days
+    (final_date.to_date - initial_date.to_date).to_i
+  end
 
   # validates_attachment :picture, presence: true, content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png', 'image/jpg'] }
   validates_presence_of :name, :description, :initial_date, :final_date, :cycle
