@@ -7,7 +7,6 @@
  - Set `MOBILE_API_TIMEOUT` environment var (optional)
  - Run `rake db:migrate`
 * [PR #105]: Adding remaining days to the petition page (issue 105)
-
 * [PR #106]: Fixing system handling of cycle creation when some plugin is not selected by the user
 * [PR #113]: Fixing blog post creation
 * [PR #104]: Sending message for user synchronization with the mobile platform (Issue 98) 
