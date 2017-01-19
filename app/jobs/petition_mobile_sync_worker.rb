@@ -15,7 +15,12 @@ class PetitionMobileSyncWorker
 
     Rails.logger.info "Synchronizing petition version: #{petition_detail_version_id}"
 
-    version = repository.find_by_id! petition_detail_version_id
-    mobile_api_service.register_petition_version version
+    version = repository.find_by_id petition_detail_version_id
+
+    if version.present?
+      mobile_api_service.register_petition_version version
+    else
+      Rails.logger.warn "Version not found #{petition_detail_version_id}"
+    end
   end
 end
