@@ -24,6 +24,7 @@ class PlipRepository
 
       Plip.new id: petition.published_version.id,
                document_url: petition.published_version.document_url,
+               plip_url: generate_plip_url(phase),
                content: petition.published_version.body,
                phase: phase,
                presentation: petition.presentation,
@@ -32,5 +33,14 @@ class PlipRepository
     end
 
     Pagination.new items: plips, page: page, limit: limit, has_next: has_next
+  end
+
+  private
+
+  def generate_plip_url(phase)
+    Rails.application.routes.url_helpers.cycle_plugin_relation_url(
+      phase.cycle,
+      phase.plugin_relation
+    )
   end
 end

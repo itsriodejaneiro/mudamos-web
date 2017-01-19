@@ -43,6 +43,8 @@ Follow the instructions, and use the created user to access the admin area.
   - 'AWS_ACCESS_KEY_ID': AWS access key id used to access the aws resources
   - 'AWS_SECRET_ACCESS_KEY': AWS secret access key used to access the aws resources
   - 'AWS_REGION': The region where the AWS resources are
+  - `APP_DEFAULT_HOST`: Which url the application is hosted
+  - `APP_DEFAULT_SCHEME`: Which scheme the application uses (http or https)
   - 'MOBILE_API_URL': The Mobile API url
   - 'MOBILE_API_TIMEOUT': The ammount in seconds the system will use as timeout when trying to communicate with the Mobile API 
 

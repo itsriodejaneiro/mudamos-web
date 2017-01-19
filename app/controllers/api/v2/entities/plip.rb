@@ -8,6 +8,7 @@ module Api
 
         expose :id
         expose :document_url
+        expose :plip_url
         expose :content
         expose :presentation
         expose :signatures_required

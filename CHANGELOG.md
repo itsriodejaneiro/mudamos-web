@@ -1,5 +1,8 @@
 ## Next
 
+* [PR #122]: Adding plip_url to the plip api (issue 121)
+ - Set the `APP_DEFAULT_HOST` environment variable
+ - Set the `APP_DEFAULT_SCHEME` environment variable
 * [PR #117]: Adding synchronization of the petitions to the mobile api (issue 117)
  - Configure queue `PETITION_PUBLISHER_QUEUE`
  - Configure queue `PETITION_MOBILE_SYNC_QUEUE`
