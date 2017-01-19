@@ -37,10 +37,14 @@ class Cycles::PluginRelationsController < ApplicationController
 
   helper_method :past_versions
   def past_versions
-    PetitionPlugin::DetailRepository.new.past_versions_desc(@petition)
+    detail_repository.past_versions_desc(@petition.id)
   end
 
   private
+
+  def detail_repository
+    @detail_repository ||= PetitionPlugin::DetailRepository.new
+  end
 
     def set_charts_variables
       range_start = @cycle.initial_date
