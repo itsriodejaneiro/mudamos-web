@@ -35,6 +35,11 @@ class Cycles::PluginRelationsController < ApplicationController
     end
   end
 
+  helper_method :past_versions
+  def past_versions
+    PetitionPlugin::DetailRepository.new.past_versions_desc(@petition)
+  end
+
   private
 
     def set_charts_variables

@@ -20,6 +20,11 @@ class Cycles::PluginRelations::PetitionsController < ApplicationController
     head :ok
   end
 
+  helper_method :past_versions
+  def past_versions
+    PetitionPlugin::DetailRepository.new.past_versions_desc(@petition)
+  end
+
   private
 
   def ensure_user
