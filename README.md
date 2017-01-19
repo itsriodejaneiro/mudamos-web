@@ -78,3 +78,38 @@ Recommended values:
 ### Running the workers
 
 `bundle exec shoryuken -C config/shoryuken.yml -R`
+
+### Petition flow
+
+This diagram shows the flow of the petition, from the user creation, to its publication.
+
+```
++--------------------+    +------------------------+    +------------------------+    +-------------------------+    +------------------------+
+|                    |    |                        |    |                        |    |                         |    |                        |
+|                    |    |                        |    |                        |    |                         |    |                        |
+|    Admin User      |    |      Mudamos-Web       |    |           SQS          |    |      Mobile-api         |    |       Blockchain       |
+|                    |    |                        |    |                        |    |                         |    |                        |
+|                    |    |                        |    |                        |    |                         |    |                        |
++--------------------+    +------------------------+    +------------------------+    +-------------------------+    +------------------------+
+        +---+                      +---+                           +---+                          +---+                         +---+
+        |   |Creates the petition  |   | Schedule pdf generation   |   |                          |   |                         |   |
+        |   +---------------------->   +------------------------>  |   |                          |   |                         |   |
+        |   |                      |   |                           |   |                          |   |                         |   |
+        |   |                      |   |  Generates the pdf and    |   |                          |   |                         |   |
+        |   |                      |   |  stores it on S3          |   |                          |   |                         |   |
+        |   |                      |   | <-------------------------+   |                          |   |                         |   |
+        |   |                      |   |                           |   |   Register petition on   |   |                         |   |
+        |   |                      |   |                           |   |   the mobile api         |   |                         |   |
+        |   |                      |   +--------------------------------------------------------->|   |                         |   |
+        |   |                      |   |                           |   |                          |   |  Register the petition  |   |
+        |   |                      |   |                           |   |                          |   |  on the blockchain      |   |
+        |   |                      |   |                           |   |  Schedule the petition   |   +-----------------------> |   |
+        |   |                      |   |                           |   |  publication             |   |                         |   |
+        |   |                      |   |                           |   |<-------------------------+   |                         |   |
+        |   |                      |   |                           |   |                          |   |                         |   |
+        |   |                      |   |    Publishes the petition |   |                          |   |                         |   |
+        |   |                      |   | <-------------------------+   |                          |   |                         |   |
+        |   |                      |   |                           |   |                          |   |                         |   |
+        +---+                      +---+                           +---+                          +---+                         +---+
+
+```
