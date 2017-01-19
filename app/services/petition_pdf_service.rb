@@ -1,4 +1,13 @@
 class PetitionPdfService
+
+  attr_reader :s3
+
+  def initialize(s3: AwsService::S3.new)
+    @s3 = s3
+  end
+
+  Result = Struct.new(:document_name, :sha, :document_url)
+
   def generate(version)
     pdf = Kramdown::Document.new(version.body).to_pdf
 
@@ -7,10 +16,14 @@ class PetitionPdfService
 
     document_name = "#{cycle.slug}-peticao-#{phase.id}-#{version.id}.pdf"
 
-    s3 = Aws::S3::Resource.new
-    obj = s3.bucket(Rails.application.secrets.buckets['petition_pdf']).object(document_name)
-    obj.put(body: pdf, acl: 'public-read')
+    obj = s3.upload(Rails.application.secrets.buckets['petition_pdf'], document_name, pdf, acl: 'public-read')
 
-    obj.public_url
+    Result.new document_name, content_sha(pdf), obj.public_url
+  end
+
+  private
+
+  def content_sha(content)
+    Digest::SHA256.hexdigest content
   end
 end

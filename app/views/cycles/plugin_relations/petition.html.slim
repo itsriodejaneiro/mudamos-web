@@ -37,6 +37,13 @@ section.container-fluid#petition-index
           .pull-right
             strong Número de assinaturas necessárias: 
             = @petition.signatures_required
+
+      - if @phase.in_progress?
+        .row
+          .col-xs-12
+            .pull-right
+              strong Dias restantes: 
+              = @phase.remaining_days
       .row
         .col-xs-12
           = @petition.presentation

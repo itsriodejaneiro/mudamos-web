@@ -362,6 +362,7 @@ GEM
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     naught (1.1.0)
+    net-http-persistent (2.9.4)
     newrelic_rpm (3.14.0.305)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
@@ -610,6 +611,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   faker
+  faraday (~> 0.9)
   fog
   font-awesome-rails
   formtastic
@@ -627,6 +629,7 @@ DEPENDENCIES
   less-rails
   libv8
   metamagic
+  net-http-persistent (~> 2.9.4)
   newrelic_rpm
   omniauth
   omniauth-facebook

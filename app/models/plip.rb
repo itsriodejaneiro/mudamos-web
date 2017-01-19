@@ -7,6 +7,10 @@ class Plip
   #   @return [String]
   attr_accessor :document_url
 
+  # @!attribute [rw] plip_url 
+  #   @return [String]
+  attr_accessor :plip_url
+
   # @!attribute [rw] content
   #   @return [String]
   attr_accessor :content
@@ -30,9 +34,10 @@ class Plip
   # @param document_url [String]
   # @param content [String]
   # @param phase [Phase]
-  def initialize(id: ,document_url:, content:, phase:, presentation:, signatures_required:, call_to_action:)
+  def initialize(id: ,document_url:, plip_url:, content:, phase:, presentation:, signatures_required:, call_to_action:)
     @id = id
     @document_url = document_url
+    @plip_url = plip_url
     @content = content
     @phase = phase
     @presentation = presentation
