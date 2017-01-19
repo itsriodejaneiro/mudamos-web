@@ -1,7 +1,8 @@
 ## Next
 
 * [PR #122]: Adding plip_url to the plip api (issue 121)
- - Set the `HOST` environment variable
+ - Set the `APP_DEFAULT_HOST` environment variable
+ - Set the `APP_DEFAULT_SCHEME` environment variable
 * [PR #106]: Fixing system handling of cycle creation when some plugin is not selected by the user
 * [PR #113]: Fixing blog post creation
 * [PR #104]: Sending message for user synchronization with the mobile platform (Issue 98) 

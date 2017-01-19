@@ -77,5 +77,5 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  routes.default_url_options = { host: ENV["HOST"] }
+  routes.default_url_options = { host: ENV["APP_DEFAULT_HOST"], scheme: ENV["APP_DEFAULT_SCHEME"] }
 end
