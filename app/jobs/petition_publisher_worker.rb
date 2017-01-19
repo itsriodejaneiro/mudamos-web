@@ -14,7 +14,7 @@ class PetitionPublisherWorker
     version = repository.find_by_id petition_detail_version_id
 
     if version
-      version.update published: true
+      version.update! published: true
       Rails.logger.info "Version published #{petition_detail_version_id}"
     else
       Rails.logger.warn "Version not found #{petition_detail_version_id}"
