@@ -39,6 +39,7 @@ Follow the instructions, and use the created user to access the admin area.
   - 'AWS_ACCESS_KEY_ID': AWS access key id used to access the aws resources
   - 'AWS_SECRET_ACCESS_KEY': AWS secret access key used to access the aws resources
   - 'AWS_REGION': The region where the AWS resources are
+  - `HOST`: Which url the application is hosted
 
 ### Queue configurations
 
