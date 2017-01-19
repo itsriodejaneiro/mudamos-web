@@ -17,7 +17,7 @@ class PetitionPdfGenerationWorker
     version = repository.find_by_id! petition_detail_version_id
 
     generated_version = petition_pdf_service.generate(version) 
-    version.update published: true, document_url: generated_version.document_url, sha: generated_version.sha
+    version.update document_url: generated_version.document_url, sha: generated_version.sha
 
     PetitionMobileSyncWorker.perform_async id: petition_detail_version_id 
   end

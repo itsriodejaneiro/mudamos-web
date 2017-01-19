@@ -20,9 +20,9 @@ RSpec.describe PetitionPdfGenerationWorker do
 
     subject { worker.perform nil, "{ \"id\": #{version.id} }" }
 
-    it "generates the pdf and publishes the version" do
+    it "generates the pdf and updates the version" do
       subject
-      expect(version).to have_received(:update).with(published: true, sha: sha, document_url: document_url)
+      expect(version).to have_received(:update).with(sha: sha, document_url: document_url)
     end
 
     context "when the body is invalid" do

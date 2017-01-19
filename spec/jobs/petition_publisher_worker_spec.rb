@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe PetitionMobileSyncWorker do
+RSpec.describe PetitionPublisherWorker do
+
   let(:detail_version_repository) { instance_spy PetitionPlugin::DetailVersionRepository }
-  let(:mobile_api_service) { instance_spy MobileApiService }
-  let(:worker) { described_class.new repository: detail_version_repository, mobile_api_service: mobile_api_service }
+  let(:worker) { described_class.new repository: detail_version_repository }
 
   describe "#perform" do
     let(:version) { spy PetitionPlugin::Detail.new, id: 1 }
@@ -14,9 +14,9 @@ RSpec.describe PetitionMobileSyncWorker do
 
     subject { worker.perform nil, "{ \"id\": #{version.id} }" }
 
-    it "calls the api with the version" do
+    it "publishes the version" do
       subject
-      expect(mobile_api_service).to have_received(:register_petition_version).with(version)
+      expect(version).to have_received(:update).with(published: true)
     end
 
     context "when the body is invalid" do

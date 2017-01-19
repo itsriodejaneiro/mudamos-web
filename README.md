@@ -32,6 +32,8 @@ Follow the instructions, and use the created user to access the admin area.
 
 ### Environment variables
 
+  - 'PETITION_PUBLISHER_QUEUE': Name of the sqs queue used for publishing the petitions
+  - 'PETITION_PUBLISHER_PRIORITY': The priority of the sqs queue for the publication the petitions
   - 'USER_SYNC_QUEUE': Name of the sqs queue used for the user synchronization with the mobile platform
   - 'PETITION_MOBILE_SYNC_QUEUE': Name of the sqs queue used for the synchronization of the petitions versions with the mobile api
   - 'PETITION_MOBILE_SYNC_QUEUE_PRIORITY': The priority of the sqs queue for the synchronization of the petitions versions with the mobile api
@@ -55,7 +57,16 @@ Recommended values:
  * Delivery Delay: 0 secs (SQS default)
  * Receive Message Wait Time: 0 secs (SQS default)
 
-## Petition mobile sync  (TODO check these values)
+## Petition mobile sync
+
+Recommended values:
+ * Default Visibility Timeout: 60 secs
+ * Message Retention Period: 4 days (SQS default)
+ * Maximum Message Size: 256 KB (SQS default)
+ * Delivery Delay: 0 secs (SQS default)
+ * Receive Message Wait Time: 0 secs (SQS default)
+
+## Petition publisher
 
 Recommended values:
  * Default Visibility Timeout: 60 secs

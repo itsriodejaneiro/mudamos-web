@@ -17,7 +17,7 @@ class PetitionMobileSyncWorker
 
     version = repository.find_by_id petition_detail_version_id
 
-    if version.present?
+    if version
       mobile_api_service.register_petition_version version
     else
       Rails.logger.warn "Version not found #{petition_detail_version_id}"
