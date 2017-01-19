@@ -79,7 +79,7 @@ section.container-fluid#petition-index
               a#past_versions_title href="#" Versões anteriores
             div#past_versions style="display: none"
               ul.list-unstyled
-                - @petition.past_versions.each do |version|
+                - past_versions.each do |version|
                   li
                     = link_to version.created_at.strftime("%d/%m/%Y - %H:%M"), version.document_url
 

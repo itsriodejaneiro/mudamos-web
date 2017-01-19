@@ -44,7 +44,16 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
     end
   end
 
+  helper_method :past_versions
+  def past_versions
+    detail_repository.past_versions_desc(@petition.id)
+  end
+
   private
+
+  def detail_repository
+    @detail_repository ||= PetitionPlugin::DetailRepository.new
+  end
 
   def petition_params
     params.require(:petition_plugin_detail)
