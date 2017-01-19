@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #114]: Changing order of the petitions past versions on the views (issue 114)
 * [PR #122]: Adding plip_url to the plip api (issue 121)
  - Set the `APP_DEFAULT_HOST` environment variable
  - Set the `APP_DEFAULT_SCHEME` environment variable
