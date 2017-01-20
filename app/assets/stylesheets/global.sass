@@ -3,6 +3,9 @@
 @import "custom_variables"
 @import "ico-font"
 
+html, body, .body-container
+  height: 100%
+
 iframe
   position: relative !important
 
@@ -1446,53 +1449,6 @@ section#static_page
     font-family: $font-family-serif
     margin-bottom: 5px
 
-
-#petition-index
-  padding-top: $navbar-height + 90px
-  padding-bottom: 50px
-
-  .call-wrapper
-    margin-top: 40px
-
-  a.download-document
-    color: $gray-dark
-    font-size: 16px
-    text-decoration: none
-
-    .icon-baixeaqui
-      display: inline-block
-      margin-right: 10px
-      transform: rotate(90deg)
-
-  .more-details-row
-    margin-top: 50px
-
-  a.toggle-details
-    background-color: white
-    padding-right: 10px
-
-    &.area-open
-      i
-        transform: rotate(90deg)
-
-    i
-      display: inline-block
-      margin-right: 10px
-
-  hr.toggle-details
-    margin-top: -10px
-
-  .plip-row
-    display: none
-    margin-top: 30px
-
-    .plip-title
-      font-size: 18px
-
-  @media (max-width: $screen-sm-min)
-    .share-col
-      margin-top: 15px
-
 #subjects-index
   background-color: $color-grid-dark-grey
   padding-top: $navbar-height + 90px
@@ -2726,29 +2682,11 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
     margin: 80px auto 0px
     width: 550px
 
-  &.plip-sign
-    margin-bottom: 75px
-    a.main-call
-      width: 550px
-      height: 170px
-
-      .action-tail
-        top: 165px
-
-      @media (max-width: $screen-xs-max)
-        width: 320px
-        height: 280px
-
-        .action-tail
-          top: 275px
-          left: 30%
-
-      &:hover
-        .hover-box
-          margin-top: -275px
-
 .fb-share-button, .twitter-share-button
   vertical-align: top
+
+.small-gap
+  margin-top: 25px
 
 .medium-gap
   margin-top: 50px

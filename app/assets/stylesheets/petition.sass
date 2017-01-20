@@ -1,0 +1,80 @@
+@import "bootstrap/variables"
+
+#petition-index
+  padding-top: $navbar-height + 51px
+  height: 100%
+
+  > .row
+    height: 100%
+    margin: 0px
+
+  .petition-view
+    padding: 50px
+    height: 100%
+
+    .footer-nav
+      .container
+        width: 100%
+        padding: 0px
+
+        .nav
+          li
+            a
+              font-size: 11px
+  
+  .petition-side-bar
+    color: #fff
+    background-repeat: no-repeat
+    background-size: cover
+
+  .download-document
+    a
+      text-decoration: none
+      color: #fff
+
+  .remaining-days,.download-document
+    i
+      font-size: 40px
+
+  .medium-padded
+    padding: 0px 50px
+
+  .rounded-button
+    color: #fff
+    border: 0px
+    padding: 25px 91px
+    border-radius: 35px
+    width: 100%
+
+    span
+      display: inline-block
+      width: 100%
+      text-transform: uppercase
+
+  .call-wrapper
+    margin-top: 40px
+
+  a.download-document
+    color: $gray-dark
+    font-size: 16px
+    text-decoration: none
+
+    &.area-open
+      i
+        transform: rotate(90deg)
+
+    i
+      display: inline-block
+      margin-right: 10px
+
+  .plip-row
+    display: none
+    margin-top: 30px
+
+    .plip-title
+      font-size: 18px
+
+  @media (max-width: $screen-sm-min)
+    .share-col
+      margin-top: 15px
+
