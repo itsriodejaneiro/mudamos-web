@@ -1,0 +1,7 @@
+div
+  = "Dias restantes: #{@petition.plugin_relation.related.remaining_days}"
+div
+  = "Número de assinaturas requeridas: #{@petition.signatures_required}"
+= link_to generate_link, target: "_parent" do
+  button
+    = @petition.call_to_action
