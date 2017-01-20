@@ -73,6 +73,10 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
+    namespace :mobile do
+      resources :petitions, only: [:show]
+    end
+
     namespace :v1 do
       namespace :users do
         match '/sign_in', to: 'sessions#create', via: :post

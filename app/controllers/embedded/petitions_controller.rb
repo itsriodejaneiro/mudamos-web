@@ -12,12 +12,15 @@ class Embedded::PetitionsController < Embedded::ApplicationController
 
   helper_method :generate_link
   def generate_link
-    phase = @petition.plugin_relation.related
-
     cycle_plugin_relation_url(
       phase.cycle,
       phase.plugin_relation
     )
+  end
+
+  helper_method :phase
+  def phase
+    @petition.plugin_relation.related
   end
 
   private

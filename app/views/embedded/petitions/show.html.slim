@@ -1,7 +1,31 @@
-div
-  = "Dias restantes: #{@petition.plugin_relation.related.remaining_days}"
-div
-  = "Número de assinaturas requeridas: #{@petition.signatures_required}"
-= link_to generate_link, target: "_parent" do
-  button
-    = @petition.call_to_action
+doctype html
+html
+  head
+    = stylesheet_link_tag    'embedded/application', media: 'all'
+    = javascript_include_tag 'embedded/application'
+    javascript:
+      $(document).ready(function() {
+        function updateSignarutesCount() {
+          apiClient.getPetitionInfo(#{@petition.id}).then(function(petitionInfo) {
+            $("#signatures_count span").text(petitionInfo.signatures_count);
+          });
+        }
+
+        setInterval(updateSignarutesCount, 10000)
+        updateSignarutesCount();
+      });
+  body
+    h3
+      = phase.name
+    p 
+      = phase.description
+    div
+      = "Dias restantes: #{@petition.plugin_relation.related.remaining_days}"
+    div#signatures_count
+      | Número de assinaturas: 
+      span
+    div
+      = "Número de assinaturas requeridas: #{@petition.signatures_required}"
+    = link_to generate_link, target: "_parent" do
+      button
+        = @petition.call_to_action

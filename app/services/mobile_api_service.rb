@@ -25,11 +25,26 @@ class MobileApiService
     })
   end
 
+  PetitionInfo = Struct.new(:updated_at, :signatures_count, :blockchain_address)
+  def petition_info(petition_id)
+    response = get("/petition/#{petition_id}/info")
+
+    body = JSON.parse(response.body)["data"]["info"]
+
+    return nil unless body
+
+    PetitionInfo.new(
+      Time.parse(body["updatedAt"]),
+      body["signaturesCount"],
+      body["blockchainAddress"]
+    )
+  end
+
   private
 
   [:get, :head].each do |verb|
     define_method(verb) do |path|
-      connection.send(verb, path) do |req|
+      body = connection.send(verb, path) do |req|
         req.options.timeout = @timeout if @timeout
       end
 
