@@ -31,6 +31,9 @@ section#petition-index
           | já assinaram
       .row
         .col-xs-12
+          .petition-signatures-progress
+      .row
+        .col-xs-12
           | Faltam
           strong=" 6.568 "
           | assinaturas para a meta de
@@ -52,7 +55,7 @@ section#petition-index
             i.icon-text2 style="color: #{@cycle.color}"
           div.medium-padded
             a href=@petition.published_version.document_url target="_blank"
-              strong Baixe o PDF
+              strong Baixe o PDF 
               | do projeto
           div.medium-padded
             small= "A versão atual for criada no dia #{@petition.published_version.created_at.strftime("%d/%m/%Y às %H:%M")}"
@@ -64,3 +67,9 @@ section#petition-index
           h3.section-title style="border-color: #{@cycle.color}" Projeto de lei
       p= markdown @petition.published_version.body
       = render 'layouts/shared/footer'
+
+javascript:
+  $(".petition-signatures-progress").progressBar({
+    percentage: "20%",
+    color: "#{@cycle.color}"
+  });
