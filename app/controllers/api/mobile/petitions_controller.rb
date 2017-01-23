@@ -1,26 +1,19 @@
 class Api::Mobile::PetitionsController < ActionController::Base
 
-  attr_reader :mobile_service
+  attr_reader :petition_cached_service
 
-  def initialize(mobile_service: MobileApiService.new)
-    @mobile_service = mobile_service
+  def initialize(petition_cached_service: PetitionCachedService.new)
+    @petition_cached_service = petition_cached_service
   end
 
   def show
     petition_id = params[:id]
 
-    petition_info = Rails.cache.fetch("mobile_petition_info:#{petition_id}", expires_in: cache_time) do
-      mobile_service.petition_info(petition_id)
-    end
+    petition_info = petition_cached_service.fetch_petition_info(petition_id)
 
     render json: petition_info
-    expires_in cache_time, public: true
+    expires_in 1.day, public: true
   end
 
   private
-
-  # Should we make this configurable? By env vars for example?
-  def cache_time
-    1.minutes
-  end
 end
