@@ -73,10 +73,6 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    namespace :mobile do
-      resources :petitions, only: [:show]
-    end
-
     namespace :v1 do
       namespace :users do
         match '/sign_in', to: 'sessions#create', via: :post
@@ -107,6 +103,9 @@ Rails.application.routes.draw do
     namespace :v2 do
       resources :apidocs, only: %i(index)
       resources :plips, only: %i(index)
+      resources :petitions, only: [:info] do
+        get :info
+      end
     end
   end
 
