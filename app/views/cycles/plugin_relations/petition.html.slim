@@ -7,8 +7,8 @@
 section#petition-index
   .row
     .col-lg-6.petition-side-bar.petition-view style="background-image: url('#{@cycle.picture.url}'); background-color: #{@cycle.color}"
-      h1= @phase.name
-      h3= @phase.description
+      h1.petition-name= @phase.name
+      h3.petition-description= @phase.description
 
       - if @user_signed_petition
         .row.medium-gap.text-center
@@ -25,21 +25,21 @@ section#petition-index
             button.rounded-button.sign-petition style="background-color: #{@cycle.color}"
              =@petition.call_to_action
 
-      .row.small-gap
-        .col-xs-12
+      .row.signatures-info
+        .col-xs-12.already-signed
           strong= "3.432 "
           | já assinaram
-      .row
+      .row.signatures-info
         .col-xs-12
           .petition-signatures-progress
-      .row
+      .row.signatures-info
         .col-xs-12
           | Faltam
           strong=" 6.568 "
           | assinaturas para a meta de
           strong=" 10.000"
 
-      .row.small-gap.remaining-days
+      .row.small-gap.remaining-days.bottom-info-container
         .col-xs-12
           .pull-left
             i.icon-clock style="color: #{@cycle.color}"
@@ -49,23 +49,35 @@ section#petition-index
           div.medium-padded
             small= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}" 
 
-      .row.small-gap.download-document
+      .row.small-gap.download-document.bottom-info-container
         .col-xs-12
           .pull-left
             i.icon-text2 style="color: #{@cycle.color}"
           div.medium-padded
-            a href=@petition.published_version.document_url target="_blank"
-              strong Baixe o PDF 
-              | do projeto
+            a.download-document href=@petition.published_version.document_url style="color: #{@cycle.color}" target="_blank"
+              strong Baixe o PDF
+            |  do projeto
           div.medium-padded
             small= "A versão atual for criada no dia #{@petition.published_version.created_at.strftime("%d/%m/%Y às %H:%M")}"
 
-    .col-lg-6.petition-view
+      .row.phone-bottom-info
+        .col-xs-6
+          strong= "#{@phase.remaining_days} dias restantes"
+          div
+            small para o encerramento
+        .col-xs-6
+          strong= "4.312 de 10.000"
+          div
+            small assinaturas
+
+      .div.bottom-info-clear
+
+    .col-lg-6.petition-view.petition-body-container
       p= @petition.presentation
       .row
         .col-xs-12
-          h3.section-title style="border-color: #{@cycle.color}" Projeto de lei
-      p= markdown @petition.published_version.body
+          h3.section-title.petition-body-title style="border-color: #{@cycle.color}" Projeto de lei
+      p.petition-body= markdown @petition.published_version.body
       = render 'layouts/shared/footer'
 
 javascript:
