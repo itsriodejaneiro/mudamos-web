@@ -1,0 +1,65 @@
+doctype html
+html
+  body.petition-widget
+    div.petition-container class="#{params[:size] || "big"}"
+      div.petition-header style="background-image: url('#{cycle.picture.url}')"
+        div.petition-header-overlay
+        div.petition-header-info
+          h3= phase.name
+          p= phase.description
+          = image_tag "watermark"
+      div.petition-progress-container
+        - if phase.finished?
+          div.petition-progress.finished
+        - else
+          div.petition-progress
+      div.petition-body
+        p= petition.presentation
+      div.petition-bottom-information
+        div.petition-period-information
+          - if phase.finished?
+            div= petition.plugin_relation.related.final_date.strftime("%d/%m/%Y")
+            div data de encerramento
+          - else
+            div= "#{petition.plugin_relation.related.remaining_days} dias restantes"
+            div para o encerramento
+        div.petition-signatures-information
+          div#signatures_count
+            span 0
+            =" de #{petition.signatures_required}"
+          div assinaturas
+      div.petition-button-container
+        = link_to generate_link, target: "_parent" do
+          button style="background-color: #{cycle.color}"
+            - if phase.finished?
+              | Saiba mais
+            - else
+              = petition.call_to_action
+
+= stylesheet_link_tag    'embedded/application', media: 'all'
+= javascript_include_tag 'embedded/application'
+javascript:
+  $(document).ready(function() {
+    function updateSignaturesCount() {
+      var signaturesRequired = "#{petition.signatures_required}";
+
+      apiClient.getPetitionInfo(#{petition.id}).then(function(petitionInfo) {
+        if (petitionInfo) {
+          var count = petitionInfo.signatures_count;
+
+          var percentage = (count / signaturesRequired) * 100;
+          $(".petition-progress").css("width", percentage + "%");
+
+          $("#signatures_count span").text(count);
+
+          $(".petition-progress-container").attr("title", count + " de " + signaturesRequired + " assinaturas")
+        }
+      });
+    }
+
+    var petitionInProgress = #{phase.in_progress?};
+    if (petitionInProgress) {
+      setInterval(updateSignaturesCount, 10000)
+    }
+    updateSignaturesCount();
+  });
