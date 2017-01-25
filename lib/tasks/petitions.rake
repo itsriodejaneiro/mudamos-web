@@ -12,16 +12,26 @@ namespace :petitions do
   desc "Fetches petitions informations from the api and store it on the cache"
   task fetch_info: :environment do |_, args|
 
+    log = -> message {
+      puts message
+      Rails.logger.info message
+    }
+
+    error = -> message {
+      puts message
+      Rails.logger.error message
+    }
+
     petition_service = PetitionService.new
 
     PetitionPlugin::Detail.all.find_in_batches do |batch|
       batch.each do |detail|
         begin
           petition_service.fetch_petition_info detail.id, fresh: true
-          puts "Fetched information for petition #{detail.id}"
+          log.call "Fetched information for petition #{detail.id}"
         rescue => error
-          puts "Could not fetch information for petition #{detail.id}"
-          puts error
+          error.call "Could not fetch information for petition #{detail.id}"
+          error.call error
         end
       end
     end
