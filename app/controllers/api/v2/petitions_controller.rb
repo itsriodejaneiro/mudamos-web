@@ -38,6 +38,12 @@ class Api::V2::PetitionsController < Api::V2::ApplicationController
     petition_info = petition_service.fetch_petition_info(petition_id)
 
     render json: petition_info
-    expires_in 1.day, public: true
+    expires_in expires_time.minutes, public: true
+  end
+
+  private
+
+  def expires_time
+    Rails.application.secrets.http_cache["api_expires_in"]
   end
 end
