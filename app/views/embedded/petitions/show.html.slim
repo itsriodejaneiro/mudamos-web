@@ -10,7 +10,7 @@ html
           = image_tag "watermark"
       div.petition-progress-container
         - if phase.finished?
-          div.petition-progress style="background-color: #{cycle.color};"
+          div.petition-progress.finished
         - else
           div.petition-progress
       div.petition-body
@@ -51,6 +51,8 @@ javascript:
           $(".petition-progress").css("width", percentage + "%");
 
           $("#signatures_count span").text(count);
+
+          $(".petition-progress-container").attr("title", count + " de " + signaturesRequired + " assinaturas")
         }
       });
     }
