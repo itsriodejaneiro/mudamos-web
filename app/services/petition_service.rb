@@ -9,9 +9,7 @@ class PetitionService
   def fetch_petition_info(petition_id, fresh: false)
     cache_key = "mobile_petition_info:#{petition_id}"
 
-    Rails.cache.delete cache_key if fresh
-
-    petition_info = Rails.cache.fetch(cache_key) do
+    petition_info = Rails.cache.fetch(cache_key, force: fresh) do
       mobile_service.petition_info(petition_id)
     end
   end
