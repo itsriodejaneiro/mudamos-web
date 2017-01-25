@@ -18,9 +18,19 @@ class Embedded::PetitionsController < Embedded::ApplicationController
     )
   end
 
+  helper_method :petition
+  def petition
+    @petition
+  end
+
   helper_method :phase
   def phase
-    @petition.plugin_relation.related
+    petition.plugin_relation.related
+  end
+
+  helper_method :cycle
+  def cycle
+    phase.cycle
   end
 
   private
