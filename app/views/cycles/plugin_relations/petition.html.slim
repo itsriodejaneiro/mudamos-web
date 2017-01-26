@@ -79,7 +79,7 @@ section#petition-index
           div
             small para o encerramento
         .col-xs-6
-          strong= "4.312 de 10.000"
+          strong.total-signatures
           div
             small assinaturas
 
@@ -127,6 +127,7 @@ javascript:
           progressBar.update(percentage + "%");
           $(".already-signed strong").text(count + " ");
           $(".remaining-signatures").text(" " + (signaturesRequired - count) + " ");
+          $(".phone-bottom-info .total-signatures").text(count + " de " + signaturesRequired);
         }
       });
     }
