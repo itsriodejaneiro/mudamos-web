@@ -11,13 +11,12 @@ section#petition-index
       h3.petition-description= @phase.description
 
       - if @user_signed_petition
-        .row.medium-gap.text-center
+        .row
           .col-xs-12
             | Recebemos sua pré-assinatura! Por um requisito legal, agora você precisa baixar o App da Mudamos para confirmar a assinatura
-        .row.medium-gap.text-center
-          .col-xs-12.col-sm-6
+        .row.small-gap
+          .col-xs-12
             a.store-badge.app href="#"
-          .col-xs-12.col-sm-6
             a.store-badge.play href="#"
       - else
         .row
