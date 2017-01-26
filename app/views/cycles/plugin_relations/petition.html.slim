@@ -59,6 +59,20 @@ section#petition-index
             |  do projeto
           div.medium-padded
             small= "A versão atual for criada no dia #{@petition.published_version.created_at.strftime("%d/%m/%Y às %H:%M")}"
+          - if @petition.past_versions.length > 0
+            div.medium-padded
+              a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
+
+            script#past-versions-popover type="text/template"
+              ul.list-unstyled
+                - past_versions_length = @petition.past_versions.length
+                - @petition.past_versions.each_with_index do |version, index|
+                  li
+                    div.pull-left
+                      i.icon-text2 style="color: #{@cycle.color}"
+                    div.medium-padded
+                      a href="#{version.document_url}" style="color: #{@cycle.color}"  ="Versão #{ past_versions_length - index}"
+                    div.medium-padded= "Criada em #{version.created_at.strftime("%d/%m/%Y às %H:%M")}"
 
       .row.phone-bottom-info
         .col-xs-6
@@ -95,6 +109,12 @@ javascript:
     var progressBar = $(".petition-signatures-progress").progressBar({
       percentage: "20%",
       color: "#{@cycle.color}"
+    });
+
+    $(".past-versions").popover({
+      html: true,
+      content: $("#past-versions-popover").html(),
+      placement: "right",
     });
 
     function updateSignaturesCount() {
