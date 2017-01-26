@@ -215,6 +215,11 @@ class Cycle < ActiveRecord::Base
     end
   end
 
+  def color_as_rgba(alpha)
+    rgb = color.scan(/[a-fA-F0-9]{2}/).map { |color| color.to_i(16) }
+    "rgba(#{rgb[0]}, #{rgb[1]}, #{rgb[2]}, #{alpha})"
+  end
+
     private
 
     def validate_dates

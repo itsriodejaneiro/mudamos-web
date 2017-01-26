@@ -51,28 +51,24 @@
   
   .petition-side-bar
     color: #fff
-
-    &::after
-      content: ""
-      opacity: 0.6
-      background-color: #000
-      top: 0
-      left: 0
-      bottom: 0
-      right: 0
-      position: absolute
-      z-index: -1
+    background-repeat: no-repeat
+    background-size: cover
+    background-blend-mode: multiply, multiply, color
+    position: relative
 
     &::before
       content: ""
-      background-repeat: no-repeat
-      background-size: cover
-      top: 0
-      left: 0
-      bottom: 0
-      right: 0
+      background-color: #000 
+      opacity: 0.5
       position: absolute
-      z-index: -2
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+
+    > *
+      z-index: 1
+      position: relative
 
     .phone-bottom-info
       display: none
