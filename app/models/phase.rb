@@ -84,7 +84,7 @@ class Phase < ActiveRecord::Base
   end
 
   def remaining_days
-    (final_date.to_date - Date.today).to_i
+    [0, (final_date.to_date - Date.today).to_i].max
   end
 
   # validates_attachment :picture, presence: true, content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png', 'image/jpg'] }
