@@ -22,6 +22,7 @@ class Api::V2::ApidocsController < Api::V2::BaseController
 
   # A list of all classes that have swagger_* declarations.
   SWAGGERED_CLASSES = [
+    Api::V2::PetitionsController,
     Api::V2::PlipsController,
     Api::V2::Entities::Cycle,
     Api::V2::Entities::Phase,
