@@ -10,87 +10,92 @@ section#petition-index
       h1.petition-name= @phase.name
       h3.petition-description= @phase.description
 
-      - if @user_signed_petition
-        .row
-          .col-xs-12
-            | Recebemos sua pré-assinatura! Por um requisito legal, agora você precisa baixar o App da Mudamos para confirmar a assinatura
-        .row.small-gap
-          .col-xs-12
-            a.store-badge.app href="#"
-            a.store-badge.play href="#"
-      - else
-        .row
-          .col-xs-12
-            button.rounded-button.sign-petition style="background-color: #{@cycle.color}"
-             =@petition.call_to_action
+      - if @phase.plugin_relation.ready?
+        - if @user_signed_petition
+          .row
+            .col-xs-12
+              | Recebemos sua pré-assinatura! Por um requisito legal, agora você precisa baixar o App da Mudamos para confirmar a assinatura
+          .row.small-gap
+            .col-xs-12
+              a.store-badge.app href="#"
+              a.store-badge.play href="#"
+        - else
+          .row
+            .col-xs-12
+              button.rounded-button.sign-petition style="background-color: #{@cycle.color}"
+               =@petition.call_to_action
 
-      .row.signatures-info
-        .col-xs-12.already-signed
-          strong
-          | já assinaram
-      .row.signatures-info
-        .col-xs-12
-          .petition-signatures-progress
-      .row.signatures-info
-        .col-xs-12
-          | Faltam
-          strong.remaining-signatures
-          | assinaturas para a meta de
-          strong=" #{@petition.signatures_required}"
+        .row.signatures-info
+          .col-xs-12.already-signed
+            strong
+            | já assinaram
+        .row.signatures-info
+          .col-xs-12
+            .petition-signatures-progress
+        .row.signatures-info
+          .col-xs-12
+            | Faltam
+            strong.remaining-signatures
+            | assinaturas para a meta de
+            strong=" #{@petition.signatures_required}"
 
-      .row.small-gap.remaining-days.bottom-info-container
-        .col-xs-12
-          .pull-left
-            i.icon-clock style="color: #{@cycle.color}"
-          div.medium-padded
-            strong= "#{@phase.remaining_days} dias "
-            | restantes para o encerramento
-          div.medium-padded
-            small= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}" 
-
-      .row.small-gap.download-document.bottom-info-container
-        .col-xs-12
-          .pull-left
-            i.icon-text2 style="color: #{@cycle.color}"
-          div.medium-padded
-            a.download-document href=@petition.published_version.document_url style="color: #{@cycle.color}" target="_blank"
-              strong Baixe o PDF
-            |  do projeto
-          div.medium-padded
-            small= "A versão atual for criada no dia #{@petition.published_version.created_at.strftime("%d/%m/%Y às %H:%M")}"
-          - if @petition.past_versions.length > 0
+        .row.small-gap.remaining-days.bottom-info-container
+          .col-xs-12
+            .pull-left
+              i.icon-clock style="color: #{@cycle.color}"
             div.medium-padded
-              a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
+              strong= "#{@phase.remaining_days} dias "
+              | restantes para o encerramento
+            div.medium-padded
+              small= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}" 
 
-            script#past-versions-popover type="text/template"
-              ul.list-unstyled
-                - past_versions_length = @petition.past_versions.length
-                - @petition.past_versions.each_with_index do |version, index|
-                  li
-                    div.pull-left
-                      i.icon-text2 style="color: #{@cycle.color}"
-                    div.medium-padded
-                      a href="#{version.document_url}" style="color: #{@cycle.color}"  ="Versão #{ past_versions_length - index}"
-                    div.medium-padded= "Criada em #{version.created_at.strftime("%d/%m/%Y às %H:%M")}"
+        .row.small-gap.download-document.bottom-info-container
+          .col-xs-12
+            .pull-left
+              i.icon-text2 style="color: #{@cycle.color}"
+            div.medium-padded
+              a.download-document href=@petition.published_version.document_url style="color: #{@cycle.color}" target="_blank"
+                strong Baixe o PDF
+              |  do projeto
+            div.medium-padded
+              small= "A versão atual for criada no dia #{@petition.published_version.created_at.strftime("%d/%m/%Y às %H:%M")}"
+            - if @petition.past_versions.length > 0
+              div.medium-padded
+                a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
 
-      .row.phone-bottom-info
-        .col-xs-6
-          strong= "#{@phase.remaining_days} dias restantes"
-          div
-            small para o encerramento
-        .col-xs-6
-          strong.total-signatures
-          div
-            small assinaturas
+              script#past-versions-popover type="text/template"
+                ul.list-unstyled
+                  - past_versions_length = @petition.past_versions.length
+                  - @petition.past_versions.each_with_index do |version, index|
+                    li
+                      div.pull-left
+                        i.icon-text2 style="color: #{@cycle.color}"
+                      div.medium-padded
+                        a href="#{version.document_url}" style="color: #{@cycle.color}"  ="Versão #{ past_versions_length - index}"
+                      div.medium-padded= "Criada em #{version.created_at.strftime("%d/%m/%Y às %H:%M")}"
 
-      .div.bottom-info-clear
+        .row.phone-bottom-info
+          .col-xs-6
+            strong= "#{@phase.remaining_days} dias restantes"
+            div
+              small para o encerramento
+          .col-xs-6
+            strong.total-signatures
+            div
+              small assinaturas
+
+        .div.bottom-info-clear
 
     .col-lg-6.petition-view.petition-body-container
-      p= @petition.presentation
-      .row
-        .col-xs-12
-          h3.section-title.petition-body-title style="border-color: #{@cycle.color}" Projeto de lei
-      p.petition-body= markdown @petition.published_version.body
+      - if  @phase.plugin_relation.ready?
+        p= @petition.presentation
+        .row
+          .col-xs-12
+            h3.section-title.petition-body-title style="border-color: #{@cycle.color}" Projeto de lei
+        p.petition-body= markdown @petition.published_version.body
+      - else
+        p Esta petição ainda não foi publicada, aguarde enquanto a edição do documento seja finalizada e tente novamento mais tarde.
+
       = render 'layouts/shared/footer'
 
 css:
@@ -103,38 +108,39 @@ css:
     background-color: #{@cycle.color_as_rgba(0.3)};
   }
 
-javascript:
-  $(document).ready(function() {
-    var progressBar = $(".petition-signatures-progress").progressBar({
-      percentage: "20%",
-      color: "#{@cycle.color}"
-    });
-
-    $(".past-versions").popover({
-      html: true,
-      content: $("#past-versions-popover").html(),
-      placement: "right",
-    });
-
-    function updateSignaturesCount() {
-      var signaturesRequired = "#{@petition.signatures_required}";
-
-      apiClient.getPetitionInfo(#{@petition.id}).then(function(petitionInfo) {
-        if (petitionInfo) {
-          var count = petitionInfo.signatures_count;
-
-          var percentage = (count / signaturesRequired) * 100;
-          progressBar.update(percentage + "%");
-          $(".already-signed strong").text(count + " ");
-          $(".remaining-signatures").text(" " + (signaturesRequired - count) + " ");
-          $(".phone-bottom-info .total-signatures").text(count + " de " + signaturesRequired);
-        }
+- if @phase.plugin_relation.ready?
+  javascript:
+    $(document).ready(function() {
+      var progressBar = $(".petition-signatures-progress").progressBar({
+        percentage: "20%",
+        color: "#{@cycle.color}"
       });
-    }
-
-    var petitionInProgress = #{@phase.in_progress?};
-    if (petitionInProgress) {
-      setInterval(updateSignaturesCount, 10000)
-    }
-    updateSignaturesCount();
-  });
+  
+      $(".past-versions").popover({
+        html: true,
+        content: $("#past-versions-popover").html(),
+        placement: "right",
+      });
+  
+      function updateSignaturesCount() {
+        var signaturesRequired = "#{@petition.signatures_required}";
+  
+        apiClient.getPetitionInfo(#{@petition.id}).then(function(petitionInfo) {
+          if (petitionInfo) {
+            var count = petitionInfo.signatures_count;
+  
+            var percentage = (count / signaturesRequired) * 100;
+            progressBar.update(percentage + "%");
+            $(".already-signed strong").text(count + " ");
+            $(".remaining-signatures").text(" " + (signaturesRequired - count) + " ");
+            $(".phone-bottom-info .total-signatures").text(count + " de " + signaturesRequired);
+          }
+        });
+      }
+  
+      var petitionInProgress = #{@phase.in_progress?};
+      if (petitionInProgress) {
+        setInterval(updateSignaturesCount, 10000)
+      }
+      updateSignaturesCount();
+    });
