@@ -6,7 +6,7 @@
 
 section#petition-index
   .row
-    .col-lg-6.petition-side-bar.petition-view style="background-image: url('#{@cycle.picture.url}'); background-color: #{@cycle.color}"
+    .col-lg-6.petition-side-bar.petition-view
       h1.petition-name= @phase.name
       h3.petition-description= @phase.description
 
@@ -27,7 +27,7 @@ section#petition-index
 
       .row.signatures-info
         .col-xs-12.already-signed
-          strong= "3.432 "
+          strong
           | já assinaram
       .row.signatures-info
         .col-xs-12
@@ -35,9 +35,9 @@ section#petition-index
       .row.signatures-info
         .col-xs-12
           | Faltam
-          strong=" 6.568 "
+          strong.remaining-signatures
           | assinaturas para a meta de
-          strong=" 10.000"
+          strong=" #{@petition.signatures_required}"
 
       .row.small-gap.remaining-days.bottom-info-container
         .col-xs-12
@@ -80,8 +80,37 @@ section#petition-index
       p.petition-body= markdown @petition.published_version.body
       = render 'layouts/shared/footer'
 
+css:
+  .petition-side-bar::before {
+    background-image: url("#{@cycle.picture.url}")
+  }
+  
+
 javascript:
-  $(".petition-signatures-progress").progressBar({
-    percentage: "20%",
-    color: "#{@cycle.color}"
+  $(document).ready(function() {
+    var progressBar = $(".petition-signatures-progress").progressBar({
+      percentage: "20%",
+      color: "#{@cycle.color}"
+    });
+
+    function updateSignaturesCount() {
+      var signaturesRequired = "#{@petition.signatures_required}";
+
+      apiClient.getPetitionInfo(#{@petition.id}).then(function(petitionInfo) {
+        if (petitionInfo) {
+          var count = petitionInfo.signatures_count;
+
+          var percentage = (count / signaturesRequired) * 100;
+          progressBar.update(percentage + "%");
+          $(".already-signed strong").text(count + " ");
+          $(".remaining-signatures").text(" " + (signaturesRequired - count) + " ");
+        }
+      });
+    }
+
+    var petitionInProgress = #{@phase.in_progress?};
+    if (petitionInProgress) {
+      setInterval(updateSignaturesCount, 10000)
+    }
+    updateSignaturesCount();
   });

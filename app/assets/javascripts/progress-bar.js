@@ -27,5 +27,12 @@
     $marker.children("span").css("background-color", color);
 
     $container.append($marker);
+
+    return {
+      update: function(percentage) {
+        $currentPercentageBar.css("width", percentage);
+        $marker.css("left", percentage);
+      }
+    }
   }
 })(jQuery);
