@@ -64,4 +64,9 @@ module ApplicationHelper
       'text_field'
     end
   end
+
+  def color_as_rgba(color, alpha)
+    rgb = color.scan(/[a-fA-F0-9]{2}/).map { |color| color.to_i(16) }
+    "rgba(#{rgb[0]}, #{rgb[1]}, #{rgb[2]}, #{alpha})"
+  end
 end

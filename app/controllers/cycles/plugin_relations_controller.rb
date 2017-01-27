@@ -40,12 +40,6 @@ class Cycles::PluginRelationsController < ApplicationController
     detail_repository.past_versions_desc(@petition.id)
   end
 
-  helper_method :color_as_rgba
-  def color_as_rgba(color, alpha)
-    rgb = color.scan(/[a-fA-F0-9]{2}/).map { |color| color.to_i(16) }
-    "rgba(#{rgb[0]}, #{rgb[1]}, #{rgb[2]}, #{alpha})"
-  end
-
   def custom_footer
     @plugin_relation.plugin.plugin_type == 'Petição'
   end
