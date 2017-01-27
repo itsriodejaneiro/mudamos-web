@@ -21,6 +21,11 @@ class ApplicationController < ActionController::Base
     )
   end
 
+  helper_method :custom_footer
+  def custom_footer
+    false
+  end
+
   private
 
     def set_cycles

@@ -40,6 +40,10 @@ class Cycles::PluginRelationsController < ApplicationController
     detail_repository.past_versions_desc(@petition.id)
   end
 
+  def custom_footer
+    @plugin_relation.plugin.plugin_type == 'Petição'
+  end
+
   private
 
   def detail_repository

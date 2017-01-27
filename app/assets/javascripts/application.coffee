@@ -52,6 +52,8 @@
 #= require reports
 #= require area-toggler
 #= require sign_petition
+#= require progress-bar
+#= require api
 
 document.expiration_default_time = 300
 

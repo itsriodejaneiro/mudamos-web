@@ -3,6 +3,9 @@
 @import "custom_variables"
 @import "ico-font"
 
+html, body, .body-container
+  height: 100%
+
 iframe
   position: relative !important
 
@@ -1446,53 +1449,6 @@ section#static_page
     font-family: $font-family-serif
     margin-bottom: 5px
 
-
-#petition-index
-  padding-top: $navbar-height + 90px
-  padding-bottom: 50px
-
-  .call-wrapper
-    margin-top: 40px
-
-  a.download-document
-    color: $gray-dark
-    font-size: 16px
-    text-decoration: none
-
-    .icon-baixeaqui
-      display: inline-block
-      margin-right: 10px
-      transform: rotate(90deg)
-
-  .more-details-row
-    margin-top: 50px
-
-  a.toggle-details
-    background-color: white
-    padding-right: 10px
-
-    &.area-open
-      i
-        transform: rotate(90deg)
-
-    i
-      display: inline-block
-      margin-right: 10px
-
-  hr.toggle-details
-    margin-top: -10px
-
-  .plip-row
-    display: none
-    margin-top: 30px
-
-    .plip-title
-      font-size: 18px
-
-  @media (max-width: $screen-sm-min)
-    .share-col
-      margin-top: 15px
-
 #subjects-index
   background-color: $color-grid-dark-grey
   padding-top: $navbar-height + 90px
@@ -2726,29 +2682,11 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
     margin: 80px auto 0px
     width: 550px
 
-  &.plip-sign
-    margin-bottom: 75px
-    a.main-call
-      width: 550px
-      height: 170px
-
-      .action-tail
-        top: 165px
-
-      @media (max-width: $screen-xs-max)
-        width: 320px
-        height: 280px
-
-        .action-tail
-          top: 275px
-          left: 30%
-
-      &:hover
-        .hover-box
-          margin-top: -275px
-
 .fb-share-button, .twitter-share-button
   vertical-align: top
+
+.small-gap
+  margin-top: 25px
 
 .medium-gap
   margin-top: 50px
@@ -2763,7 +2701,66 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
 
   &.play
     background-image: image-url("google-play-badge.png")
-    background-size: 100%
-    margin-top: -10px
-    height: 59px
-    width: 153px
+    background-position: -9px -9px 
+    height: 40px
+    width: 135px
+
+.progress-bar
+  position: relative
+  height: 10px
+  margin-top: 8px
+  margin-bottom: 8px
+
+  .progress-bar-container
+    width: 100%
+
+  .progress-bar-filling, .progress-bar-container
+    left: 0px 
+    height: 10px
+    border-radius: 5px
+    position: absolute
+
+  .progress-bar-marker
+    position: absolute
+    top: -2px
+    margin-left: -11px
+    height: 22px
+    width: 22px
+
+    span
+      position: absolute
+      display: inline-block
+
+    span:first-child
+      height: 14px
+      width: 14px
+      border-radius: 7px
+      left: 0px
+      top: 0px
+
+    span:nth-child(2)
+      height: 18px
+      width: 18px
+      border-radius: 9px
+      opacity: 0.5
+      left: -2px
+      top: -2px
+
+    span:nth-child(3)
+      height: 22px
+      width: 22px
+      border-radius: 11px
+      opacity: 0.25
+      left: -4px
+      top: -4px
+
+.rounded-button
+  color: #fff
+  border: 0px
+  padding: 25px 91px
+  border-radius: 35px
+  width: 100%
+  font-size: 28px
+  font-weight: bold
+  text-align: center
+  line-height: 20px
