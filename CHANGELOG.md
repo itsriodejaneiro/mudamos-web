@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #131]: New petition's page (Issue 96)
 * [PR #123]: Petition widget (issue 97)
  - Configure a cron to update the cache of the petitions information
  - Set `API_CACHE_EXPIRES_IN`
