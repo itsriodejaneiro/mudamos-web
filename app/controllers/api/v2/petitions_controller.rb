@@ -41,6 +41,17 @@ class Api::V2::PetitionsController < Api::V2::ApplicationController
     expires_in expires_time.minutes, public: true
   end
 
+  def signers
+    petition_id = params[:petition_id]
+    from = params[:from]
+    to = params[:to]
+
+    petition_info = petition_service.fetch_petition_signers(petition_id, from, to)
+
+    render json: petition_info
+    expires_in expires_time.minutes, public: true
+  end
+
   private
 
   def expires_time

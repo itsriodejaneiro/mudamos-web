@@ -7,7 +7,12 @@
   var prototype = ApiClient.prototype;
 
   prototype.getPetitionInfo = function(petitionId) {
-    return $.get(this.url + "/petitions/" + petitionId + "/info")
+    return $.get(this.url + "/petitions/" + petitionId + "/info");
+  };
+
+
+  prototype.getPetitionSigners = function(petitionId, start, end) {
+    return $.get(this.url + "/petitions/" + petitionId + "/signers");
   };
 
   window.apiClient = new ApiClient;
