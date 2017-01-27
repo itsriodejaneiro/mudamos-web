@@ -66,7 +66,7 @@ module ApplicationHelper
   end
 
   def color_as_rgba(color, alpha)
-    rgb = color.scan(/[a-fA-F0-9]{2}/).map { |color| color.to_i(16) }
-    "rgba(#{rgb[0]}, #{rgb[1]}, #{rgb[2]}, #{alpha})"
+    r, g, b = color.scan(/[a-fA-F0-9]{2}/).map { |color| color.to_i(16) }
+    "rgba(#{r}, #{g}, #{b}, #{alpha})"
   end
 end
