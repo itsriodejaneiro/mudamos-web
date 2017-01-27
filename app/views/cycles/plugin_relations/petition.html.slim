@@ -86,6 +86,23 @@ section#petition-index
 
         .div.bottom-info-clear
 
+        .row.signers-desktop
+          ul.list-unstyled
+            li
+              div.pull-left
+                img src="https://robohash.org/jack"
+              div 
+                strong Jack
+              div 
+                small 30 minutos atrás
+            li
+              div.pull-left
+                img src="https://robohash.org/james"
+              div 
+                strong James
+              div 
+                small 1 hora atrás
+
     .col-lg-6.petition-view.petition-body-container
       - if  @phase.plugin_relation.ready?
         p= @petition.presentation
