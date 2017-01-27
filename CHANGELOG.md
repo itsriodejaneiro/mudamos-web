@@ -1,5 +1,7 @@
 ## Next
 
+## [1.4.0] - 27/01/2017
+
 * [PR #122]: Adding plip_url to the plip api (issue 121)
  - Set the `APP_DEFAULT_HOST` environment variable
  - Set the `APP_DEFAULT_SCHEME` environment variable
