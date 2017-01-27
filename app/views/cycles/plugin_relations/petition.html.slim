@@ -130,7 +130,7 @@ css:
             var count = petitionInfo.signatures_count;
   
             var percentage = (count / signaturesRequired) * 100;
-            progressBar.update(percentage + "%");
+            $(".petition-signatures-progress").trigger("update", percentage + "%");
             $(".already-signed strong").text(count + " ");
             $(".remaining-signatures").text(" " + (signaturesRequired - count) + " ");
             $(".phone-bottom-info .total-signatures").text(count + " de " + signaturesRequired);
