@@ -1,0 +1,240 @@
+@import "bootstrap/variables"
+
+#petition-index
+  padding-top: $navbar-height + 51px
+  height: 100%
+  font-size: 22px
+
+  .store-badge
+    margin-right: 20px
+
+  .past-versions
+    text-transform: uppercase
+
+  .popover
+    background-color: #202020
+
+    &.right .arrow:after
+      border-right-color: #202020
+
+    .popover-content
+      font-size: 12px
+
+      .medium-padded
+        padding: 0px 46px
+
+        &:nth-child(2)
+          font-size: 16px
+
+        &:nth-child(3)
+          font-size: 10px
+
+      i
+        font-size: 35px
+
+  .petition-body-title
+    font-size: 36px
+    margin-top: 98px
+
+  .petition-name
+    font-size: 72px
+    margin-top: 0px
+    margin-bottom: 19px
+
+  .petition-body
+    font-size: 18px
+    margin-top: 30px
+
+  .petition-description
+    font-size: 34px
+    margin-top: 0px
+    margin-bottom: 55px
+    font-family: Merriweather
+
+  .already-signed
+    font-size: 28px
+    margin-top: 32px
+
+  > .row
+    height: 100%
+    margin: 0px
+
+  .petition-view
+    padding: 36px 50px
+    min-height: 100%
+
+    &.petition-body-container
+      overflow: auto
+      height: 100%
+
+    .footer-nav
+      .container
+        width: 100%
+        padding: 0px
+
+        .nav
+          li
+            a
+              font-size: 11px
+  
+  .petition-side-bar
+    color: #fff
+    background-repeat: no-repeat
+    background-size: cover
+    background-blend-mode: multiply, multiply, color
+    position: relative
+
+    &::before
+      content: ""
+      background-color: #000 
+      opacity: 0.5
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+
+    > *
+      z-index: 1
+      position: relative
+
+    .phone-bottom-info
+      display: none
+
+  .remaining-days,.download-document
+    i
+      font-size: 60px
+
+  .medium-padded
+    padding: 0px 70px
+
+  .download-document
+    text-decoration: underline
+
+    small
+      font-size: 14px
+
+    span
+      display: inline-block
+      width: 100%
+      text-transform: uppercase
+
+    i
+      display: inline-block
+      margin-right: 10px
+
+// Small screens
+@media (max-height: 660px)
+  #petition-index
+    font-size: 12px
+
+    .petition-view
+      height: 100%
+      min-height: auto
+      overflow: auto
+  
+    .petition-name
+      font-size: 62px
+      margin-top: 0px
+      margin-bottom: 9px
+  
+    .petition-description
+      font-size: 22px
+      margin-top: 0px
+      margin-bottom: 45px
+  
+    .already-signed
+      font-size: 18px
+      margin-top: 22px
+  
+    .petition-view
+      padding: 12px 20px
+  
+    .remaining-days,.download-document
+      i
+        font-size: 50px
+  
+    .medium-padded
+      padding: 0px 60px
+  
+    .rounded-button
+      padding: 15px 81px
+      border-radius: 25px
+      font-size: 18px
+      line-height: 10px
+  
+      small
+        font-size: 4px
+  
+      i
+        margin-right: 2px
+
+// Tablets
+@media (max-device-width: 839px)
+  #petition-index
+    .petition-view
+      height: auto
+      min-height: auto
+
+      &.petition-side-bar
+        text-align: center
+        padding: 36px 100px
+        overflow: unset
+
+        .bottom-info-container
+          width: 50%
+          float: left
+
+        .bottom-info-clear
+          clear: both
+
+      &.petition-body-container
+        overflow: unset 
+
+// Smartphones
+@media(max-device-width: 537px)
+  #petition-index
+    .petition-view
+      height: auto
+      min-height: auto
+      padding: 18px 15px 22px 15px
+
+      &.petition-side-bar
+        padding: 245px 15px 25px 15px
+        text-align: left
+
+        .phone-bottom-info
+          margin-top: 22px
+          display: block
+
+          small
+            font-weight: bold
+
+          > div:nth-child(2)
+            text-align: right
+
+        .petition-name
+          font-size: 48px
+
+        .petition-description
+          font-size: 22px
+          margin-bottom: 23px
+
+        .rounded-button
+          font-size: 19px
+
+        .bottom-info-container
+          display: none
+
+        .signatures-info
+          display: none
+
+      .navbar-right
+        float: none
+
+        li
+          display: block
+
+        &.social-footer-links
+          li
+            display: inline-block

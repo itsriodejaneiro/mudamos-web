@@ -103,6 +103,9 @@ Rails.application.routes.draw do
     namespace :v2 do
       resources :apidocs, only: %i(index)
       resources :plips, only: %i(index)
+      resources :petitions, only: [:info] do
+        get :info
+      end
     end
   end
 
@@ -137,5 +140,9 @@ Rails.application.routes.draw do
   end
   resources :cycles, only: [:show], path: '' do
     cycle_routes
+  end
+
+  namespace :embedded do
+    resources :petitions, only: [:show]
   end
 end

@@ -1,5 +1,17 @@
 ## Next
 
+* [PR #137]: Fixing app's protocol configuration
+* [PR #135]: Adding metatag for itunes smart banner (issue 133)
+ - Set `MOBILE_API_ID_IOS`
+* [PR #131]: New petition's page (Issue 96)
+* [PR #132]: Fixing remaining days on phase (issue 30)
+* [PR #123]: Petition widget (issue 97)
+ - Configure a cron to update the cache of the petitions information
+ - Set `API_CACHE_EXPIRES_IN`
+* [PR #114]: Changing order of the petitions past versions on the views (issue 114)
+
+## [1.4.0] - 27/01/2017
+
 * [PR #122]: Adding plip_url to the plip api (issue 121)
  - Set the `APP_DEFAULT_HOST` environment variable
  - Set the `APP_DEFAULT_SCHEME` environment variable

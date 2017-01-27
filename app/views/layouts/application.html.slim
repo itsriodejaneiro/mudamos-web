@@ -9,6 +9,8 @@ html
 
     = favicon_link_tag
 
+    meta name="apple-itunes-app" content="app-id=#{Rails.application.secrets.mobile_app_id["ios"]}"
+
     meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7, user-scalable=no"
 
     = metamagic site: "Mudamos", title: [:title, :site], separator: " | "
@@ -39,7 +41,8 @@ html
       - else
         = render 'layouts/shared/base_header'
       = yield
-      = render 'layouts/shared/footer'
+      - unless custom_footer
+        = render 'layouts/shared/footer'
 
       - unless user_signed_in?
         = render 'layouts/shared/modal', modal_id: 'modal-session-new', size: 'md', cache: true, content: render(file: 'users/sessions/new')
