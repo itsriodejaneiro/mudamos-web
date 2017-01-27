@@ -64,5 +64,5 @@ Rails.application.configure do
     # Bullet.slack = { webhook_url: 'http://some.slack.url', foo: 'bar' }
   end
 
-  routes.default_url_options = { host: "localhost:3000" }
+  routes.default_url_options = { host: "localhost:3000", protocol: "http" }
 end
