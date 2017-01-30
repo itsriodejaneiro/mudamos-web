@@ -29,6 +29,7 @@ section#petition-index
           .col-xs-12.already-signed
             strong
             | já assinaram
+            div#petition-signers-tablet 
         .row.signatures-info
           .col-xs-12
             .petition-signatures-progress
@@ -106,6 +107,7 @@ css:
       linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 40%),
       linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 30%),
       linear-gradient(#{color_as_rgba(@cycle.color, 0.3)}, #{color_as_rgba(@cycle.color, 0.3)}),
+      linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
       url("#{@cycle.picture.url}");
     background-color: #{color_as_rgba(@cycle.color, 0.3)};
   }
@@ -114,6 +116,7 @@ css:
   javascript:
     $(document).ready(function() {
       $("#petition-signers-desktop").petitionSignersDesktop(#{@petition.id}, apiClient);
+      $("#petition-signers-tablet").petitionSignersTablet(#{@petition.id}, apiClient);
 
       var progressBar = $(".petition-signatures-progress").progressBar({
         percentage: "20%",
