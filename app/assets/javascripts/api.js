@@ -12,7 +12,7 @@
 
 
   prototype.getPetitionSigners = function(petitionId, start, end) {
-    return $.get(this.url + "/petitions/" + petitionId + "/signers");
+    return $.get(this.url + "/petitions/" + petitionId + "/signers", { from: start, to: end });
   };
 
   window.apiClient = new ApiClient;

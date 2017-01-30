@@ -20,6 +20,6 @@ class PetitionService
     #petition_signers = Rails.cache.fetch(cache_key, force: fresh) do
     #  mobile_service.fetch_petition_signers petition_id, from, to
     #end
-    mobile_service.fetch_petition_signers petition_id, from, to
+    mobile_service.petition_signers petition_id, from, to
   end
 end

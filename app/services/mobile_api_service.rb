@@ -50,10 +50,10 @@ class MobileApiService
     signers = []
     signers_json.each do |signer|
       signers << PetitionSigner.new(
-        signers_json["user_name"],
-        signers_json["user_city"],
-        signers_json["user_state"],
-        signers_json["user_uf"]
+        signer["user_name"],
+        signer["user_city"],
+        signer["user_state"],
+        signer["user_uf"]
       )
     end
 

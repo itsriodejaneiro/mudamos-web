@@ -86,22 +86,7 @@ section#petition-index
 
         .div.bottom-info-clear
 
-        .row.signers-desktop
-          ul.list-unstyled
-            li
-              div.pull-left
-                img src="https://robohash.org/jack"
-              div 
-                strong Jack
-              div 
-                small 30 minutos atrás
-            li
-              div.pull-left
-                img src="https://robohash.org/james"
-              div 
-                strong James
-              div 
-                small 1 hora atrás
+        .row#petition-signers-desktop
 
     .col-lg-6.petition-view.petition-body-container
       - if  @phase.plugin_relation.ready?
@@ -128,6 +113,8 @@ css:
 - if @phase.plugin_relation.ready?
   javascript:
     $(document).ready(function() {
+      $("#petition-signers-desktop").petitionSignersDesktop(#{@petition.id}, apiClient);
+
       var progressBar = $(".petition-signatures-progress").progressBar({
         percentage: "20%",
         color: "#{@cycle.color}"
