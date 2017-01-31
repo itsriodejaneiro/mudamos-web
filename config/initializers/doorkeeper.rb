@@ -4,11 +4,11 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    User.find_by_id(session[:user_id]) || redirect_to(login_url)
+    current_user || redirect_to(login_url)
   end
 
   admin_authenticator do |routes|
-    AdminUser.find_by_id(session[:admin_id]) || redirect_to(routes.new_admin_user_session_url)
+    current_admin_user || redirect_to(routes.new_admin_user_session_url)
   end
 
   # Authorization Code expiration time (default 10 minutes).
