@@ -112,6 +112,7 @@ Rails.application.routes.draw do
 
   namespace :partners_api do
     resources :petitions, only: [:show]
+    resources :users, only: [:create]
   end  
 
   devise_for :users, controllers: {
