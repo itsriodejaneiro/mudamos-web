@@ -4,7 +4,7 @@ module Api
       class PetitionSigner < Grape::Entity
         include Swagger::Blocks
 
-        root 'info', 'info'
+        root 'signers', 'signers'
 
         expose :date
         expose :name
