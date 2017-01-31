@@ -133,6 +133,8 @@ GEM
     diff-lcs (1.2.5)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
+    doorkeeper (4.2.0)
+      railties (>= 4.2)
     dotenv (2.0.2)
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
@@ -608,6 +610,7 @@ DEPENDENCIES
   delayed_job_active_record
   delayed_paperclip
   devise
+  doorkeeper
   dotenv-rails
   factory_girl_rails
   faker

@@ -80,6 +80,7 @@ gem 'aws-sdk', '~> 2'
 
 gem 'faraday', "~> 0.9"
 gem 'net-http-persistent', "~> 2.9.4"
+gem 'doorkeeper'
 
 group :development, :test, :staging do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
