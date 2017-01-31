@@ -12,6 +12,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     render 'cycles/index'
   end
 
+  def edit
+    render 'users/registrations/edit', layout: 'application'
+  end
+
   def create
     begin
       build_resource sign_up_params

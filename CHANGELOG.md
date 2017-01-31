@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #142]: Removing user field requirements (Issue 126)
 * [PR #141]: Fixing past versions popover order and layout (issue 140)
 * [PR #137]: Fixing app's protocol configuration
 * [PR #135]: Adding metatag for itunes smart banner (issue 133)
