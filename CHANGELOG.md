@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #143]: Adding oath authentication for partners API (Issue 127)
+ - Run `rake db:migrate`
 * [PR #142]: Removing user field requirements (Issue 126)
 * [PR #141]: Fixing past versions popover order and layout (issue 140)
 * [PR #137]: Fixing app's protocol configuration
