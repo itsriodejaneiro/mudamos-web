@@ -11,8 +11,8 @@
   };
 
 
-  prototype.getPetitionSigners = function(petitionId, start, end) {
-    return $.get(this.url + "/petitions/" + petitionId + "/signers", { from: start, to: end });
+  prototype.getPetitionSigners = function(petitionId, limit) {
+    return $.get(this.url + "/petitions/" + petitionId + "/signers", { limit: limit });
   };
 
   window.apiClient = new ApiClient;

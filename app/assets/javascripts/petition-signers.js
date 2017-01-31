@@ -1,11 +1,11 @@
 (function($) {
 
-  var buildPlugin = function(petitionId, apiClient, $element, addRow) {
+  var buildPlugin = function(petitionId, petitionInProgress, apiClient, $element, addRow) {
     var refreshList = function() {
-      // TODO this is mocked right now
-      apiClient.getPetitionSigners(petitionId, "2016-01-01T00:00:00", "2017-01-30T23:59:59")
+      apiClient.getPetitionSigners(petitionId, 4)
         .then(function(response) {
 
+          $element.children().remove();
           var signers = response.signers;
           for (var i = 0; i < Math.min(signers.length, 4); i++) {
             var signer = signers[i];
@@ -15,9 +15,10 @@
     };
 
     refreshList();
+    if (petitionInProgress) setInterval(refreshList, 10000)
   }
 
-  $.fn.petitionSignersTablet = function(petitionId, apiClient) {
+  $.fn.petitionSignersTablet = function(petitionId, petitionInProgress, apiClient) {
     $(this).each(function(idx, element) {
       var $element = $(element);
 
@@ -27,20 +28,19 @@
         var $row = $("<li></li>");
 
         var $img = $("<div class='pull-left'><img /></div>");
-        // TODO this is mocked while we don't have the user photos
-        $img.find("img").attr("src", "https://robohash.org/" + userInfo.name);
+        $img.find("img").attr("src", userInfo.profile_picture);
         $row.append($img);
 
-        $element.find("ul").append($row);
+        $element.append($row);
       };
 
-      buildPlugin(petitionId, apiClient, $element, addRow);
+      buildPlugin(petitionId, petitionInProgress, apiClient, $element.find("ul"), addRow);
     });
 
     return this;
   };
 
-  $.fn.petitionSignersDesktop = function(petitionId, apiClient) {
+  $.fn.petitionSignersDesktop = function(petitionId, petitionInProgress, apiClient) {
     $(this).each(function(idx, element) {
       var $element = $(element);
 
@@ -50,23 +50,21 @@
         var $row = $("<li></li>");
 
         var $img = $("<div class='pull-left'><img /></div>");
-        // TODO this is mocked while we don't have the user photos
-        $img.find("img").attr("src", "https://robohash.org/" + userInfo.name);
+        $img.find("img").attr("src", userInfo.profile_picture);
         $row.append($img);
 
         var $name = $("<div class='user-name'><strong/></div>");
         $name.find("strong").text(userInfo.name);
         $row.append($name);
 
-        // TODO this is mocked
         var $signTime = $("<div class='sign-time'><small/></div>");
-        $signTime.find("small").text("30 minutos atrás");
+        $signTime.find("small").text(jQuery.timeago(new Date(userInfo.date)));
         $row.append($signTime);
 
-        $element.find("ul").append($row);
+        $element.append($row);
       }
 
-      buildPlugin(petitionId, apiClient, $element, addRow);
+      buildPlugin(petitionId, petitionInProgress, apiClient, $element.find("ul"), addRow);
     });
 
     return this;

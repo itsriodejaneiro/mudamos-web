@@ -6,12 +6,22 @@ module Api
 
         root 'info', 'info'
 
+        expose :date
         expose :name
         expose :city
         expose :state
         expose :uf
+        expose :profile_type
+        expose :profile_id
+        expose :profile_email
+        expose :profile_picture
 
         swagger_schema :'Api::V2::Entities::PetitionSigner' do
+          property :date do
+            key :type, :string
+            format "ISO date"
+          end
+
           property :name do
             key :type, :string
           end
@@ -25,6 +35,22 @@ module Api
           end
 
           property :uf do
+            key :type, :string
+          end
+
+          property :profile_type do
+            key :type, :string
+          end
+
+          property :profile_id do
+            key :type, :string
+          end
+
+          property :profile_email do
+            key :type, :string
+          end
+
+          property :profile_picture do
             key :type, :string
           end
         end

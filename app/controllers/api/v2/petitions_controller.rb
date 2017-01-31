@@ -32,7 +32,7 @@ class Api::V2::PetitionsController < Api::V2::ApplicationController
     end
   end
 
-  swagger_path "/petitions/{id}/signers" do
+  swagger_path "/petitions/{id}/signers?limit={limit}" do
     operation :get do
       extend Api::V2::SwaggerResponses::InternalError
 
@@ -68,10 +68,9 @@ class Api::V2::PetitionsController < Api::V2::ApplicationController
 
   def signers
     petition_id = params[:petition_id]
-    from = params[:from]
-    to = params[:to]
+    limit = params[:limit]
 
-    signers = petition_service.fetch_petition_signers(petition_id, from, to)
+    signers = petition_service.fetch_petition_signers(petition_id, limit)
 
     render json: { signers: signers }
     expires_in expires_time.minutes, public: true

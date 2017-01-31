@@ -115,8 +115,10 @@ css:
 - if @phase.plugin_relation.ready?
   javascript:
     $(document).ready(function() {
-      $("#petition-signers-desktop").petitionSignersDesktop(#{@petition.id}, apiClient);
-      $("#petition-signers-tablet").petitionSignersTablet(#{@petition.id}, apiClient);
+      var petitionInProgress = #{@phase.in_progress?};
+
+      $("#petition-signers-desktop").petitionSignersDesktop(#{@petition.id}, petitionInProgress, apiClient);
+      $("#petition-signers-tablet").petitionSignersTablet(#{@petition.id}, petitionInProgress, apiClient);
 
       var progressBar = $(".petition-signatures-progress").progressBar({
         percentage: "20%",
@@ -145,7 +147,6 @@ css:
         });
       }
   
-      var petitionInProgress = #{@phase.in_progress?};
       if (petitionInProgress) {
         setInterval(updateSignaturesCount, 10000)
       }

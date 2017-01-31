@@ -55,6 +55,8 @@
 #= require progress-bar
 #= require api
 #= require petition-signers
+#= require jquery.timeago
+#= require jquery.timeago.pt-br
 
 document.expiration_default_time = 300
 
