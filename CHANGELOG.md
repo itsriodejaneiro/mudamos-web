@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #151]: Adding page url on the payload to the petition mobile api synchronization (issue 150)
 * [PR #145]: Adding signers widget on petition's page (Issue 109)
 * [PR #143]: Adding oath authentication for partners API (Issue 127)
  - Run `rake db:migrate`
