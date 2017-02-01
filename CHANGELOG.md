@@ -1,6 +1,9 @@
 ## Next
 
 * [PR #147]: Adding a partner api for user creation (issue 146)
+* [PR #151]: Adding page url on the payload to the petition mobile api synchronization (issue 150)
+* [PR #145]: Adding signers widget on petition's page (Issue 109)
+ - Configure a cron to update the cache of the petition's signers 
 * [PR #143]: Adding oath authentication for partners API (Issue 127)
  - Run `rake db:migrate`
 * [PR #142]: Removing user field requirements (Issue 126)
@@ -11,7 +14,7 @@
 * [PR #131]: New petition's page (Issue 96)
 * [PR #132]: Fixing remaining days on phase (issue 30)
 * [PR #123]: Petition widget (issue 97)
- - Configure a cron to update the cache of the petitions information
+ - Configure a cron to update the cache of the petition's information
  - Set `API_CACHE_EXPIRES_IN`
 * [PR #114]: Changing order of the petitions past versions on the views (issue 114)
 

@@ -32,12 +32,47 @@ class Api::V2::PetitionsController < Api::V2::ApplicationController
     end
   end
 
+  swagger_path "/petitions/{id}/signers?limit={limit}" do
+    operation :get do
+      extend Api::V2::SwaggerResponses::InternalError
+
+      key :description, "Returns the signers of the petition"
+      key :operationId, "v2findPetitionSigners"
+      key :produces, ["application/json"]
+      key :tags, ["petition"]
+
+      response 200 do
+        key :description, "petition signers response"
+        schema do
+          extend Api::V2::SwaggerResponses::SuccessResponse
+
+          property :data do
+            key :type, :object
+            property 'signers' do
+              key :'$ref', :'Api::V2::Entities::PetitionSigner'
+            end
+          end
+        end
+      end
+    end
+  end
+
   def info
     petition_id = params[:petition_id]
 
     petition_info = petition_service.fetch_petition_info(petition_id)
 
     render json: petition_info
+    expires_in expires_time.minutes, public: true
+  end
+
+  def signers
+    petition_id = params[:petition_id]
+    limit = params[:limit]
+
+    signers = petition_service.fetch_petition_signers(petition_id, limit)
+
+    render json: { signers: signers }
     expires_in expires_time.minutes, public: true
   end
 

@@ -5,6 +5,43 @@
   height: 100%
   font-size: 22px
 
+
+  #petition-signers-tablet
+    float: right
+    display: none
+
+  .signers-desktop, .signers-tablet
+    img
+      width: 40px
+      height: 40px
+      border-radius: 20px
+      margin: 5px
+
+  .signers-desktop
+    ul
+      li
+        clear: both
+
+        font-family: "Merriweather"
+
+        div.user-name
+          strong
+            font-size: 18px
+            display: block
+            width: 100%
+        div.sign-time
+          line-height: 10px
+          small
+            font-size: 11px
+
+  .signers-tablet
+    ul
+      li
+        float: left
+
+        img
+          margin: 0px
+
   .store-badge
     margin-right: 20px
 
@@ -83,21 +120,14 @@
               font-size: 11px
   
   .petition-side-bar
+    height: 100%
+    min-height: auto
+    overflow: auto
     color: #fff
     background-repeat: no-repeat
     background-size: cover
     background-blend-mode: multiply, multiply, color
     position: relative
-
-    &::before
-      content: ""
-      background-color: #000 
-      opacity: 0.5
-      position: absolute
-      top: 0
-      bottom: 0
-      left: 0
-      right: 0
 
     > *
       z-index: 1
@@ -137,7 +167,7 @@
       height: 100%
       min-height: auto
       overflow: auto
-  
+
     .petition-name
       font-size: 62px
       margin-top: 0px
@@ -157,10 +187,10 @@
   
     .remaining-days,.download-document
       i
-        font-size: 50px
+        font-size: 40px
   
     .medium-padded
-      padding: 0px 60px
+      padding: 0px 50px
   
     .rounded-button
       padding: 15px 81px
@@ -177,6 +207,12 @@
 // Tablets
 @media (max-device-width: 839px)
   #petition-index
+
+    #petition-signers-desktop
+      display: none
+    #petition-signers-tablet
+      display: block
+  
     .petition-view
       height: auto
       min-height: auto
@@ -199,6 +235,12 @@
 // Smartphones
 @media(max-device-width: 537px)
   #petition-index
+
+    #petition-signers-desktop
+      display: none
+    #petition-signers-tablet
+      display: none 
+
     .petition-view
       height: auto
       min-height: auto
