@@ -1,6 +1,11 @@
 class PlipRepository
   include Repository
 
+  def current_plip
+    plips = all_initiated(page: 1, limit: 1).items
+    current_plip = plips.last
+  end
+
   def all_initiated(page: 1, limit: 10)
 
     phases = Phase
