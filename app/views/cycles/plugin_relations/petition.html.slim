@@ -65,9 +65,9 @@ section#petition-index
                 a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
 
               script#past-versions-popover type="text/template"
-                ul.list-unstyled
-                  - past_versions_length = @petition.past_versions.length
-                  - @petition.past_versions.each_with_index do |version, index|
+                ul.list-unstyled.past-versions-popover
+                  - past_versions_length = past_versions.length
+                  - past_versions.each_with_index do |version, index|
                     li
                       div.pull-left
                         i.icon-text2 style="color: #{@cycle.color}"

@@ -23,6 +23,7 @@ end
 include BaseRouting::RoutingMethods
 
 Rails.application.routes.draw do
+  use_doorkeeper
   devise_for :admin_users, controllers: {
     sessions: 'admin/admin_users/sessions',
     registrations: 'admin/admin_users/registrations',
@@ -110,6 +111,9 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :partners_api do
+    resources :petitions, only: [:show]
+  end  
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
