@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #145]: Adding signers widget on petition's page (Issue 109)
 * [PR #131]: New petition's page (Issue 96)
 * [PR #132]: Fixing remaining days on phase (issue 30)
 * [PR #123]: Petition widget (issue 97)
