@@ -1,9 +1,20 @@
 class PartnersApi::UsersController < PartnersApi::ApplicationController
 
   attr_reader :user_service
+  attr_reader :plip_repository
+  attr_reader :petition_signer
+  attr_reader :petition_plugin_detail_version_repository
 
-  def initialize(user_service: UserService.new)
+  def initialize(
+    user_service: UserService.new,
+    plip_repository: PlipRepository.new,
+    petition_signer: PetitionPlugin::PetitionSigner.new,
+    petition_plugin_detail_version_repository: PetitionPlugin::DetailVersionRepository.new
+  )
     @user_service = user_service
+    @plip_repository = plip_repository
+    @petition_signer = petition_signer
+    @petition_plugin_detail_version_repository = petition_plugin_detail_version_repository
   end
 
   def create
@@ -15,6 +26,17 @@ class PartnersApi::UsersController < PartnersApi::ApplicationController
     )
     
     if user.valid?
+      plips = plip_repository.all_initiated(page: 1, limit: 1).items
+      current_plip = plips.last
+
+      if current_plip.present?
+        petition_detail_version = petition_plugin_detail_version_repository.find_by_id!(current_plip.id)
+        petition_signer.perform(
+          user_id: user.id,
+          plugin_relation_id: petition_detail_version.petition_plugin_detail.plugin_relation.id
+        )
+      end
+
       head 204
     else
       render json: user.errors, status: 422
