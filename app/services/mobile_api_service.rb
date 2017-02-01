@@ -17,10 +17,18 @@ class MobileApiService
   end
 
   def register_petition_version(petition_detail_version)
+    phase = petition_detail_version.petition_plugin_detail.plugin_relation.related
+
+    page_url = Rails.application.routes.url_helpers.cycle_plugin_relation_url(
+      phase.cycle,
+      phase.plugin_relation
+    )
+
     post("/petition/register", petition: {
       id_petition: petition_detail_version.petition_plugin_detail_id,
       id_version: petition_detail_version.id,
       url: petition_detail_version.document_url,
+      page_url: page_url,
       sha: petition_detail_version.sha
     })
   end
