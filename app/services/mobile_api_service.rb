@@ -40,6 +40,31 @@ class MobileApiService
     )
   end
 
+  PetitionSigner = Struct.new(:date, :name, :city, :state, :uf, :profile_type, :profile_id, :profile_email, :profile_picture)
+  def petition_signers(petition_id, limit)
+    response = get("/petition/#{petition_id}/#{limit}/votes")
+
+    signers_json = JSON.parse(response.body)["data"]["votes"]
+    return [] unless signers_json
+
+    signers = []
+    signers_json.each do |signer|
+      signers << PetitionSigner.new(
+        Time.parse(signer["vote_date"]),
+        signer["user_name"],
+        signer["user_city"],
+        signer["user_state"],
+        signer["user_uf"],
+        signer["profile_type"],
+        signer["profile_id"],
+        signer["profile_email"],
+        signer["profile_picture"]
+      )
+    end
+
+    signers
+  end
+
   private
 
   [:get, :head].each do |verb|
