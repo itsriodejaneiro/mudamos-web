@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #147]: Adding a partner api for user creation (issue 146)
 * [PR #143]: Adding oath authentication for partners API (Issue 127)
  - Run `rake db:migrate`
 * [PR #142]: Removing user field requirements (Issue 126)
