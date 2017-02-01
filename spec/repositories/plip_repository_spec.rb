@@ -48,4 +48,14 @@ RSpec.describe PlipRepository do
       end
     end
   end
+
+  describe "#current_plip" do
+    let!(:cycle_one) { create_cycle_with_phase phases: [{ plugin_type: :petition, with_petition_information: true }] }
+    let!(:cycle_two) { create_cycle_with_phase phases: [{ plugin_type: :petition, with_petition_information: true }] }
+    let(:petition_version_id) { cycle_one.phases.first.plugin_relation.petition_detail.current_version.id }
+
+    subject { repository.current_plip }
+
+    it { expect(subject.id).to eq petition_version_id }
+  end
 end

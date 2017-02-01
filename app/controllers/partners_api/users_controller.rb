@@ -26,8 +26,7 @@ class PartnersApi::UsersController < PartnersApi::ApplicationController
     )
     
     if user.valid?
-      plips = plip_repository.all_initiated(page: 1, limit: 1).items
-      current_plip = plips.last
+      current_plip = plip_repository.current_plip
 
       if current_plip.present?
         petition_detail_version = petition_plugin_detail_version_repository.find_by_id!(current_plip.id)
