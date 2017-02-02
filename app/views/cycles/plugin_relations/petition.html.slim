@@ -4,6 +4,7 @@
 
 - meta title: title, description: description, og: { title: title, description: description, image: image, locale: 'pt_BR', type: 'article' }, twitter: { description: description, card: 'summary', title: title, image: { src: image } }
 
+.petition-widget-builder-container
 section#petition-index
   .row
     .col-lg-6.petition-side-bar.petition-view
@@ -112,13 +113,19 @@ css:
     background-color: #{color_as_rgba(@cycle.color, 0.3)};
   }
 
+javascript:
+  $(".petition-widget-builder-container").petitionWidgetBuilder({
+    petitionId: "#{@petition.id}",
+    petitionName: "#{@phase.name}"
+  });
+
 - if @phase.plugin_relation.ready?
   javascript:
     $(document).ready(function() {
       var petitionInProgress = #{@phase.in_progress?};
 
-      $("#petition-signers-desktop").petitionSignersDesktop(#{@petition.id}, petitionInProgress, apiClient);
-      $("#petition-signers-tablet").petitionSignersTablet(#{@petition.id}, petitionInProgress, apiClient);
+      $("#petition-signers-desktop").petitionSigners(#{@petition.id}, petitionInProgress, apiClient);
+      $("#petition-signers-tablet").petitionSignersSmall(#{@petition.id}, petitionInProgress, apiClient);
 
       var progressBar = $(".petition-signatures-progress").progressBar({
         percentage: "20%",
