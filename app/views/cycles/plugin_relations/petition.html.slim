@@ -59,7 +59,9 @@ section#petition-index
                 strong Baixe o PDF
               |  do projeto
             div.medium-padded
-              small= "A versão atual for criada no dia #{@petition.published_version.created_at.strftime("%d/%m/%Y às %H:%M")}"
+              small.last_version_date
+                | A versão atual for criada no dia
+                span
             - if @petition.past_versions.length > 0
               div.medium-padded
                 a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
@@ -131,11 +133,13 @@ css:
         placement: "right",
       });
   
-      function updateSignaturesCount() {
+      function updatePetitionInfo() {
         var signaturesRequired = "#{@petition.signatures_required}";
   
         apiClient.getPetitionInfo(#{@petition.id}).then(function(petitionInfo) {
           if (petitionInfo) {
+            $(".last_version_date span").text(moment(petitionInfo.updated_at).format(" DD/MM/YYYY à\\s HH:mm"));
+
             var count = petitionInfo.signatures_count;
   
             var percentage = (count / signaturesRequired) * 100;
@@ -148,7 +152,7 @@ css:
       }
   
       if (petitionInProgress) {
-        setInterval(updateSignaturesCount, 10000)
+        setInterval(updatePetitionInfo, 10000)
       }
-      updateSignaturesCount();
+      updatePetitionInfo();
     });

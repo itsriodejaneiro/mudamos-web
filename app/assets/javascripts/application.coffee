@@ -57,6 +57,7 @@
 #= require petition-signers
 #= require jquery.timeago
 #= require jquery.timeago.pt-br
+#= require moment.min
 
 document.expiration_default_time = 300
 
