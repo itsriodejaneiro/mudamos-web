@@ -26,10 +26,12 @@ class Pdf::Generator
       pdf.move_down 30
 
       pdf.image "/home/erick/projects/tagview/mudamos-web/app/assets/images/logo_pdf.png", width: 70, height: 70, at: [0, y_position + 5]
+
+      pdf.rectangle [0, pdf.cursor], 545, 600 
+      pdf.stroke
     end
 
-    pdf.bounding_box([0, pdf.cursor], width: 545, height: 590) do
-      pdf.stroke_bounds
+    pdf.span(pdf.cursor, position: :left) do
       pdf.bounding_box([20, pdf.cursor - 30], width: 505, height: 530) do
         html_document.css("body").children.each do |element|
           if element.name == "p"   
