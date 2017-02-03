@@ -131,7 +131,6 @@ body
 
     .petition-button-container
       text-align: center
-      padding: 8px 0px 0px 0px
 
       button
         cursor: pointer
@@ -146,7 +145,7 @@ body
         color: #FFFFFF
 
   .petition-container.has_description
-    height: 408px
+    height: 400px
 
     .petition-body
       display: block
@@ -158,6 +157,8 @@ body
       display: block
       padding: 8px 17px 0px 17px
 
+    .petition-button-container
+      padding: 8px 0px 0px 0px
 
   .petition-container.has_signers
     .petition-header
@@ -168,6 +169,9 @@ body
 
   .petition-container.has_signers.has_progress
     min-height: 215px
+
+  .petition-container.has_description.has_signers
+    min-height: 420px
 
   .petition-container.has_description.has_progress.has_signers
     height: 470px

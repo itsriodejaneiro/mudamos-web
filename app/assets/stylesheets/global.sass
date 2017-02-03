@@ -2797,7 +2797,9 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
   position: fixed
   left: 50%
   margin-left: -300px
-  top: 100px
+  top: 50px
+  bottom: 50px
+  overflow: auto
   z-index: 99999999
   padding: 40px
   color: rgba(43, 43, 43, 0.85)
@@ -2805,9 +2807,17 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
   border: 1px solid rgba(0, 0, 0, 0.2)
   border-radius: 4px
 
+  .separator
+    span
+      display: inline-block
+      width: 100px
+      height: 4px
+      margin-bottom: 22px
+
   h2
     font-size: 36px
     color: #4D4D4D
+    margin-bottom: 10px
 
   p
     font-size: 24px
@@ -2840,3 +2850,7 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
     width: 100%
     height: 34px
     margin: 0px
+
+  .previewer
+    text-align: center
+    padding-top: 23px

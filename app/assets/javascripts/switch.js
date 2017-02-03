@@ -15,9 +15,11 @@
       $switch.click(function() {
         if ($element.is(":checked")) {
           $element.prop("checked", false);
+          $element.trigger("change");
           $switch.removeClass("checked");
         } else {
           $element.prop("checked", true);
+          $element.trigger("change");
           $switch.addClass("checked");
         }
       });

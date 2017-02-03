@@ -92,6 +92,10 @@ section#petition-index
 
     .col-lg-6.petition-view.petition-body-container
       - if  @phase.plugin_relation.ready?
+        div.embedded-link
+          strong.pull-right style="color: #{@cycle.color}"
+            i.icon-share
+            |  Incorporar
         p= @petition.presentation
         .row
           .col-xs-12
@@ -116,7 +120,12 @@ css:
 javascript:
   $(".petition-widget-builder-container").petitionWidgetBuilder({
     petitionId: "#{@petition.id}",
-    petitionName: "#{@phase.name}"
+    petitionName: "#{@phase.name}",
+    cycleColor: "#{@cycle.color}"
+  });
+
+  $(".embedded-link strong").click(function() {
+    $(".petition-widget-builder-container").trigger("open");
   });
 
 - if @phase.plugin_relation.ready?
