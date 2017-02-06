@@ -63,6 +63,6 @@ class Pdf::Generator
       end
     end
 
-    pdf.render_file "/tmp/test2.pdf"
+    pdf.render
   end
 end
