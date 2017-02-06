@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #149]: New petition's pdf (Issue 149)
 * [PR #152]: Date of the current version is now the date which the document was upated on the blockchain (issue 33)
 * [PR #147]: Adding a partner api for user creation (issue 146)
 * [PR #151]: Adding page url on the payload to the petition mobile api synchronization (issue 150)
