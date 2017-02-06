@@ -27,8 +27,20 @@ class Pdf::Generator
 
       pdf.image "/home/erick/projects/tagview/mudamos-web/app/assets/images/logo_pdf.png", width: 70, height: 70, at: [0, y_position + 5]
 
-      pdf.rectangle [0, pdf.cursor], 545, 600 
+      pdf.rectangle [0, pdf.cursor], 540, 585 
       pdf.stroke
+
+      image_x = 230
+      image_y = 75 
+
+      pdf.rectangle [image_x - 10, image_y + 5], 90, 40 
+      pdf.fill_color "ffffff"
+      pdf.fill
+      pdf.fill_color "000000"
+
+      pdf.image "/home/erick/projects/tagview/mudamos-web/app/assets/images/logo_pdf_horizontal.png", width: 70, at: [image_x, image_y]
+      pdf.text_box "Esse é um arquivo assinado digitalmente.", size: 12, at: [image_x - 80, image_y - 45]
+      pdf.text_box "Você pode verificar sua autenticidade acessando <u><link href='https://www.mudamos.org/'>https://www.mudamos.org/</link></u>", size: 12, at: [image_x - 180, image_y - 60], inline_format: true
     end
 
     pdf.span(pdf.cursor, position: :left) do
