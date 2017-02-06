@@ -44,12 +44,26 @@
   $.fn.petitionWidgetBuilder = function(opts) {
     opts = opts || {};
 
+    if (opts == "show") {
+      $(this).show();
+      $(".petition-widget-builder-overlay").show();
+      return;
+    } else if (opts == "hide") {
+      $(this).hide();
+      $(".petition-widget-builder-overlay").hide();
+      return;
+    }
+
     var petitionId = opts.petitionId;
     var petitionName = opts.petitionName;
     var cycleColor = opts.cycleColor;
 
     if (!petitionId || !petitionName) {
       throw "petitionId and petitionName are required"
+    }
+
+    if ($(".petition-widget-builder-overlay").length == 0) {
+      $("body").append("<div class='petition-widget-builder-overlay'></div>");
     }
 
     $(this).each(function() {
@@ -60,7 +74,7 @@
       $element.append($petitionWidgetBuilder);
 
       $element.find(".close").click(function() {
-        $element.hide();
+        $element.petitionWidgetBuilder("hide");
       });
 
       $element.on("open", function() {
