@@ -1,7 +1,10 @@
 class Pdf::Generator
-  def from_html(html)
+
+  include MarkdownHelper
+
+  def from_markdown(text)
     pdf = Prawn::Document.new
-    html_document = Nokogiri::HTML(html)
+    html_document = Nokogiri::HTML(markdown(text))
 
     font_path = "/home/erick/projects/tagview/mudamos-web/app/assets/fonts"
     pdf.font_families.update(
@@ -52,6 +55,8 @@ class Pdf::Generator
             Pdf::Elements::H.render pdf, element
           elsif element.name == "blockquote"
             Pdf::Elements::Blockquote.render pdf, element
+          elsif /ul|ol/ =~ element.name
+            Pdf::Elements::List.render pdf, element
           end
           pdf.move_down 5 
         end
