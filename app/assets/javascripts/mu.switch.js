@@ -1,5 +1,5 @@
 (function($) {
-  $.fn.switch = function() {
+  $.fn.muSwitch = function() {
     $(this).each(function(idx, element) {
       var $element = $(element);
 

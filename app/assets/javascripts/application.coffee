@@ -57,7 +57,7 @@
 #= require petition-signers
 #= require jquery.timeago
 #= require jquery.timeago.pt-br
-#= require switch
+#= require mu.switch
 #= require petition-widget-builder
 
 document.expiration_default_time = 300

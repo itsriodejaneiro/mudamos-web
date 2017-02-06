@@ -49,7 +49,7 @@
     var cycleColor = opts.cycleColor;
 
     if (!petitionId || !petitionName) {
-      throw "petitionId and petitionName is required"
+      throw "petitionId and petitionName are required"
     }
 
     $(this).each(function() {
@@ -67,7 +67,7 @@
         $element.show();
       });
 
-      $element.find("input[type=checkbox]").switch();
+      $element.find("input[type=checkbox]").muSwitch();
       $element.find(".petition-name").text(petitionName);
       $element.find(".separator span").css("background-color", cycleColor);
 
