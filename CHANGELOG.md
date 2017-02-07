@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #124]: Petition widget builder (Issue 124)
 * [PR #147]: Adding a partner api for user creation (issue 146)
 * [PR #151]: Adding page url on the payload to the petition mobile api synchronization (issue 150)
 * [PR #145]: Adding signers widget on petition's page (Issue 109)
