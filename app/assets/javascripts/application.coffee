@@ -54,9 +54,12 @@
 #= require sign_petition
 #= require progress-bar
 #= require api
-#= require petition-signers
+#= require mu.petition-signers
 #= require jquery.timeago
 #= require jquery.timeago.pt-br
+#= require mu.switch
+#= require_tree ./templates
+#= require mu.petition-widget-builder
 #= require moment.min
 
 document.expiration_default_time = 300

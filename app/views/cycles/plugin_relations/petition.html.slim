@@ -4,7 +4,9 @@
 
 - meta title: title, description: description, og: { title: title, description: description, image: image, locale: 'pt_BR', type: 'article' }, twitter: { description: description, card: 'summary', title: title, image: { src: image } }
 
+.petition-widget-builder-container
 section#petition-index
+  = render 'widgets/smart_banner'
   .row
     .col-lg-6.petition-side-bar.petition-view
       h1.petition-name= @phase.name
@@ -93,6 +95,10 @@ section#petition-index
 
     .col-lg-6.petition-view.petition-body-container
       - if  @phase.plugin_relation.ready?
+        div.embedded-link
+          strong.pull-right style="color: #{@cycle.color}"
+            i.icon-share
+            |  Incorporar
         p= @petition.presentation
         .row
           .col-xs-12
@@ -114,13 +120,24 @@ css:
     background-color: #{color_as_rgba(@cycle.color, 0.3)};
   }
 
+javascript:
+  $(".petition-widget-builder-container").muPetitionWidgetBuilder({
+    petitionId: "#{@petition.id}",
+    petitionName: "#{@phase.name}",
+    cycleColor: "#{@cycle.color}"
+  });
+
+  $(".embedded-link strong").click(function() {
+    $(".petition-widget-builder-container").muPetitionWidgetBuilder("show");
+  });
+
 - if @phase.plugin_relation.ready?
   javascript:
     $(document).ready(function() {
       var petitionInProgress = #{@phase.in_progress?};
 
-      $("#petition-signers-desktop").petitionSignersDesktop(#{@petition.id}, petitionInProgress, apiClient);
-      $("#petition-signers-tablet").petitionSignersTablet(#{@petition.id}, petitionInProgress, apiClient);
+      $("#petition-signers-desktop").muPetitionSigners(#{@petition.id}, petitionInProgress, apiClient);
+      $("#petition-signers-tablet").muPetitionSignersSmall(#{@petition.id}, petitionInProgress, apiClient);
 
       var progressBar = $(".petition-signatures-progress").progressBar({
         percentage: "20%",

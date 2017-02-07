@@ -1,13 +1,15 @@
 doctype html
 html
   body.petition-widget
-    div.petition-container class="#{params[:size] || "big"}"
+    div.petition-container class="#{params[:flags]}"
       div.petition-header style="background-image: url('#{cycle.picture.url}')"
         div.petition-header-overlay
         div.petition-header-info
           h3= phase.name
           p= phase.description
-          = image_tag "watermark"
+          div.signers
+          = image_tag "watermark", class: "watermark"
+
       div.petition-progress-container
         - if phase.finished?
           div.petition-progress.finished
@@ -40,6 +42,11 @@ html
 = javascript_include_tag 'embedded/application'
 javascript:
   $(document).ready(function() {
+    var petitionInProgress = #{phase.in_progress?};
+    if ($(".petition-container").is(".has_signers")) {
+      $(".signers").muPetitionSignersSmall(#{@petition.id}, petitionInProgress, apiClient, { size: 9 });
+    }
+
     function updateSignaturesCount() {
       var signaturesRequired = "#{petition.signatures_required}";
 
@@ -57,7 +64,6 @@ javascript:
       });
     }
 
-    var petitionInProgress = #{phase.in_progress?};
     if (petitionInProgress) {
       setInterval(updateSignaturesCount, 10000)
     }
