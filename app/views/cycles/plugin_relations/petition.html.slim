@@ -5,6 +5,7 @@
 - meta title: title, description: description, og: { title: title, description: description, image: image, locale: 'pt_BR', type: 'article' }, twitter: { description: description, card: 'summary', title: title, image: { src: image } }
 
 section#petition-index
+  = render 'widgets/smart_banner'
   .row
     .col-lg-6.petition-side-bar.petition-view
       h1.petition-name= @phase.name
