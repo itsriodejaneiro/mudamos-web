@@ -120,14 +120,14 @@ css:
   }
 
 javascript:
-  $(".petition-widget-builder-container").petitionWidgetBuilder({
+  $(".petition-widget-builder-container").muPetitionWidgetBuilder({
     petitionId: "#{@petition.id}",
     petitionName: "#{@phase.name}",
     cycleColor: "#{@cycle.color}"
   });
 
   $(".embedded-link strong").click(function() {
-    $(".petition-widget-builder-container").petitionWidgetBuilder("show");
+    $(".petition-widget-builder-container").muPetitionWidgetBuilder("show");
   });
 
 - if @phase.plugin_relation.ready?

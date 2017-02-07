@@ -59,7 +59,7 @@
 #= require jquery.timeago.pt-br
 #= require mu.switch
 #= require_tree ./templates
-#= require petition-widget-builder
+#= require mu.petition-widget-builder
 #= require moment.min
 
 document.expiration_default_time = 300

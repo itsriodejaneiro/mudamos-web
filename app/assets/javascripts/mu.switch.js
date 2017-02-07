@@ -5,7 +5,7 @@
 
       $element.hide();
 
-      var $switch = $("<span class='switch'><span class='switch-marker'></span></span>");
+      var $switch = $(JST["templates/mu.switch"]());
       $element.after($switch);
 
       if ($element.is(":checked")) {
