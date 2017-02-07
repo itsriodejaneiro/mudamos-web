@@ -84,6 +84,7 @@ gem 'doorkeeper'
 gem 'doorkeeper-i18n'
 
 gem 'ejs'
+gem 'browser'
 
 group :development, :test, :staging do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
