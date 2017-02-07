@@ -1,29 +1,6 @@
 (function($) {
 
-  // This is not good, but I would not like to make a request to fetch this HTML
-  var template = [
-    "<div class='petition-widget-builder'>",
-    "  <h2> Incorporar petição </h2>",
-    "  <i class='close icon-close'></i>",
-    "  <div class='separator'><span></span></div>",
-    "  <p> Incorpore a petição \"<span class='petition-name'></span>\" em seu site </p>",
-    "  <h3> Personalizar </h3>",
-    "  <ul class='list-unstyled'>",
-    "    <li>",
-    "      <input type='checkbox' class='show-description' checked='checked' /><label> Exibir descrição </label>",
-    "    </li>",
-    "    <li>",
-    "      <input type='checkbox' class='show-progress' checked='checked' /><label> Exibir detalhes do progresso da votação </label>",
-    "    </li>",
-    "    <li>",
-    "      <input type='checkbox' class='show-signers' checked='checked' /><label> Exibir assinantes </label>",
-    "    </li>",
-    "  </ul>", 
-    "  <h3> Código </h3>",
-    "  <input type='text' class='source-code' readonly='readonly' />",
-    "  <div class='previewer'>",
-    "</div>"
-  ].join("");
+  var template = JST["templates/petition-widget-builder"]();
 
   var buildUrl = function(petitionId) {
     return [

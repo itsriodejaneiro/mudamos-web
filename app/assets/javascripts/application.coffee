@@ -58,6 +58,7 @@
 #= require jquery.timeago
 #= require jquery.timeago.pt-br
 #= require mu.switch
+#= require_tree ./templates
 #= require petition-widget-builder
 
 document.expiration_default_time = 300
