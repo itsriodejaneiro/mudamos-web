@@ -40,7 +40,7 @@
     }
 
     if ($(".mu-petition-widget-builder-overlay").length == 0) {
-      $("body").append("<div class='petition-widget-builder-overlay'></div>");
+      $("body").append("<div class='mu-petition-widget-builder-overlay'></div>");
     }
 
     $(this).each(function() {
