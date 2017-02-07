@@ -12,6 +12,7 @@ class Pdf::Generator
         normal: "#{font_path.to_s}/Roboto-Light.ttf",
         italic: "#{font_path.to_s}/Roboto-LightItalic.ttf",
         bold: "#{font_path.to_s}/Roboto-Bold.ttf",
+        bold_italic: "#{font_path.to_s}/Roboto-BoldItalic.ttf",
       }
     )
 
