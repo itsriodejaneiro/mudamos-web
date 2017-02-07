@@ -6,7 +6,7 @@
         = image_tag "icon", class: "app-icon"
       h3 Baixe o app da Mudamos
   javascript:
-    $(".smart-banner .icon-close").click(function() {
+    $(".smart-banner").on("click", ".icon-close", function() {
       $(this).closest(".smart-banner").slideUp();
-      document.cookie = "smart_banner_dismiss=" + Date.now();
+      document.cookie = "smart_banner_dismiss=" + (Date.now() / 1000);
     });
