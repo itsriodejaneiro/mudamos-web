@@ -5,8 +5,7 @@ module MobileAppHelper
     # For more information check https://developer.apple.com/library/content/documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html
     return false if browser.platform.ios? && browser.safari?
 
-    cookie_value = cookies[:smart_banner_dismiss]
-    banner_closed_at = Time.at(cookie_value ? cookie_value.to_i : 0)
+    banner_closed_at = Time.at(cookies[:smart_banner_dismiss].try(:to_i) || 0)
 
     (browser.device.mobile? || browser.device.tablet?) && Time.current >= banner_closed_at + 15.days
   end
