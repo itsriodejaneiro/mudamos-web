@@ -6,7 +6,8 @@ module MobileAppHelper
     return false if browser.platform.ios? && browser.safari?
 
     cookie = cookies[:smart_banner_dismiss]
-    (browser.device.mobile? || browser.device.tablet?) && (cookie.nil? || (Time.now >= Time.at(cookie) + 15.days))
+
+    (browser.device.mobile? || browser.device.tablet?) && (cookie.nil? || (Time.now >= Time.at(cookie.to_i / 1000) + 15.days))
   end
 
   def android_store_page
