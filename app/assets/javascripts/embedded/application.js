@@ -1,3 +1,3 @@
 //= require jquery
 //= require ../api
-//= require ../petition-signers
+//= require ../mu.petition-signers

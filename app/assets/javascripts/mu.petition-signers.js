@@ -21,7 +21,7 @@
     if (petitionInProgress) setInterval(refreshList, 10000)
   }
 
-  $.fn.petitionSignersSmall = function(petitionId, petitionInProgress, apiClient, opts) {
+  $.fn.muPetitionSignersSmall = function(petitionId, petitionInProgress, apiClient, opts) {
     $(this).each(function(idx, element) {
       var $element = $(element);
 
@@ -43,7 +43,7 @@
     return this;
   };
 
-  $.fn.petitionSigners = function(petitionId, petitionInProgress, apiClient, opts) {
+  $.fn.muPetitionSigners = function(petitionId, petitionInProgress, apiClient, opts) {
     $(this).each(function(idx, element) {
       var $element = $(element);
 

@@ -135,8 +135,8 @@ javascript:
     $(document).ready(function() {
       var petitionInProgress = #{@phase.in_progress?};
 
-      $("#petition-signers-desktop").petitionSigners(#{@petition.id}, petitionInProgress, apiClient);
-      $("#petition-signers-tablet").petitionSignersSmall(#{@petition.id}, petitionInProgress, apiClient);
+      $("#petition-signers-desktop").muPetitionSigners(#{@petition.id}, petitionInProgress, apiClient);
+      $("#petition-signers-tablet").muPetitionSignersSmall(#{@petition.id}, petitionInProgress, apiClient);
 
       var progressBar = $(".petition-signatures-progress").progressBar({
         percentage: "20%",

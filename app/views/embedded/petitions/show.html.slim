@@ -44,7 +44,7 @@ javascript:
   $(document).ready(function() {
     var petitionInProgress = #{phase.in_progress?};
     if ($(".petition-container").is(".has_signers")) {
-      $(".signers").petitionSignersSmall(#{@petition.id}, petitionInProgress, apiClient, { size: 9 });
+      $(".signers").muPetitionSignersSmall(#{@petition.id}, petitionInProgress, apiClient, { size: 9 });
     }
 
     function updateSignaturesCount() {
