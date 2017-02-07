@@ -1,5 +1,4 @@
-- cookie = cookies[:smart_banner_dismiss]
-- if (browser.device.mobile? || browser.device.tablet?) && (cookie.nil? || (Time.now >= Time.strptime(cookie, "%FT%R") + 15.days))
+- if allowed_to_show_smart_banner?
   .smart-banner
     .info
       i.icon-close
@@ -7,7 +6,7 @@
         = image_tag "icon", class: "app-icon"
       h3 Baixe o app da Mudamos
   javascript:
-    $(".smart-banner .info i.icon-close").click(function() {
-      $(".smart-banner").slideUp();
-      document.cookie = "smart_banner_dismiss=" + moment().format();
+    $(".smart-banner .icon-close").click(function() {
+      $(this).closest(".smart-banner").slideUp();
+      document.cookie = "smart_banner_dismiss=" + Date.now();
     });
