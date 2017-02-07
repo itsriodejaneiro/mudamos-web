@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #124]: Petition widget builder (Issue 124)
 * [PR #155]: Creating smartbanner for the platform and adding it to the petition's page (issue 134)
  - Set `MOBILE_APP_STORE_PAGE_ANDROID` 
  - Set `MOBILE_APP_STORE_PAGE_IOS`

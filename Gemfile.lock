@@ -141,6 +141,7 @@ GEM
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
       railties (~> 4.0)
+    ejs (1.1.1)
     encryptor (1.3.0)
     equalizer (0.0.10)
     erubis (2.7.0)
@@ -616,6 +617,7 @@ DEPENDENCIES
   doorkeeper
   doorkeeper-i18n
   dotenv-rails
+  ejs
   factory_girl_rails
   faker
   faraday (~> 0.9)

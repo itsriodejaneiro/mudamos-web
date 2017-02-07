@@ -83,6 +83,7 @@ gem 'net-http-persistent', "~> 2.9.4"
 gem 'doorkeeper'
 gem 'doorkeeper-i18n'
 
+gem 'ejs'
 gem 'browser'
 
 group :development, :test, :staging do

@@ -1,13 +1,16 @@
 (function($) {
 
-  var buildPlugin = function(petitionId, petitionInProgress, apiClient, $element, addRow) {
+  var buildPlugin = function(petitionId, petitionInProgress, apiClient, $element, addRow, opts) {
+    opts = opts || {};
+    var size = opts.size || 4;
+
     var refreshList = function() {
-      apiClient.getPetitionSigners(petitionId, 4)
+      apiClient.getPetitionSigners(petitionId, size)
         .then(function(response) {
 
           $element.children().remove();
           var signers = response.signers;
-          for (var i = 0; i < Math.min(signers.length, 4); i++) {
+          for (var i = 0; i < Math.min(signers.length, size); i++) {
             var signer = signers[i];
             addRow($element, signer);
           }
@@ -18,11 +21,11 @@
     if (petitionInProgress) setInterval(refreshList, 10000)
   }
 
-  $.fn.petitionSignersTablet = function(petitionId, petitionInProgress, apiClient) {
+  $.fn.muPetitionSignersSmall = function(petitionId, petitionInProgress, apiClient, opts) {
     $(this).each(function(idx, element) {
       var $element = $(element);
 
-      $element.append("<div class='signers-tablet'><ul class='list-unstyled list-inline'></ul></div>");
+      $element.append("<div><ul class='list-unstyled list-inline'></ul></div>");
 
       var addRow =  function($element, userInfo) {
         var $row = $("<li></li>");
@@ -34,17 +37,17 @@
         $element.append($row);
       };
 
-      buildPlugin(petitionId, petitionInProgress, apiClient, $element.find("ul"), addRow);
+      buildPlugin(petitionId, petitionInProgress, apiClient, $element.find("ul"), addRow, opts);
     });
 
     return this;
   };
 
-  $.fn.petitionSignersDesktop = function(petitionId, petitionInProgress, apiClient) {
+  $.fn.muPetitionSigners = function(petitionId, petitionInProgress, apiClient, opts) {
     $(this).each(function(idx, element) {
       var $element = $(element);
 
-      $element.append("<div class='signers-desktop'><ul class='list-unstyled'></ul></div>");
+      $element.append("<div><ul class='list-unstyled'></ul></div>");
      
       var addRow = function($element, userInfo) {
         var $row = $("<li></li>");
@@ -64,7 +67,7 @@
         $element.append($row);
       }
 
-      buildPlugin(petitionId, petitionInProgress, apiClient, $element.find("ul"), addRow);
+      buildPlugin(petitionId, petitionInProgress, apiClient, $element.find("ul"), addRow, opts);
     });
 
     return this;
