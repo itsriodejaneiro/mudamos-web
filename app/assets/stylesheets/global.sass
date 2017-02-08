@@ -2790,7 +2790,7 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
     top: 2px
     left: 2px
 
-.mu-petition-widget-builder-overlay
+.mu-modal-overlay
   position: fixed
   top: 0px
   bottom: 0px
@@ -2800,7 +2800,7 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
   display: none
   z-index: 99999998
 
-.mu-petition-widget-builder
+.mu-modal
   font-family: "Merriweather Sans"
   width: 600px
   background-color: #fff
@@ -2827,6 +2827,7 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
       width: 100px
       height: 4px
       margin-bottom: 22px
+      background-color: #000
 
   h2
     font-size: 36px
@@ -2847,6 +2848,15 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
     font-size: 24px
     text-transform: uppercase
 
+  input
+    background-color: #FAFAFA
+    border: 1px solid rgba(0, 0, 0, 0.12)
+    border-radius: 2px
+    width: 100%
+    height: 34px
+    margin: 0px
+
+.petition-widget-builder-container
   ul
     li
       label
@@ -2859,14 +2869,6 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
 
       .mu-switch
         float: left
-
-  .source-code
-    background-color: #FAFAFA
-    border: 1px solid rgba(0, 0, 0, 0.12)
-    border-radius: 2px
-    width: 100%
-    height: 34px
-    margin: 0px
 
   .previewer
     text-align: center
@@ -2899,3 +2901,17 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
 
     h3
       margin-top: 55px
+
+.mu-require-user-form
+
+  .buttons
+    margin-top: 25px
+
+    .rounded-button
+      &.continue
+        background-color: #4cd964
+        float: right
+
+      padding: 20px
+      float: left
+      width: 45%

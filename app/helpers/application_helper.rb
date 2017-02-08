@@ -1,6 +1,11 @@
 module ApplicationHelper
   include GridItemHelper
 
+  def can_user_interact_with_plugin?(plugin_type_name, user)
+    plugin_type = PluginTypeRepository.new.get_plugin_type(plugin_type_name)
+    plugin_type.can_user_interact? user
+  end
+
   def blog_post_dependent_path blog_post
     if blog_post.cycle
       cycle_blog_post_path(blog_post.cycle, blog_post)

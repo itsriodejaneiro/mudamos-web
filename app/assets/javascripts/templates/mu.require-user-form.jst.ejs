@@ -1,0 +1,9 @@
+<div class="mu-require-user-form">
+  <% fields.forEach(function(field) { %>
+    <%= JST["templates/require-user-form-fields/" + field](user) %>
+  <% }) %>
+  <div class="buttons">
+    <button type="button" class="rounded-button cancel">Cancelar</button>
+    <button type="button" class="rounded-button continue">Continuar</button>
+  </div>
+</div>

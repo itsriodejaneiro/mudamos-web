@@ -19,8 +19,15 @@ new_comment_button_click = (elem) ->
       Cookies.set 'new_comment_parent_id', form.find('input#comment_parent_id').val(), { expires: document.expiration_default_time }
 
       document.open_login (data) ->
-        document.start_loading()
-        form.submit()
+        # TODO this is mocked, remove this
+			  if true
+			  	muRequireUserForm({
+            fields: ['birthday'],
+            user: {},
+            success: (_) ->
+              document.start_loading()
+              form.submit()
+			  	})
     else
       document.start_loading()
       form.submit()
