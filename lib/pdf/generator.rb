@@ -72,15 +72,14 @@ class Pdf::Generator
     pdf.span(pdf.cursor, position: :left) do
       pdf.bounding_box([20, pdf.cursor - 30], width: 505, height: 530) do
         html_document.css("body").children.each do |element|
-          if element.name == "p"   
-            Pdf::Elements::P.render pdf, element
-          elsif /h[1-6]/ =~ element.name
-            Pdf::Elements::H.render pdf, element
-          elsif element.name == "blockquote"
-            Pdf::Elements::Blockquote.render pdf, element
-          elsif /ul|ol/ =~ element.name
-            Pdf::Elements::List.render pdf, element
+          
+          case element.name
+          when "p" then Pdf::Elements::P.render pdf, element
+          when "blockquote" then Pdf::Elements::Blockquote.render pdf, element
+          when /h[1-6]/ then Pdf::Elements::H.render pdf, element
+          when /ul|ol/ then Pdf::Elements::List.render pdf, element
           end
+
           pdf.move_down 5 
         end
       end
