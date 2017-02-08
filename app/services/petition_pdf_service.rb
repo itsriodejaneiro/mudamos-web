@@ -9,7 +9,7 @@ class PetitionPdfService
   Result = Struct.new(:document_name, :sha, :document_url)
 
   def generate(version)
-    pdf = Kramdown::Document.new(version.body).to_pdf
+    pdf = Pdf::Generator.new.from_markdown(version.body)
 
     cycle = version.petition_plugin_detail.plugin_relation.related.cycle
     phase = version.petition_plugin_detail.plugin_relation.related
