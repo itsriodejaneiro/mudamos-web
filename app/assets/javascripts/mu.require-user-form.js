@@ -35,6 +35,7 @@
           contentType: "application/json",
           data: JSON.stringify({ user: data, fields: fields }),
           success: function() {
+            $form.muModal("hide");
             if (success) success();
           }
         });
