@@ -1,0 +1,16 @@
+<div>
+  <h3>Estado</h3>
+  <select name="state">
+    <option value>Estado</option>
+    <% STATES.each do |state|%>
+      <option value="<%=state[0]%>"><%= state[1] %></option>
+    <% end %>
+  </select>
+  <script type="text/javascript">
+  $("select[name=state]").val("<%%= user.state %>");
+  $("select[name=state]").select2({
+    placeholder: "Estado"
+  });
+
+  </script>
+</div>
