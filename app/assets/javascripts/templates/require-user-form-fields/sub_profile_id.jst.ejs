@@ -1,0 +1,63 @@
+<div>
+  <h3>Subsetor de Atuação</h3>
+  <select name="sub_profile_id">
+  </select>
+  <script type="text/javascript">
+    (function($) {
+      var $select = $("select[name=sub_profile_id]");
+      var $container = $select.closest("div");
+
+      var selectedSubProfileId = <%= user.sub_profile ? user.sub_profile.id : null %>;
+
+      <% if (user.profile) { %>
+        var selectedProfile = <%= JSON.stringify(user.profile)%>;
+      <% } else { %>
+        var selectedProfile = null;
+      <% } %>
+
+      var update = function(profiles) {
+        $select.children().remove();
+
+        // The placeholder
+        $select.append("<option value>Subsetor de Atuação</option>");
+        $.each(
+          $.map(profiles, function(profile) {
+            return $(
+              "<option" +
+              (profile.id == selectedSubProfileId ? " selected" : "") +
+              " value='" + profile.id + "'>" +
+              profile.name +
+              "</option>"
+            );
+          }),
+          function(idx, $option) { $select.append($option); }
+        );
+
+        $select.change();
+      }
+
+      $select.select2({
+        placeholder: "Subsetor de Atuação",
+        minimumResultsForSearch: -1
+      });
+
+      if (selectedProfile && selectedProfile.children.length) {
+        update(selectedProfile.children);
+      } else {
+        $container.hide(); 
+      }
+
+      $(".mu-require-user-form").on("change", "select[name=profile_id]", function() {
+        var data = $(this).select2("data")[0];
+        var profiles = data.subProfiles;
+        update(profiles);
+
+        if (profiles.length == 0) {
+          $container.slideUp(); 
+        } else { 
+          $container.slideDown(); 
+        }
+      });
+    })(jQuery);
+  </script>
+</div>

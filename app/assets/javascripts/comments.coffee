@@ -17,7 +17,7 @@ new_comment_button_click = (elem) ->
         form.submit()
       else
         muRequireUserForm({
-          fields: ['birthday', 'gender', 'state', 'city', 'profile_id'],
+          fields: ['birthday', 'gender', 'state', 'city', 'profile_id', 'sub_profile_id'],
           success: () ->
             document.start_loading()
             form.submit()
