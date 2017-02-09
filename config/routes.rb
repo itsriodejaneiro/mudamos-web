@@ -127,6 +127,10 @@ Rails.application.routes.draw do
     get :me, on: :collection
   end
 
+  resources :profiles, only: [:index, :sub_profiles] do
+    get :sub_profiles
+  end
+
   match '/busca', to: 'search#show', as: :search, via: :get
 
   resources :blog_posts, path: 'blog'
@@ -137,7 +141,6 @@ Rails.application.routes.draw do
   resources :credits, only:[:index], path: 'creditos'
 
   match '/:uf/cities', to: 'cities#index', via: :get
-  match '/:profile_id/profiles', to: 'profiles#index', via: :get
 
   match '/ping', to: 'ping#show', via: :get
 

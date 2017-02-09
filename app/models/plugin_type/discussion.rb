@@ -4,6 +4,9 @@ class PluginType::Discussion
     user.name.present? &&
     user.birthday.present? &&
     user.gender.present? &&
-    user.profile.present?
+    user.state.present? &&
+    user.city.present? &&
+    user.profile.present? &&
+    (user.profile.children.length == 0 || user.sub_profile.present?)
   end
 end
