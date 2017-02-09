@@ -5,6 +5,14 @@ $ ->
 can_user_interact = () ->
   $('#subject-show').data('can-user-interact')
 
+require_user_information = (success) ->
+  muRequireUserForm({
+    fields: ['birthday', 'gender', 'state', 'city', 'profile_id', 'sub_profile_id'],
+    success: () ->
+      if (success)
+        success()
+  })
+
 new_comment_button_click = (elem) ->
   elem.click (e) ->
     e.preventDefault()
@@ -16,12 +24,10 @@ new_comment_button_click = (elem) ->
         document.start_loading()
         form.submit()
       else
-        muRequireUserForm({
-          fields: ['birthday', 'gender', 'state', 'city', 'profile_id', 'sub_profile_id'],
-          success: () ->
-            document.start_loading()
-            form.submit()
-        })
+        require_user_information(() ->
+          document.start_loading()
+          form.submit()
+        )
 
     unless document.isLoggedIn
 
@@ -194,39 +200,44 @@ toggleButtons = (obj, otherClass) ->
     thisCount = parseInt(thisCounter.text())
     otherCount = parseInt(otherCounter.text())
 
-    if otherIcon.hasClass("toggled")
-      url = "#{baseURL}/#{otherClass}/0"
-      $.ajax url,
-        type: 'DELETE'
-        dataType: 'json'
-        error: (jqXHR, textStatus, errorThrown) ->
-          alert 'Ocorreu algum erro.'
-          error = true
-        success: (data, textStatus, jqXHR) ->
-          otherIcon.toggleClass("toggled")
-          otherCounter.text( ("0" + (otherCount - 1)).slice(-2) )
+    execute = () ->
+      if otherIcon.hasClass("toggled")
+        url = "#{baseURL}/#{otherClass}/0"
+        $.ajax url,
+          type: 'DELETE'
+          dataType: 'json'
+          error: (jqXHR, textStatus, errorThrown) ->
+            alert 'Ocorreu algum erro.'
+            error = true
+          success: (data, textStatus, jqXHR) ->
+            otherIcon.toggleClass("toggled")
+            otherCounter.text( ("0" + (otherCount - 1)).slice(-2) )
 
-    if error == false
-      url = "#{baseURL}/#{thisClass}"
-      if thisIcon.hasClass('toggled')
-        reqType = 'DELETE'
-        url = url + "/0"
-        delta =  -1
-      else
-        reqType = 'POST'
-        delta =  1
-      document.start_loading()
-      $.ajax url,
-        type: reqType
-        dataType: 'json'
-        complete: (data) ->
-          document.stop_loading()
-        error: (jqXHR, textStatus, errorThrown) ->
-          alert 'Ocorreu algum erro.'
-        success: (data, textStatus, jqXHR) ->
-          thisIcon.toggleClass("toggled")
-          thisCounter.text( ("0" + (thisCount + delta)).slice(-2) )
-
+      if error == false
+        url = "#{baseURL}/#{thisClass}"
+        if thisIcon.hasClass('toggled')
+          reqType = 'DELETE'
+          url = url + "/0"
+          delta =  -1
+        else
+          reqType = 'POST'
+          delta =  1
+        document.start_loading()
+        $.ajax url,
+          type: reqType
+          dataType: 'json'
+          complete: (data) ->
+            document.stop_loading()
+          error: (jqXHR, textStatus, errorThrown) ->
+            alert 'Ocorreu algum erro.'
+          success: (data, textStatus, jqXHR) ->
+            thisIcon.toggleClass("toggled")
+            thisCounter.text( ("0" + (thisCount + delta)).slice(-2) )
+   
+    if can_user_interact()
+      execute()
+    else
+      require_user_information(execute)
 
 $ ->
   copy_to_clipboard $('a.copy-to-clipboard')
