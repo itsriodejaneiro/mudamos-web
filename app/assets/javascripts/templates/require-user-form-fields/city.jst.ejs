@@ -1,0 +1,49 @@
+<div>
+  <h3>Cidade</h3>
+  <select name="city">
+    <option value>Cidade</option>
+    <% if (user.city) { %>
+      <option value="<%= user.city %>" selected><%= user.city %></option>
+    <% } %>
+  </select>
+  <script type="text/javascript">
+    var state = "<%= user.state %>";
+
+    var $select = $("select[name=city]");
+
+    $select.select2({
+      placeholder: "Cidade",
+      ajax: {
+        url: function() {
+          return "/" + state + "/cities";
+        },
+        dataType: "json",
+        type: "GET",
+        delay: 350,
+        cache: true,
+        data: function(data) {
+          return { name: data.term };
+        },
+        processResults: function(data) {
+          return {
+            results: $.map(data.cities, function(city) {
+              return { text: city, id: city }
+            })
+          }
+        }
+      }
+    });
+    $select.val("<%= user.city %>");
+
+    var $container = $select.closest("div");
+    if (!state) {
+      $container.hide();
+    }
+
+    $(".mu-require-user-form").on("change", "select[name=state]", function() {
+      state = $(this).val();
+      $select.val(null);
+      $container.slideDown();
+    });
+  </script>
+</div>
