@@ -2,20 +2,23 @@
   <h3>Setor de Atuação</h3>
   <select name="profile_id">
     <option value>Setor de Atuação</option>
-    <% if (user.profile) { %>
-      <option value="<%= user.profile.id %>" selected><%= user.profile.name %></option>
-    <% } %>
   </select>
   <script type="text/javascript">
     (function($) {
       var $select = $("select[name=profile_id]");
+      var selectedProfileId = <%= user.profile ? user.profile.id : null %>;
 
       $.getJSON("/profiles", function(profiles) {
         $select.select2({
           placeholder: "Setor de Atuação",
           minimumResultsForSearch: -1,
           data: $.map(profiles, function(profile) {
-            return { text: profile.name, id: profile.id, subProfiles: profile.children }
+            return {
+              text: profile.name,
+              id: profile.id,
+              subProfiles: profile.children,
+              selected: profile.id == selectedProfileId
+            }
           })
         });
       });
