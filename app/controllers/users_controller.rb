@@ -1,54 +1,21 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :check_if_verified, only: [:finish_signup]
-  # GET /users/:id.:format
-  def show
-    # authorize! :read, @user
+  before_filter :check_current_user, only: [:update]
+
+  def me 
+    render json: current_user.to_json
   end
 
-  # GET /users/:id/edit
-  def edit
-    # authorize! :update, @user
-  end
-
-  # PATCH/PUT /users/:id.:format
   def update
-    # authorize! :update, @user
-    respond_to do |format|
-      if @user.update(user_params)
-        sign_in(@user == current_user ? @user : current_user, :bypass => true)
-        format.html { redirect_to @user, notice: 'Your profile was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+    data = user_params
+    missing_fields = fields.select { |f| data[f].nil? }
 
-  # GET/PATCH /users/:id/finish_signup
-  def finish_signup
-    # authorize! :update, @user
-    if request.patch? && params[:user] #&& params[:user][:email]
-      @user = User.find(params[:id])
-      if @user.update_attribute('email',user_params[:email])
-        #@user.skip_reconfirmation! # If confirmable is active
-        sign_in(@user, :bypass => true)
-        # redirect_to @user, notice: 'Your profile was successfully updated.'
-        redirect_to '/' #temporary measure
-      else
-        @show_errors = true
-      end
-    end
-  end
+    return render json: { missing_fields: missing_fields }, status: :unprocessable_entity unless missing_fields.length == 0
 
-  # DELETE /users/:id.:format
-  def destroy
-    # authorize! :delete, @user
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to root_url }
-      format.json { head :no_content }
+    if @user.update(data)
+      head :no_content
+    else
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
@@ -57,14 +24,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def user_params
-    accessible = [ :name, :email ] # extend with your own params
-    accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
-    params.require(:user).permit(accessible)
+  def fields
+    params.require(:fields)
   end
 
-  def check_if_verified
-    @user = User.find(params[:id])
-    redirect_to '/' if @user.nil? || @user.email_verified?
+  def user_params
+    params.require(:user).permit(fields)
+  end
+
+  def check_current_user
+    return head :forbiden unless @user.id == current_user.id
   end
 end

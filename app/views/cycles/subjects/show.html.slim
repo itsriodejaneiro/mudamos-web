@@ -7,7 +7,7 @@
 
 #comments-basic-params data-share-params=(@basic_share_params.map { |k, v| "#{k}=#{v}" }.join('&'))
 
-section.container-fluid#subject-show
+section.container-fluid#subject-show data-can-user-interact="#{user_signed_in? ? can_user_interact_with_plugin?(@subject.plugin_relation.plugin.plugin_type, current_user) : false}"
   .container
     .row
       .col-xs-12

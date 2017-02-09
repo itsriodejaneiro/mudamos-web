@@ -2,11 +2,26 @@ $ ->
   $('form[id*=new_comment]').find('button').each ->
     new_comment_button_click $(this)
 
+can_user_interact = () ->
+  $('#subject-show').data('can-user-interact')
+
 new_comment_button_click = (elem) ->
   elem.click (e) ->
     e.preventDefault()
 
     form = $(this).parents('form:first')
+
+    save = () ->
+      if can_user_interact()
+        document.start_loading()
+        form.submit()
+      else
+        muRequireUserForm({
+          fields: ['birthday'],
+          success: () ->
+            document.start_loading()
+            form.submit()
+        })
 
     unless document.isLoggedIn
 
@@ -19,18 +34,9 @@ new_comment_button_click = (elem) ->
       Cookies.set 'new_comment_parent_id', form.find('input#comment_parent_id').val(), { expires: document.expiration_default_time }
 
       document.open_login (data) ->
-        # TODO this is mocked, remove this
-			  if true
-			  	muRequireUserForm({
-            fields: ['birthday'],
-            user: {},
-            success: (_) ->
-              document.start_loading()
-              form.submit()
-			  	})
+        save()
     else
-      document.start_loading()
-      form.submit()
+      save()
 
 $ ->
   $('.load-more-comments').each ->

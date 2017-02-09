@@ -123,7 +123,9 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+  resources :users, only: [:update, :me] do
+    get :me, on: :collection
+  end
 
   match '/busca', to: 'search#show', as: :search, via: :get
 
