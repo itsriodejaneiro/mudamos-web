@@ -24,7 +24,7 @@
       $form.on("click", ".continue", function() {
         var data = {};
 
-        $form.find("input").each(function() {
+        $form.find("input,select").each(function() {
           var $me = $(this);
           data[$me.prop("name")] = $me.val();
         });
