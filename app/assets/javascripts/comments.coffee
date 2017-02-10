@@ -201,44 +201,91 @@ toggleButtons = (obj, otherClass) ->
     thisCount = parseInt(thisCounter.text())
     otherCount = parseInt(otherCounter.text())
 
-    execute = () ->
+    otherRequest = () ->
       if otherIcon.hasClass("toggled")
         url = "#{baseURL}/#{otherClass}/0"
-        $.ajax url,
+        return $.ajax url,
           type: 'DELETE'
           dataType: 'json'
-          error: (jqXHR, textStatus, errorThrown) ->
-            alert 'Ocorreu algum erro.'
-            error = true
-          success: (data, textStatus, jqXHR) ->
-            otherIcon.toggleClass("toggled")
-            otherCounter.text( ("0" + (otherCount - 1)).slice(-2) )
+      else
+        return null
 
-      if error == false
-        url = "#{baseURL}/#{thisClass}"
-        if thisIcon.hasClass('toggled')
-          reqType = 'DELETE'
-          url = url + "/0"
-          delta =  -1
-        else
-          reqType = 'POST'
-          delta =  1
-        document.start_loading()
-        $.ajax url,
-          type: reqType
-          dataType: 'json'
-          complete: (data) ->
-            document.stop_loading()
-          error: (jqXHR, textStatus, errorThrown) ->
-            alert 'Ocorreu algum erro.'
-          success: (data, textStatus, jqXHR) ->
-            thisIcon.toggleClass("toggled")
-            thisCounter.text( ("0" + (thisCount + delta)).slice(-2) )
-   
-    if can_user_interact()
-      execute()
-    else
-      require_user_information(execute)
+    thisRequest = () ->
+      url = "#{baseURL}/#{thisClass}"
+      if thisIcon.hasClass('toggled')
+        reqType = 'DELETE'
+        url = url + "/0"
+        delta =  -1
+      else
+        reqType = 'POST'
+        delta =  1
+      document.start_loading()
+
+      return $.ajax url,
+        type: reqType
+        dataType: 'json'
+
+    document.start_loading()
+    $.when(otherRequest(), thisRequest())
+      .then(() ->
+        if otherIcon.hasClass("toggled")
+          otherIcon.toggleClass("toggled")
+          otherCounter.text( ("0" + (otherCount - 1)).slice(-2) )
+
+        delta = thisIcon.hasClass("toggled") ? -1 : 1
+        thisIcon.toggleClass("toggled")
+        thisCounter.text( ("0" + (thisCount + delta)).slice(-2) )
+        document.stop_loading()
+      ).fail((jqXHR) ->
+        document.stop_loading()
+        if (jqXHR.responseJSON.error == "user_cant_interact_with_plugin")
+          require_user_information(() ->
+            obj.click()
+          )
+      )
+
+    #if otherIcon.hasClass("toggled")
+    #  url = "#{baseURL}/#{otherClass}/0"
+    #  $.ajax url,
+    #    type: 'DELETE'
+    #    dataType: 'json'
+    #    error: (jqXHR, textStatus, errorThrown) ->
+    #      if (jqXHR.responseJSON.error == "user_cant_interact_with_plugin")
+    #        require_user_information(() ->
+    #          obj.click()
+    #        )
+    #      else
+    #        alert 'Ocorreu algum erro.'
+    #      error = true
+    #    success: (data, textStatus, jqXHR) ->
+    #      otherIcon.toggleClass("toggled")
+    #      otherCounter.text( ("0" + (otherCount - 1)).slice(-2) )
+
+    #if error == false
+    #  url = "#{baseURL}/#{thisClass}"
+    #  if thisIcon.hasClass('toggled')
+    #    reqType = 'DELETE'
+    #    url = url + "/0"
+    #    delta =  -1
+    #  else
+    #    reqType = 'POST'
+    #    delta =  1
+    #  document.start_loading()
+    #  $.ajax url,
+    #    type: reqType
+    #    dataType: 'json'
+    #    complete: (data) ->
+    #      document.stop_loading()
+    #    error: (jqXHR, textStatus, errorThrown) ->
+    #      if (jqXHR.responseJSON.error == "user_cant_interact_with_plugin")
+    #        require_user_information(() ->
+    #          obj.click()
+    #        )
+    #      else
+    #        alert 'Ocorreu algum erro.'
+    #    success: (data, textStatus, jqXHR) ->
+    #      thisIcon.toggleClass("toggled")
+    #      thisCounter.text( ("0" + (thisCount + delta)).slice(-2) )
 
 $ ->
   copy_to_clipboard $('a.copy-to-clipboard')
