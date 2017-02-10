@@ -1,5 +1,6 @@
 class Cycles::PluginRelations::PetitionsController < ApplicationController
   before_action :ensure_user, only: :sign
+  before_action -> { check_with_user_can_interact_with! "Petição" }, only: :sign
 
   attr_writer :petition_signer
 
@@ -14,8 +15,6 @@ class Cycles::PluginRelations::PetitionsController < ApplicationController
   end
 
   def sign
-    return render json: { error: "user_cant_interact_with_plugin" }, status: 422 unless plugin_type.can_user_interact?(current_user)
-
     petition_signer.perform user_id: current_user.id, plugin_relation_id: plugin_relation.id
 
     flash[:success] = "Petição assinada!"
