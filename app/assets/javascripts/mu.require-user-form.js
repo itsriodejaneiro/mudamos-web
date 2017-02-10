@@ -22,21 +22,31 @@
       });
 
       $form.on("click", ".continue", function() {
-        var data = {};
+        var data = { user: {}, fields: []};
 
         $form.find("input,select").each(function() {
           var $me = $(this);
-          data[$me.prop("name")] = $me.val() || null;
+          if ($me.is(":visible")) {
+            var field = $me.prop("name");
+            data.user[field] = $me.val() || null;
+            data.fields.push(field);
+          }
         });
 
         $.ajax({
           url: "/users/" + user.id,
           type: "PUT",
           contentType: "application/json",
-          data: JSON.stringify({ user: data, fields: fields }),
+          data: JSON.stringify(data),
           success: function() {
             $form.muModal("hide");
             if (success) success();
+          },
+          error: function(data) {
+            $.each(data.responseJSON.missing_fields, function(idx, field) {
+              $form.find("[name=" + field + "]").closest("div").find("h3").css("color", "#ad0000");
+            });
+            document.flash_message("Todos os campos são obrigatórios", "error");
           }
         });
       });

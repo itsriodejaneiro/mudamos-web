@@ -38,12 +38,12 @@
 
       var $container = $select.closest("div");
       if (!state) {
-        $container.hide();
+        $select.select2("enable", false);
       }
 
       $(".mu-require-user-form").on("change", "select[name=state]", function() {
-        state = $(this).val();
-        $select.val(null);
+        state = $(this).val();  
+        $select.select2("enable", true);
         $container.slideDown();
       });
     })(jQuery);
