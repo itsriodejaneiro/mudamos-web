@@ -7,12 +7,12 @@
       var $select = $("select[name=sub_profile_id]");
       var $container = $select.closest("div");
 
-      var selectedSubProfileId = <%= user.sub_profile ? user.sub_profile.id : null %>;
+      var selectedSubProfileId = <%= user.sub_profile ? user.sub_profile.id : "null" %>;
 
       <% if (user.profile) { %>
-        var selectedProfile = <%= JSON.stringify(user.profile)%>;
+      var selectedProfile = <%= JSON.stringify(user.profile)%>;
       <% } else { %>
-        var selectedProfile = null;
+      var selectedProfile = null;
       <% } %>
 
       var update = function(profiles) {
