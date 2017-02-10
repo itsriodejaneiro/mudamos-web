@@ -13,14 +13,29 @@
     return $("body").data("logged-in");
   }
 
+  function canUserInteract() {
+    return $("#petition-index").data("can-user-interact");
+  }
+
   function signPetition() {
-    $.ajax({
-      url: AppRoutes.cyclePluginRelationSignPath(cycleId(), pluginRelationId()),
-      type: "POST"
-    })
-    .always(function() {
-      location.reload();
-    });
+    var sign = function() {
+      $.ajax({
+        url: AppRoutes.cyclePluginRelationSignPath(cycleId(), pluginRelationId()),
+        type: "POST"
+      })
+      .always(function() {
+        location.reload();
+      });
+    };
+
+    if (canUserInteract()) {
+      sign();
+    } else {
+      muRequireUserForm({
+        fields: ["birthday"],
+        success: sign
+      });
+    }
   }
 
   $(document).ready(function() {
@@ -30,7 +45,9 @@
       if (isLoggedIn()) {
         signPetition();
       } else {
-        document.open_login(signPetition);
+        document.open_login(function() {
+          signPetition();
+        });
       }
     });
   });
