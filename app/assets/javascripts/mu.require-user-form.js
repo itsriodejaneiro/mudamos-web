@@ -26,7 +26,7 @@
 
         $form.find("input,select").each(function() {
           var $me = $(this);
-          data[$me.prop("name")] = $me.val();
+          data[$me.prop("name")] = $me.val() || null;
         });
 
         $.ajax({
