@@ -5,7 +5,7 @@
 - meta title: title, description: description, og: { title: title, description: description, image: image, locale: 'pt_BR', type: 'article' }, twitter: { description: description, card: 'summary', title: title, image: { src: image } }
 
 .petition-widget-builder-container
-section#petition-index  data-can-user-interact="#{user_signed_in? ? can_user_interact_with_plugin?(@phase.plugin_relation.plugin.plugin_type, current_user) : false}"
+section#petition-index
 
   = render 'widgets/smart_banner'
   .row

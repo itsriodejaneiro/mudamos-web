@@ -13,29 +13,22 @@
     return $("body").data("logged-in");
   }
 
-  function canUserInteract() {
-    return $("#petition-index").data("can-user-interact");
-  }
-
   function signPetition() {
-    var sign = function() {
-      $.ajax({
-        url: AppRoutes.cyclePluginRelationSignPath(cycleId(), pluginRelationId()),
-        type: "POST"
-      })
-      .always(function() {
+    $.ajax({
+      url: AppRoutes.cyclePluginRelationSignPath(cycleId(), pluginRelationId()),
+      type: "POST"
+    }).then(function() {
+      location.reload();
+    }).fail(function(data) {
+      if (data.responseJSON.error == "user_cant_interact_with_plugin") {
+        muRequireUserForm({
+          fields: ["birthday"],
+          success: signPetition 
+        });
+      } else {
         location.reload();
-      });
-    };
-
-    if (canUserInteract()) {
-      sign();
-    } else {
-      muRequireUserForm({
-        fields: ["birthday"],
-        success: sign
-      });
-    }
+      }
+    });
   }
 
   $(document).ready(function() {
@@ -46,6 +39,7 @@
         signPetition();
       } else {
         document.open_login(function() {
+          $("#modal-session-new .icon-close").click();
           signPetition();
         });
       }
