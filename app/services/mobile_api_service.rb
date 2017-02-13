@@ -42,7 +42,7 @@ class MobileApiService
     return nil unless body
 
     PetitionInfo.new(
-      Time.parse(body["updatedAt"]),
+      body["updatedAt"].present? ? Time.parse(body["updatedAt"]) : nil,
       body["signaturesCount"],
       body["blockchainAddress"]
     )
