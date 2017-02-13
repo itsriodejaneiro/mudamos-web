@@ -148,6 +148,8 @@ Rails.application.routes.draw do
     cycle_routes
   end
 
+  resources :signatures, only: [:show]
+
   namespace :embedded do
     resources :petitions, only: [:show]
   end
