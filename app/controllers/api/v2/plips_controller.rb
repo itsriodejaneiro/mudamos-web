@@ -16,6 +16,13 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
       key :produces, ["application/json"]
       key :tags, ["plip"]
 
+      parameter do
+        key :name, :limit
+        key :in, :query
+        key :description, "Limit of plips on the response"
+        key :type, :integer
+      end
+
       response 200 do
         extend Api::V2::SwaggerResponses::PaginatedHeaders
 
@@ -35,12 +42,15 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
   end
 
   def index
-    render json: paginated_response(Api::V2::Entities::Plip.represent(paginated_plips.items), paginated_plips)
+    plips = paginated_plips
+    render json: paginated_response(Api::V2::Entities::Plip.represent(plips.items), plips)
   end
 
   private
 
   def paginated_plips
-    @paginated_plips ||= plip_repository.all_initiated(limit: 1)
+    limit = [params[:limit].try(:to_i) || 10, 25].min
+
+    @paginated_plips ||= plip_repository.all_initiated(limit: limit)
   end
 end
