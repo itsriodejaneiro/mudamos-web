@@ -1,5 +1,5 @@
 class Cycles::Subjects::CommentsController < ApplicationController
-  before_action -> { check_with_user_can_interact_with! "Discussão" }, only: :create
+  before_action -> { check_if_user_can_interact_with! "Discussão" }, only: :create
   before_action :set_cycle, :set_subject
 
   def index

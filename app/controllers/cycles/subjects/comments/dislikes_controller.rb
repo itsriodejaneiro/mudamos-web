@@ -1,6 +1,6 @@
 
 class Cycles::Subjects::Comments::DislikesController < ApplicationController
-  before_action -> { check_with_user_can_interact_with! "Discussão" }
+  before_action -> { check_if_user_can_interact_with! "Discussão" }
   before_action :set_cycle, :set_subject, :set_comment
   respond_to :js
 

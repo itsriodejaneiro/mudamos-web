@@ -19,7 +19,7 @@
   };
 
   $.fn.muPetitionWidgetBuilder = function(opts) {
-    var opts = opts || {};
+    opts = opts || {};
 
     var petitionId = opts.petitionId;
     var petitionName = opts.petitionName;

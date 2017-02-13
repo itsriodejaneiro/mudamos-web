@@ -4,7 +4,7 @@
   </select>
   <script type="text/javascript">
     (function($) {
-      var $select = $("select[name=sub_profile_id]");
+      var $select = $(".mu-require-user-form select[name=sub_profile_id]");
       var $container = $select.closest("div");
 
       var selectedSubProfileId = <%= user.sub_profile ? user.sub_profile.id : "null" %>;

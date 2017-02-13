@@ -1,6 +1,6 @@
 class Cycles::PluginRelations::PetitionsController < ApplicationController
   before_action :ensure_user, only: :sign
-  before_action -> { check_with_user_can_interact_with! "Petição" }, only: :sign
+  before_action -> { check_if_user_can_interact_with! "Petição" }, only: :sign
 
   attr_writer :petition_signer
 

@@ -1,9 +1,11 @@
 <div>
   <h3>Data de Nascimento</h3>
   <input type="text" name="birthday" value="<%= user.birthday ? moment(user.birthday).format('DD/MM/YYYY') : '' %>" />
-  <script>
-    $("input[name=birthday]").each(function() {
-      datefy_input($(this));
-    });
+  <script type="text/javascript">
+    (function($) {
+      $(".mu-require-user-form input[name=birthday]").each(function() {
+        datefy_input($(this));
+      });
+    })(jQuery);
   </script>
 </div>

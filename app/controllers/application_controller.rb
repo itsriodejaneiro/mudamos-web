@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     false
   end
 
-  def check_with_user_can_interact_with!(plugin_type_name)
+  def check_if_user_can_interact_with!(plugin_type_name)
     plugin_type = plugin_type_repository.get_plugin_type(plugin_type_name)
     return render json: { error: "user_cant_interact_with_plugin" }, status: 403 unless plugin_type.can_user_interact?(current_user)
   end

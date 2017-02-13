@@ -5,7 +5,7 @@
   </select>
   <script type="text/javascript">
     (function($) {
-      var $select = $("select[name=profile_id]");
+      var $select = $(".mu-require-user-form select[name=profile_id]");
       var selectedProfileId = <%= user.profile ? user.profile.id : "null" %>;
 
       $.getJSON("/profiles", function(profiles) {

@@ -1,6 +1,6 @@
 (function($) {
   window.muRequireUserForm = function(opts) {
-    var opts = opts || {};
+    opts = opts || {};
    
     var fields = opts.fields;
     var success = opts.success;

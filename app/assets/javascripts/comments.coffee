@@ -18,7 +18,6 @@ require_user_information = (success) ->
   muRequireUserForm({
     fields: ['birthday', 'gender', 'state', 'city', 'profile_id', 'sub_profile_id'],
     success: () ->
-      $('#subject-show').data('can-user-interact', true)
       if (success)
         success()
   })

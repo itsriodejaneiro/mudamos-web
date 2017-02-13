@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def update
     data = user_params
-    missing_fields = fields.select { |f| data[f].nil? }
+    missing_fields = fields.reject { |f| data[f].present? }
 
     return render json: { missing_fields: missing_fields }, status: :unprocessable_entity unless missing_fields.length == 0
 
