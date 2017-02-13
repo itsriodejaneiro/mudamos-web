@@ -1,13 +1,12 @@
 $ ->
-  $("form.comment").on("ajax:success", () ->
+  $("body").on("ajax:success", "form.comment", () ->
     location.reload()
   ).on("ajax:error", (err, data) ->
     $form = $(this)
     document.stop_loading()
     if (data.responseJSON.error == "user_cant_interact_with_plugin")
       require_user_information(() ->
-        document.start_loading()
-        $form.submit()
+        $form.find(".new-comment-button").click()
       )
   )
 
@@ -15,6 +14,7 @@ $ ->
     new_comment_button_click $(this)
 
 require_user_information = (success) ->
+  $("#modal-session-new .close").click()
   muRequireUserForm({
     fields: ['birthday', 'gender', 'state', 'city', 'profile_id', 'sub_profile_id'],
     success: () ->
@@ -28,21 +28,24 @@ new_comment_button_click = (elem) ->
 
     form = $(this).parents('form:first')
 
+    getContent = ()->
+      for editor in tinyMCE.editors
+        if editor.targetElm.form.id == form.attr('id')
+          return editor.getContent()
+
     save = () ->
-        document.start_loading()
-        form.submit()
+      document.start_loading()
+      form.find("textarea").val(getContent())
+      form.submit()
 
     unless document.isLoggedIn
 
-      for editor in tinyMCE.editors
-        if editor.targetElm.form.id == form.attr('id')
-          content = editor.getContent()
-
-      Cookies.set 'new_comment_content', content, { expires: document.expiration_default_time }
+      Cookies.set 'new_comment_content', getContent(), { expires: document.expiration_default_time }
       Cookies.set 'new_comment_is_anonymous', form.find("input[name='comment[is_anonymous]'][type='checkbox']").val(), { expires: document.expiration_default_time }
       Cookies.set 'new_comment_parent_id', form.find('input#comment_parent_id').val(), { expires: document.expiration_default_time }
 
       document.open_login (data) ->
+        document.isLoggedIn = true
         save()
     else
       save()
@@ -89,7 +92,7 @@ add_load_more_events_to_button = (elem) ->
             sub.find('.share-comment').each ->
               prepare_share $(this)
 
-            sub.find('form[id*=new_comment]').find('bsplitutton.new-comment-button').each ->
+            sub.find('form[id*=new_comment]').find('.new-comment-button').each ->
               new_comment_button_click $(this)
 
             sub.find('.like_button.toggleable').each ->
