@@ -1,9 +1,18 @@
 $ ->
+  $("form.comment").on("ajax:success", () ->
+    location.reload()
+  ).on("ajax:error", (err, data) ->
+    $form = $(this)
+    document.stop_loading()
+    if (data.responseJSON.error == "user_cant_interact_with_plugin")
+      require_user_information(() ->
+        document.start_loading()
+        $form.submit()
+      )
+  )
+
   $('form[id*=new_comment]').find('button').each ->
     new_comment_button_click $(this)
-
-can_user_interact = () ->
-  $('#subject-show').data('can-user-interact')
 
 require_user_information = (success) ->
   muRequireUserForm({
@@ -21,14 +30,8 @@ new_comment_button_click = (elem) ->
     form = $(this).parents('form:first')
 
     save = () ->
-      if can_user_interact()
         document.start_loading()
         form.submit()
-      else
-        require_user_information(() ->
-          document.start_loading()
-          form.submit()
-        )
 
     unless document.isLoggedIn
 
