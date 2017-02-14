@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #164]: Fixing the exhibition of the petition information (Issue 159)
 * [PR #149]: New petition's pdf (Issue 149)
 * [PR #124]: Petition widget builder (Issue 124)
 * [PR #155]: Creating smartbanner for the platform and adding it to the petition's page (issue 134)
