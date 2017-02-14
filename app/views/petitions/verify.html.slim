@@ -1,0 +1,26 @@
+section.container-fluid#verify-document
+  .container
+    h1 Verifique o documento
+    div
+      input#document type="file"
+
+      button#verify Verificar
+
+    javascript:
+      $(document).ready(function() {
+        $("#verify").click(function() {
+          var reader = new FileReader;
+          reader.onload = function() {
+            var sha = asmCrypto.SHA256.hex(reader.result);
+            apiClient.getPetitionStatus(sha)
+              .then(function(result) {
+                alert("Documento válido");
+              }).fail(function(err) {
+                alert("Documento inválido");
+              });
+          }
+
+          var input = document.getElementById("document");
+          reader.readAsArrayBuffer(input.files[0]);
+        });
+      });

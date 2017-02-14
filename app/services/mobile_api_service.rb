@@ -3,6 +3,15 @@ class MobileApiService
   class RequestError < StandardError; end
   class InvalidRequest < RequestError; end
 
+  class ValidationError < RequestError
+    attr_accessor :validations
+
+    def initialize(message, validations)
+      super(message)
+      @validations = validations
+    end
+  end
+
   def initialize(
     url: Rails.application.secrets.apis['mobile']['url'],
     timeout: Rails.application.secrets.apis['mobile']['timeout'],
@@ -121,6 +130,13 @@ class MobileApiService
     fail RequestError.new("Got #{response.status} from #{response.env.url}") unless response.status >= 200 && response.status <= 299
 
     body = JSON.parse(response.body)
+
+    if body["status"] == "fail"
+      data = body["data"]
+
+      fail ValidationError.new("Request returned with validation errors", data["validations"]) if data["errorCode"] == 1029
+    end
+
     fail InvalidRequest.new("Request failed with errors: #{body["data"]}") unless body["status"] == "success"
   end
 

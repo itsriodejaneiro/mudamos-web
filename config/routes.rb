@@ -152,4 +152,8 @@ Rails.application.routes.draw do
   namespace :embedded do
     resources :petitions, only: [:show]
   end
+
+  resources :petitions, only: [] do
+    get :verify, on: :collection
+  end
 end

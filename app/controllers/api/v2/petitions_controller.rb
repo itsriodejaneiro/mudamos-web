@@ -107,6 +107,8 @@ class Api::V2::PetitionsController < Api::V2::ApplicationController
     petition_status = petition_service.fetch_petition_status(petition_sha)
     render json: { status: petition_status }
     expires_in expires_time.minutes, public: true
+  rescue MobileApiService::ValidationError => e
+    render json: e.validations, status: 422 
   end
 
   private
