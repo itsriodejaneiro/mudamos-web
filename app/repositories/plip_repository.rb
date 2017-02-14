@@ -19,6 +19,7 @@ class PlipRepository
       .where.not(petition_plugin_details: { id: nil })
       .where.not(petition_plugin_detail_versions: { id: nil })
       .where(petition_plugin_detail_versions: { published: true })
+      .distinct
       .page(page)
       .per(limit)
 
