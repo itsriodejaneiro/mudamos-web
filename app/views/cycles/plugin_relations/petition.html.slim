@@ -6,6 +6,7 @@
 
 .petition-widget-builder-container
 section#petition-index
+
   = render 'widgets/smart_banner'
   .row
     .col-lg-6.petition-side-bar.petition-view
@@ -62,8 +63,6 @@ section#petition-index
               |  do projeto
             div.medium-padded
               small.last_version_date
-                | A versão atual for criada no dia
-                span
             - if @petition.past_versions.length > 0
               div.medium-padded
                 a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
@@ -128,7 +127,7 @@ javascript:
   });
 
   $(".embedded-link strong").click(function() {
-    $(".petition-widget-builder-container").muPetitionWidgetBuilder("show");
+    $(".petition-widget-builder-container").muModal("show");
   });
 
 - if @phase.plugin_relation.ready?
@@ -155,7 +154,11 @@ javascript:
   
         apiClient.getPetitionInfo(#{@petition.id}).then(function(petitionInfo) {
           if (petitionInfo) {
-            $(".last_version_date span").text(moment(petitionInfo.updated_at).format(" DD/MM/YYYY à\\s HH:mm"));
+            if (petitionInfo.updated_at) {
+              $(".last_version_date").text("A versão atual for criada no dia " + moment(petitionInfo.updated_at).format("DD/MM/YYYY à\\s HH:mm"));
+            } else {
+              $(".last_version_date").text("");
+            }
 
             var count = petitionInfo.signatures_count;
   

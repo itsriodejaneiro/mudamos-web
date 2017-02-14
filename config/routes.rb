@@ -123,7 +123,13 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+  resources :users, only: [:update, :me] do
+    get :me, on: :collection
+  end
+
+  resources :profiles, only: [:index, :sub_profiles] do
+    get :sub_profiles
+  end
 
   match '/busca', to: 'search#show', as: :search, via: :get
 
@@ -135,7 +141,6 @@ Rails.application.routes.draw do
   resources :credits, only:[:index], path: 'creditos'
 
   match '/:uf/cities', to: 'cities#index', via: :get
-  match '/:profile_id/profiles', to: 'profiles#index', via: :get
 
   match '/ping', to: 'ping#show', via: :get
 

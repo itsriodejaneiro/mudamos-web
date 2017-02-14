@@ -21,16 +21,6 @@
   $.fn.muPetitionWidgetBuilder = function(opts) {
     opts = opts || {};
 
-    if (opts == "show") {
-      $(this).show();
-      $(".mu-petition-widget-builder-overlay").show();
-      return;
-    } else if (opts == "hide") {
-      $(this).hide();
-      $(".mu-petition-widget-builder-overlay").hide();
-      return;
-    }
-
     var petitionId = opts.petitionId;
     var petitionName = opts.petitionName;
     var cycleColor = opts.cycleColor;
@@ -39,28 +29,18 @@
       throw "petitionId and petitionName are required"
     }
 
-    if ($(".mu-petition-widget-builder-overlay").length == 0) {
-      $("body").append("<div class='mu-petition-widget-builder-overlay'></div>");
-    }
-
     $(this).each(function() {
       var $element = $(this);
-      $element.hide();
+      $element.muModal({
+        title: "Incorporar petição"
+      });
 
       var $petitionWidgetBuilder = $(template);
       $element.append($petitionWidgetBuilder);
 
-      $element.on("click", ".close", function() {
-        $element.muPetitionWidgetBuilder("hide");
-      });
-
-      $element.on("open", function() {
-        $element.show();
-      });
-
       $element.find("input[type=checkbox]").muSwitch();
       $element.find(".petition-name").text(petitionName);
-      $element.find(".separator span").css("background-color", cycleColor);
+      $element.closest(".mu-modal").find(".separator span").css("background-color", cycleColor);
 
       var buildIframe = function() {
         var hasDescription = $element.find(".show-description").is(":checked");

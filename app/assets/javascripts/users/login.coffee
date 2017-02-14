@@ -56,7 +56,7 @@ $ ->
     profile_description.slideUp()
     sub_profile_description.slideUp()
     sub_profile_select.parents("li:first").slideUp()
-    url = "/#{$(this).val()}/profiles"
+    url = "/profiles/#{$(this).val()}/sub_profiles"
 
     document.start_loading()
     $.ajax

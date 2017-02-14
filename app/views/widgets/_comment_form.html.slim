@@ -2,7 +2,7 @@
 - rows ||= 3
 - placeholder ||= 'Criar comentário'
 
-= semantic_form_for [@cycle, @subject, Comment.new], html: { id: "new_comment#{"_#{parent.id}" if parent.present?}" } do |f|
+= semantic_form_for [@cycle, @subject, Comment.new], html: { id: "new_comment#{"_#{parent.id}" if parent.present?}" }, remote: true do |f|
   - if parent
     = f.input :parent_id, as: :hidden, input_html: { value: parent.id }
   = f.text_area :content,
