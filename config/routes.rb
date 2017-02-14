@@ -23,6 +23,7 @@ end
 include BaseRouting::RoutingMethods
 
 Rails.application.routes.draw do
+  use_doorkeeper
   devise_for :admin_users, controllers: {
     sessions: 'admin/admin_users/sessions',
     registrations: 'admin/admin_users/registrations',
@@ -103,12 +104,17 @@ Rails.application.routes.draw do
     namespace :v2 do
       resources :apidocs, only: %i(index)
       resources :plips, only: %i(index)
-      resources :petitions, only: [:info] do
+      resources :petitions, only: [:info, :signers] do
         get :info
+        get :signers
       end
     end
   end
 
+  namespace :partners_api do
+    resources :petitions, only: [:show]
+    resources :users, only: [:create]
+  end  
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -117,7 +123,13 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+  resources :users, only: [:update, :me] do
+    get :me, on: :collection
+  end
+
+  resources :profiles, only: [:index, :sub_profiles] do
+    get :sub_profiles
+  end
 
   match '/busca', to: 'search#show', as: :search, via: :get
 
@@ -129,7 +141,6 @@ Rails.application.routes.draw do
   resources :credits, only:[:index], path: 'creditos'
 
   match '/:uf/cities', to: 'cities#index', via: :get
-  match '/:profile_id/profiles', to: 'profiles#index', via: :get
 
   match '/ping', to: 'ping#show', via: :get
 

@@ -4,7 +4,10 @@
 
 - meta title: title, description: description, og: { title: title, description: description, image: image, locale: 'pt_BR', type: 'article' }, twitter: { description: description, card: 'summary', title: title, image: { src: image } }
 
+.petition-widget-builder-container
 section#petition-index
+
+  = render 'widgets/smart_banner'
   .row
     .col-lg-6.petition-side-bar.petition-view
       h1.petition-name= @phase.name
@@ -29,6 +32,7 @@ section#petition-index
           .col-xs-12.already-signed
             strong
             | já assinaram
+            div#petition-signers-tablet 
         .row.signatures-info
           .col-xs-12
             .petition-signatures-progress
@@ -58,15 +62,15 @@ section#petition-index
                 strong Baixe o PDF
               |  do projeto
             div.medium-padded
-              small= "A versão atual for criada no dia #{@petition.published_version.created_at.strftime("%d/%m/%Y às %H:%M")}"
+              small.last_version_date
             - if @petition.past_versions.length > 0
               div.medium-padded
                 a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
 
               script#past-versions-popover type="text/template"
-                ul.list-unstyled
-                  - past_versions_length = @petition.past_versions.length
-                  - @petition.past_versions.each_with_index do |version, index|
+                ul.list-unstyled.past-versions-popover
+                  - past_versions_length = past_versions.length
+                  - past_versions.each_with_index do |version, index|
                     li
                       div.pull-left
                         i.icon-text2 style="color: #{@cycle.color}"
@@ -86,8 +90,14 @@ section#petition-index
 
         .div.bottom-info-clear
 
+        .row#petition-signers-desktop
+
     .col-lg-6.petition-view.petition-body-container
       - if  @phase.plugin_relation.ready?
+        div.embedded-link
+          strong.pull-right style="color: #{@cycle.color}"
+            i.icon-share
+            |  Incorporar
         p= @petition.presentation
         .row
           .col-xs-12
@@ -104,13 +114,30 @@ css:
       linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 40%),
       linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 30%),
       linear-gradient(#{color_as_rgba(@cycle.color, 0.3)}, #{color_as_rgba(@cycle.color, 0.3)}),
+      linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
       url("#{@cycle.picture.url}");
     background-color: #{color_as_rgba(@cycle.color, 0.3)};
   }
 
+javascript:
+  $(".petition-widget-builder-container").muPetitionWidgetBuilder({
+    petitionId: "#{@petition.id}",
+    petitionName: "#{@phase.name}",
+    cycleColor: "#{@cycle.color}"
+  });
+
+  $(".embedded-link strong").click(function() {
+    $(".petition-widget-builder-container").muModal("show");
+  });
+
 - if @phase.plugin_relation.ready?
   javascript:
     $(document).ready(function() {
+      var petitionInProgress = #{@phase.in_progress?};
+
+      $("#petition-signers-desktop").muPetitionSigners(#{@petition.id}, petitionInProgress, apiClient);
+      $("#petition-signers-tablet").muPetitionSignersSmall(#{@petition.id}, petitionInProgress, apiClient);
+
       var progressBar = $(".petition-signatures-progress").progressBar({
         percentage: "20%",
         color: "#{@cycle.color}"
@@ -122,11 +149,17 @@ css:
         placement: "right",
       });
   
-      function updateSignaturesCount() {
+      function updatePetitionInfo() {
         var signaturesRequired = "#{@petition.signatures_required}";
   
         apiClient.getPetitionInfo(#{@petition.id}).then(function(petitionInfo) {
           if (petitionInfo) {
+            if (petitionInfo.updated_at) {
+              $(".last_version_date").text("A versão atual for criada no dia " + moment(petitionInfo.updated_at).format("DD/MM/YYYY à\\s HH:mm"));
+            } else {
+              $(".last_version_date").text("");
+            }
+
             var count = petitionInfo.signatures_count;
   
             var percentage = (count / signaturesRequired) * 100;
@@ -138,9 +171,8 @@ css:
         });
       }
   
-      var petitionInProgress = #{@phase.in_progress?};
       if (petitionInProgress) {
-        setInterval(updateSignaturesCount, 10000)
+        setInterval(updatePetitionInfo, 10000)
       }
-      updateSignaturesCount();
+      updatePetitionInfo();
     });

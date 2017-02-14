@@ -13,4 +13,12 @@ class PetitionService
       mobile_service.petition_info(petition_id)
     end
   end
+
+  def fetch_petition_signers(petition_id, limit, fresh: false)
+    cache_key = "mobile_petition_signers:#{petition_id}:limit:#{limit}"
+
+    petition_signers = Rails.cache.fetch(cache_key, force: fresh) do
+      mobile_service.petition_signers petition_id, limit 
+    end
+  end
 end

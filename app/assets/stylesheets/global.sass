@@ -2764,3 +2764,154 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
   font-weight: bold
   text-align: center
   line-height: 20px
+
+.mu-switch
+  display: inline-block
+  width: 48px
+  height: 24px
+  background-color: rgba(0, 0, 0, 0.12)
+  border-radius: 100px
+  position: relative
+
+  &.checked
+    background-color: #00C182
+
+    .mu-switch-marker
+      right: 2px
+      left: unset
+
+  .mu-switch-marker
+    display: inline-block
+    width: 20px
+    height: 20px
+    border-radius: 10px
+    background-color: #fff
+    position: absolute
+    top: 2px
+    left: 2px
+
+.mu-modal-overlay
+  position: fixed
+  top: 0px
+  bottom: 0px
+  left: 0px
+  right: 0px
+  background-color: rgba(0, 0, 0, 0.5)
+  display: none
+  z-index: 1031
+
+.mu-modal
+  font-family: "Merriweather Sans"
+  width: 600px
+  background-color: #fff
+  position: fixed
+  left: 50%
+  margin-left: -300px
+  top: 50px
+  bottom: 50px
+  overflow: auto
+  z-index: 1032
+  padding: 40px
+  color: rgba(43, 43, 43, 0.85)
+  background-color: #FFFFFF
+  border: 1px solid rgba(0, 0, 0, 0.2)
+  border-radius: 4px
+
+  i.close
+    top: 38px
+    right: 38px
+
+  .separator
+    span
+      display: inline-block
+      width: 100px
+      height: 4px
+      margin-bottom: 22px
+      background-color: #000
+
+  h2
+    font-size: 36px
+    color: #4D4D4D
+    margin-top: 0px
+    margin-bottom: 10px
+    text-transform: uppercase
+
+  p
+    font-size: 24px
+    font-weight: 300
+    line-height: 31px
+    color: rgba(43, 43, 43, 0.85)
+
+  h3
+    margin-top: 24px
+    margin-bottom: 15px
+    font-size: 24px
+    text-transform: uppercase
+
+  input
+    background-color: #FAFAFA
+    border: 1px solid rgba(0, 0, 0, 0.12)
+    border-radius: 2px
+    width: 100%
+    height: 34px
+    margin: 0px
+
+.petition-widget-builder-container
+  ul
+    li
+      label
+        font-weight: 300 
+        font-size: 17px
+        margin-left: 10px
+        margin-bottom: 10px
+        line-height: 24px
+        height: 24px
+
+      .mu-switch
+        float: left
+
+  .previewer
+    text-align: center
+    padding-top: 23px
+
+.smart-banner
+  color: #fff
+  font-family: "Merriweather"
+  margin-top: 38px
+
+  @media (min-width: $screen-sm-min)
+    margin-top: 0px
+
+  .info
+    padding: 10px
+    background-color: darken(#883DE1, 30%)
+    height: 175px
+    position: relative
+
+    .icon-close
+      float: left
+      margin-top: 70px
+      margin-left: 20px
+  
+    .app-icon
+      float: left
+      width: 125px
+      height: 125px
+      margin: 20px 20px 20px 25px
+
+    h3
+      margin-top: 55px
+
+.mu-require-user-form
+
+  .buttons
+    margin-top: 25px
+
+    .rounded-button
+      &.continue
+        background-color: #4cd964
+        float: right
+
+      padding: 20px
+      float: left
+      width: 45%

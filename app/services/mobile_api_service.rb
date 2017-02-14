@@ -17,10 +17,18 @@ class MobileApiService
   end
 
   def register_petition_version(petition_detail_version)
+    phase = petition_detail_version.petition_plugin_detail.plugin_relation.related
+
+    page_url = Rails.application.routes.url_helpers.cycle_plugin_relation_url(
+      phase.cycle,
+      phase.plugin_relation
+    )
+
     post("/petition/register", petition: {
       id_petition: petition_detail_version.petition_plugin_detail_id,
       id_version: petition_detail_version.id,
       url: petition_detail_version.document_url,
+      page_url: page_url,
       sha: petition_detail_version.sha
     })
   end
@@ -34,10 +42,35 @@ class MobileApiService
     return nil unless body
 
     PetitionInfo.new(
-      Time.parse(body["updatedAt"]),
+      body["updatedAt"].present? ? Time.parse(body["updatedAt"]) : nil,
       body["signaturesCount"],
       body["blockchainAddress"]
     )
+  end
+
+  PetitionSigner = Struct.new(:date, :name, :city, :state, :uf, :profile_type, :profile_id, :profile_email, :profile_picture)
+  def petition_signers(petition_id, limit)
+    response = get("/petition/#{petition_id}/#{limit}/votes")
+
+    signers_json = JSON.parse(response.body)["data"]["votes"]
+    return [] unless signers_json
+
+    signers = []
+    signers_json.each do |signer|
+      signers << PetitionSigner.new(
+        Time.parse(signer["vote_date"]),
+        signer["user_name"],
+        signer["user_city"],
+        signer["user_state"],
+        signer["user_uf"],
+        signer["profile_type"],
+        signer["profile_id"],
+        signer["profile_email"],
+        signer["profile_picture"]
+      )
+    end
+
+    signers
   end
 
   private

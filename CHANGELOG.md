@@ -1,12 +1,29 @@
 ## Next
 
+* [PR #165]: Adding limit to plips api (Issue 161)
+* [PR #163]: Requesting missing information from the user on plugin interaction (Issue 144)
+* [PR #164]: Fixing the exhibition of the petition information (Issue 159)
+* [PR #149]: New petition's pdf (Issue 149)
+* [PR #124]: Petition widget builder (Issue 124)
+* [PR #155]: Creating smartbanner for the platform and adding it to the petition's page (issue 134)
+ - Set `MOBILE_APP_STORE_PAGE_ANDROID` 
+ - Set `MOBILE_APP_STORE_PAGE_IOS`
+* [PR #152]: Date of the current version is now the date which the document was upated on the blockchain (issue 33)
+* [PR #147]: Adding a partner api for user creation (issue 146)
+* [PR #151]: Adding page url on the payload to the petition mobile api synchronization (issue 150)
+* [PR #145]: Adding signers widget on petition's page (Issue 109)
+ - Configure a cron to update the cache of the petition's signers 
+* [PR #143]: Adding oath authentication for partners API (Issue 127)
+ - Run `rake db:migrate`
+* [PR #142]: Removing user field requirements (Issue 126)
+* [PR #141]: Fixing past versions popover order and layout (issue 140)
 * [PR #137]: Fixing app's protocol configuration
 * [PR #135]: Adding metatag for itunes smart banner (issue 133)
  - Set `MOBILE_API_ID_IOS`
 * [PR #131]: New petition's page (Issue 96)
 * [PR #132]: Fixing remaining days on phase (issue 30)
 * [PR #123]: Petition widget (issue 97)
- - Configure a cron to update the cache of the petitions information
+ - Configure a cron to update the cache of the petition's information
  - Set `API_CACHE_EXPIRES_IN`
 * [PR #114]: Changing order of the petitions past versions on the views (issue 114)
 
