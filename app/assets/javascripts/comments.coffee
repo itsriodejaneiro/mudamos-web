@@ -1,7 +1,7 @@
 $ ->
   $("body").on("ajax:success", "form.comment", () ->
     location.reload()
-  ).on("ajax:error", (err, data) ->
+  ).on("ajax:error", "form.comment", (err, data) ->
     $form = $(this)
     document.stop_loading()
     if (data.responseJSON.error == "user_cant_interact_with_plugin")
@@ -230,10 +230,12 @@ toggleButtons = (obj, otherClass) ->
     document.start_loading()
     $.when(otherRequest(), thisRequest())
       .then(() ->
+        # If the other action is activate we have to remove a counter from it
         if otherIcon.hasClass("toggled")
           otherIcon.toggleClass("toggled")
           otherCounter.text( ("0" + (otherCount - 1)).slice(-2) )
 
+        # Update the current action counter
         delta = if thisIcon.hasClass("toggled") then -1 else 1
         thisIcon.toggleClass("toggled")
         thisCounter.text( ("0" + (thisCount + delta)).slice(-2) )
