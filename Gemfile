@@ -74,7 +74,6 @@ gem "select2-rails"
 gem 'simplemde-rails'
 gem 'prawn'
 gem 'prawn-table'
-gem 'kramdown'
 gem 'shoryuken'
 gem 'aws-sdk', '~> 2'
 

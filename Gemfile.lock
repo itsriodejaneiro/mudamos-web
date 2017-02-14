@@ -334,7 +334,6 @@ GEM
       addressable
       faraday
       multi_json
-    kramdown (1.13.2)
     launchy (2.4.3)
       addressable (~> 2.3)
     less (2.6.0)
@@ -634,7 +633,6 @@ DEPENDENCIES
   js-routes
   kaminari
   koala
-  kramdown
   less-rails
   libv8
   metamagic
