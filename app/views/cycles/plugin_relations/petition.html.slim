@@ -6,6 +6,7 @@
 
 .petition-widget-builder-container
 section#petition-index
+
   = render 'widgets/smart_banner'
   .row
     .col-lg-6.petition-side-bar.petition-view
@@ -126,7 +127,7 @@ javascript:
   });
 
   $(".embedded-link strong").click(function() {
-    $(".petition-widget-builder-container").muPetitionWidgetBuilder("show");
+    $(".petition-widget-builder-container").muModal("show");
   });
 
 - if @phase.plugin_relation.ready?

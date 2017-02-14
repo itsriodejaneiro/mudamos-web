@@ -1,5 +1,6 @@
 class Cycles::PluginRelations::PetitionsController < ApplicationController
   before_action :ensure_user, only: :sign
+  before_action -> { check_if_user_can_interact_with! "Petição" }, only: :sign
 
   attr_writer :petition_signer
 
@@ -28,5 +29,9 @@ class Cycles::PluginRelations::PetitionsController < ApplicationController
 
   def plugin_relation
     @plugin_relation ||= plugin_relation_repository.find_by_id!(params[:plugin_relation_id])
+  end
+
+  def plugin_type
+    @plugin_type ||= PluginType::Petition.new
   end
 end

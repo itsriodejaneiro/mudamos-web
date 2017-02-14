@@ -22,4 +22,15 @@ class PluginTypeRepository
     with_phases = available_types_with_phases
     ALL_TYPES.reject { |_, v| with_phases.include? v }.values
   end
+
+  def get_plugin_type(plugin_type)
+    case plugin_type
+    when "Discussão" then PluginType::Discussion.new
+    when "Blog" then PluginType::Blog.new
+    when "Relatoria" then PluginType::Report.new
+    when "Biblioteca" then PluginType::Library.new
+    when "Glossário" then PluginType::Glossary.new
+    when "Petição" then PluginType::Petition.new
+    end
+  end
 end
