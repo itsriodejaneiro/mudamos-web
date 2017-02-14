@@ -47,7 +47,7 @@
     $(this).each(function(idx, element) {
       var $element = $(element);
 
-      $element.append("<div><ul class='list-unstyled'></ul></div>");
+      $element.append("<div><h3 class='title'>Assinantes recentes</h3><ul class='list-unstyled'></ul></div>");
      
       var addRow = function($element, userInfo) {
         var $row = $("<li></li>");
@@ -60,9 +60,9 @@
         $name.find("strong").text(userInfo.name);
         $row.append($name);
 
-        var $signTime = $("<div class='sign-time'><small/></div>");
-        $signTime.find("small").text(jQuery.timeago(new Date(userInfo.date)));
-        $row.append($signTime);
+        var $signTimeAndLocation = $("<div class='sign-time-and-location'><small/></div>");
+        $signTimeAndLocation.find("small").text(userInfo.city + " - " + userInfo.uf + " " + jQuery.timeago(new Date(userInfo.date)));
+        $row.append($signTimeAndLocation);
 
         $element.append($row);
       }
