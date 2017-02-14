@@ -23,6 +23,13 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
         key :type, :integer
       end
 
+      parameter do
+        key :name, :page
+        key :in, :query
+        key :description, "Which page of the pagination"
+        key :type, :integer
+      end
+
       response 200 do
         extend Api::V2::SwaggerResponses::PaginatedHeaders
 
@@ -50,7 +57,8 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
 
   def paginated_plips
     limit = [params[:limit].try(:to_i) || 10, 25].min
+    page = params[:page].try(:to_i) || 1
 
-    @paginated_plips ||= plip_repository.all_initiated(limit: limit)
+    @paginated_plips ||= plip_repository.all_initiated(page: page, limit: limit)
   end
 end
