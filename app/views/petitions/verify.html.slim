@@ -4,7 +4,7 @@ section.container-fluid#verify-document
     div
       input#document type="file"
 
-      button#verify Verificar
+      button.rounded-button#verify Verificar
 
     javascript:
       $(document).ready(function() {
@@ -12,10 +12,13 @@ section.container-fluid#verify-document
           var reader = new FileReader;
           reader.onload = function() {
             var sha = asmCrypto.SHA256.hex(reader.result);
+            document.start_loading();
             apiClient.getPetitionStatus(sha)
               .then(function(result) {
+                document.stop_loading();
                 alert("Documento válido");
               }).fail(function(err) {
+                document.stop_loading();
                 alert("Documento inválido");
               });
           }
