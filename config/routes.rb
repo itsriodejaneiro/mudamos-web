@@ -104,9 +104,10 @@ Rails.application.routes.draw do
     namespace :v2 do
       resources :apidocs, only: %i(index)
       resources :plips, only: %i(index)
-      resources :petitions, only: [:info, :signers] do
+      resources :petitions, only: [] do
         get :info
         get :signers
+        get :status
       end
     end
   end

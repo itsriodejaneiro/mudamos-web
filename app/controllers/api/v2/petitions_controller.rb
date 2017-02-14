@@ -56,6 +56,31 @@ class Api::V2::PetitionsController < Api::V2::ApplicationController
       end
     end
   end
+ 
+  swagger_path "/petitions/{sha}/status" do
+    operation :get do
+      extend Api::V2::SwaggerResponses::InternalError
+
+      key :description, "Returns the status of the petition with its signature information"
+      key :operationId, "v2findPetitionStatus"
+      key :produces, ["application/json"]
+      key :tags, ["petition"]
+
+      response 200 do
+        key :description, "petition status response"
+        schema do
+          extend Api::V2::SwaggerResponses::SuccessResponse
+
+          property :data do
+            key :type, :object
+            property 'info' do
+              key :'$ref', :'Api::V2::Entities::PetitionStatus'
+            end
+          end
+        end
+      end
+    end
+  end
 
   def info
     petition_id = params[:petition_id]
@@ -73,6 +98,14 @@ class Api::V2::PetitionsController < Api::V2::ApplicationController
     signers = petition_service.fetch_petition_signers(petition_id, limit)
 
     render json: { signers: signers }
+    expires_in expires_time.minutes, public: true
+  end
+
+  def status
+    petition_sha = params[:petition_id]
+
+    petition_status = petition_service.fetch_petition_status(petition_sha)
+    render json: { status: petition_status }
     expires_in expires_time.minutes, public: true
   end
 
