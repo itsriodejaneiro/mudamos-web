@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #165]: Adding limit to plips api (Issue 161)
 * [PR #163]: Requesting missing information from the user on plugin interaction (Issue 144)
 * [PR #164]: Fixing the exhibition of the petition information (Issue 159)
 * [PR #149]: New petition's pdf (Issue 149)
