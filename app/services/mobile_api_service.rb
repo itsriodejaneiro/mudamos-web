@@ -73,6 +73,21 @@ class MobileApiService
     signers
   end
 
+  PetitionStatus = Struct.new(:status, :blockstamp, :transaction, :transaction_date)
+  def petition_status(sha)
+    response = get("/petition/#{sha}/status")
+
+    blockchain_info = JSON.parse(response.body)["data"]["blockchain"]
+    return nil unless blockchain_info
+
+    PetitionStatus.new(
+      blockchain_info["status"],
+      blockchain_info["blockstamp"] ? Time.parse(blockchain_info["blockstamp"]) : nil,
+      blockchain_info["transaction"],
+      blockchain_info["txstamp"] ? Time.parse(blockchain_info["txstamp"]) : nil
+    )
+  end
+
   private
 
   [:get, :head].each do |verb|
