@@ -27,8 +27,6 @@ class PetitionService
 
       if petition.published_version.present?
         return mobile_service.petition_version_signers petition.published_version.id, limit 
-      else
-        return nil
       end
     end
   end
