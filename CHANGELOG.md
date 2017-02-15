@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #170]: Adjustments to the signers widget (Issue 169)
 * [PR #168]: Extension was missing on the petition widget watermark image (issue 167)
 * [PR #165]: Adding limit to plips api (Issue 161)
 * [PR #163]: Requesting missing information from the user on plugin interaction (Issue 144)
