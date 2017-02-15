@@ -2,7 +2,7 @@
 
   var buildPlugin = function(petitionId, petitionInProgress, apiClient, $element, addRow, opts) {
     opts = opts || {};
-    var size = opts.size || 4;
+    var size = opts.size || 5;
 
     var refreshList = function() {
       apiClient.getPetitionSigners(petitionId, size)
