@@ -46,7 +46,7 @@ module Api
 
           property :final_date do
             key :type, :string
-            format "ISO date"
+            format "ISO date time"
           end
         end
       end
