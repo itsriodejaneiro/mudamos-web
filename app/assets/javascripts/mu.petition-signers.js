@@ -61,7 +61,10 @@
         $row.append($name);
 
         var $signTimeAndLocation = $("<div class='sign-time-and-location'><small/></div>");
-        $signTimeAndLocation.find("small").text(userInfo.city + " - " + userInfo.uf + " " + jQuery.timeago(new Date(userInfo.date)));
+        $signTimeAndLocation.find("small").text(
+          jQuery.timeago(new Date(userInfo.date)) + " | " +
+          userInfo.city + " - " + userInfo.uf
+        );
         $row.append($signTimeAndLocation);
 
         $element.append($row);
