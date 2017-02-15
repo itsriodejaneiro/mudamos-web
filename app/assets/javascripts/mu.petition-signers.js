@@ -1,5 +1,9 @@
 (function($) {
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   var buildPlugin = function(petitionId, petitionInProgress, apiClient, $element, addRow, opts) {
     opts = opts || {};
     var size = opts.size || 5;
@@ -62,7 +66,7 @@
 
         var $signTimeAndLocation = $("<div class='sign-time-and-location'><small/></div>");
         $signTimeAndLocation.find("small").text(
-          jQuery.timeago(new Date(userInfo.date)) + " | " +
+          capitalizeFirstLetter(jQuery.timeago(new Date(userInfo.date))) + " | " +
           userInfo.city + " - " + userInfo.uf
         );
         $row.append($signTimeAndLocation);
