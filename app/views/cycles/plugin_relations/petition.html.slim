@@ -48,8 +48,11 @@ section#petition-index
             .pull-left
               i.icon-clock style="color: #{@cycle.color}"
             div.medium-padded
-              strong= "#{@phase.remaining_days} dias "
-              | restantes para o encerramento
+              - if @phase.remaining_days > 0
+                strong= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias restantes" : "dia restante"} "
+                | para o encerramento
+              - else
+                strong Último dia
             div.medium-padded
               small= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}" 
 
@@ -80,7 +83,10 @@ section#petition-index
 
         .row.phone-bottom-info
           .col-xs-6
-            strong= "#{@phase.remaining_days} dias restantes"
+            - if @phase.remaining_days > 0
+              strong= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias restantes" : "dia restante"} "
+            - else
+              strong Último dia
             div
               small para o encerramento
           .col-xs-6
