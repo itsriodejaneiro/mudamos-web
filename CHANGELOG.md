@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #172]: Fixing final date on phases (issue 171)
+ - rake phases:ends_on_the_end_of_the_day
 * [PR #168]: Extension was missing on the petition widget watermark image (issue 167)
 * [PR #165]: Adding limit to plips api (Issue 161)
 * [PR #163]: Requesting missing information from the user on plugin interaction (Issue 144)
