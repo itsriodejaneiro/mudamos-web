@@ -1,3 +1,24 @@
 section.container-fluid#view-signature
   .container
-    h1 ="Sua assinatura é #{@signature.valid ? "válida" : "inválida"}"  
+    - if @signature.present?
+      h2 Assinatura válida!
+      i.icon-success
+
+      h4 Dados da assinatura
+      div.info
+        ul
+          li
+            label Petição: 
+            a href="#{@signature.petition_page_url}" ="#{@signature.petition_name}"
+          li
+            label Assinante: 
+            = "#{@signature.user_name}"
+          li
+            label Assinatura registrada em: 
+            = "#{@signature.blockchain_updated_at.strftime("%A, %d de %B de %Y, %H:%M h")}"
+          li
+            label Assinado em
+            = "#{@signature.updated_at.strftime("%A, %d de %B de %Y, %H:%M h")}"
+    - else
+      i.icon-error
+      h2 Assinatura inválida!

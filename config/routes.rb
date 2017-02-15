@@ -108,6 +108,7 @@ Rails.application.routes.draw do
         get :info
         get :signers
       end
+      resources :signatures, only: [:show]
     end
   end
 
