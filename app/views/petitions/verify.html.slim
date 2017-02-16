@@ -34,9 +34,7 @@ section.container-fluid#verify-document
           if ($("#document").val()) {
             var reader = new FileReader;
             reader.onload = function() {
-              //var sha = asmCrypto.SHA256.hex(reader.result);
-              // Mocking remove this when we can test with the api
-              var sha = "62ace500d79556b3c835f81663a52c6fba44e659b6dcd84f4bfcc2e069b52ee1";
+              var sha = asmCrypto.SHA256.hex(reader.result);
               document.start_loading();
               apiClient.getPetitionStatus(sha)
                 .then(function(result) {
