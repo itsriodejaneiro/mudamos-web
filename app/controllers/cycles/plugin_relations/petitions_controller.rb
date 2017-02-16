@@ -1,5 +1,6 @@
 class Cycles::PluginRelations::PetitionsController < ApplicationController
   before_action :ensure_user, only: :sign
+  before_action -> { check_if_user_can_interact_with! "Petição" }, only: :sign
 
   attr_writer :petition_signer
 
@@ -14,6 +15,8 @@ class Cycles::PluginRelations::PetitionsController < ApplicationController
   end
 
   def sign
+    return render json: { error: "Fase terminada" }, status: 403 unless plugin_relation.related.in_progress?
+
     petition_signer.perform user_id: current_user.id, plugin_relation_id: plugin_relation.id
 
     flash[:success] = "Petição assinada!"
@@ -28,5 +31,9 @@ class Cycles::PluginRelations::PetitionsController < ApplicationController
 
   def plugin_relation
     @plugin_relation ||= plugin_relation_repository.find_by_id!(params[:plugin_relation_id])
+  end
+
+  def plugin_type
+    @plugin_type ||= PluginType::Petition.new
   end
 end

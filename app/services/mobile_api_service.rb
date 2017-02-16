@@ -51,15 +51,15 @@ class MobileApiService
     return nil unless body
 
     PetitionInfo.new(
-      Time.parse(body["updatedAt"]),
+      body["updatedAt"].present? ? Time.parse(body["updatedAt"]) : nil,
       body["signaturesCount"],
       body["blockchainAddress"]
     )
   end
 
   PetitionSigner = Struct.new(:date, :name, :city, :state, :uf, :profile_type, :profile_id, :profile_email, :profile_picture)
-  def petition_signers(petition_id, limit)
-    response = get("/petition/#{petition_id}/#{limit}/votes")
+  def petition_version_signers(version_id, limit)
+    response = get("/petition/#{version_id}/#{limit}/votes")
 
     signers_json = JSON.parse(response.body)["data"]["votes"]
     return [] unless signers_json

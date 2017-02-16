@@ -6,6 +6,7 @@
 
 .petition-widget-builder-container
 section#petition-index
+
   = render 'widgets/smart_banner'
   .row
     .col-lg-6.petition-side-bar.petition-view
@@ -13,19 +14,20 @@ section#petition-index
       h3.petition-description= @phase.description
 
       - if @phase.plugin_relation.ready?
-        - if @user_signed_petition
-          .row
-            .col-xs-12
-              | Recebemos sua pré-assinatura! Por um requisito legal, agora você precisa baixar o App da Mudamos para confirmar a assinatura
-          .row.small-gap
-            .col-xs-12
-              a.store-badge.app href="#"
-              a.store-badge.play href="#"
-        - else
-          .row
-            .col-xs-12
-              button.rounded-button.sign-petition style="background-color: #{@cycle.color}"
-               =@petition.call_to_action
+        - if @phase.in_progress?
+          - if @user_signed_petition
+            .row
+              .col-xs-12
+                | Recebemos sua pré-assinatura! Por um requisito legal, agora você precisa baixar o App da Mudamos para confirmar a assinatura
+            .row.small-gap
+              .col-xs-12
+                a.store-badge.app href="#"
+                a.store-badge.play href="#"
+          - else
+            .row
+              .col-xs-12
+                button.rounded-button.sign-petition style="background-color: #{@cycle.color}"
+                 =@petition.call_to_action
 
         .row.signatures-info
           .col-xs-12.already-signed
@@ -42,15 +44,19 @@ section#petition-index
             | assinaturas para a meta de
             strong=" #{@petition.signatures_required}"
 
-        .row.small-gap.remaining-days.bottom-info-container
-          .col-xs-12
-            .pull-left
-              i.icon-clock style="color: #{@cycle.color}"
-            div.medium-padded
-              strong= "#{@phase.remaining_days} dias "
-              | restantes para o encerramento
-            div.medium-padded
-              small= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}" 
+        - if @phase.in_progress?
+          .row.small-gap.remaining-days.bottom-info-container
+            .col-xs-12
+              .pull-left
+                i.icon-clock style="color: #{@cycle.color}"
+              div.medium-padded
+                - if @phase.remaining_days > 0
+                  strong= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias restantes" : "dia restante"} "
+                  | para o encerramento
+                - else
+                  strong Último dia
+              div.medium-padded
+                small= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}" 
 
         .row.small-gap.download-document.bottom-info-container
           .col-xs-12
@@ -62,8 +68,6 @@ section#petition-index
               |  do projeto
             div.medium-padded
               small.last_version_date
-                | A versão atual for criada no dia
-                span
             - if @petition.past_versions.length > 0
               div.medium-padded
                 a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
@@ -80,10 +84,14 @@ section#petition-index
                       div.medium-padded= "Criada em #{version.created_at.strftime("%d/%m/%Y às %H:%M")}"
 
         .row.phone-bottom-info
-          .col-xs-6
-            strong= "#{@phase.remaining_days} dias restantes"
-            div
-              small para o encerramento
+          - if @phase.in_progress?
+            .col-xs-6
+              - if @phase.remaining_days > 0
+                strong= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias restantes" : "dia restante"} "
+              - else
+                strong Último dia
+              div
+                small para o encerramento
           .col-xs-6
             strong.total-signatures
             div
@@ -128,7 +136,7 @@ javascript:
   });
 
   $(".embedded-link strong").click(function() {
-    $(".petition-widget-builder-container").muPetitionWidgetBuilder("show");
+    $(".petition-widget-builder-container").muModal("show");
   });
 
 - if @phase.plugin_relation.ready?
@@ -155,7 +163,11 @@ javascript:
   
         apiClient.getPetitionInfo(#{@petition.id}).then(function(petitionInfo) {
           if (petitionInfo) {
-            $(".last_version_date span").text(moment(petitionInfo.updated_at).format(" DD/MM/YYYY à\\s HH:mm"));
+            if (petitionInfo.updated_at) {
+              $(".last_version_date").text("A versão atual for criada no dia " + moment(petitionInfo.updated_at).format("DD/MM/YYYY à\\s HH:mm"));
+            } else {
+              $(".last_version_date").text("");
+            }
 
             var count = petitionInfo.signatures_count;
   

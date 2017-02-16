@@ -1,6 +1,26 @@
 $ ->
+  $("body").on("ajax:success", "form.comment", () ->
+    location.reload()
+  ).on("ajax:error", "form.comment", (err, data) ->
+    $form = $(this)
+    document.stop_loading()
+    if (data.responseJSON.error == "user_cant_interact_with_plugin")
+      require_user_information(() ->
+        $form.find(".new-comment-button").click()
+      )
+  )
+
   $('form[id*=new_comment]').find('button').each ->
     new_comment_button_click $(this)
+
+require_user_information = (success) ->
+  $("#modal-session-new .close").click()
+  muRequireUserForm({
+    fields: ['birthday', 'gender', 'state', 'city', 'profile_id', 'sub_profile_id'],
+    success: () ->
+      if (success)
+        success()
+  })
 
 new_comment_button_click = (elem) ->
   elem.click (e) ->
@@ -8,22 +28,27 @@ new_comment_button_click = (elem) ->
 
     form = $(this).parents('form:first')
 
-    unless document.isLoggedIn
-
+    getContent = ()->
       for editor in tinyMCE.editors
         if editor.targetElm.form.id == form.attr('id')
-          content = editor.getContent()
+          return editor.getContent()
 
-      Cookies.set 'new_comment_content', content, { expires: document.expiration_default_time }
+    save = () ->
+      document.start_loading()
+      form.find("textarea").val(getContent())
+      form.submit()
+
+    unless document.isLoggedIn
+
+      Cookies.set 'new_comment_content', getContent(), { expires: document.expiration_default_time }
       Cookies.set 'new_comment_is_anonymous', form.find("input[name='comment[is_anonymous]'][type='checkbox']").val(), { expires: document.expiration_default_time }
       Cookies.set 'new_comment_parent_id', form.find('input#comment_parent_id').val(), { expires: document.expiration_default_time }
 
       document.open_login (data) ->
-        document.start_loading()
-        form.submit()
+        document.isLoggedIn = true
+        save()
     else
-      document.start_loading()
-      form.submit()
+      save()
 
 $ ->
   $('.load-more-comments').each ->
@@ -67,7 +92,7 @@ add_load_more_events_to_button = (elem) ->
             sub.find('.share-comment').each ->
               prepare_share $(this)
 
-            sub.find('form[id*=new_comment]').find('bsplitutton.new-comment-button').each ->
+            sub.find('form[id*=new_comment]').find('.new-comment-button').each ->
               new_comment_button_click $(this)
 
             sub.find('.like_button.toggleable').each ->
@@ -181,39 +206,47 @@ toggleButtons = (obj, otherClass) ->
     thisCount = parseInt(thisCounter.text())
     otherCount = parseInt(otherCounter.text())
 
-    if otherIcon.hasClass("toggled")
-      url = "#{baseURL}/#{otherClass}/0"
-      $.ajax url,
-        type: 'DELETE'
-        dataType: 'json'
-        error: (jqXHR, textStatus, errorThrown) ->
-          alert 'Ocorreu algum erro.'
-          error = true
-        success: (data, textStatus, jqXHR) ->
-          otherIcon.toggleClass("toggled")
-          otherCounter.text( ("0" + (otherCount - 1)).slice(-2) )
+    otherRequest = () ->
+      if otherIcon.hasClass("toggled")
+        url = "#{baseURL}/#{otherClass}/0"
+        return $.ajax url,
+          type: 'DELETE'
+          dataType: 'json'
+      else
+        return null
 
-    if error == false
+    thisRequest = () ->
       url = "#{baseURL}/#{thisClass}"
       if thisIcon.hasClass('toggled')
         reqType = 'DELETE'
         url = url + "/0"
-        delta =  -1
       else
         reqType = 'POST'
-        delta =  1
-      document.start_loading()
-      $.ajax url,
+
+      return $.ajax url,
         type: reqType
         dataType: 'json'
-        complete: (data) ->
-          document.stop_loading()
-        error: (jqXHR, textStatus, errorThrown) ->
-          alert 'Ocorreu algum erro.'
-        success: (data, textStatus, jqXHR) ->
-          thisIcon.toggleClass("toggled")
-          thisCounter.text( ("0" + (thisCount + delta)).slice(-2) )
 
+    document.start_loading()
+    $.when(otherRequest(), thisRequest())
+      .then(() ->
+        # If the other action is activate we have to remove a counter from it
+        if otherIcon.hasClass("toggled")
+          otherIcon.toggleClass("toggled")
+          otherCounter.text( ("0" + (otherCount - 1)).slice(-2) )
+
+        # Update the current action counter
+        delta = if thisIcon.hasClass("toggled") then -1 else 1
+        thisIcon.toggleClass("toggled")
+        thisCounter.text( ("0" + (thisCount + delta)).slice(-2) )
+        document.stop_loading()
+      ).fail((jqXHR) ->
+        document.stop_loading()
+        if (jqXHR.responseJSON.error == "user_cant_interact_with_plugin")
+          require_user_information(() ->
+            obj.click()
+          )
+      )
 
 $ ->
   copy_to_clipboard $('a.copy-to-clipboard')

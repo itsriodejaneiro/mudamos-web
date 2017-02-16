@@ -81,6 +81,7 @@ class Admin::CyclesController < Admin::ApplicationController
     
     empty_plugin_relation = false
     @cycle.phases.map do |x|
+      x.final_date = x.final_date.try(:end_of_day)
       x.cycle = @cycle
 
       if x.plugin_relation
@@ -121,6 +122,7 @@ class Admin::CyclesController < Admin::ApplicationController
 
     empty_plugin_relation = false
     @cycle.phases.map do |x|
+      x.final_date = x.final_date.try(:end_of_day)
       x.cycle = @cycle
 
       if x.plugin_relation
