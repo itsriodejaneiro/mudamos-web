@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #174]: Hiding the pre signature button when the phase is not in progress (issue 173)
 * [PR #170]: Adjustments to the signers widget (Issue 169)
 * [PR #168]: Extension was missing on the petition widget watermark image (issue 167)
 * [PR #165]: Adding limit to plips api (Issue 161)

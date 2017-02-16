@@ -14,19 +14,20 @@ section#petition-index
       h3.petition-description= @phase.description
 
       - if @phase.plugin_relation.ready?
-        - if @user_signed_petition
-          .row
-            .col-xs-12
-              | Recebemos sua pré-assinatura! Por um requisito legal, agora você precisa baixar o App da Mudamos para confirmar a assinatura
-          .row.small-gap
-            .col-xs-12
-              a.store-badge.app href="#"
-              a.store-badge.play href="#"
-        - else
-          .row
-            .col-xs-12
-              button.rounded-button.sign-petition style="background-color: #{@cycle.color}"
-               =@petition.call_to_action
+        - if @phase.in_progress?
+          - if @user_signed_petition
+            .row
+              .col-xs-12
+                | Recebemos sua pré-assinatura! Por um requisito legal, agora você precisa baixar o App da Mudamos para confirmar a assinatura
+            .row.small-gap
+              .col-xs-12
+                a.store-badge.app href="#"
+                a.store-badge.play href="#"
+          - else
+            .row
+              .col-xs-12
+                button.rounded-button.sign-petition style="background-color: #{@cycle.color}"
+                 =@petition.call_to_action
 
         .row.signatures-info
           .col-xs-12.already-signed
