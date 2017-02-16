@@ -26,7 +26,7 @@ class PetitionService
       petition = petition_repository.find_by_id!(petition_id)
 
       if petition.published_version.present?
-        return mobile_service.petition_version_signers petition.published_version.id, limit 
+        return mobile_service.petition_version_signers petition.published_version.id, limit
       end
     end
   end
@@ -36,6 +36,14 @@ class PetitionService
 
     petition_status = Rails.cache.fetch(cache_key, force: fresh) do
       mobile_service.petition_status(petition_sha)
+    end
+  end
+
+  def fetch_petition_signatures(petition_id, fresh: false)
+    cache_key = "mobile_petition_signatures:#{petition_id}"
+
+    Rails.cache.fetch(cache_key, force: fresh) do
+      mobile_service.petition_signatures(petition_id)
     end
   end
 end
