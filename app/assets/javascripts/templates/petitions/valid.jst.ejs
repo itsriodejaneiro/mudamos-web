@@ -1,1 +1,6 @@
 <h3> Documento válido </h3>
+<ul class="list-unstyled">
+  <li><label>Código da transação:</label><%= status.transaction %></li>
+  <li><label>Data da transação:</label><%= moment(status.transaction_date).format("DD/MM/YYYY - h:mm:ss") %></li>
+  <li><label>Data de registro na Bockchain:</label><%= moment(status.blockstamp).format("DD/MM/YYYY - h:mm:ss") %></li>
+</ul>

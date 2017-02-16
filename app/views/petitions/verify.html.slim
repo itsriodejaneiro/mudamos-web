@@ -21,7 +21,7 @@ section.container-fluid#verify-document
 
         var showResult = function(status) {
           if (status) {
-            $(".verify-result .result").html(JST["templates/petitions/valid"]());
+            $(".verify-result .result").html(JST["templates/petitions/valid"]({ status: status }));
           } else {
             $(".verify-result .result").html(JST["templates/petitions/invalid"]());
           }
@@ -34,11 +34,13 @@ section.container-fluid#verify-document
           if ($("#document").val()) {
             var reader = new FileReader;
             reader.onload = function() {
-              var sha = asmCrypto.SHA256.hex(reader.result);
+              //var sha = asmCrypto.SHA256.hex(reader.result);
+              // Mocking remove this when we can test with the api
+              var sha = "62ace500d79556b3c835f81663a52c6fba44e659b6dcd84f4bfcc2e069b52ee1";
               document.start_loading();
               apiClient.getPetitionStatus(sha)
                 .then(function(result) {
-                  showResult(result);
+                  showResult(result.status);
                   document.stop_loading();
                 }).fail(function(err) {
                   showResult();
