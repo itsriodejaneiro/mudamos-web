@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #172]: Fixing final date on phases (issue 171)
+ - rake phases:ends_on_the_end_of_the_day
 * [PR #174]: Hiding the pre signature button when the phase is not in progress (issue 173)
 * [PR #170]: Adjustments to the signers widget (Issue 169)
 * [PR #168]: Extension was missing on the petition widget watermark image (issue 167)

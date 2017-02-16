@@ -44,15 +44,19 @@ section#petition-index
             | assinaturas para a meta de
             strong=" #{@petition.signatures_required}"
 
-        .row.small-gap.remaining-days.bottom-info-container
-          .col-xs-12
-            .pull-left
-              i.icon-clock style="color: #{@cycle.color}"
-            div.medium-padded
-              strong= "#{@phase.remaining_days} dias "
-              | restantes para o encerramento
-            div.medium-padded
-              small= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}" 
+        - if @phase.in_progress?
+          .row.small-gap.remaining-days.bottom-info-container
+            .col-xs-12
+              .pull-left
+                i.icon-clock style="color: #{@cycle.color}"
+              div.medium-padded
+                - if @phase.remaining_days > 0
+                  strong= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias restantes" : "dia restante"} "
+                  | para o encerramento
+                - else
+                  strong Último dia
+              div.medium-padded
+                small= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}" 
 
         .row.small-gap.download-document.bottom-info-container
           .col-xs-12
@@ -80,10 +84,14 @@ section#petition-index
                       div.medium-padded= "Criada em #{version.created_at.strftime("%d/%m/%Y às %H:%M")}"
 
         .row.phone-bottom-info
-          .col-xs-6
-            strong= "#{@phase.remaining_days} dias restantes"
-            div
-              small para o encerramento
+          - if @phase.in_progress?
+            .col-xs-6
+              - if @phase.remaining_days > 0
+                strong= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias restantes" : "dia restante"} "
+              - else
+                strong Último dia
+              div
+                small para o encerramento
           .col-xs-6
             strong.total-signatures
             div
