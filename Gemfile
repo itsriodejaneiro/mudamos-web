@@ -122,6 +122,8 @@ end
 
 group :production, :staging do
   gem 'rails_12factor'
+  gem 'dalli'
+  gem 'memcachier'
 end
 
 group :production do
