@@ -115,6 +115,7 @@ GEM
     commonjs (0.2.7)
     concurrent-ruby (1.0.0)
     cpf_cnpj (0.2.1)
+    dalli (2.7.6)
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     delayed_job (4.1.1)
@@ -352,6 +353,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    memcachier (0.0.2)
     memoist (0.13.0)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -609,6 +611,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 4.1.0)
   cpf_cnpj
+  dalli
   database_cleaner
   delayed_job_active_record
   delayed_paperclip
@@ -635,6 +638,7 @@ DEPENDENCIES
   koala
   less-rails
   libv8
+  memcachier
   metamagic
   net-http-persistent (~> 2.9.4)
   newrelic_rpm
