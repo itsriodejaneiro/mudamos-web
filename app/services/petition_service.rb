@@ -1,9 +1,14 @@
 class PetitionService
 
   attr_reader :mobile_service
+  attr_reader :petition_repository
 
-  def initialize(mobile_service: MobileApiService.new)
+  def initialize(
+    mobile_service: MobileApiService.new,
+    petition_repository: PetitionPlugin::DetailRepository.new
+  )
     @mobile_service = mobile_service
+    @petition_repository = petition_repository
   end
 
   def fetch_petition_info(petition_id, fresh: false)
@@ -18,7 +23,11 @@ class PetitionService
     cache_key = "mobile_petition_signers:#{petition_id}:limit:#{limit}"
 
     petition_signers = Rails.cache.fetch(cache_key, force: fresh) do
-      mobile_service.petition_signers petition_id, limit 
+      petition = petition_repository.find_by_id!(petition_id)
+
+      if petition.published_version.present?
+        return mobile_service.petition_version_signers petition.published_version.id, limit 
+      end
     end
   end
 end
