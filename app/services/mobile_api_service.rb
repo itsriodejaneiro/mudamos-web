@@ -134,7 +134,7 @@ class MobileApiService
     if body["status"] == "fail"
       data = body["data"]
 
-      fail ValidationError.new("Request returned with validation errors", data["validations"]) if data["errorCode"] == 1029
+      fail ValidationError.new("Request returned with validation errors", data["validations"]) if data["errorCode"].present?
     end
 
     fail InvalidRequest.new("Request failed with errors: #{body["data"]}") unless body["status"] == "success"

@@ -1,29 +1,55 @@
 section.container-fluid#verify-document
   .container
     h1 Verifique o documento
-    div
+    div.verify-document
+      h3 Carregue o arquivo
       input#document type="file"
-
       button.rounded-button#verify Verificar
+
+    div.verify-result
+      div.result
+      button.rounded-button#verify-again Verificar outro documento
 
     javascript:
       $(document).ready(function() {
-        $("#verify").click(function() {
-          var reader = new FileReader;
-          reader.onload = function() {
-            var sha = asmCrypto.SHA256.hex(reader.result);
-            document.start_loading();
-            apiClient.getPetitionStatus(sha)
-              .then(function(result) {
-                document.stop_loading();
-                alert("Documento válido");
-              }).fail(function(err) {
-                document.stop_loading();
-                alert("Documento inválido");
-              });
+
+        $("#verify-again").click(function() {
+          $(".verify-document").slideDown();
+          $(".verify-result").slideUp();
+          $("#document").val(null);
+        });
+
+        var showResult = function(status) {
+          if (status) {
+            $(".verify-result .result").html(JST["templates/petitions/valid"]());
+          } else {
+            $(".verify-result .result").html(JST["templates/petitions/invalid"]());
           }
 
-          var input = document.getElementById("document");
-          reader.readAsArrayBuffer(input.files[0]);
+          $(".verify-document").slideUp();
+          $(".verify-result").slideDown();
+        };
+
+        $("#verify").click(function() {
+          if ($("#document").val()) {
+            var reader = new FileReader;
+            reader.onload = function() {
+              var sha = asmCrypto.SHA256.hex(reader.result);
+              document.start_loading();
+              apiClient.getPetitionStatus(sha)
+                .then(function(result) {
+                  showResult(result);
+                  document.stop_loading();
+                }).fail(function(err) {
+                  showResult();
+                  document.stop_loading();
+                });
+            }
+
+            var input = document.getElementById("document");
+            reader.readAsArrayBuffer(input.files[0]);
+          } else {
+            document.flash_message("Escolha o arquivo para verificar", "error");
+          }
         });
       });
