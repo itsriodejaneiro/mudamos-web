@@ -2,6 +2,12 @@ class ProfilesController < ApplicationController
   respond_to :js
 
   def index
+    profiles = Profile.roots
+
+    render json: profiles
+  end
+
+  def sub_profiles 
     if params[:profile_id].present?
       @profiles = Profile.where(parent_id: params[:profile_id]).to_a
 

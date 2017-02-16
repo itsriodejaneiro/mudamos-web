@@ -104,9 +104,10 @@ Rails.application.routes.draw do
     namespace :v2 do
       resources :apidocs, only: %i(index)
       resources :plips, only: %i(index)
-      resources :petitions, only: [:info, :signers] do
+      resources :petitions, only: [] do
         get :info
         get :signers
+        get :status
       end
       resources :signatures, only: [:show]
     end
@@ -124,7 +125,13 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+  resources :users, only: [:update, :me] do
+    get :me, on: :collection
+  end
+
+  resources :profiles, only: [:index, :sub_profiles] do
+    get :sub_profiles
+  end
 
   match '/busca', to: 'search#show', as: :search, via: :get
 
@@ -136,7 +143,6 @@ Rails.application.routes.draw do
   resources :credits, only:[:index], path: 'creditos'
 
   match '/:uf/cities', to: 'cities#index', via: :get
-  match '/:profile_id/profiles', to: 'profiles#index', via: :get
 
   match '/ping', to: 'ping#show', via: :get
 
@@ -153,5 +159,9 @@ Rails.application.routes.draw do
 
   namespace :embedded do
     resources :petitions, only: [:show]
+  end
+
+  resources :petitions, only: [] do
+    get :verify, on: :collection
   end
 end

@@ -12,7 +12,7 @@ module Api
         expose :description
         expose :current_status, as: :status
 
-        with_options format_with: :iso_date do
+        with_options format_with: :iso_date_time do
           expose :initial_date
           expose :final_date
         end
@@ -41,12 +41,12 @@ module Api
 
           property :initial_date do
             key :type, :string
-            format "ISO date"
+            format "ISO date time"
           end
 
           property :final_date do
             key :type, :string
-            format "ISO date"
+            format "ISO date time"
           end
         end
       end

@@ -24,6 +24,11 @@
       margin: 5px
 
   #petition-signers-desktop
+    .title
+      margin-top: 10px
+      margin-left: 10px
+      margin-bottom: 15px
+
     ul
       li
         clear: both
@@ -35,8 +40,9 @@
             font-size: 18px
             display: block
             width: 100%
-        div.sign-time
-          line-height: 10px
+
+        div.sign-time-and-location
+          line-height: 12px
           small
             font-size: 11px
 
@@ -286,3 +292,20 @@
         &.social-footer-links
           li
             display: inline-block
+
+#verify-document
+  padding: 60px 0 60px 0
+  margin-top: 60px
+  text-align: center
+
+  #verify
+    background-color: #4cd964
+    width: 350px
+
+  #document
+    margin-bottom: 40px
+    // For some reason text-align: center on it's parent doesn't affect this element :(
+    margin-left: 36%
+
+  .verify-result
+    display: none

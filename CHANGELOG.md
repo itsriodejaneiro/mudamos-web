@@ -1,5 +1,14 @@
 ## Next
 
+* [PR #175]: Adding page for verifying petition pdfs (Issue 158)
+* [PR #172]: Fixing final date on phases (issue 171)
+ - rake phases:ends_on_the_end_of_the_day
+* [PR #174]: Hiding the pre signature button when the phase is not in progress (issue 173)
+* [PR #170]: Adjustments to the signers widget (Issue 169)
+* [PR #168]: Extension was missing on the petition widget watermark image (issue 167)
+* [PR #165]: Adding limit to plips api (Issue 161)
+* [PR #163]: Requesting missing information from the user on plugin interaction (Issue 144)
+* [PR #164]: Fixing the exhibition of the petition information (Issue 159)
 * [PR #149]: New petition's pdf (Issue 149)
 * [PR #124]: Petition widget builder (Issue 124)
 * [PR #155]: Creating smartbanner for the platform and adding it to the petition's page (issue 134)

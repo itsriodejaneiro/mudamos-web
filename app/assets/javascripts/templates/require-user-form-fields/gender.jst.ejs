@@ -1,0 +1,19 @@
+<div>
+  <h3>Gênero</h3>
+  <select name="gender">
+    <option value>Gênero</option>
+    <option value="Feminino">Feminino</option>
+    <option value="Masculino">Masculino</option>
+    <option value="Transgênero">Transgênero</option>
+    <option value="Não quero opinar">Não quero opinar</option>
+  </select>
+  <script type="text/javascript">
+    (function($) {
+      $(".mu-require-user-form select[name=gender]").val("<%= user.gender %>");
+      $(".mu-require-user-form select[name=gender]").select2({
+        placeholder: "Gênero",
+        minimumResultsForSearch: -1
+      });
+    })(jQuery);
+  </script>
+</div>

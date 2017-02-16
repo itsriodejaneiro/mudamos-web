@@ -3,6 +3,15 @@ class MobileApiService
   class RequestError < StandardError; end
   class InvalidRequest < RequestError; end
 
+  class ValidationError < RequestError
+    attr_accessor :validations
+
+    def initialize(message, validations)
+      super(message)
+      @validations = validations
+    end
+  end
+
   def initialize(
     url: Rails.application.secrets.apis['mobile']['url'],
     timeout: Rails.application.secrets.apis['mobile']['timeout'],
@@ -42,15 +51,15 @@ class MobileApiService
     return nil unless body
 
     PetitionInfo.new(
-      Time.parse(body["updatedAt"]),
+      body["updatedAt"].present? ? Time.parse(body["updatedAt"]) : nil,
       body["signaturesCount"],
       body["blockchainAddress"]
     )
   end
 
   PetitionSigner = Struct.new(:date, :name, :city, :state, :uf, :profile_type, :profile_id, :profile_email, :profile_picture)
-  def petition_signers(petition_id, limit)
-    response = get("/petition/#{petition_id}/#{limit}/votes")
+  def petition_version_signers(version_id, limit)
+    response = get("/petition/#{version_id}/#{limit}/votes")
 
     signers_json = JSON.parse(response.body)["data"]["votes"]
     return [] unless signers_json
@@ -91,6 +100,21 @@ class MobileApiService
     sign
   end
 
+  PetitionStatus = Struct.new(:status, :blockstamp, :transaction, :transaction_date)
+  def petition_status(sha)
+    response = get("/petition/#{sha}/status")
+
+    blockchain_info = JSON.parse(response.body)["data"]["blockchain"]
+    return nil unless blockchain_info
+
+    PetitionStatus.new(
+      blockchain_info["status"],
+      blockchain_info["blockstamp"] ? Time.parse(blockchain_info["blockstamp"]) : nil,
+      blockchain_info["transaction"],
+      blockchain_info["txstamp"] ? Time.parse(blockchain_info["txstamp"]) : nil
+    )
+  end
+
   private
 
   [:get, :head].each do |verb|
@@ -124,6 +148,13 @@ class MobileApiService
     fail RequestError.new("Got #{response.status} from #{response.env.url}") unless response.status >= 200 && response.status <= 299
 
     body = JSON.parse(response.body)
+
+    if body["status"] == "fail"
+      data = body["data"]
+
+      fail ValidationError.new("Request returned with validation errors", data["validations"]) if data["errorCode"].present?
+    end
+
     fail InvalidRequest.new("Request failed with errors: #{body["data"]}") unless body["status"] == "success"
   end
 

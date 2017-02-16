@@ -1,8 +1,12 @@
 (function($) {
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   var buildPlugin = function(petitionId, petitionInProgress, apiClient, $element, addRow, opts) {
     opts = opts || {};
-    var size = opts.size || 4;
+    var size = opts.size || 5;
 
     var refreshList = function() {
       apiClient.getPetitionSigners(petitionId, size)
@@ -47,7 +51,7 @@
     $(this).each(function(idx, element) {
       var $element = $(element);
 
-      $element.append("<div><ul class='list-unstyled'></ul></div>");
+      $element.append("<div><h3 class='title'>Assinantes recentes</h3><ul class='list-unstyled'></ul></div>");
      
       var addRow = function($element, userInfo) {
         var $row = $("<li></li>");
@@ -60,9 +64,12 @@
         $name.find("strong").text(userInfo.name);
         $row.append($name);
 
-        var $signTime = $("<div class='sign-time'><small/></div>");
-        $signTime.find("small").text(jQuery.timeago(new Date(userInfo.date)));
-        $row.append($signTime);
+        var $signTimeAndLocation = $("<div class='sign-time-and-location'><small/></div>");
+        $signTimeAndLocation.find("small").text(
+          capitalizeFirstLetter(jQuery.timeago(new Date(userInfo.date))) + " | " +
+          userInfo.city + " - " + userInfo.uf
+        );
+        $row.append($signTimeAndLocation);
 
         $element.append($row);
       }
