@@ -63,6 +63,7 @@
 #= require mu.petition-widget-builder
 #= require mu.require-user-form
 #= require moment.min
+#= require asmcrypto
 
 document.expiration_default_time = 300
 

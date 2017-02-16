@@ -15,5 +15,9 @@
     return $.get(this.url + "/petitions/" + petitionId + "/signers", { limit: limit });
   };
 
+  prototype.getPetitionStatus = function(sha) {
+    return $.get(this.url + "/petitions/" + sha + "/status");
+  };
+
   window.apiClient = new ApiClient;
 })(jQuery);

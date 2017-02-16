@@ -38,4 +38,12 @@ class PetitionService
       mobile_service.petition_signatures(petition_id)
     end
   end
+
+  def fetch_petition_status(petition_sha, fresh: false)
+    cache_key = "mobile_petition_status:#{petition_sha}"
+
+    petition_status = Rails.cache.fetch(cache_key, force: fresh) do
+      mobile_service.petition_status(petition_sha)
+    end
+  end
 end
