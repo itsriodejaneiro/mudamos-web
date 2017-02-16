@@ -8,6 +8,8 @@ class Cycles::PluginRelations::PetitionsController < ApplicationController
     @petition_signer ||= PetitionPlugin::PetitionSigner.new
   end
 
+  attr_writer :plugin_relation_repository
+
   def plugin_relation_repository
     @plugin_relation_repository ||= PluginRelationRepository.new
   end
