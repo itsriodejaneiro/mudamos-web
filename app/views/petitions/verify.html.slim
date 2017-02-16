@@ -38,7 +38,11 @@ section.container-fluid#verify-document
               document.start_loading();
               apiClient.getPetitionStatus(sha)
                 .then(function(result) {
-                  showResult(result.status);
+                  if (result.status.status == "confirmed") {
+                    showResult(result.status);
+                  } else {
+                    showResult();
+                  }
                   document.stop_loading();
                 }).fail(function(err) {
                   showResult();
