@@ -73,7 +73,7 @@ class MobileApiService
     signers
   end
 
-  SignatureStatus = Struct.new(:petition_name, :petition_page_url, :blockchain_updated_at, :updated_at, :user_name)
+  SignatureStatus = Struct.new(:petition_name, :petition_page_url, :blockchain_updated_at, :updated_at, :user_name, :signatures_pdf_url)
   def signature_status(signature)
     response = post("/message/blockchain/status", sign: { signature: signature })
 
@@ -84,7 +84,8 @@ class MobileApiService
       sign["petition_page_url"],
       sign["blockchain_updatedat"].present? ? Time.parse(sign["blockchain_updatedat"]) : nil,
       sign["updatedat"].present? ? Time.parse(sign["updatedat"]) : nil,
-      sign["user_name"]
+      sign["user_name"],
+      sign["signatures_pdf_url"]
     )
 
     sign

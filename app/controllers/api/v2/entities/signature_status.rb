@@ -11,6 +11,7 @@ module Api
         expose :blockchain_updated_at
         expose :updated_at
         expose :user_name
+        expose :signatures_pdf_url
 
         swagger_schema :'Api::V2::Entities::SignatureStatus' do
           property :petition_name do
@@ -32,6 +33,10 @@ module Api
           end
 
           property :user_name do
+            key :type, :string
+          end
+
+          property :signatures_pdf_url do
             key :type, :string
           end
         end

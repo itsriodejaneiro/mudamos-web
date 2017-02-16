@@ -15,10 +15,12 @@ section.container-fluid#view-signature
             = "#{@signature.user_name}"
           li
             label Assinatura registrada em: 
-            = "#{@signature.blockchain_updated_at.strftime("%A, %d de %B de %Y, %H:%M h")}"
+            = "#{@signature.blockchain_updated_at.strftime("%d/%m/%Y - %H:%M")}"
           li
             label Assinado em
-            = "#{@signature.updated_at.strftime("%A, %d de %B de %Y, %H:%M h")}"
+            = "#{@signature.updated_at.strftime("%d/%m/%Y - %H:%M")}"
+          li
+            a href="#{@signature.signatures_pdf_url}" Baixe o PDF completo
     - else
       i.icon-error
       h2 Assinatura inválida!
