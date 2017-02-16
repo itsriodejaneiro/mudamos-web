@@ -15,6 +15,8 @@ class Cycles::PluginRelations::PetitionsController < ApplicationController
   end
 
   def sign
+    return render json: { error: "Fase terminada" }, status: 403 unless plugin_relation.related.in_progress?
+
     petition_signer.perform user_id: current_user.id, plugin_relation_id: plugin_relation.id
 
     flash[:success] = "Petição assinada!"

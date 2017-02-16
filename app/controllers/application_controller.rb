@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
   private
 
     def plugin_type_repository
-      @plugin_relation_repository ||= PluginTypeRepository.new
+      @plugin_type_repository ||= PluginTypeRepository.new
     end
 
     def set_cycles
