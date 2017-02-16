@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #179]: Setting cache store to memory on stagging and production (Issue 178)
 * [PR #175]: Adding page for verifying petition pdfs (Issue 158)
 * [PR #172]: Fixing final date on phases (issue 171)
  - rake phases:ends_on_the_end_of_the_day
