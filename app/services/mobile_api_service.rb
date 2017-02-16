@@ -110,7 +110,7 @@ class MobileApiService
       PetitionSignature.new(
          json["petition_file"],
          json["petition_blockchain_transaction_id"],
-         json["petition_updatedat"],
+         json["petition_updatedat"] ? Time.parse(json["petition_updatedat"]) : nil,
          json["petition_txstamp"] ? Time.parse(json["petition_txstamp"]) : nil,
          json["petition_blockstamp"] ? Time.parse(json["petition_blockstamp"]) : nil,
          json["petition_signature"]
