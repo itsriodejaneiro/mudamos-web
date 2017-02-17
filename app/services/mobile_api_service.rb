@@ -44,7 +44,7 @@ class MobileApiService
 
   PetitionInfo = Struct.new(:updated_at, :signatures_count, :blockchain_address)
   def petition_info(petition_id)
-    response = get("/petition/#{petition_id}/info")
+    response = get("/petition/plip/#{petition_id}/info")
 
     body = JSON.parse(response.body)["data"]["info"]
 
