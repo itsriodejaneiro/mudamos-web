@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #181]: Change petition info api path (Issue 180)
 * [PR #179]: Setting cache store to memory on stagging and production (Issue 178)
   - Run `heroku addons:create memcachier:dev`
 * [PR #175]: Adding page for verifying petition pdfs (Issue 158)
