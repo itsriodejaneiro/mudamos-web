@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #177]: Page to list petition's signatures pdf (Issue 110)
 * [PR #176]: Page to verify signatures (Issue 160)
 * [PR #181]: Change petition info api path (Issue 180)
 * [PR #179]: Setting cache store to memory on stagging and production (Issue 178)
