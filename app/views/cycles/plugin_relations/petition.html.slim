@@ -100,6 +100,8 @@ section#petition-index
         .div.bottom-info-clear
 
         .row#petition-signers-desktop
+        .row.view-all-signatures
+          a href="#{petition_signatures_path(@petition)}" style="color: #{@cycle.color}" Confira as listas de assinaturas autenticadas
 
     .col-lg-6.petition-view.petition-body-container
       - if  @phase.plugin_relation.ready?

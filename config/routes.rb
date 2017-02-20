@@ -163,5 +163,6 @@ Rails.application.routes.draw do
 
   resources :petitions, only: [] do
     get :verify, on: :collection
+    get :signatures
   end
 end
