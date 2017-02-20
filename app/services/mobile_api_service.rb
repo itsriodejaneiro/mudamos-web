@@ -82,6 +82,24 @@ class MobileApiService
     signers
   end
 
+  PetitionSignature = Struct.new(:pdf_url, :blockchain_transaction_id, :updated_at, :transaction_date, :blockstamp, :signature)
+  def petition_signatures(petition_id)
+    response = get("/petition/#{petition_id}/signatures")
+
+    signatures_json = JSON.parse(response.body)["data"]["signatures"]
+
+    signatures_json.map do |json|
+      PetitionSignature.new(
+         json["petition_pdf_url"],
+         json["petition_blockchain_transaction_id"],
+         json["petition_updatedat"] ? Time.parse(json["petition_updatedat"]) : nil,
+         json["petition_txstamp"] ? Time.parse(json["petition_txstamp"]) : nil,
+         json["petition_blockstamp"] ? Time.parse(json["petition_blockstamp"]) : nil,
+         json["petition_signature"]
+      )
+    end
+  end
+
   PetitionStatus = Struct.new(:status, :blockstamp, :transaction, :transaction_date)
   def petition_status(sha)
     response = get("/petition/#{sha}/status")
