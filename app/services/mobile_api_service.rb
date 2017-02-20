@@ -97,7 +97,7 @@ class MobileApiService
       sign["signatures_pdf_url"]
     )
 
-    sign
+    status
   end
 
   PetitionSignature = Struct.new(:pdf_url, :blockchain_transaction_id, :updated_at, :transaction_date, :blockstamp, :signature)
