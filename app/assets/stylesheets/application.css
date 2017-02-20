@@ -15,6 +15,7 @@
  *= require same_height_columns
  *= require select2
  *= require petition
+ *= require signature
  *= require global
  *= require_self
  */
