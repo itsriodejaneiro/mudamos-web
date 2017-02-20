@@ -109,6 +109,7 @@ Rails.application.routes.draw do
         get :signers
         get :status
       end
+      resources :signatures, only: [:show]
     end
   end
 
@@ -154,11 +155,14 @@ Rails.application.routes.draw do
     cycle_routes
   end
 
+  resources :signatures, only: [:show]
+
   namespace :embedded do
     resources :petitions, only: [:show]
   end
 
   resources :petitions, only: [] do
     get :verify, on: :collection
+    get :signatures
   end
 end
