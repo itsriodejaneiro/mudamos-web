@@ -40,6 +40,24 @@ RSpec.describe UserAccountSync do
       it { expect{ subject }.to raise_error ArgumentError }
       it { expect(sqs_service).to_not have_received(:publish_message) }
     end
+
+    context "when the user does not have profile" do
+      before { user.profile = nil }
+
+      it do
+        subject
+        expect(sqs_service).to have_received(:publish_message).with queue_name, hash_including(profile: nil)
+      end
+    end
+
+    context "when the user does not have a birthday" do
+      before { user.birthday = nil }
+
+      it do
+        subject
+        expect(sqs_service).to have_received(:publish_message).with queue_name, hash_including(birthday: nil)
+      end
+    end
   end
 end
 
