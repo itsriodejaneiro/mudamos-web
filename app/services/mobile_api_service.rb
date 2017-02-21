@@ -36,6 +36,7 @@ class MobileApiService
     post("/petition/register", petition: {
       id_petition: petition_detail_version.petition_plugin_detail_id,
       id_version: petition_detail_version.id,
+      name: phase.name,
       url: petition_detail_version.document_url,
       page_url: page_url,
       sha: petition_detail_version.sha

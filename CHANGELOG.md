@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #187]: Add petition name to the petition register payload (Issue 184)
+* [PR #186]: Fix profile and birthday not being required (Issue 185)
 * [PR #177]: Page to list petition's signatures pdf (Issue 110)
 * [PR #176]: Page to verify signatures (Issue 160)
 * [PR #181]: Change petition info api path (Issue 180)
