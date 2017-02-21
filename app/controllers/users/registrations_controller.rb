@@ -62,8 +62,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
           end
         end
       end
+    # TODO: This is just stupid. Why would someone do something like this? :(
     rescue Exception => e
       puts "\n\n BUG NO LOGIN \n\n"
+      puts e.message
+      puts e.backtrace
     end
   end
 
