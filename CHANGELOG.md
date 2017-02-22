@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #190]: Add mobile api namespace (Issue 189)
 * [PR #187]: Add petition name to the petition register payload (Issue 184)
 * [PR #186]: Fix profile and birthday not being required (Issue 185)
 * [PR #177]: Page to list petition's signatures pdf (Issue 110)
