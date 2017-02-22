@@ -33,7 +33,7 @@ class MobileApiService
       phase.plugin_relation
     )
 
-    post("/petition/register", petition: {
+    post("/api/v1/petition/register", petition: {
       id_petition: petition_detail_version.petition_plugin_detail_id,
       id_version: petition_detail_version.id,
       name: phase.name,
@@ -45,7 +45,7 @@ class MobileApiService
 
   PetitionInfo = Struct.new(:updated_at, :signatures_count, :blockchain_address)
   def petition_info(petition_id)
-    response = get("/petition/plip/#{petition_id}/info")
+    response = get("/api/v1/petition/plip/#{petition_id}/info")
 
     body = JSON.parse(response.body)["data"]["info"]
 
@@ -60,7 +60,7 @@ class MobileApiService
 
   PetitionSigner = Struct.new(:date, :name, :city, :state, :uf, :profile_type, :profile_id, :profile_email, :profile_picture)
   def petition_version_signers(version_id, limit)
-    response = get("/petition/#{version_id}/#{limit}/votes")
+    response = get("/api/v1/petition/#{version_id}/#{limit}/votes")
 
     signers_json = JSON.parse(response.body)["data"]["votes"]
     return [] unless signers_json
@@ -85,7 +85,7 @@ class MobileApiService
 
   SignatureStatus = Struct.new(:petition_name, :petition_page_url, :blockchain_updated_at, :updated_at, :user_name, :signatures_pdf_url)
   def signature_status(signature)
-    response = post("/message/blockchain/status", sign: { signature: signature })
+    response = post("/api/v1/message/blockchain/status", sign: { signature: signature })
 
     sign = JSON.parse(response.body)["data"]["sign"]
 
@@ -103,7 +103,7 @@ class MobileApiService
 
   PetitionSignature = Struct.new(:pdf_url, :blockchain_transaction_id, :updated_at, :transaction_date, :blockstamp, :signature)
   def petition_signatures(petition_id)
-    response = get("/petition/#{petition_id}/signatures")
+    response = get("/api/v1/petition/#{petition_id}/signatures")
 
     signatures_json = JSON.parse(response.body)["data"]["signatures"]
 
@@ -121,7 +121,7 @@ class MobileApiService
 
   PetitionStatus = Struct.new(:status, :blockstamp, :transaction, :transaction_date)
   def petition_status(sha)
-    response = get("/petition/#{sha}/status")
+    response = get("/api/v1/petition/#{sha}/status")
 
     blockchain_info = JSON.parse(response.body)["data"]["blockchain"]
     return nil unless blockchain_info
