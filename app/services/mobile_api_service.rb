@@ -10,6 +10,10 @@ class MobileApiService
       super(message)
       @validations = validations
     end
+
+    def to_s
+      "#{super} #{validations}"
+    end
   end
 
   def initialize(
@@ -99,6 +103,9 @@ class MobileApiService
     )
 
     status
+  rescue ValidationError => e
+    Rails.logger.info e
+    nil
   end
 
   PetitionSignature = Struct.new(:pdf_url, :blockchain_transaction_id, :updated_at, :transaction_date, :blockstamp, :signature)
