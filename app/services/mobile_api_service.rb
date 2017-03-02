@@ -10,6 +10,10 @@ class MobileApiService
       super(message)
       @validations = validations
     end
+
+    def to_s
+      "#{super} #{validations}"
+    end
   end
 
   def initialize(
@@ -99,7 +103,8 @@ class MobileApiService
     )
 
     status
-  rescue ValidationError
+  rescue ValidationError => e
+    Rails.logger.info e
     nil
   end
 
