@@ -21,7 +21,7 @@ document.open_login = (func = null) ->
       # document.redirect_to DEFAULT_AFTER_URL
 
 document.open_forgot_password = (func = null) ->
-  $('#modal-passwords-new').modal 'show'  
+  $('#modal-passwords-new').modal 'show'
 
 $ ->
   state_select = $('select#user_state')
@@ -119,8 +119,12 @@ $ ->
             document.afterLoginFunc data
 
         form.on 'ajax:remotipartComplete', (e, data) ->
+          hasCSRFToken = data.csrf_token
+          try
+            hasCSRFToken = hasCSRFToken || JSON.parse(data.responseText).csrf_token
+          catch
           document.stop_loading()
-          if data.csrf_token
+          if hasCSRFToken
             Cookies.set('clear_after_login_path', true, { expires: document.expiration_default_time })
             refreshCSRFToken data
             document.afterLoginFunc data
