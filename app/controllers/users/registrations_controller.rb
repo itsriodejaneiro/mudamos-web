@@ -4,8 +4,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   attr_reader :user_account_sync
 
-  def initialize(user_account_sync: UserAccountSync.new)
-    @user_account_sync = user_account_sync
+  def user_account_sync(user_account_sync = UserAccountSync.new)
+    @user_account_sync ||= user_account_sync
   end
 
   def new
