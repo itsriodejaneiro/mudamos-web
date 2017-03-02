@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #205]: Parsing the signature id as a base64 encoded data (Issue 204)
 * [PR #203]: Handle mobile api validation errors on /signatures (Issue 192)
 * [PR #191]: Revisar login - RETORNO bizarro textarea (Issue 188)
 * [PR #190]: Add mobile api namespace (Issue 189)
