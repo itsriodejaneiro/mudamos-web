@@ -99,6 +99,8 @@ class MobileApiService
     )
 
     status
+  rescue ValidationError
+    nil
   end
 
   PetitionSignature = Struct.new(:pdf_url, :blockchain_transaction_id, :updated_at, :transaction_date, :blockstamp, :signature)
