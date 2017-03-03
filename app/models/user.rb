@@ -199,7 +199,8 @@ class User < ActiveRecord::Base
     omniauth_identity = OmniauthIdentity.find_for_oauth(auth)
 
     user = signed_in_resource ? signed_in_resource : omniauth_identity.user
-    user ||= User.where(email: auth['info']['email']).first_or_initialize
+    # .find_by_email will automatically encrypt it before querying
+    user ||= User.find_by_email(email: auth['info']['email']) || User.new(email: auth['info']['email'])
 
     if user.persisted?
       if omniauth_identity.new_record?
