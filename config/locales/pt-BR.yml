@@ -223,3 +223,8 @@ pt-BR:
       plugin_relation:
         one: Relacionamento do plugin
         other: Relacionamentos do plugin
+
+
+  mailer:
+    pre_signature:
+      subject: "Pré assinatura feita com sucesso!"
