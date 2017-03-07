@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #211]: Extension was missing on the smart banner icon (issue 212)
 * [PR #209]: Parsing a hexadecimal string representing the signature (Issue 208)
 * [PR #207]: Fix oauth lookup by the user email (Issue 201)
 * [PR #203]: Handle mobile api validation errors on /signatures (Issue 192)
