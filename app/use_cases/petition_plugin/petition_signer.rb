@@ -18,6 +18,8 @@ module PetitionPlugin
 
       phase = detail.plugin_relation.related
       mailer.just_signed(user: user, phase: phase, user_password: user_password).deliver_later
+
+      true
     end
   end
 end
