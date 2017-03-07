@@ -11,6 +11,8 @@
 #  updated_at                     :datetime         not null
 #
 
+require_dependency "../petition_plugin"
+
 class PetitionPlugin::DetailVersion < ActiveRecord::Base
   acts_as_paranoid
 
