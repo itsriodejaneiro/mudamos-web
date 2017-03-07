@@ -74,15 +74,20 @@
                           <%= link_to "Google Play", android_store_page, style: "color:#00a46c;font-weight:bold;text-decoration:none;" %>
                           ou
                           <%= link_to "Apple Store", apple_store_page, style: "color:#00a46c;font-weight:bold;text-decoration:none;" %>.
-                          Depois de instalá-lo, entre com seu e-mail e senha:
-                        </p>
-                        <p style="margin:0;margin-top: 10px">
-                          <strong>E-mail:</strong> <%= @user.email %>
+
+                          <% if @user_password -%>
+                            Depois de instalá-lo, entre com seu e-mail e senha:
+                          <% else -%>
+                            Depois de instalá-lo, entre usando os dados de login que você já cadastrou.
+                          <% end -%>
                         </p>
                         <% if @user_password -%>
-                        <p style="margin:0;">
-                          <strong>Senha:</strong> <%= @user_password %>
-                        </p>
+                          <p style="margin:0;margin-top: 10px">
+                            <strong>E-mail:</strong> <%= @user.email %>
+                          </p>
+                          <p style="margin:0;">
+                            <strong>Senha:</strong> <%= @user_password %>
+                          </p>
                         <% end -%>
                         <p style="margin:0;margin-top: 10px;">Atenciosamente,</p>
                         <p class="signature" style="margin:0;font-size:26px;">

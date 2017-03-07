@@ -14,10 +14,20 @@ class Cycles::PluginRelations::PetitionsController < ApplicationController
     @plugin_relation_repository ||= PluginRelationRepository.new
   end
 
+  attr_writer :detail_version_repository
+
+  def detail_version_repository
+    @detail_version_repository ||= PetitionPlugin::DetailVersionRepository.new
+  end
+
   def sign
     return render json: { error: "Fase terminada" }, status: 403 unless plugin_relation.related.in_progress?
 
-    petition_signer.perform user_id: current_user.id, plugin_relation_id: plugin_relation.id
+    detail_version = detail_version_repository.find_published_by_relation_id(plugin_relation.id)
+
+    return render json: { error: "Projeto não encontrado" }, status: 404 unless detail_version
+
+    petition_signer.perform user: current_user, petition_detail_version: detail_version
 
     flash[:success] = "Petição assinada!"
     head :ok

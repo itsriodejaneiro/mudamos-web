@@ -18,5 +18,7 @@ class PetitionPlugin::DetailVersion < ActiveRecord::Base
 
   belongs_to :petition_plugin_detail, class_name: 'PetitionPlugin::Detail'
 
+  scope :published, -> { where published: true }
+
   validates :body, presence: true
 end
