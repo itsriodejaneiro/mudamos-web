@@ -114,9 +114,10 @@ Rails.application.routes.draw do
   end
 
   namespace :partners_api do
-    resources :petitions, only: [:show]
-    resources :users, only: [:create]
-  end  
+    resources :petitions, only: [:show] do
+      post :pre_sign
+    end
+  end
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',

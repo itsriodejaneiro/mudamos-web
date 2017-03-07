@@ -14,11 +14,11 @@ module PetitionPlugin
 
     helper do
       def android_store_page
-        Rails.application.secrets.mobile_app["store_page"]["android"]
+        Rails.application.secrets.mobile_app["store_page"]["android"] || "#"
       end
 
       def apple_store_page
-        Rails.application.secrets.mobile_app["store_page"]["ios"]
+        Rails.application.secrets.mobile_app["store_page"]["ios"] || "#"
       end
     end
   end
