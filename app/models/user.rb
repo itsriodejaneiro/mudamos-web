@@ -345,7 +345,7 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :sub_profile,:sub_profile_id, unless: -> {(self.profile.nil? || self.profile.children_count == 0) or self.is_admin}
 
-  validates_uniqueness_of :encrypted_alias_name, unless: -> { self.first_step or self.is_admin }
+  validates_uniqueness_of :encrypted_alias_name, unless: -> { self.first_step or self.is_admin }, allow_nil: true
 
   validates :terms, acceptance: { accept: true }, unless: -> { self.first_step or self.is_admin }
 
