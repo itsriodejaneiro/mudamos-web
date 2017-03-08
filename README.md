@@ -50,6 +50,38 @@ Follow the instructions, and use the created user to access the admin area.
   - `API_CACHE_EXPIRES_IN`: The ammount in minutes that the system will use to expire requests from the Mobile API
   - `MOBILE_API_ID_IOS`: The iOs Mobile app id
 
+
+### Partners api
+
+Patners can access information on this platform. in order to do so, an oauth applciation must be created by an admin user.
+
+- as an admin access: `oauth/applications` and create a new partner application
+- Patners can use both the client id (application id) and client secret to issue a request for an access token
+
+#### Getting an access token
+
+Partners should call like bellow:
+
+- ` curl -XPOST "http://apphost/oauth/token?client_secret={client_secret}&client_id={client_id}&grant_type=client_credentials" -H "Accept: application/json" -d ''`
+
+A valid response would be:
+
+- `{"access_token":"98f46d3a93245a428ec2749fe40cf256bcd9ff81d3cddb08fb28b0fb3515a598","token_type":"bearer","expires_in":7200,"created_at":1488915853}`
+
+Later partners can use the available apis:
+
+- pre signature
+
+##### Pre signature api
+
+This api receives a user which will be pre signing a project.
+
+- `curl -v -XPOST "http://apphost/partners_api/petitions/{petition_id}/pre_sign" -H "Authorization: Bearer 66bffa59da5bf7a14e5a92c1affa8a4a3928195933135ff0fac8550336f65f1e" -H "Accept: application/json" -H "Content-Type: application/json" -d '{"email": "user@mail.com", "name": "A user name"}'`
+
+Where `petition_id` is the id of a project (`PetitionPlugin::DetailVersion`).
+
+A 204 response means a success.
+
 ### Queue configurations
 
 ## Petition pdf generation

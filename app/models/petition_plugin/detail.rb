@@ -12,6 +12,8 @@
 #  updated_at         :datetime         not null
 #
 
+require_dependency "../petition_plugin"
+
 class PetitionPlugin::Detail < ActiveRecord::Base
   acts_as_paranoid
 
@@ -19,7 +21,7 @@ class PetitionPlugin::Detail < ActiveRecord::Base
 
   belongs_to :plugin_relation
   has_many :petition_detail_versions, class_name: 'PetitionPlugin::DetailVersion', dependent: :destroy, foreign_key: "petition_plugin_detail_id"
-  
+
   validates :call_to_action, presence: true
   validates :signatures_required, presence: true
   validates :presentation, presence: true

@@ -10,6 +10,8 @@
 #  updated_at         :datetime         not null
 #
 
+require_dependency "../petition_plugin"
+
 class PetitionPlugin::Presignature < ActiveRecord::Base
   acts_as_paranoid
 
