@@ -1,7 +1,6 @@
 require_dependency 'api/entities_helpers'
 
 class Api::V2::BaseController < ActionController::Base
-  Grape::Entity.include Api::UrlHelpers
 
   rescue_from StandardError do |e|
     Rails.logger.error error_for(error: e)

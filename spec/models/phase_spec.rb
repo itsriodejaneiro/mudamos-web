@@ -204,4 +204,17 @@ RSpec.describe Phase, type: :model do
       it { is_expected.to be true } 
     end
   end
+
+  describe "#remaining_days" do
+    let(:phase) { build :phase, initial_date: Date.today - 2, final_date: Date.today + 2 }
+
+    subject { phase.remaining_days }
+
+    it { is_expected.to be 2 }
+
+    context "when the phase has long been finished" do
+      let(:phase) { build :phase, initial_date: Date.today - 4, final_date: Date.today - 2 }
+      it { is_expected.to be 0 }
+    end
+  end
 end

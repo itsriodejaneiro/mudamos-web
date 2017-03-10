@@ -1,0 +1,12 @@
+- if allowed_to_show_smart_banner?
+  .smart-banner
+    .info
+      i.icon-close
+      a href="#{browser.platform.android? ? android_store_page : apple_store_page}"
+        = image_tag "icon.png", class: "app-icon"
+      h3 Baixe o app da Mudamos
+  javascript:
+    $(".smart-banner").on("click", ".icon-close", function() {
+      $(this).closest(".smart-banner").slideUp();
+      document.cookie = "smart_banner_dismiss=" + (Date.now() / 1000);
+    });

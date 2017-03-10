@@ -4,12 +4,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   attr_reader :user_account_sync
 
-  def initialize(user_account_sync: UserAccountSync.new)
-    @user_account_sync = user_account_sync
+  def user_account_sync(user_account_sync = UserAccountSync.new)
+    @user_account_sync ||= user_account_sync
   end
 
   def new
     render 'cycles/index'
+  end
+
+  def edit
+    render 'users/registrations/edit', layout: 'application'
   end
 
   def create
@@ -58,8 +62,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
           end
         end
       end
+    # TODO: This is just stupid. Why would someone do something like this? :(
     rescue Exception => e
       puts "\n\n BUG NO LOGIN \n\n"
+      puts e.message
+      puts e.backtrace
     end
   end
 

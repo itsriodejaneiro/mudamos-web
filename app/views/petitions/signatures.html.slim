@@ -1,0 +1,23 @@
+section.container-fluid#petition-signatures
+  .container
+    h1.section-title= "Assinaturas da petição \"#{@petition.plugin_relation.related.name}\""
+    - @signatures.each do |signature|
+      ul.list-unstyled.petition-signature
+        li
+          label Código da transação:
+          = "#{signature.blockchain_transaction_id}"
+        li
+          label Data de atualização:
+          = "#{signature.updated_at.strftime("%d/%m/%Y - %H:%M")}"
+        li
+          label Data da transação:
+          = "#{signature.transaction_date.strftime("%d/%m/%Y - %H:%M")}"
+        li
+          label Data de registro na Blockchain:
+          = "#{signature.blockstamp.strftime("%d/%m/%Y - %H:%M")}"
+        li
+          label Assinatura
+          = "#{signature.signature}"
+        li
+          a target="_blank" href="#{signature.pdf_url}" Baixe o PDF assinado
+

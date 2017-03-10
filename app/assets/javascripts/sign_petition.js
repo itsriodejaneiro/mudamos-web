@@ -17,9 +17,17 @@
     $.ajax({
       url: AppRoutes.cyclePluginRelationSignPath(cycleId(), pluginRelationId()),
       type: "POST"
-    })
-    .always(function() {
+    }).then(function() {
       location.reload();
+    }).fail(function(data) {
+      if (data.responseJSON.error == "user_cant_interact_with_plugin") {
+        muRequireUserForm({
+          fields: ["birthday"],
+          success: signPetition
+        });
+      } else {
+        location.reload();
+      }
     });
   }
 
@@ -30,7 +38,10 @@
       if (isLoggedIn()) {
         signPetition();
       } else {
-        document.open_login(signPetition);
+        document.open_login(function() {
+          $("#modal-session-new, #modal-registration-new").modal("hide");
+          signPetition()
+        });
       }
     });
   });

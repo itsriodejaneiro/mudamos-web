@@ -52,6 +52,18 @@
 #= require reports
 #= require area-toggler
 #= require sign_petition
+#= require progress-bar
+#= require api
+#= require mu.petition-signers
+#= require jquery.timeago
+#= require jquery.timeago.pt-br
+#= require mu.switch
+#= require_tree ./templates
+#= require mu.modal
+#= require mu.petition-widget-builder
+#= require mu.require-user-form
+#= require moment.min
+#= require asmcrypto
 
 document.expiration_default_time = 300
 

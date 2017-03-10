@@ -199,7 +199,8 @@ class User < ActiveRecord::Base
     omniauth_identity = OmniauthIdentity.find_for_oauth(auth)
 
     user = signed_in_resource ? signed_in_resource : omniauth_identity.user
-    user ||= User.where(email: auth['info']['email']).first_or_initialize
+    # .find_by_email will automatically encrypt it before querying
+    user ||= User.find_by_email(email: auth['info']['email']) || User.new(email: auth['info']['email'])
 
     if user.persisted?
       if omniauth_identity.new_record?
@@ -342,11 +343,9 @@ class User < ActiveRecord::Base
   validates_attachment :picture, content_type: { content_type: ["image/jpeg", "image/gif", "image/png", "image/jpg"] }, unless: -> { self.first_step }
 
   validates_presence_of :name
-  validates_presence_of :birthday, unless: -> { self.is_admin }
-  validates_presence_of :state, :city, :profile, :profile_id, :gender, unless: -> { self.first_step or self.is_admin }
   validates_presence_of :sub_profile,:sub_profile_id, unless: -> {(self.profile.nil? || self.profile.children_count == 0) or self.is_admin}
 
-  validates_uniqueness_of :encrypted_alias_name, unless: -> { self.first_step or self.is_admin }
+  validates_uniqueness_of :encrypted_alias_name, unless: -> { self.first_step or self.is_admin }, allow_nil: true
 
   validates :terms, acceptance: { accept: true }, unless: -> { self.first_step or self.is_admin }
 

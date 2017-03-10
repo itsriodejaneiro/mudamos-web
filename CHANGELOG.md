@@ -1,5 +1,53 @@
 ## Next
 
+* [PR #216]: Closing both login and registration forms during petition sign (Issue 215)
+* [PR #213]: New sign api with pre signature email (Issue 193, 206)
+* [PR #211]: Extension was missing on the smart banner icon (issue 212)
+* [PR #209]: Parsing a hexadecimal string representing the signature (Issue 208)
+* [PR #207]: Fix oauth lookup by the user email (Issue 201)
+* [PR #203]: Handle mobile api validation errors on /signatures (Issue 192)
+* [PR #191]: Revisar login - RETORNO bizarro textarea (Issue 188)
+* [PR #190]: Add mobile api namespace (Issue 189)
+* [PR #187]: Add petition name to the petition register payload (Issue 184)
+* [PR #186]: Fix profile and birthday not being required (Issue 185)
+* [PR #177]: Page to list petition's signatures pdf (Issue 110)
+* [PR #176]: Page to verify signatures (Issue 160)
+* [PR #181]: Change petition info api path (Issue 180)
+* [PR #179]: Setting cache store to memory on stagging and production (Issue 178)
+  - Run `heroku addons:create memcachier:dev`
+* [PR #175]: Adding page for verifying petition pdfs (Issue 158)
+* [PR #172]: Fixing final date on phases (issue 171)
+ - rake phases:ends_on_the_end_of_the_day
+* [PR #174]: Hiding the pre signature button when the phase is not in progress (issue 173)
+* [PR #170]: Adjustments to the signers widget (Issue 169)
+* [PR #168]: Extension was missing on the petition widget watermark image (issue 167)
+* [PR #165]: Adding limit to plips api (Issue 161)
+* [PR #163]: Requesting missing information from the user on plugin interaction (Issue 144)
+* [PR #164]: Fixing the exhibition of the petition information (Issue 159)
+* [PR #149]: New petition's pdf (Issue 149)
+* [PR #124]: Petition widget builder (Issue 124)
+* [PR #155]: Creating smartbanner for the platform and adding it to the petition's page (issue 134)
+ - Set `MOBILE_APP_STORE_PAGE_ANDROID` 
+ - Set `MOBILE_APP_STORE_PAGE_IOS`
+* [PR #152]: Date of the current version is now the date which the document was upated on the blockchain (issue 33)
+* [PR #147]: Adding a partner api for user creation (issue 146)
+* [PR #151]: Adding page url on the payload to the petition mobile api synchronization (issue 150)
+* [PR #145]: Adding signers widget on petition's page (Issue 109)
+ - Configure a cron to update the cache of the petition's signers 
+* [PR #143]: Adding oath authentication for partners API (Issue 127)
+ - Run `rake db:migrate`
+* [PR #142]: Removing user field requirements (Issue 126)
+* [PR #141]: Fixing past versions popover order and layout (issue 140)
+* [PR #137]: Fixing app's protocol configuration
+* [PR #135]: Adding metatag for itunes smart banner (issue 133)
+ - Set `MOBILE_API_ID_IOS`
+* [PR #131]: New petition's page (Issue 96)
+* [PR #132]: Fixing remaining days on phase (issue 30)
+* [PR #123]: Petition widget (issue 97)
+ - Configure a cron to update the cache of the petition's information
+ - Set `API_CACHE_EXPIRES_IN`
+* [PR #114]: Changing order of the petitions past versions on the views (issue 114)
+
 ## [1.4.0] - 27/01/2017
 
 * [PR #122]: Adding plip_url to the plip api (issue 121)

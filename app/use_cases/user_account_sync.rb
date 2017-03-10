@@ -22,10 +22,10 @@ class UserAccountSync
       id: user.id,
       name: user.name,
       email: user.email,
-      profile: user.profile.name,
+      profile: user.profile.try(:name),
       sub_profile: user.sub_profile.try(:name),
       gender: user.gender,
-      birthday: user.birthday.strftime("%Y-%m-%d"),
+      birthday: user.birthday.try(:strftime, "%Y-%m-%d"),
       picture_url: user.picture.url,
       password: user.encrypted_password,
       cpf: user.cpf

@@ -3,12 +3,12 @@
 //= require bootstrap/collapse
 //= require bootstrap/modal
 //= require bootstrap/tab
+//= require bootstrap/tooltip
+//= require bootstrap/popover
 
 var stop_import = true;
 
 //= require bootstrap/scrollspy
-//= require bootstrap/tooltip
-//= require bootstrap/popover
 //= require bootstrap/button
 //= require bootstrap/carousel
 //= require bootstrap/affix
