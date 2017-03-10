@@ -23,7 +23,7 @@
       if (data.responseJSON.error == "user_cant_interact_with_plugin") {
         muRequireUserForm({
           fields: ["birthday"],
-          success: signPetition 
+          success: signPetition
         });
       } else {
         location.reload();
@@ -39,8 +39,8 @@
         signPetition();
       } else {
         document.open_login(function() {
-          $("#modal-session-new .icon-close").click();
-          signPetition();
+          $("#modal-session-new, #modal-registration-new").modal("hide");
+          signPetition()
         });
       }
     });
