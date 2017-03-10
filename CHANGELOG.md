@@ -1,5 +1,7 @@
 ## Next
 
+## [1.5.0] - 10/03/2017
+
 * [PR #216]: Closing both login and registration forms during petition sign (Issue 215)
 * [PR #213]: New sign api with pre signature email (Issue 193, 206)
 * [PR #211]: Extension was missing on the smart banner icon (issue 212)
