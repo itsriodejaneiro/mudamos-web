@@ -33,7 +33,7 @@ section#petition-index
           .col-xs-12.already-signed
             strong
             | já assinaram
-            div#petition-signers-tablet 
+            div#petition-signers-tablet
         .row.signatures-info
           .col-xs-12
             .petition-signatures-progress
@@ -56,7 +56,7 @@ section#petition-index
                 - else
                   strong Último dia
               div.medium-padded
-                small= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}" 
+                small= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}"
 
         .row.small-gap.download-document.bottom-info-container
           .col-xs-12
@@ -112,6 +112,9 @@ section#petition-index
         p= @petition.presentation
         .row
           .col-xs-12
+            = you_tube_embed @petition.video_id
+        .row
+          .col-xs-12
             h3.section-title.petition-body-title style="border-color: #{@cycle.color}" Projeto de lei
         p.petition-body= markdown @petition.published_version.body
       - else
@@ -153,16 +156,16 @@ javascript:
         percentage: "20%",
         color: "#{@cycle.color}"
       });
-  
+
       $(".past-versions").popover({
         html: true,
         content: $("#past-versions-popover").html(),
         placement: "right",
       });
-  
+
       function updatePetitionInfo() {
         var signaturesRequired = "#{@petition.signatures_required}";
-  
+
         apiClient.getPetitionInfo(#{@petition.id}).then(function(petitionInfo) {
           if (petitionInfo) {
             if (petitionInfo.updated_at) {
@@ -172,7 +175,7 @@ javascript:
             }
 
             var count = petitionInfo.signatures_count;
-  
+
             var percentage = (count / signaturesRequired) * 100;
             $(".petition-signatures-progress").trigger("update", percentage + "%");
             $(".already-signed strong").text(count + " ");
@@ -181,7 +184,7 @@ javascript:
           }
         });
       }
-  
+
       if (petitionInProgress) {
         setInterval(updatePetitionInfo, 10000)
       }

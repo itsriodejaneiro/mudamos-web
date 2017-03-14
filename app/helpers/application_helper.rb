@@ -78,4 +78,16 @@ module ApplicationHelper
   def you_tube_link_to(video_id)
     link_to video_id, "https://www.youtube.com/watch?v=#{video_id}", target: "_blank" if video_id.present?
   end
+
+  def you_tube_embed(video_id)
+    return if video_id.blank?
+
+    source = "https://www.youtube.com/embed/#{video_id}?&modestbranding=1&showinfo=0&iv_load_policy=3&rel=0"
+
+    content_tag :iframe, nil,
+      src: source,
+      frameborder: 0,
+      allowfullscreen: 1,
+      class: "you-tube-iframe"
+  end
 end
