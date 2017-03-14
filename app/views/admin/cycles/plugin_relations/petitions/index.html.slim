@@ -21,11 +21,17 @@
        .title
          h3 Chamada para ação
        = @petition.call_to_action
-   .col-xs-5
+ .row
+   .col-xs-6
      .card-module
        .title
          h3 Número de assinaturas necessárias
        = @petition.signatures_required
+   .col-xs-6
+     .card-module
+       .title
+         h3= PetitionPlugin::Detail.human_attribute_name(:video_id)
+       = you_tube_link_to @petition.video_id
  .row
    .col-xs-12
      .card-module
@@ -36,7 +42,7 @@
    .col-xs-12
      .card-module
        .title
-         h3 Texto completo 
+         h3 Texto completo
        .filters.clearfix
          .pull-right
            - if @petition.published_version
@@ -45,7 +51,7 @@
              = 'Nenhuma versão publicada ainda'
        - if @petition.current_version
          .plip-body= markdown @petition.current_version.body
- - if @petition.past_versions.length > 0 
+ - if @petition.past_versions.length > 0
    .row
      .col-xs-12
        .card-module

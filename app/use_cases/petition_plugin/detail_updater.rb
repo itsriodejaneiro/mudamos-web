@@ -6,7 +6,7 @@ module PetitionPlugin
     def perform(detail, attrs, detail_body)
       response = Response.new
 
-      detail.update_attributes attrs 
+      detail.update_attributes attrs
 
       current_version = detail.current_version
       if current_version.nil? || current_version.body != detail_body

@@ -216,6 +216,8 @@ pt-BR:
     attributes:
       petition_plugin/presignature:
         plugin_relation: Relacionamento do plugin
+      petition_plugin/detail:
+        video_id: Id do vídeo do YouTube
     models:
       petition_plugin/presignature:
         one: Pré assinatura

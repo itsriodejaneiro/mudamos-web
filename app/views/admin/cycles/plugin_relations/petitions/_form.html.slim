@@ -1,9 +1,12 @@
 = semantic_form_for @petition, url: (@petition.new_record? ? admin_cycle_plugin_relation_petitions_path : admin_cycle_plugin_relation_petition_path(plugin_relation_id: @plugin_relation.id, id: @petition.id)) do |f|
   .row
-    .col-xs-8
+    .col-xs-6
       = f.input :call_to_action, label: 'Chamada para ação'
-    .col-xs-4
+  .row
+    .col-xs-6
       = f.input :signatures_required, as: :number, label: 'Número de assinaturas necessárias'
+    .col-xs-6
+      = f.input :video_id
   .row
     .col-xs-12
       = f.input :presentation, as: :text, label: 'Apresentaçao'

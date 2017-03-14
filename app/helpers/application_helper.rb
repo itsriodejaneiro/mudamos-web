@@ -74,4 +74,8 @@ module ApplicationHelper
     r, g, b = color.scan(/[a-fA-F0-9]{2}/).map { |color| color.to_i(16) }
     "rgba(#{r}, #{g}, #{b}, #{alpha})"
   end
+
+  def you_tube_link_to(video_id)
+    link_to video_id, "https://www.youtube.com/watch?v=#{video_id}", target: "_blank" if video_id.present?
+  end
 end

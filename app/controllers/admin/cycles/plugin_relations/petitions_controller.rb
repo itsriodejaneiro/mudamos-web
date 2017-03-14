@@ -57,10 +57,10 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
 
   def petition_params
     params.require(:petition_plugin_detail)
-      .permit(:call_to_action, :signatures_required, :presentation)
+      .permit(:call_to_action, :signatures_required, :presentation, :video_id)
   end
 
-  def petition_body 
+  def petition_body
     params.require(:petition_plugin_detail).require(:current_version).permit(:body)[:body]
   end
 

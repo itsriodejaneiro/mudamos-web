@@ -3,12 +3,11 @@ class PlipRepository
 
   def current_plip
     plips = all_initiated(page: 1, limit: 1).items
-    current_plip = plips.last
+    plips.last
   end
 
   def all_initiated(page: 1, limit: 10)
-
-    phases = 
+    phases =
       Phase.where(
         id: Phase
           .initiated.select("DISTINCT phases.id, DISTINCT phases.initial_date")
@@ -25,20 +24,15 @@ class PlipRepository
       )
        .page(page)
        .per(limit)
-      
+
     has_next = !phases.last_page?
 
     plips = phases.map do |phase|
       petition = phase.plugin_relation.petition_detail
 
-      Plip.new id: petition.published_version.id,
-               document_url: petition.published_version.document_url,
-               plip_url: generate_plip_url(phase),
-               content: petition.published_version.body,
+      Plip.new detail: petition,
                phase: phase,
-               presentation: petition.presentation,
-               signatures_required: petition.signatures_required,
-               call_to_action: petition.call_to_action
+               plip_url: generate_plip_url(phase)
     end
 
     Pagination.new items: plips, page: page, limit: limit, has_next: has_next
