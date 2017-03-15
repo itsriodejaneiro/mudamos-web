@@ -16,8 +16,11 @@ class MobileApiService
     end
   end
 
+  attr_accessor :mobile_api_secret
+
   def initialize(
     url: Rails.application.secrets.apis['mobile']['url'],
+    mobile_api_secret: Rails.application.secrets.apis['mobile']['secret'],
     timeout: Rails.application.secrets.apis['mobile']['timeout'],
     logger: Rails.logger
   )
@@ -25,6 +28,7 @@ class MobileApiService
     raise ArgumentError, "You must inform the mobile API URL" unless url
 
     @url = url
+    @mobile_api_secret = mobile_api_secret
     @logger = logger
     @timeout = timeout
   end
@@ -37,14 +41,18 @@ class MobileApiService
       phase.plugin_relation
     )
 
-    post("/api/v1/petition/register", petition: {
-      id_petition: petition_detail_version.petition_plugin_detail_id,
-      id_version: petition_detail_version.id,
-      name: phase.name,
-      url: petition_detail_version.document_url,
-      page_url: page_url,
-      sha: petition_detail_version.sha
-    })
+    headers = authorization_header
+
+    post("/api/v1/petition/register", {
+      petition: {
+        id_petition: petition_detail_version.petition_plugin_detail_id,
+        id_version: petition_detail_version.id,
+        name: phase.name,
+        url: petition_detail_version.document_url,
+        page_url: page_url,
+        sha: petition_detail_version.sha
+      },
+    }, headers)
   end
 
   PetitionInfo = Struct.new(:updated_at, :signatures_count, :blockchain_address)
@@ -144,9 +152,10 @@ class MobileApiService
   private
 
   [:get, :head].each do |verb|
-    define_method(verb) do |path|
+    define_method(verb) do |path, headers = nil|
       body = connection.send(verb, path) do |req|
         req.options.timeout = @timeout if @timeout
+        req.headers.merge! headers if headers
       end
 
       validate_response body
@@ -156,18 +165,24 @@ class MobileApiService
   end
 
   [:put, :post].each do |verb|
-    define_method(verb) do |path, body|
+    define_method(verb) do |path, body, headers = nil|
       body = connection.send(verb) do |req|
         req.url path
-        req.headers["Content-Type"] = "application/json"
         req.body = JSON.generate(body) if body
         req.options.timeout = @timeout if @timeout
+
+        req.headers["Content-Type"] = "application/json"
+        req.headers.merge! headers if headers
       end
 
       validate_response body
 
       body
     end
+  end
+
+  def authorization_header
+    { "Authorization" => mobile_api_secret }
   end
 
   def validate_response(response)
