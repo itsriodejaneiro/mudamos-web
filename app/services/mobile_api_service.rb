@@ -202,7 +202,7 @@ class MobileApiService
   def connection
     @connection ||= Faraday.new(:url => @url) do |connection|
       connection.response :logger, @logger
-      connection.adapter :net_http_persistent
+      connection.adapter Faraday.default_adapter
     end
   end
 end
