@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #226]: Remove Faraday net_http_persistent adapter (Issue 225)
 * [PR #223]: Add mobile api secret (Issue 219)
   - Set `MOBILE_API_SECRET`
 * [PR #220]: Add petition video (Issue 217)
