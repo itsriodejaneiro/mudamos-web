@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #223]: Add mobile api secret (Issue 219)
+  - Set `MOBILE_API_SECRET`
 * [PR #220]: Add petition video (Issue 217)
   - Run `rake db:migrate`
 
