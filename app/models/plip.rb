@@ -1,52 +1,29 @@
 class Plip
-  # @!attribute [rw] id
-  #   @return [Number]
-  attr_accessor :id
+  extend Forwardable
 
-  # @!attribute [rw] document_url
-  #   @return [String]
-  attr_accessor :document_url
+  def_delegators :detail, :published_version, :presentation, :signatures_required, :call_to_action, :video_id
+  def_delegators :published_version, :id, :document_url
+  def_delegators :phase, :cycle
 
-  # @!attribute [rw] plip_url 
-  #   @return [String]
-  attr_accessor :plip_url
-
-  # @!attribute [rw] content
-  #   @return [String]
-  attr_accessor :content
+  # @!attribute [rw] detail
+  #   @return [PetitionPlugin::Detail]
+  attr_accessor :detail
 
   # @!attribute [rw] phase
   #   @return [Phase]
   attr_accessor :phase
 
-  # @!attribute [rw] presentation
+  # @!attribute [rw] plip_url
   #   @return [String]
-  attr_accessor :presentation
- 
-  # @!attribute [rw] signatures_required
-  #   @return [String]
-  attr_accessor :signatures_required
- 
-  # @!attribute [rw] call_to_action
-  #   @return [String]
-  attr_accessor :call_to_action
+  attr_accessor :plip_url
 
-  # @param document_url [String]
-  # @param content [String]
-  # @param phase [Phase]
-  def initialize(id: ,document_url:, plip_url:, content:, phase:, presentation:, signatures_required:, call_to_action:)
-    @id = id
-    @document_url = document_url
-    @plip_url = plip_url
-    @content = content
+  def initialize(detail:, phase:, plip_url:)
+    @detail = detail
     @phase = phase
-    @presentation = presentation
-    @signatures_required = signatures_required
-    @call_to_action = call_to_action
+    @plip_url = plip_url
   end
 
-  # @return [Cycle]
-  def cycle
-    phase.cycle
+  def content
+    published_version.body
   end
 end

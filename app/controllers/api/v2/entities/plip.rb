@@ -13,6 +13,7 @@ module Api
         expose :presentation
         expose :signatures_required
         expose :call_to_action
+        expose :video_id
         expose :cycle, using: Api::V2::Entities::Cycle
         expose :phase, using: Api::V2::Entities::Phase
 
@@ -39,6 +40,10 @@ module Api
           end
 
           property :call_to_action do
+            key :type, :string
+          end
+
+          property :video_id do
             key :type, :string
           end
 

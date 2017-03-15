@@ -1,5 +1,8 @@
 ## Next
 
+* [PR #220]: Add petition video (Issue 217)
+  - Run `rake db:migrate`
+
 ## [1.5.0] - 10/03/2017
 
 * [PR #216]: Closing both login and registration forms during petition sign (Issue 215)
