@@ -46,6 +46,7 @@ Follow the instructions, and use the created user to access the admin area.
   - `APP_DEFAULT_HOST`: Which url the application is hosted
   - `APP_DEFAULT_SCHEME`: Which scheme the application uses (http or https)
   - 'MOBILE_API_URL': The Mobile API url
+  - 'MOBILE_API_SECRET': The Mobile secret key
   - 'MOBILE_API_TIMEOUT': The ammount in seconds the system will use as timeout when trying to communicate with the Mobile API 
   - `API_CACHE_EXPIRES_IN`: The ammount in minutes that the system will use to expire requests from the Mobile API
   - `MOBILE_API_ID_IOS`: The iOs Mobile app id
