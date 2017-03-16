@@ -68,7 +68,8 @@ section#petition-index
                   strong Baixe o PDF
                 |  do projeto
             div.medium-padded
-              small.last_version_date
+              - if petition_published_pdf_version && petition_published_pdf_version.blockchain_timestamp
+                small.last_version_date= "A versão atual for criada no dia #{petition_published_pdf_version.blockchain_timestamp.strftime("%d/%m/%Y às %H:%M")}"
             - if petition_past_pdf_versions.length > 0
               div.medium-padded
                 a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
@@ -81,7 +82,8 @@ section#petition-index
                         i.icon-text2 style="color: #{@cycle.color}"
                       div.medium-padded
                         a href="#{version.pdf_url}" style="color: #{@cycle.color}"  ="Versão #{version.version_name}"
-                      div.medium-padded= "Criada em #{version.updated_at.strftime("%d/%m/%Y às %H:%M")}"
+                      - if version.blockchain_timestamp
+                        div.medium-padded= "Criada em #{version.blockchain_timestamp.strftime("%d/%m/%Y às %H:%M")}"
 
         .row.phone-bottom-info
           - if @phase.in_progress?
@@ -168,12 +170,6 @@ javascript:
 
         apiClient.getPetitionInfo(#{@petition.id}).then(function(petitionInfo) {
           if (petitionInfo) {
-            if (petitionInfo.updated_at) {
-              $(".last_version_date").text("A versão atual for criada no dia " + moment(petitionInfo.updated_at).format("DD/MM/YYYY à\\s HH:mm"));
-            } else {
-              $(".last_version_date").text("");
-            }
-
             var count = petitionInfo.signatures_count;
 
             var percentage = (count / signaturesRequired) * 100;
