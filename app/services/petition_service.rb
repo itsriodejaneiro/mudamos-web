@@ -46,4 +46,17 @@ class PetitionService
       mobile_service.petition_signatures(petition_id)
     end
   end
+
+  def fetch_past_versions(petition_id, fresh: false)
+    cache_key = "mobile_petition_past_versions:#{petition_id}"
+
+    Rails.cache.fetch(cache_key, force: fresh) do
+      begin
+        mobile_service.petition_versions(petition_id)
+      rescue => e
+        Rails.logger.info("Error fetching petition past versions: #{e.message} #{e.backtrace.join(" | ")}")
+        Array.new
+      end
+    end
+  end
 end

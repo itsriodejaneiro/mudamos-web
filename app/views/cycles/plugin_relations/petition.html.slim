@@ -63,25 +63,25 @@ section#petition-index
             .pull-left
               i.icon-text2 style="color: #{@cycle.color}"
             div.medium-padded
-              a.download-document href=@petition.published_version.document_url style="color: #{@cycle.color}" target="_blank"
-                strong Baixe o PDF
-              |  do projeto
+              - if petition_published_pdf_version
+                a.download-document href=petition_published_pdf_version.pdf_url style="color: #{@cycle.color}" target="_blank"
+                  strong Baixe o PDF
+                |  do projeto
             div.medium-padded
               small.last_version_date
-            - if @petition.past_versions.length > 0
+            - if petition_past_pdf_versions.length > 0
               div.medium-padded
                 a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
 
               script#past-versions-popover type="text/template"
                 ul.list-unstyled.past-versions-popover
-                  - past_versions_length = past_versions.length
-                  - past_versions.each_with_index do |version, index|
+                  - petition_past_pdf_versions.each do |version|
                     li
                       div.pull-left
                         i.icon-text2 style="color: #{@cycle.color}"
                       div.medium-padded
-                        a href="#{version.document_url}" style="color: #{@cycle.color}"  ="Versão #{ past_versions_length - index}"
-                      div.medium-padded= "Criada em #{version.created_at.strftime("%d/%m/%Y às %H:%M")}"
+                        a href="#{version.pdf_url}" style="color: #{@cycle.color}"  ="Versão #{version.version_name}"
+                      div.medium-padded= "Criada em #{version.updated_at.strftime("%d/%m/%Y às %H:%M")}"
 
         .row.phone-bottom-info
           - if @phase.in_progress?

@@ -64,4 +64,32 @@ namespace :petitions do
       end
     end
   end
+
+  desc "Fetches petitions past versions from the api and store it on the cache"
+  task past_versions: :environment do |_, args|
+
+    log = -> message {
+      puts message
+      Rails.logger.info message
+    }
+
+    error = -> message {
+      puts message
+      Rails.logger.error message
+    }
+
+    petition_service = PetitionService.new
+
+    PetitionPlugin::Detail.all.find_in_batches do |batch|
+      batch.each do |detail|
+        begin
+          petition_service.fetch_past_versions detail.id, fresh: true
+          log.call "Fetched past versions for petition #{detail.id}"
+        rescue => error
+          error.call "Could not fetch past versions for petition #{detail.id}"
+          error.call error
+        end
+      end
+    end
+  end
 end

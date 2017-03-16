@@ -1,6 +1,11 @@
 class Cycles::PluginRelationsController < ApplicationController
 
   attr_writer :presignature_repository
+  attr_accessor :petition_service
+
+  def petition_service
+    @petition_service ||= PetitionService.new
+  end
 
   def presignature_repository
     @presignature_repository ||= PetitionPlugin::PresignatureRepository.new
@@ -35,11 +40,6 @@ class Cycles::PluginRelationsController < ApplicationController
     end
   end
 
-  helper_method :past_versions
-  def past_versions
-    detail_repository.past_versions_desc(@petition.id)
-  end
-
   def custom_footer
     @plugin_relation.plugin.plugin_type == 'Petição'
   end
@@ -50,46 +50,62 @@ class Cycles::PluginRelationsController < ApplicationController
     @detail_repository ||= PetitionPlugin::DetailRepository.new
   end
 
-    def set_charts_variables
-      range_start = @cycle.initial_date
-      range_end = @cycle.final_date
+  def set_charts_variables
+    range_start = @cycle.initial_date
+    range_end = @cycle.final_date
 
-      if params[:clear_cache] == true or params[:clear_cache] == 'true'
-        ChartableCache.clear_cache @cycle
-      end
-      
-      ChartableCache.set_cache range_start, range_end, @cycle
-
-      @user_profile_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_profile_count_in_range")
-      @user_gender_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_gender_count_in_range")
-      @user_age_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_age_count_in_range")
-      @user_state_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_state_count_in_range")
-      @subjects_comments_region_count_in_range = Rails.cache.fetch("#{@cycle.slug}_subjects_comments_region_count_in_range")
-      @subjects_users_region_count_in_range = Rails.cache.fetch("#{@cycle.slug}_subjects_users_region_count_in_range")
-      @subjects_users_profile_count_in_range = Rails.cache.fetch("#{@cycle.slug}_subjects_users_profile_count_in_range")
-      @user_profile_anonymous_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_profile_anonymous_count_in_range")
-      @subjects_users_profile_anonymous_count_in_range = Rails.cache.fetch("#{@cycle.slug}_subjects_users_profile_anonymous_count_in_range")
+    if params[:clear_cache] == true or params[:clear_cache] == 'true'
+      ChartableCache.clear_cache @cycle
     end
 
-    def set_petition_info
-      petition
-      phase
-      user_signed_petition
+    ChartableCache.set_cache range_start, range_end, @cycle
+
+    @user_profile_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_profile_count_in_range")
+    @user_gender_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_gender_count_in_range")
+    @user_age_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_age_count_in_range")
+    @user_state_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_state_count_in_range")
+    @subjects_comments_region_count_in_range = Rails.cache.fetch("#{@cycle.slug}_subjects_comments_region_count_in_range")
+    @subjects_users_region_count_in_range = Rails.cache.fetch("#{@cycle.slug}_subjects_users_region_count_in_range")
+    @subjects_users_profile_count_in_range = Rails.cache.fetch("#{@cycle.slug}_subjects_users_profile_count_in_range")
+    @user_profile_anonymous_count_in_range = Rails.cache.fetch("#{@cycle.slug}_user_profile_anonymous_count_in_range")
+    @subjects_users_profile_anonymous_count_in_range = Rails.cache.fetch("#{@cycle.slug}_subjects_users_profile_anonymous_count_in_range")
+  end
+
+  def set_petition_info
+    petition
+    phase
+    user_signed_petition
+    petition_pdf_versions
+  end
+
+  def petition
+    @petition ||= phase.plugin_relation.petition_detail
+  end
+
+  def phase
+    @phase ||= @plugin_relation.related
+  end
+
+  def user_signed_petition
+    if @user_signed_petition.nil? && current_user
+      @user_signed_petition = presignature_repository.user_signed_petition?(current_user.id, @plugin_relation.id)
     end
 
-    def petition
-      @petition ||= phase.plugin_relation.petition_detail
-    end
+    @user_signed_petition
+  end
 
-    def phase
-      @phase ||= @plugin_relation.related
-    end
+  helper_method :petition_pdf_versions
+  def petition_pdf_versions
+    @petition_pdf_versions ||= petition_service.fetch_past_versions(petition.id)
+  end
 
-    def user_signed_petition
-      if @user_signed_petition.nil? && current_user
-        @user_signed_petition = presignature_repository.user_signed_petition?(current_user.id, @plugin_relation.id)
-      end
+  helper_method :petition_past_pdf_versions
+  def petition_past_pdf_versions
+    @petition_past_pdf_versions ||= petition_pdf_versions.drop(1)
+  end
 
-      @user_signed_petition
-    end
+  helper_method :petition_published_pdf_version
+  def petition_published_pdf_version
+    @petition_published_pdf_version ||= petition_pdf_versions.first
+  end
 end

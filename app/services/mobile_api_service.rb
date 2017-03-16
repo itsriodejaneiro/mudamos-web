@@ -33,6 +33,35 @@ class MobileApiService
     @timeout = timeout
   end
 
+  PetitionVersion = Struct.new(
+    :version_id,
+    :version_name,
+    :updated_at,
+    :blockchain_timestamp,
+    :name,
+    :signature,
+    :page_url,
+    :pdf_url
+  )
+  def petition_versions(petition_id)
+    response = get("/api/v1/petition/plip/#{petition_id}/versions")
+
+    body = JSON.parse(response.body)["data"]["versions"] || []
+
+    body.each_with_index.map do |version, index|
+      PetitionVersion.new(
+        version["petition_version"],
+        body.length - index,
+        version["petition_updatedat"].present? ? Time.parse(version["petition_updatedat"]) : nil,
+        version["petition_blockstamp"].present? ? Time.parse(version["petition_blockstamp"]) : nil,
+        version["petition_name"],
+        version["petition_signature"],
+        version["petition_page_url"],
+        version["petition_pdf_url"],
+      )
+    end
+  end
+
   def register_petition_version(petition_detail_version)
     phase = petition_detail_version.petition_plugin_detail.plugin_relation.related
 
