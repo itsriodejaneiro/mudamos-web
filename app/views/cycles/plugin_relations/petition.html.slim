@@ -74,10 +74,16 @@ section#petition-index
               div.medium-padded
                 a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
 
+              script#popover_template type="text/template"
+                .petition-past-versions-popover.popover role="tooltip"
+                  .arrow
+                  h3.popover-title
+                  .popover-content
+
               script#past-versions-popover type="text/template"
-                ul.list-unstyled.past-versions-popover
+                ul.list-unstyled.petition-past-versions-list
                   - petition_past_pdf_versions.each do |version|
-                    li
+                    li.clearfix
                       div.pull-left
                         i.icon-text2 style="color: #{@cycle.color}"
                       div.medium-padded
@@ -161,7 +167,9 @@ javascript:
 
       $(".past-versions").popover({
         html: true,
+        container: "body",
         content: $("#past-versions-popover").html(),
+        template: $("#popover_template").html(),
         placement: "right",
       });
 
