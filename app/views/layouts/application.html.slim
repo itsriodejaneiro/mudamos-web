@@ -38,6 +38,8 @@ html
     .body-container
       - if @cycle
         = render 'layouts/shared/cycle_header'
+      - elsif use_simple_header?
+        = render 'layouts/shared/simple_header'
       - else
         = render 'layouts/shared/base_header'
       = yield
