@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #231]: Add new signature validation design (Issue 230)
 * [PR #229]: Add new document verification layout (Issue 198)
 * [PR #227]: Fetch petition past versions from the mobile api (Issue 222)
   - Configure crontab `rake petitions:past_versions` to every 10 minutes. This will update the cache.
