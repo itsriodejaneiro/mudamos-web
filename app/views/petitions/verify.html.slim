@@ -55,6 +55,8 @@ section.container-fluid#verify-document
 
         $(".new-document").on("click", hideResult);
 
+        $("[data-toggle='tooltip']").tooltip();
+
         function verify(file) {
           var reader = new FileReader;
           reader.onload = function() {
@@ -95,6 +97,4 @@ section.container-fluid#verify-document
           $(".container.result").slideUp();
           $(".container.upload").slideDown();
         };
-
-        $("[data-toggle='tooltip']").tooltip();
       });

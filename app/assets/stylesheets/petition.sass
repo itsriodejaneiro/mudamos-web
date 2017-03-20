@@ -433,7 +433,7 @@
       font-family: Merriweather
       font-size: 14px
       line-height: 26px
-      margin-bottom: 12px
+      margin-bottom: 0
       color: rgba(78,78,78,0.85)
 
       @media (min-width: $screen-sm-min)
@@ -445,6 +445,7 @@
     .success-list
       text-align: left
       display: inline-block
+      margin-top: 12px
       margin-bottom: 0
 
       dt
@@ -501,8 +502,7 @@
         &.mobile
           display: none
 
-  .validation-succeeded
-    background-image: image-url("validation-succeeded.png")
+  .validation-icon
     background-size: cover
     margin: 0 auto
     width: 120px
@@ -511,6 +511,12 @@
     @media (min-width: $screen-sm-min)
       height: 250px
       width: 250px
+
+    &.success
+      background-image: image-url("validation-succeeded.png")
+
+    &.fail
+      background-image: image-url("validation-failed.png")
 
 #petition-signatures
   padding: 60px 0 60px 0
