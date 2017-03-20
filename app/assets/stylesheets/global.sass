@@ -2934,3 +2934,49 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
   display: inline-block
   height: 15px
   width: 15px
+
+.download-light-icon
+  background-image: image-url("download-button-icon.png")
+  display: inline-block
+  height: 24px
+  width: 21px
+
+  @media (min-width: $screen-sm-min)
+    background-image: image-url("download-button-icon-high.png")
+    height: 28px
+    width: 24px
+
+.simple-definition-list
+  font-family: "Merriweather Sans"
+  text-align: left
+  margin-top: 12px
+  margin-bottom: 0
+
+  dt
+    font-size: 15px
+    font-weight: bold
+    line-height: 19px
+    color: rgba(78,78,78,0.84)
+    margin: 5px 0
+    margin-top: 12px
+
+    @media (min-width: $screen-sm-min)
+      font-size: 20px
+      line-height: 25px
+
+    &:first-of-type
+      margin-top: 0
+
+      @media (min-width: $screen-sm-min)
+        margin-top: 16px
+
+  dd
+    font-size: 14px
+    line-height: 18px
+    color: #4D4D4D
+    word-break: break-word
+
+    @media (min-width: $screen-sm-min)
+      font-size: 16px
+      font-weight: 300
+      line-height: 20px

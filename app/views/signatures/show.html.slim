@@ -1,26 +1,46 @@
 section.container-fluid#view-signature
-  .container
+  .container.result
     - if @signature.present?
-      h2 Assinatura válida!
-      i.icon-success
+      .validation-icon.success
+      h2 Assinatura válida
 
-      h4 Dados da assinatura
-      div.info
-        ul
-          li
-            label Petição: 
-            a href="#{@signature.petition_page_url}" ="#{@signature.petition_name}"
-          li
-            label Assinante: 
-            = "#{@signature.user_name}"
-          li
-            label Assinatura registrada em: 
-            = "#{@signature.blockchain_updated_at.strftime("%d/%m/%Y - %H:%M")}"
-          li
-            label Assinado em
-            = "#{@signature.updated_at.strftime("%d/%m/%Y - %H:%M")}"
-          li
-            a href="#{@signature.signatures_pdf_url}" Baixe o PDF completo
+      .subtitle Essa assinatura foi autenticada pela Mudamos
+
+      dl.simple-definition-list.list-unstyled
+        dt Petição
+        dd
+          a.petition href="#{@signature.petition_page_url}" ="#{@signature.petition_name}"
+
+        dt Assinante
+        dd= @signature.user_name
+
+        dt
+          = "Realizada em "
+          span.info-dark-icon data-placement="right" data-trigger="hover focus click" data-toggle="tooltip" title="Esse é o momento em que o usuário assinou a petição"
+        dd
+          = "#{@signature.updated_at.strftime("%d/%m/%Y - %H:%M")} (BRST)"
+
+        dt
+          = "Registrada em "
+          span.info-dark-icon data-placement="right" data-trigger="hover focus click" data-toggle="tooltip" title="Esse é o momento em que a autenticação da assinatura foi efetivada"
+        dd
+          = "#{@signature.blockchain_updated_at.strftime("%d/%m/%Y - %H:%M")} (BRST)"
+
+        a.rounded-button.pdf-button target="_blank" href="#{@signature.signatures_pdf_url}"
+          i.download-light-icon
+          span Baixar o documento completo
+
+        a.rounded-button.pdf-button.mobile target="_blank" href="#{@signature.signatures_pdf_url}"
+          i.download-light-icon
+          span Baixar documento
+
     - else
-      i.icon-error
-      h2 Assinatura inválida!
+      .validation-icon.fail
+      h2 Assinatura inválida
+
+      .subtitle A Mudamos não reconhece a autenticidade dessa assinatura
+
+  javascript:
+    $(document).ready(function() {
+      $("[data-toggle='tooltip']").tooltip();
+    });
