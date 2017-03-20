@@ -26,7 +26,7 @@ section.container-fluid#view-signature
         dd
           = "#{@signature.blockchain_updated_at.strftime("%d/%m/%Y - %H:%M")} (BRST)"
 
-        a.rounded-button.pdf-button target="_blank" href="#{@signature.signatures_pdf_url}"
+        a.rounded-button.pdf-button target="_blank" href="#{@signature.signatures_pdf_url}" title="Baixar a petição completa com a contabilização de assinaturas"
           i.download-light-icon
           span Baixar o documento completo
 
