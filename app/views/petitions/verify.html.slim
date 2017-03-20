@@ -1,59 +1,102 @@
 section.container-fluid#verify-document
-  .container
-    h1 Verifique o documento
-    div.verify-document
-      h3 Carregue o arquivo
-      input#document type="file"
-      button.rounded-button#verify Verificar
+  .container.upload
+    .mudamos-file-container
+      span.mudamos-file
+      p Solte o arquivo para verificá-lo
 
-    div.verify-result
-      div.result
-      button.rounded-button#verify-again Verificar outro documento
+    .header-image
+    p.explanation Os documentos emitidos pelo nosso sistema são autenticados, envie um arquivo abaixo para verificar se ele foi gerado pela Mudamos.
+
+    div.box-upload
+      .box-input
+        input#document type="file"
+        .when-dragndrop
+          .upload-icon
+          p.drag-hint Arraste um arquivo ou
+          label.rounded-button.text-uppercase.select-file for="document" Selecione
+        label.rounded-button.text-uppercase.select-file.no-drag for="document" Selecionar arquivo
+
+  .container.result
+    .wrapper
+
+    button.rounded-button.text-uppercase.new-document Validar outro documento
+    button.rounded-button.text-uppercase.new-document.mobile Validar outro
 
     javascript:
       $(document).ready(function() {
+        var hasDragNDrop = function() {
+          var div = document.createElement("div");
+          return ("draggable" in div) || ("ondragstart" in div && "ondrop" in div);
+        }();
 
-        $("#verify-again").click(function() {
-          $(".verify-document").slideDown();
-          $(".verify-result").slideUp();
-          $("#document").val(null);
+        if (hasDragNDrop && false) {
+          $(".box-upload").addClass("has-dragndrop");
+        }
+
+        $("#verify-document, .mudamos-file-container").on("drag dragstart dragend dragover dragenter dragleave drop", function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+        })
+          .on("dragover dragenter", function() {
+            if ($(".container.upload").is(":visible")) {
+              $("#verify-document").addClass("is-dragover");
+            }
+          });
+
+        $(".mudamos-file-container")
+          .on("dragleave dragend drop", function() {
+            $("#verify-document").removeClass("is-dragover");
+          })
+          .on("drop", function(e) {
+            verify(e.originalEvent.dataTransfer.files[0]);
+          });
+
+        $("#document").on("change", function(e) {
+          verify($(this).get(0).files[0]);
         });
 
-        var showResult = function(status) {
-          if (status) {
-            $(".verify-result .result").html(JST["templates/petitions/valid"]({ status: status }));
-          } else {
-            $(".verify-result .result").html(JST["templates/petitions/invalid"]());
+        $(".new-document").on("click", hideResult);
+
+        $("[data-toggle='tooltip']").tooltip();
+
+        function verify(file) {
+          var reader = new FileReader;
+          reader.onload = function() {
+            var sha = asmCrypto.SHA256.hex(reader.result);
+            document.start_loading();
+            apiClient.getPetitionStatus(sha)
+              .then(function(result) {
+                if (result.status.status == "confirmed") {
+                  showResult(result.status);
+                } else {
+                  showResult();
+                }
+              }).fail(function(err) {
+                showResult();
+              })
+              .always(function() {
+                $("#document").val(null);
+                document.stop_loading();
+              });
           }
 
-          $(".verify-document").slideUp();
-          $(".verify-result").slideDown();
+          reader.readAsArrayBuffer(file);
+        }
+
+        function showResult(status) {
+          var $container = $(".container.result .wrapper");
+          if (status) {
+            $container.html(JST["templates/petitions/valid"]({ status: status }));
+          } else {
+            $container.html(JST["templates/petitions/invalid"]());
+          }
+
+          $(".container.upload").slideUp();
+          $(".container.result").slideDown();
         };
 
-        $("#verify").click(function() {
-          if ($("#document").val()) {
-            var reader = new FileReader;
-            reader.onload = function() {
-              var sha = asmCrypto.SHA256.hex(reader.result);
-              document.start_loading();
-              apiClient.getPetitionStatus(sha)
-                .then(function(result) {
-                  if (result.status.status == "confirmed") {
-                    showResult(result.status);
-                  } else {
-                    showResult();
-                  }
-                  document.stop_loading();
-                }).fail(function(err) {
-                  showResult();
-                  document.stop_loading();
-                });
-            }
-
-            var input = document.getElementById("document");
-            reader.readAsArrayBuffer(input.files[0]);
-          } else {
-            document.flash_message("Escolha o arquivo para verificar", "error");
-          }
-        });
+        function hideResult() {
+          $(".container.result").slideUp();
+          $(".container.upload").slideDown();
+        };
       });

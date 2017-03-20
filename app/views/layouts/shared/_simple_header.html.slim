@@ -1,0 +1,27 @@
+nav.navbar.navbar-default.navbar-fixed-top
+  .row.primary-navbar.simple-navbar
+    .col-xs-12
+      .container
+        .navbar-header
+          = link_to root_path, class: 'navbar-brand' do
+            = image_tag('mudamos-logo.svg')
+        ul.nav.navbar-nav.navbar-center
+          p.navbar-cycle-text= @page_title
+
+        ul.nav.navbar-nav.navbar-right
+          - if user_signed_in?
+            / li.navbar-text= "Olá, #{current_user.name}"
+            / li= link_to 'SAIR', destroy_user_session_path, method: :delete
+            = render 'layouts/shared/user_dropdown'
+            = render 'layouts/shared/user_notification'
+          - else
+            li= link_to 'ENTRAR', '#', onclick: 'javascript:document.open_login();'
+          li.icon-item.search= link_to '#' do
+            i.icon-search
+  .row.secondary-navbar
+    .col-xs-12.dark-bg
+      .container
+        ul.nav.navbar-nav.navbar-center.cycle-header
+          li= link_to 'HOME', root_path
+  = render 'layouts/search_bar'
+
