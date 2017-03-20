@@ -276,11 +276,11 @@
 
 #verify-document
   padding: 60px 0 60px 0
-  margin-top: 140px
+  margin-top: 102px
   text-align: center
 
   @media (min-width: $screen-sm-min)
-    margin-top: 100px
+    margin-top: 82px
 
   &.is-dragover
     .mudamos-file-container
@@ -412,6 +412,105 @@
       .no-drag
         display: none
 
+  .container.result
+    font-family: "Merriweather Sans"
+    display: none
+
+
+    h3
+      font-size: 24px
+      font-weight: bold
+      line-height: 31px
+      color: #4D4D4D
+      margin-top: 16px
+
+      @media (min-width: $screen-sm-min)
+        font-size: 36px
+        line-height: 45px
+        margin-top: 40px
+
+    .subtitle
+      font-family: Merriweather
+      font-size: 14px
+      line-height: 26px
+      margin-bottom: 12px
+      color: rgba(78,78,78,0.85)
+
+      @media (min-width: $screen-sm-min)
+        font-size: 22px
+        font-weight: 300
+        line-height: 28px
+        margin-bottom: 24px
+
+    .success-list
+      text-align: left
+      display: inline-block
+      margin-bottom: 0
+
+      dt
+        font-size: 15px
+        font-weight: bold
+        line-height: 19px
+        color: rgba(78,78,78,0.84)
+        margin: 5px 0
+
+        @media (min-width: $screen-sm-min)
+          font-size: 20px
+          line-height: 25px
+
+        &:last-of-type
+          margin-top: 12px
+
+          @media (min-width: $screen-sm-min)
+            margin-top: 16px
+
+      dd
+        font-size: 14px
+        line-height: 18px
+        color: #4D4D4D
+        word-break: break-word
+
+        @media (min-width: $screen-sm-min)
+          font-size: 16px
+          font-weight: 300
+          line-height: 20px
+
+    .new-document
+      font-size: 18px
+      font-weight: bold
+      line-height: 23px
+      background-color: #5DA8E6
+      box-shadow: 0 3px 0 0 rgba(0,0,0,0.05), 0 3px 0 0 #5DA8E6
+      border-radius: 100px
+      width: 288px
+      height: 47px
+      display: none
+      margin-top: 22px
+
+      &.mobile
+        display: inline-block
+
+      @media (min-width: $screen-sm-min)
+        font-size: 22px
+        line-height: 28px
+        width: 398px
+        height: 60px
+        display: inline-block
+        margin-top: 40px
+
+        &.mobile
+          display: none
+
+  .validation-succeeded
+    background-image: image-url("validation-succeeded.png")
+    background-size: cover
+    margin: 0 auto
+    width: 120px
+    height: 120px
+
+    @media (min-width: $screen-sm-min)
+      height: 250px
+      width: 250px
 
 #petition-signatures
   padding: 60px 0 60px 0

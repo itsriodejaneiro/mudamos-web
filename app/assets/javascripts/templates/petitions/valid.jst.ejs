@@ -1,6 +1,23 @@
-<h3> Documento válido </h3>
-<ul class="list-unstyled">
-  <li><label>Código da transação:</label><%= status.transaction %></li>
-  <li><label>Data da transação:</label><%= moment(status.transaction_date).format("DD/MM/YYYY - h:mm:ss") %></li>
-  <li><label>Data de registro na Blockchain:</label><%= moment(status.blockstamp).format("DD/MM/YYYY - h:mm:ss") %></li>
-</ul>
+<div class="validation-succeeded"/>
+<h3>Documento válido</h3>
+<p class="subtitle">
+  Esse arquivo foi assinado pela Mudamos
+</p>
+<dl class="success-list list-unstyled">
+  <dt>
+    Código da transação
+    <span
+      class="info-dark-icon"
+      data-placement="right"
+      data-trigger="hover focus click"
+      data-toggle="tooltip"
+      title="Este valor identifica a autenticação do arquivo">
+    </span>
+  </dt>
+  <dd><%= status.transaction %></dd>
+
+  <% if (status.blockstamp) { %>
+    <dt>Registrado em</dt>
+    <dd><%= moment(status.blockstamp).format("DD/MM/YYYY - h:mm:ss") %> (BRST)</dd>
+  <% } %>
+</dl>

@@ -1,5 +1,5 @@
 section.container-fluid#verify-document
-  .container
+  .container.upload
     .header-image
     p.explanation Os documentos emitidos pelo nosso sistema são autenticados, envie um arquivo abaixo para verificar se ele foi gerado pela Mudamos.
 
@@ -15,6 +15,12 @@ section.container-fluid#verify-document
           p.drag-hint Arraste um arquivo ou
           label.rounded-button.text-uppercase.select-file for="document" Selecione
         label.rounded-button.text-uppercase.select-file.no-drag for="document" Selecionar arquivo
+
+  .container.result
+    .wrapper
+
+    button.rounded-button.text-uppercase.new-document Validar outro documento
+    button.rounded-button.text-uppercase.new-document.mobile Validar outro
 
     javascript:
       $(document).ready(function() {
@@ -47,6 +53,8 @@ section.container-fluid#verify-document
           verify($(this).get(0).files[0]);
         });
 
+        $(".new-document").on("click", hideResult);
+
         function verify(file) {
           var reader = new FileReader;
           reader.onload = function() {
@@ -71,48 +79,22 @@ section.container-fluid#verify-document
           reader.readAsArrayBuffer(file);
         }
 
-       // $("#verify-again").click(function() {
-       //   $(".verify-document").slideDown();
-       //   $(".verify-result").slideUp();
-       //   $("#document").val(null);
-       // });
-
-        var showResult = function(status) {
-          console.log("status", status);
+        function showResult(status) {
+          var $container = $(".container.result .wrapper");
           if (status) {
-            $(".verify-result .result").html(JST["templates/petitions/valid"]({ status: status }));
+            $container.html(JST["templates/petitions/valid"]({ status: status }));
           } else {
-            $(".verify-result .result").html(JST["templates/petitions/invalid"]());
+            $container.html(JST["templates/petitions/invalid"]());
           }
 
-         // $(".verify-document").slideUp();
-         // $(".verify-result").slideDown();
+          $(".container.upload").slideUp();
+          $(".container.result").slideDown();
         };
 
-       // $("#verify").click(function() {
-       //   if ($("#document").val()) {
-       //     var reader = new FileReader;
-       //     reader.onload = function() {
-       //       var sha = asmCrypto.SHA256.hex(reader.result);
-       //       document.start_loading();
-       //       apiClient.getPetitionStatus(sha)
-       //         .then(function(result) {
-       //           if (result.status.status == "confirmed") {
-       //             showResult(result.status);
-       //           } else {
-       //             showResult();
-       //           }
-       //           document.stop_loading();
-       //         }).fail(function(err) {
-       //           showResult();
-       //           document.stop_loading();
-       //         });
-       //     }
+        function hideResult() {
+          $(".container.result").slideUp();
+          $(".container.upload").slideDown();
+        };
 
-       //     var input = document.getElementById("document");
-       //     reader.readAsArrayBuffer(input.files[0]);
-       //   } else {
-       //     document.flash_message("Escolha o arquivo para verificar", "error");
-       //   }
-       // });
+        $("[data-toggle='tooltip']").tooltip();
       });
