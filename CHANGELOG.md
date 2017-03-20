@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #229]: Add new document verification layout (Issue 198)
 * [PR #227]: Fetch petition past versions from the mobile api (Issue 222)
   - Configure crontab `rake petitions:past_versions` to every 10 minutes. This will update the cache.
 * [PR #226]: Remove Faraday net_http_persistent adapter (Issue 225)
