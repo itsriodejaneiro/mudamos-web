@@ -286,7 +286,7 @@
     .mudamos-file-container
       background-color: rgba(217,237,247,0.8)
       border: 1px solid #979797
-      display: block !important
+      display: flex
 
   .mudamos-file-container
     text-align: center
@@ -295,9 +295,12 @@
     bottom: 0
     left: 0
     right: 0
+    display: none
+    flex-direction: column
+    justify-content: center
+    align-items: center
 
     p
-      margin: 0 auto
       padding-top: 50px
       width: 581px
       font-family: "Merriweather Sans"
@@ -311,8 +314,6 @@
     display: inline-block
     height: 230px
     width: 172px
-    margin: 0 auto
-    margin-top: calc(50% - 230px / 2)
 
   .header-image
     background-image: image-url("document-validation-drawing.png")

@@ -1,13 +1,13 @@
 section.container-fluid#verify-document
   .container.upload
+    .mudamos-file-container
+      span.mudamos-file
+      p Solte o arquivo para verificá-lo
+
     .header-image
     p.explanation Os documentos emitidos pelo nosso sistema são autenticados, envie um arquivo abaixo para verificar se ele foi gerado pela Mudamos.
 
     div.box-upload
-      .mudamos-file-container.hidden
-        span.mudamos-file
-        p Solte o arquivo para verificá-lo
-
       .box-input
         input#document type="file"
         .when-dragndrop
@@ -38,7 +38,9 @@ section.container-fluid#verify-document
           e.stopPropagation();
         })
           .on("dragover dragenter", function() {
-            $("#verify-document").addClass("is-dragover");
+            if ($(".container.upload").is(":visible")) {
+              $("#verify-document").addClass("is-dragover");
+            }
           });
 
         $(".mudamos-file-container")
