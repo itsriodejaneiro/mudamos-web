@@ -1,13 +1,117 @@
+@import "bootstrap/variables"
+
 #view-signature
-  .container
-    text-align: center
+  font-family: "Merriweather Sans"
+  padding: 60px 0 60px 0
+  margin-top: 102px
+  text-align: center
 
-  .icon-success,.icon-error
-    font-size: 200px
+  @media (min-width: $screen-sm-min)
+    margin-top: 82px
 
-  .info
-    ul
-      list-style: none
+  .result
+    padding-left: 16px
+    padding-right: 16px
+    width: 320px
 
-    label
-      margin-right: 5px
+    @media (min-width: $screen-sm-min)
+      padding-left: 40px
+      padding-right: 40px
+      width: 700px
+
+  .rounded-button.pdf-button
+    padding: 12px 23px
+    font-size: 18px
+    font-weight: 400
+    width: 272px
+    height: 47px
+    line-height: calc(23px + 2px)
+    box-shadow: 0 2px 0 0 rgba(0,0,0,0.05), 0 2px 0 0 #00C182
+    background-color: #00C182
+    border-radius: 100px
+    display: none
+    margin: 26px auto 0
+    text-transform: uppercase
+
+    &:hover, &:visited, :active, &:focus
+      color: #fff
+      text-decoration: none
+
+    &.mobile
+      display: block
+
+    i
+      margin-right: 12px
+
+    *
+      vertical-align: middle
+
+    @media (min-width: $screen-sm-min)
+      padding: 18px 30px
+      width: 493px
+      height: 65px
+      line-height: calc(28px + 3px)
+      box-shadow: 0 3px 0 0 rgba(0,0,0,0.05), 0 3px 0 0 #00C182
+      background-color: #00C182
+      border-radius: 100px
+      font-size: 22px
+      margin-top: 40px
+      display: block
+
+      &.mobile
+        display: none
+
+      i
+        margin-right: 18px
+
+  .petition
+    color: #5DA8E6
+    font-size: 14px
+    line-height: 18px
+    text-decoration: underline
+
+    @media (min-width: $screen-sm-min)
+      font-size: 16px
+      font-weight: 300
+      line-height: 20px
+
+  .validation-icon
+    background-size: cover
+    margin: 0 auto
+    width: 120px
+    height: 120px
+
+    @media (min-width: $screen-sm-min)
+      height: 250px
+      width: 250px
+
+    &.success
+      background-image: image-url("validation-succeeded.png")
+
+    &.fail
+      background-image: image-url("validation-failed.png")
+
+  h2
+    font-size: 24px
+    font-weight: bold
+    line-height: 31px
+    color: #4D4D4D
+    margin-top: 16px
+
+    @media (min-width: $screen-sm-min)
+      font-size: 36px
+      line-height: 45px
+      margin-top: 40px
+
+  .subtitle
+    font-family: Merriweather
+    font-size: 14px
+    line-height: 26px
+    margin-bottom: 0
+    color: rgba(78,78,78,0.85)
+
+    @media (min-width: $screen-sm-min)
+      font-size: 22px
+      font-weight: 300
+      line-height: 28px
+      margin-bottom: 24px
