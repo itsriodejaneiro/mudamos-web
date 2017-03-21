@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #233]: New signatures pdf list design (Issue 200)
 * [PR #231]: Add new signature validation design (Issue 230)
 * [PR #229]: Add new document verification layout (Issue 198)
 * [PR #227]: Fetch petition past versions from the mobile api (Issue 222)

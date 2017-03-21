@@ -1,11 +1,11 @@
 class PetitionsController < ApplicationController
   before_action :set_page_title, only: %i(verify)
+  before_action :petition, :cycle, only: %i(signatures)
 
   def verify
   end
 
   def signatures
-    @petition = petition_repository.find_by_id!(params[:petition_id])
     @signatures = petition_service.fetch_petition_signatures(params[:petition_id])
   end
 
@@ -14,6 +14,14 @@ class PetitionsController < ApplicationController
   end
 
   private
+
+  def petition
+    @petition ||= petition_repository.find_by_id!(params[:petition_id])
+  end
+
+  def cycle
+    @cycle ||= @petition.plugin_relation.cycle
+  end
 
   def petition_service
     @petition_service ||= PetitionService.new
