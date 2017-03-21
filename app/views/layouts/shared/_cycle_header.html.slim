@@ -6,7 +6,10 @@ nav.navbar.navbar-default.navbar-fixed-top
           = link_to root_path, class: 'navbar-brand' do
             = image_tag('mudamos-logo.svg')
         ul.nav.navbar-nav.navbar-center
-          p.navbar-cycle-text= @cycle.title
+          - if yield :custom_page_title
+            = yield :custom_page_title
+          - else
+            p.navbar-cycle-text= @cycle.title
 
         ul.nav.navbar-nav.navbar-right
           - if user_signed_in?
