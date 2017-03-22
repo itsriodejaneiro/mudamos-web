@@ -1587,6 +1587,9 @@ a.light-link
   color: #5DA8E6
   text-decoration: underline
 
+  &.grey
+    color: rgba(67,67,67,0.85)
+
 form
   .file.input
     display: none
@@ -1600,6 +1603,9 @@ form
     img
       width: 100%
 
+  ol
+    li:first-child
+      margin-top: 0
   li.first
     margin: 0 !important
   li.input
@@ -3139,6 +3145,16 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
       text-transform: uppercase
       margin-top: -10px
 
+#modal-session-new, #modal-session-login
   ol
     padding: 0
     margin: 0
+
+#modal-session-login
+  .forgot-password-container
+    margin-top: 8px
+    text-align: right
+
+    .forgot-password
+      font-size: 14px
+      line-height: 18px

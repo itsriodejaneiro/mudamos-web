@@ -1,0 +1,18 @@
+.modal-body
+  = semantic_form_for User.new, as: :user, url: user_session_path, html: { autocomplete: :off, class: "row" }, remote: true do |f|
+    input type="password" style="display:none"
+    = f.inputs class: "col-xs-12" do
+      = input f, :email, label: 'Email'
+      = input f, :password, as: :password, label: 'Senha'
+
+    .col-xs-12.forgot-password-container
+      a.forgot-password.light-link.grey href="#" Esqueceu sua senha?
+
+    .col-xs-12
+      button.rounded-button.new type="submit" Entrar
+
+.modal-footer
+  .row
+    .col-xs-12
+      span>Não está cadastrado?
+      a.sign-up.light-link href="#" Crie uma conta
