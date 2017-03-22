@@ -13,17 +13,17 @@
         .col-xs-5
           hr
 
-      = semantic_form_for User.new, as: :user, url: user_registration_path, html: { autocomplete: :off, id: "new_user_registration", class: "row" }, remote: true do |f|
-        input type="password" style="display:none"
-        = f.inputs class: "col-xs-12" do
-          = f.input :first_step, as: :hidden, input_html: { value: true }
-          = input f, :name, label: 'Nome e Sobrenome'
-          = input f, :birthday, label: 'Data de Nascimento', class: 'date_mask'
-          = input f, :email, label: 'Email'
-          = input f, :password, as: :password, label: 'Senha'
+  = semantic_form_for User.new, as: :user, url: user_registration_path, html: { autocomplete: :off, id: "new_user_registration", class: "row" }, remote: true do |f|
+    input type="password" style="display:none"
+    = f.inputs class: "col-xs-12" do
+      = f.input :first_step, as: :hidden, input_html: { value: true }
+      = input f, :name, label: 'Nome e Sobrenome'
+      = input f, :birthday, label: 'Data de Nascimento', class: 'date_mask'
+      = input f, :email, label: 'Email'
+      = input f, :password, as: :password, label: 'Senha'
 
-        .col-xs-12
-          button.rounded-button.new type="submit" Cadastrar
+    .col-xs-12
+      button.rounded-button.new type="submit" Cadastrar
 
 .modal-footer
   .row
