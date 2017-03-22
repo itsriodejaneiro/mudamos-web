@@ -49,6 +49,7 @@ html
     .modal-container
       - unless user_signed_in?
         = render 'layouts/shared/modal', modal_id: 'modal-session-new', size: 'sm', cache: true, content: render(file: 'users/sessions/new')
+        = render 'layouts/shared/modal', modal_id: 'modal-session-login', size: 'sm', cache: true, content: render(file: 'users/sessions/login')
         - if request.path == new_user_session_path
           javascript:
             $('#modal-session-new').modal('show');

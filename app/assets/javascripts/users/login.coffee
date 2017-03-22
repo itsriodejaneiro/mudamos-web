@@ -23,6 +23,16 @@ document.open_login = (func = null) ->
 document.open_forgot_password = (func = null) ->
   $('#modal-passwords-new').modal 'show'
 
+
+$ ->
+  $("#modal-session-new").on "click", ".login", (e) ->
+    e.preventDefault()
+    $("#modal-session-login").modal "show"
+
+  $("#modal-session-login").on "click", ".sign-up", (e) ->
+    e.preventDefault()
+    $("#modal-session-new").modal "show"
+
 $ ->
   state_select = $('select#user_state')
   city_select = $('select#user_city')
