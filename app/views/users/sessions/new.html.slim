@@ -4,20 +4,18 @@
         = link_to user_omniauth_authorize_path('facebook'), class: "rounded-button facebook-button" do
           i.icon-facebook
           span Entrar com o facebook
-  .row
-    .col-xs-12
-      .row.dividers
-        .col-xs-5
-          hr
-        .col-xs-2.text ou
-        .col-xs-5
-          hr
+  .row.dividers
+    .col-xs-5
+      hr
+    .col-xs-2.text ou
+    .col-xs-5
+      hr
 
   = semantic_form_for User.new, as: :user, url: user_registration_path, html: { autocomplete: :off, id: "new_user_registration", class: "row" }, remote: true do |f|
     input type="password" style="display:none"
     = f.inputs class: "col-xs-12" do
       = f.input :first_step, as: :hidden, input_html: { value: true }
-      = input f, :name, label: 'Nome e Sobrenome'
+      = input f, :name, label: 'Nome e Sobrenome', wrapper_class: "first"
       = input f, :birthday, label: 'Data de Nascimento', class: 'date_mask'
       = input f, :email, label: 'Email'
       = input f, :password, as: :password, label: 'Senha'
