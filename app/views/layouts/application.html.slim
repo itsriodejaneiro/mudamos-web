@@ -46,8 +46,9 @@ html
       - unless custom_footer
         = render 'layouts/shared/footer'
 
+    .modal-container
       - unless user_signed_in?
-        = render 'layouts/shared/modal', modal_id: 'modal-session-new', size: 'md', cache: true, content: render(file: 'users/sessions/new')
+        = render 'layouts/shared/modal', modal_id: 'modal-session-new', size: 'sm', cache: true, content: render(file: 'users/sessions/new')
         - if request.path == new_user_session_path
           javascript:
             $('#modal-session-new').modal('show');

@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #234]: Add new sign up design (Issue 196)
 * [PR #233]: New signatures pdf list design (Issue 200)
 * [PR #231]: Add new signature validation design (Issue 230)
 * [PR #229]: Add new document verification layout (Issue 198)

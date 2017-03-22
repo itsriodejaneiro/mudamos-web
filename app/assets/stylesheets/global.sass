@@ -1496,25 +1496,67 @@ section#static_page
     padding: 60px 0
 
 
+body.modal-open .body-container
+  filter: blur(5px)
+
 .modal
   text-align: center
   .close
     i
-      font-size: 20px
+      font-size: 30px
 .modal-dialog
   text-align: left
   display: inline-block
-  width: auto
-  margin-top: 90px
-  // top: 50%
-  // position: absolute
+  width: 100%
+  margin: 22px 0 0
 
+  @media (min-width: $screen-sm-min)
+    margin: 60px 0 0
+
+  &:before
+    background-image: image-url("mudamos-logo.svg")
+    background-size: contain
+    background-repeat: no-repeat
+    display: block
+    filter: drop-shadow(0 0 14px rgba(0, 0, 0, 0.12)) drop-shadow(0 14px 14px rgba(0, 0, 0, 0.24))
+    width: 132px
+    height: 60px
+    content: ""
+    margin: 0 auto 22px
+    +transition(all 0.3s ease)
+
+    @media (min-width: $screen-sm-min)
+      width: 202px
+      height: 92px
+      margin: 0 auto 40px
+
+
+  .close
+    top: -6px
+    right: 27px
+    color: #fff
+
+    @media (min-width: $screen-sm-min)
+      top: -40px
+      right: 20px
+
+  &.modal-sm .modal-content
+    max-width: 380px
+  &.modal-md .modal-content
+    max-width: 700px
+
+.modal-backdrop.in
+  opacity: 0.7
 
 .modal-content
-  // +transform(translateY(-50%))
-  padding: 90px
-  @media (max-width: $screen-xs-max)
-    padding: 30px
+  border-radius: 0
+  border: none
+  padding: 0
+  margin: 0 auto
+
+  @media (min-width: $screen-sm-min)
+    border-radius: 2px
+
   .login-column
     border-right: 1px solid $color-blue
     @media (max-width: $screen-xs-max)
@@ -1524,6 +1566,26 @@ section#static_page
     span
       @media (max-width: $screen-xs-max)
         font-size: 14px
+
+  .modal-body
+    padding: 16px
+    @media (min-width: $screen-sm-min)
+      padding: 40px
+
+.modal-footer
+  padding: 15px 16px 22px
+  text-align: center
+
+  @media (min-width: $screen-sm-min)
+    padding: 30px 40px 40px
+
+a.light-link
+  font-family: "Merriweather Sans"
+  font-size: 16px
+  text-align: center
+  line-height: 20px
+  color: #5DA8E6
+  text-decoration: underline
 
 form
   .file.input
@@ -1537,11 +1599,13 @@ form
     overflow: hidden
     img
       width: 100%
-      // max-height: 100%
+
+  li.first
+    margin: 0 !important
   li.input
     list-style-type: none
     position: relative
-    margin-top: 15px
+    margin-top: 22px
   li.input.float-label-input
     width: 100%
     +transition(all 0.3s ease)
@@ -1549,8 +1613,9 @@ form
       position: absolute
       left: 0
       font-size: 16px
+      line-height: 24px
       top: 10px
-      color: $color-light-grey
+      color: $color-input-label
       font-weight: 400
       font-family: $font-family-sans-serif
       pointer-events: none
@@ -1559,19 +1624,26 @@ form
       width: 100%
       border: 0
       border-bottom: 1px solid
-      color: black
+      border-color: rgba(0,0,0,0.12)
+      color: rgba(0,0,0,0.87)
       padding: 15px 0 5px 0
       font-size: 16px
       font-family: $font-family-sans-serif
-      +transition(border-color 0.3s ease)
+      +transition(border-width, border-color 0.3s ease)
       &:focus
         outline: 0
-    input:focus, input[value]:not([value=""])
-      border-color: $color-blue
+        border-bottom-width: 2px
+        border-color: rgba(0,0,0,0.54)
+
+      &:not([value=""])
+        border-bottom-width: 2px
+
     input:focus + label, input[value]:not([value=""]) + label
       font-size: 12px !important
       top: -5px !important
       left: 0
+      line-height: 16px
+      color: $color-tiny-input-label
   .input.error
     input, select
       border-bottom-color: red
@@ -1599,7 +1671,7 @@ form
       outline: 0
   button
     vertical-align: middle
-    margin-top: 30px
+    margin-top: 16px
     border: none
     background: transparent
     font-size: 16px
@@ -1613,6 +1685,10 @@ form
     +transition(all 0.3s ease)
     position: relative
     z-index: 1
+
+    @media (min-width: $screen-sm-min)
+      margin-top: 30px
+
     &:focus
       outline: 0
     &:hover
@@ -2782,6 +2858,47 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
   text-align: center
   line-height: 20px
 
+  &.new
+    padding: 12px
+    height: 43px
+    background-color: #00C182
+    box-shadow: 0 3px 0 0 rgba(0,0,0,0.05), 0 3px 0 0 #00C182
+    border-radius: 100px
+    text-transform: uppercase
+    font-size: 15px
+    font-weight: 400
+    text-align: center
+    line-height: calc(19px + 3px)
+    color: #FFFFFF
+
+    *
+      vertical-align: middle
+
+    i
+      margin-right: 12px
+
+.facebook-button
+  display: block
+  height: 43px
+  width: 100%
+  background-color: #3B5998
+  box-shadow: 0 3px 0 0 rgba(0,0,0,0.05), 0 3px 0 0 #3B5998
+  border-radius: 100px
+  line-height: calc(19px + 3px)
+  font-size: 15px
+  font-weight: 400
+  padding: 12px 26px
+  text-transform: uppercase
+
+  &:hover, &:visited, :active, &:focus
+    color: #fff
+    text-decoration: none
+
+  i
+    margin-right: 12px
+  *
+    vertical-align: middle
+
 .mu-switch
   display: inline-block
   width: 48px
@@ -2995,3 +3112,33 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
       font-size: 16px
       font-weight: 300
       line-height: 20px
+
+#modal-session-new
+  .dividers
+    margin-top: 26px
+    margin-bottom: 6px
+    height: 19px
+
+    hr
+      margin: 0
+
+    @media (min-width: $screen-sm-min)
+      margin-top: 40px
+      margin-bottom: 20px
+
+    * :not(.text)
+      height: 1px
+
+    .text
+      font-family: "Merriweather Sans"
+      font-size: 15px
+      font-weight: bold
+      text-align: center
+      line-height: 19px
+      color: rgba(0,0,0,0.38)
+      text-transform: uppercase
+      margin-top: -10px
+
+  ol
+    padding: 0
+    margin: 0

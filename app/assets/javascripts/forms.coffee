@@ -5,6 +5,7 @@ $ ->
 document.set_errors = (errors, form, model = "user") ->
   $.each errors, (k, v) ->
     elem = form.find("##{model}_#{k}")
+    elem = form.find("##{model}_#{k.replace("encrypted_", "")}")
     parent = elem.parents('li:first')
 
     if parent.hasClass('input') and parent.next('.file-input-image').length == 1
