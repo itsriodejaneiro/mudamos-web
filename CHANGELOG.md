@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #235]: Add new login design (Issue 196)
 * [PR #234]: Add new sign up design (Issue 196)
 * [PR #233]: New signatures pdf list design (Issue 200)
 * [PR #231]: Add new signature validation design (Issue 230)
