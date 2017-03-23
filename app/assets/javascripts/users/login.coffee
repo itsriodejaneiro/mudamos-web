@@ -25,13 +25,18 @@ document.open_forgot_password = (func = null) ->
 
 
 $ ->
-  $("#modal-session-new").on "click", ".login", (e) ->
+  $("#modal-session-new, #modal-passwords-new").on "click", ".login", (e) ->
     e.preventDefault()
     $("#modal-session-login").modal "show"
 
-  $("#modal-session-login").on "click", ".sign-up", (e) ->
+  $("#modal-session-login, #modal-passwords-new").on "click", ".sign-up", (e) ->
     e.preventDefault()
     $("#modal-session-new").modal "show"
+
+  $("#modal-session-login").on "click", ".forgot-password", (e) ->
+    e.preventDefault()
+    document.open_forgot_password()
+
 
 $ ->
   state_select = $('select#user_state')
