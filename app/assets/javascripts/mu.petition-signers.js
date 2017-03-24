@@ -45,7 +45,7 @@
         var $row = $("<li></li>");
 
         var $img = $("<div class='pull-left avatar'></div>");
-        $img.attr("style", "background-image: url('" + userInfo.profile_picture + "')");
+        $img.css("background-image", "url('" + userInfo.profile_picture + "')");
         $row.append($img);
 
         $element.append($row);
@@ -67,7 +67,7 @@
         var $row = $("<li></li>");
 
         var $img = $("<div class='pull-left avatar'></div>");
-        $img.attr("style", "background-image: url('" + userInfo.profile_picture + "')");
+        $img.css("background-image", "url('" + userInfo.profile_picture + "')");
         $row.append($img);
 
         var $name = $("<div class='user-name'></div>");
