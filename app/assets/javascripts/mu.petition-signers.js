@@ -13,7 +13,8 @@
         .then(function(response) {
 
           $element.children().remove();
-          var signers = response.signers;
+          var signers = response.signers || [];
+
           for (var i = 0; i < Math.min(signers.length, size); i++) {
             var signer = signers[i];
             addRow($element, signer);
@@ -34,8 +35,8 @@
       var addRow =  function($element, userInfo) {
         var $row = $("<li></li>");
 
-        var $img = $("<div class='pull-left'><img /></div>");
-        $img.find("img").attr("src", userInfo.profile_picture);
+        var $img = $("<div class='pull-left avatar'></div>");
+        $img.attr("style", "background-image: url('" + userInfo.profile_picture + "')");
         $row.append($img);
 
         $element.append($row);
@@ -51,21 +52,21 @@
     $(this).each(function(idx, element) {
       var $element = $(element);
 
-      $element.append("<div><h3 class='title'>Assinantes recentes</h3><ul class='list-unstyled'></ul></div>");
-     
+      $element.append("<div class='container-fluid'><h3 class='title'>Assinantes recentes</h3><ul class='list-unstyled'></ul></div>");
+
       var addRow = function($element, userInfo) {
         var $row = $("<li></li>");
 
-        var $img = $("<div class='pull-left'><img /></div>");
-        $img.find("img").attr("src", userInfo.profile_picture);
+        var $img = $("<div class='pull-left avatar'></div>");
+        $img.attr("style", "background-image: url('" + userInfo.profile_picture + "')");
         $row.append($img);
 
-        var $name = $("<div class='user-name'><strong/></div>");
-        $name.find("strong").text(userInfo.name);
+        var $name = $("<div class='user-name'></div>");
+        $name.text(userInfo.name);
         $row.append($name);
 
-        var $signTimeAndLocation = $("<div class='sign-time-and-location'><small/></div>");
-        $signTimeAndLocation.find("small").text(
+        var $signTimeAndLocation = $("<div class='sign-time-and-location'></div>");
+        $signTimeAndLocation.text(
           capitalizeFirstLetter(jQuery.timeago(new Date(userInfo.date))) + " | " +
           userInfo.city + " - " + userInfo.uf
         );

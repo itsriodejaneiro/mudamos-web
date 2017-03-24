@@ -5,11 +5,11 @@
 - meta title: title, description: description, og: { title: title, description: description, image: image, locale: 'pt_BR', type: 'article' }, twitter: { description: description, card: 'summary', title: title, image: { src: image } }
 
 .petition-widget-builder-container
+.petition-index
 section#petition-index
-
   = render 'widgets/smart_banner'
   .row
-    .col-lg-6.petition-side-bar.petition-view
+    .col-lg-6.col-md-12.petition-side-bar.petition-view
       h1.petition-name= @phase.name
       h3.petition-description= @phase.description
 
@@ -26,105 +26,105 @@ section#petition-index
           - else
             .row
               .col-xs-12
-                button.rounded-button.sign-petition style="background-color: #{@cycle.color}"
+                button.rounded-button.sign-petition style="background: #{cycle_background @cycle.color}"
                  =@petition.call_to_action
 
-        .row.signatures-info
+        .row.signatures-info.hidden-xs
           .col-xs-12.already-signed
             strong
             | já assinaram
-            div#petition-signers-tablet
-        .row.signatures-info
+            div#petition-signers-tablet.signatures-list.visible-md-block.visible-sm-block
+
           .col-xs-12
             .petition-signatures-progress
-        .row.signatures-info
-          .col-xs-12
+
+          .col-xs-12.progress-description
             | Faltam
             strong.remaining-signatures
             | assinaturas para a meta de
             strong=" #{@petition.signatures_required}"
 
-        - if @phase.in_progress?
-          .row.small-gap.remaining-days.bottom-info-container
-            .col-xs-12
-              .pull-left
-                i.icon-clock style="color: #{@cycle.color}"
+          - if @phase.in_progress?
+            .col-lg-12.col-sm-6.col-xs-12.remaining-days.bottom-info-container
+              i.pull-left.material-icon style="color: #{@cycle.color}" access_time
               div.medium-padded
                 - if @phase.remaining_days > 0
-                  strong= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias restantes" : "dia restante"} "
-                  | para o encerramento
+                  strong>= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias" : "dia"}"
+                  .visible-lg-inline= "#{@phase.remaining_days > 1 ? "restantes" : "restante"} para o encerramento"
                 - else
                   strong Último dia
+              div.medium-padded.subtitle
+                small.visible-lg-block= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}"
+                small.hidden-lg para o encerramento
+
+            .col-lg-12.col-sm-6.col-xs-12.download-document.bottom-info-container
+              i.pull-left.material-icon style="color: #{@cycle.color}" file_download
               div.medium-padded
-                small= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}"
+                - if petition_published_pdf_version
+                  strong
+                    a.download-document> href=petition_published_pdf_version.pdf_url style="color: #{@cycle.color}" target="_blank"
+                      | Baixe o PDF
+                    .visible-lg-inline do projeto
+              div.medium-padded.subtitle
+                - if petition_published_pdf_version && petition_published_pdf_version.blockchain_timestamp
+                  small.visible-lg-inline.last_version_date
+                    = "A versão atual for criada no dia #{petition_published_pdf_version.blockchain_timestamp.strftime("%d/%m/%Y às %H:%M")}"
+                  small.hidden-lg.last_version_date
+                    = "Atualizado em #{petition_published_pdf_version.blockchain_timestamp.strftime("%d/%m/%Y, %H:%M")}"
+              - if petition_past_pdf_versions.length > 0
+                div.medium-padded.subtitle.visible-lg-block
+                  a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}"
+                    strong Veja versões anteriores
 
-        .row.small-gap.download-document.bottom-info-container
-          .col-xs-12
-            .pull-left
-              i.icon-text2 style="color: #{@cycle.color}"
-            div.medium-padded
-              - if petition_published_pdf_version
-                a.download-document href=petition_published_pdf_version.pdf_url style="color: #{@cycle.color}" target="_blank"
-                  strong Baixe o PDF
-                |  do projeto
-            div.medium-padded
-              - if petition_published_pdf_version && petition_published_pdf_version.blockchain_timestamp
-                small.last_version_date= "A versão atual for criada no dia #{petition_published_pdf_version.blockchain_timestamp.strftime("%d/%m/%Y às %H:%M")}"
-            - if petition_past_pdf_versions.length > 0
-              div.medium-padded
-                a.past-versions href="javascript:void(0)" style="color: #{@cycle.color}" Veja versões anteriores
+                script#popover_template type="text/template"
+                  .petition-past-versions-popover.popover role="tooltip"
+                    .arrow
+                    h3.popover-title
+                    .popover-content
 
-              script#popover_template type="text/template"
-                .petition-past-versions-popover.popover role="tooltip"
-                  .arrow
-                  h3.popover-title
-                  .popover-content
+                script#past-versions-popover type="text/template"
+                  ul.list-unstyled.petition-past-versions-list
+                    - petition_past_pdf_versions.each do |version|
+                      li.clearfix
+                        a.download href="#{version.pdf_url}" title="Clique para baixar essa versão"
+                          .version style="color: #{@cycle.color}"
+                            = "Versão #{version.version_name}"
+                          - if version.blockchain_timestamp
+                            = "Criada em #{version.blockchain_timestamp.strftime("%d/%m/%Y às %H:%M")}"
 
-              script#past-versions-popover type="text/template"
-                ul.list-unstyled.petition-past-versions-list
-                  - petition_past_pdf_versions.each do |version|
-                    li.clearfix
-                      div.pull-left
-                        i.icon-text2 style="color: #{@cycle.color}"
-                      div.medium-padded
-                        a href="#{version.pdf_url}" style="color: #{@cycle.color}"  ="Versão #{version.version_name}"
-                      - if version.blockchain_timestamp
-                        div.medium-padded= "Criada em #{version.blockchain_timestamp.strftime("%d/%m/%Y às %H:%M")}"
-
-        .row.phone-bottom-info
+        .row.phone-bottom-info.visible-xs-block
           - if @phase.in_progress?
-            .col-xs-6
+            .col-xs-6.progress
               - if @phase.remaining_days > 0
                 strong= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias restantes" : "dia restante"} "
               - else
                 strong Último dia
               div
                 small para o encerramento
-          .col-xs-6
-            strong.total-signatures
+          .col-xs-6.text-right.signatures
+            .total-signatures
             div
               small assinaturas
 
-        .div.bottom-info-clear
-
-        .row#petition-signers-desktop
+        .row#petition-signers-desktop.signatures-list.visible-lg-block
         .row.view-all-signatures
-          a href="#{petition_signatures_path(@petition)}" style="color: #{@cycle.color}" Confira as listas de assinaturas autenticadas
+          .container-fluid
+            a href="#{petition_signatures_path(@petition)}" style="color: #{@cycle.color}" Confira as assinaturas autenticadas
 
-    .col-lg-6.petition-view.petition-body-container
+    .col-lg-6.col-md-12.petition-view.petition-body-container
       - if  @phase.plugin_relation.ready?
         div.embedded-link
           strong.pull-right style="color: #{@cycle.color}"
             i.icon-share
             |  Incorporar
-        p= @petition.presentation
+        p.presentation= @petition.presentation
         .row
           .col-xs-12
             = you_tube_embed @petition.video_id
         .row
           .col-xs-12
             h3.section-title.petition-body-title style="border-color: #{@cycle.color}" Projeto de lei
-        p.petition-body= markdown @petition.published_version.body
+        .petition-body= markdown @petition.published_version.body
       - else
         p Esta petição ainda não foi publicada, aguarde enquanto a edição do documento seja finalizada e tente novamento mais tarde.
 
