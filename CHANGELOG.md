@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #239]: Improves the petition page layout (Issue 202)
 * [PR #238]: Issue 196 complete form (Issue 196)
 * [PR #236]: Add new reset password modals (Issue 196)
 * [PR #235]: Add new login design (Issue 196)
@@ -44,13 +45,13 @@
 * [PR #149]: New petition's pdf (Issue 149)
 * [PR #124]: Petition widget builder (Issue 124)
 * [PR #155]: Creating smartbanner for the platform and adding it to the petition's page (issue 134)
- - Set `MOBILE_APP_STORE_PAGE_ANDROID` 
+ - Set `MOBILE_APP_STORE_PAGE_ANDROID`
  - Set `MOBILE_APP_STORE_PAGE_IOS`
 * [PR #152]: Date of the current version is now the date which the document was upated on the blockchain (issue 33)
 * [PR #147]: Adding a partner api for user creation (issue 146)
 * [PR #151]: Adding page url on the payload to the petition mobile api synchronization (issue 150)
 * [PR #145]: Adding signers widget on petition's page (Issue 109)
- - Configure a cron to update the cache of the petition's signers 
+ - Configure a cron to update the cache of the petition's signers
 * [PR #143]: Adding oath authentication for partners API (Issue 127)
  - Run `rake db:migrate`
 * [PR #142]: Removing user field requirements (Issue 126)
@@ -79,7 +80,7 @@
 * [PR #105]: Adding remaining days to the petition page (issue 105)
 * [PR #106]: Fixing system handling of cycle creation when some plugin is not selected by the user
 * [PR #113]: Fixing blog post creation
-* [PR #104]: Sending message for user synchronization with the mobile platform (Issue 98) 
+* [PR #104]: Sending message for user synchronization with the mobile platform (Issue 98)
  - Configure `USER_SYNC_QUEUE` queue
 
 ## [1.3.0] - 17/01/2017
