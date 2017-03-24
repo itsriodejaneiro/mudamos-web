@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #238]: Issue 196 complete form (Issue 196)
 * [PR #236]: Add new reset password modals (Issue 196)
 * [PR #235]: Add new login design (Issue 196)
 * [PR #234]: Add new sign up design (Issue 196)
