@@ -102,9 +102,9 @@ $ ->
 
 $ ->
   current = 0
-  options = $('.alias-options').find('option')
+  options = $('.alias-options').find('span')
 
-  $('button.alias-button').click (e) ->
+  $('.change-alias').click (e) ->
     e.preventDefault()
     e.stopPropagation()
 
@@ -114,7 +114,7 @@ $ ->
 
     name = options.eq(current).text()
 
-    $('.alias-name').find('span.big').text(name)
+    $('.alias-name').find('span').text(name)
     $('input#user_alias_name').val(name)
 
 $ ->

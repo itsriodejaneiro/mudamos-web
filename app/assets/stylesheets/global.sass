@@ -212,10 +212,31 @@ nav.navbar.navbar-default
     a
       padding: 10px 20px
     .user-menu-image
-      margin-right: 20px
-      width: 40px
-      height: 40px
       border-radius: 2px
+
+      margin-right: 6px
+      width: 20px
+      height: 20px
+      vertical-align: baseline
+
+      @media (min-width: $screen-sm-min)
+        margin-right: 20px
+        width: 40px
+        height: 40px
+        vertical-align: middle
+
+      &+ span
+        max-width: 48px
+        text-overflow: ellipsis
+        overflow: hidden
+        display: inline-block
+
+        @media (min-width: $screen-sm-min)
+          max-width: initial
+          text-overflow: initial
+          overflow: initial
+          display: initial
+
 
 .base-navbar
   .search
@@ -229,6 +250,38 @@ nav.navbar.navbar-default
     a
       cursor: pointer !important
 
+
+.body-container > nav:first-child + section.auto-spacing
+  padding: 22px 0
+  margin-top: 140px
+
+  @media (min-width: $screen-sm-min)
+    padding: 40px 0
+    margin-top: 100px
+
+.body-container.user-signed-in > nav:first-child + section.auto-spacing
+  padding: 22px 0
+  margin-top: 145px
+
+  @media (min-width: $screen-sm-min)
+    padding: 40px 0
+    margin-top: 100px
+
+
+.body-container > #simple-menu + section.auto-spacing
+  padding: 22px 0
+  margin-top: 60px
+
+  @media (min-width: $screen-sm-min)
+    padding: 40px 0
+
+.body-container.user-signed-in > #simple-menu + section.auto-spacing
+  @media (min-width: $screen-sm-min)
+    padding: 40px 0
+    margin-top: 120px
+
+  @media (min-width: $screen-md-min)
+    margin-top: 60px
 
 
 .flash_message
@@ -1659,6 +1712,10 @@ form
       left: 0
       line-height: 16px
       color: $color-tiny-input-label
+
+    input[value][type="checkbox"]:not([value=""]) + label
+      top: 0 !important
+
   .input.error
     input, select
       border-bottom-color: red
@@ -1730,47 +1787,34 @@ form
       display: none
     label
       margin-top: 20px
-      font-family: $font-family-sans-serif
-      text-transform: uppercase
-      font-weight: 400
-      font-style: italic
+      font-family: "Merriweather Sans"
+      font-weight: 300 !important
       pointer-events: auto !important
-      border-color: $color-blue
-      color: $color-blue
+      color: #4D4D4D !important
+      top: 0 !important
       span, a
-        font-size: 16px
-        line-height: 24px
+        font-size: 14px
+        line-height: 18px
         vertical-align: middle
-      span
-        color: black
       a
-        color: $color-blue
+        color: #5DA8E6
+        text-decoration: underline
     label:before
+      font-family: 'Material Icons'
       vertical-align: middle
-      content: ''
+      content: '\E835'
       display: inline-block
-      width: 20px
-      height: 20px
-      margin-right: 15px
+      margin-right: 8px
       left: 0
       background-color: white
-      border: 1px solid black
-      border-color: inherit
-    label:after
-      content: "\2713"
-      position: absolute
-      top: -4px
-      left: -2px
-      font-size: 24px
       color: inherit
-      visibility: hidden
-    input[type=checkbox]:checked + label:after
-      visibility: visible
+      font-style: normal
+      font-size: 18px
+      cursor: pointer
+    input[type=checkbox]:checked + label:before
+      content: '\E834'
     &.error
       margin-bottom: 30px
-    .inline-errors
-      position: absolute
-      bottom: -14px
   .alias-name
     font-size: 14px
     font-family: $font-family-sans-serif
@@ -1785,8 +1829,12 @@ form
   .alias-options
     display: none
   .profile-description, .sub-profile-description
-    margin: 5px 5px 15px 5px
+    font-family: "Merriweather Sans"
     font-size: 14px
+    font-weight: 300
+    line-height: 22px
+    color: rgba(78,78,78,0.85)
+    margin-top: 6px
 
 
 .arrow-link
@@ -2178,15 +2226,26 @@ select.input.required
   display: block
   &:focus
     outline: 0
+
+  &.select2-container--open
+    .select2-selection.select2-selection--single
+      .select2-selection__arrow
+        b
+          border-bottom-color: rgba(0,0,0,0.12)
+          border-top-color: transparent
+
   .select2-selection.select2-selection--single
     background: none
     border: 0
-    border-bottom: 1px solid black
+    border-bottom: 1px solid rgba(0,0,0,0.12)
     border-radius: 0
     padding: 0
     height: 43px
+
     &:focus
       outline: 0
+    &[aria-expanded="true"]
+      border-bottom: 2px solid rgba(0,0,0,0.54)
     .select2-selection__rendered
       padding-left: 0
       line-height: 43px
@@ -2195,8 +2254,15 @@ select.input.required
     .select2-selection__arrow
       bottom: 9px
 
+      b
+        border-top-color: rgba(0,0,0,0.12)
+
+
+.select2-container--default .select2-results__option--highlighted[aria-selected]
+  background-color: #5DA8E6
+
 .select2-dropdown
-  border-color: black
+  border: 2px solid rgba(0,0,0,0.54)
   border-radius: 0
 .select2-dropdown.select2-dropdown--above
   border: 1px solid black
@@ -2207,7 +2273,12 @@ select.input.required
   font-family: $font-family-sans-serif
 
 #user-edit
-  margin: 90px 0
+  .container
+    max-width: 700px
+
+  ol
+    padding: 0
+    margin: 0
 
 .social-login
   margin-top: 15px
@@ -2892,6 +2963,10 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
     i
       margin-right: 12px
 
+    &.blue
+      background-color: #5DA8E6
+      box-shadow: 0 3px 0 0 rgba(0,0,0,0.05), 0 3px 0 0 #5DA8E6
+
 .facebook-button
   display: block
   height: 43px
@@ -3051,9 +3126,6 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
     h3
       margin-top: 55px
 
-#view-signature
-  padding: 60px 0 60px 0
-  margin-top: 60px
 
 .mu-require-user-form
 
@@ -3162,3 +3234,90 @@ nav.navbar.navbar-default ul.dropdown-menu.cycle
     .forgot-password
       font-size: 14px
       line-height: 18px
+
+form.user-profile
+  button[type="submit"]
+    max-width: 300px
+
+  .user-avatar
+    margin: 0 auto
+    width: 100px
+    height: 100px
+    background-color: rgba(0,0,0,0.12)
+    border-radius: 100px
+    text-align: center
+    background-size: cover
+    background-position: 50% 50%
+    background-repeat: no-repeat
+    +transition(width, height 0.3s ease)
+
+    @media (min-width: $screen-sm-min)
+      width: 160px
+      height: 160px
+
+    &.default
+      background-size: 50%
+
+  .upload-image
+    font-size: 15px
+    line-height: 19px
+    max-width: 242px
+    display: block
+    margin: 16px auto 0
+
+    @media (min-width: $screen-sm-min)
+      margin: 20px auto 0
+
+  .alias-info
+    font-family: "Merriweather Sans"
+    font-size: 14px
+    font-weight: 300
+    text-align: justify
+    line-height: 22px
+    color: rgba(78,78,78,0.85)
+    margin-top: 16px
+    margin-bottom: 8px
+
+    @media (min-width: $screen-sm-min)
+      margin-top: 20px
+
+  .alias-row
+    height: 40px
+    max-width: 242px
+    margin: 0 auto
+
+    .change
+      height: 100%
+      padding: 0
+
+  .alias-name
+    height: 100%
+    text-align: center
+    padding: 10px 0
+    text-align: center
+    background-color: #F6F6F6
+    margin: 0
+
+    span
+      font-family: Merriweather
+      font-size: 16px
+      font-style: italic
+      font-weight: normal
+      line-height: 20px
+      color: #4D4D4D
+      margin: 0
+
+  .change-alias
+    background-color: rgba(0,0,0,0.12)
+    margin: 0
+    width: 100%
+    height: 100%
+    border: none
+    padding: 10px 0
+
+    i
+      font-size: 18px
+      color: #4D4D4D
+
+.margin-less
+  margin: 0

@@ -35,7 +35,7 @@ html
           fbq('track', 'CompleteRegistration');
 
 
-    .body-container
+    .body-container class="#{user_signed_in? ? "user-signed-in" : ""}"
       - if @cycle
         = render 'layouts/shared/cycle_header'
       - elsif use_simple_header?
@@ -54,7 +54,7 @@ html
           javascript:
             $('#modal-session-new').modal('show');
 
-        = render 'layouts/shared/modal', modal_id: 'modal-registration-new', size: 'sm', cache: true, content: render(file: 'users/registrations/new')
+        = render 'layouts/shared/modal', modal_id: 'modal-registration-new', size: 'md', cache: true, content: render(file: 'users/registrations/new')
         - if request.path == new_user_registration_path or params.keys.include?('signup')
           javascript:
             $('#modal-registration-new').modal('show');

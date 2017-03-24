@@ -21,14 +21,18 @@ $ ->
 
 
     input.change (e) =>
-      loadImage e.target.files[0], (img) =>
-        image = $(img)
-        img_wrapper.find('img').remove().end().append(img)
+      file = e.target.files[0]
 
-        loadImage.parseMetaData e.target.files[0], (data) =>
-          filename = getAndTruncateFilenameFromFileInput(input.val())
+      if file
+        reader = new FileReader()
+        reader.onload = ->
+          img_wrapper
+            .removeClass("default")
+            .css("background-image": "none")
+            .css("background-image": "url('#{reader.result}')")
 
-          after_image_load image, data
+        reader.readAsDataURL file
+
 
 getAndTruncateFilenameFromFileInput = (fullPath) ->
   lengthToTruncate = 20
