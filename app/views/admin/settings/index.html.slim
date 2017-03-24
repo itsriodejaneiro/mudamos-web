@@ -28,8 +28,7 @@
   .col-xs-8.col-xs-height
     = semantic_form_for [:admin, Setting.find_by_key('home_picture')], html: { class: 'image-form' } do |f|
       = f.input :picture, as: :file, label: false, input_html: { class: 'image-upload' }
-      .file-input-image
-        = image_tag Setting.find_by_key('home_picture').picture.url(:header), class: 'setting-image'
+      .file-input-image style="background-image: url('#{Setting.find_by_key('home_picture').picture.url(:header)}')"
       = f.submit 'Salvar', class: "btn pull-right"
       button.upload-image
         .background
@@ -134,7 +133,7 @@ javascript:
       }
     } else {
       var bg = static.prev('.card-background')
-      
+
       form.show();
       static.hide();
       bg.hide();
