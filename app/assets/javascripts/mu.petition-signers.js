@@ -16,9 +16,9 @@
           var signers = response.signers || [];
 
           if (signers.length > 0) {
-            $element.removeClass("hidden");
+            $element.parent().removeClass("hidden");
           } else {
-            $element.addClass("hidden");
+            $element.parent().addClass("hidden");
           }
 
           for (var i = 0; i < Math.min(signers.length, size); i++) {
@@ -27,7 +27,7 @@
           }
         })
         .fail(function() {
-          $element.addClass("hidden");
+          $element.parent().addClass("hidden");
         });
     };
 
