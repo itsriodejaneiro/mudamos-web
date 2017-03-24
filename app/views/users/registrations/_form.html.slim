@@ -15,7 +15,7 @@
         span = f.object.alias_name.blank? ? names.first : f.object.alias_name
       - if f.object.alias_name.blank?
         .col-xs-2.change
-          button.change-alias type="button"
+          button.change-alias type="button" title="Sortear outro pseudônimo"
             i.material-icons sync
     = f.inputs do
       = f.input :alias_name, as: :hidden, input_html: { value: f.object.alias_name.blank? ? names.first : f.object.alias_name }
