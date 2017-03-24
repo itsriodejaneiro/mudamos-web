@@ -15,10 +15,19 @@
           $element.children().remove();
           var signers = response.signers || [];
 
+          if (signers.length > 0) {
+            $element.removeClass("hidden");
+          } else {
+            $element.addClass("hidden");
+          }
+
           for (var i = 0; i < Math.min(signers.length, size); i++) {
             var signer = signers[i];
             addRow($element, signer);
           }
+        })
+        .fail(function() {
+          $element.addClass("hidden");
         });
     };
 
