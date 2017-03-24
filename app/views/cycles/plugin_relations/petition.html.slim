@@ -46,7 +46,7 @@ section#petition-index
 
           - if @phase.in_progress?
             .col-lg-12.col-sm-6.col-xs-12.remaining-days.bottom-info-container
-              i.pull-left.material-icon style="color: #{@cycle.color}" access_time
+              i.pull-left.material-icons style="color: #{@cycle.color}" access_time
               div.medium-padded
                 - if @phase.remaining_days > 0
                   strong>= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias" : "dia"}"
@@ -58,7 +58,7 @@ section#petition-index
                 small.hidden-lg para o encerramento
 
             .col-lg-12.col-sm-6.col-xs-12.download-document.bottom-info-container
-              i.pull-left.material-icon style="color: #{@cycle.color}" file_download
+              i.pull-left.material-icons style="color: #{@cycle.color}" file_download
               div.medium-padded
                 - if petition_published_pdf_version
                   strong
