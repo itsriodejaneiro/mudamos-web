@@ -43,8 +43,7 @@
                 .row
                   .col-xs-12
                     = f.input :picture, as: :file, label: false, input_html: { class: 'image-upload' }
-                    .file-input-image
-                      = image_tag f.object.picture.url, class: 'setting-iamge'
+                    .file-input-image style="background-image: url('#{f.object.picture? ? f.object.picture(:original) : nil}')"
                     / = f.submit 'Salvar', class: "btn pull-right"
                     button.upload-image
                       .background
