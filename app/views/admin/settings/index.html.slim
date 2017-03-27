@@ -18,7 +18,7 @@
             i.icon-edit
       .row
         .col-xs-12.setting-content
-          = Setting.find_by_key('home_sub_title').value.html_safe
+          = Setting.find_by_key('home_sub_title').value.try :html_safe
     .setting-form
       .row
         .col-xs-12
@@ -53,10 +53,10 @@
           .col-xs-12.setting-title
             button.edit-setting-button
               i.icon-edit
-            = Setting.find_by_key("home_title#{i}").value.html_safe
+            = Setting.find_by_key("home_title#{i}").value.try :html_safe
         .row
           .col-xs-12.setting-content
-            = Setting.find_by_key("home_text#{i}").value.html_safe
+            = Setting.find_by_key("home_text#{i}").value.try :html_safe
       .setting-form
         .row
           .col-xs-12
