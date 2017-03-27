@@ -1,0 +1,76 @@
+@import "bootstrap/variables"
+
+#petition-signatures
+  .container
+    max-width: 710px
+
+    .divider:last-child
+      display: none
+
+  .result-container
+    margin-top: 28px
+
+    @media (min-width: $screen-sm-min)
+      margin-top: 56px
+
+  .explanation
+    font-family: Merriweather
+    font-size: 14px
+    line-height: 26px
+    color: rgba(78,78,78,0.85)
+    margin-bottom: 0
+
+    @media (min-width: $screen-sm-min)
+      font-size: 22px
+      font-weight: 300
+      line-height: 39px
+
+    a
+      text-decoration: underline
+
+  .download
+    padding-right: 32px
+
+  .download-icon
+    font-size: 30px
+
+  .blockchain
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+    font-family: "Merriweather Sans"
+    font-size: 14px
+    font-weight: bold
+    line-height: 18px
+
+  .divider
+    background-color: rgba(0,0,0,0.12)
+    margin: 12px 0
+    height: 1px
+    width: 100%
+
+    @media (min-width: $screen-sm-min)
+      background-color: transparent
+      margin: 18px 0
+
+  .simple-definition-list
+    font-family: "Merriweather Sans"
+    margin: 0
+
+    dt
+      font-size: 14px
+      font-weight: normal
+      line-height: 18px
+      color: rgba(78,78,78,0.85)
+
+      &:first-of-type
+        margin-top: 6px
+
+    dd
+      font-family: Merriweather
+      font-size: 14px
+      line-height: 18px
+      color: #4D4D4D
+
+      @media (min-width: $screen-sm-min)
+        font-family: "Merriweather Sans"

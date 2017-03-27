@@ -14,7 +14,7 @@
  *= require bootstrap_and_overrides
  *= require same_height_columns
  *= require select2
- *= require petition
+ *= require_tree ./petition
  *= require signature
  *= require simple_navbar
  *= require global
