@@ -65,11 +65,42 @@ section.container-fluid#about
               h3 class=('text-right' if i%2 == 0) = Setting.find_by_key("home_title#{i}").value.html_safe
               = Setting.find_by_key("home_text#{i}").value.html_safe
 
+section.container-fluid.visible-md-block.visible-lg-block.home-block-tools.carousel
+  .container
+    .row.row-same-height.display
+      .col-xs-height.col-md-4
+        - home_blocks.tools.each do |tool|
+          .tool
+            i.block-icon style="background-image: url('#{tool.picture.url :original}')"
+            span.block-title = tool.title
+      .col-xs-height.col-md-8
+        - home_blocks.tools.each do |tool|
+          .block-body = tool.body.try :html_safe
+    .row.options
+      - tools_size = home_blocks.tools.size
+      - offset = (12 - (tools_size * 2)) / 2
+      - home_blocks.tools.each_with_index do |tool, index|
+        .col-xs-2.tool class="#{index == 0 ? "col-xs-offset-#{offset}" : nil}"
+          i.block-icon.medium style="background-image: url('#{tool.picture.url :original}')"
+          span.block-title = tool.title
+
+- home_blocks.tools.each_with_index do |tool, index|
+  section.container-fluid.visible-xs-block.visible-sm-block.home-block-tools class="#{cycle "tool-odd", "tool-even"}"
+    .container
+      .row
+        .col-xs-12.tool
+          i.block-icon style="background-image: url('#{tool.picture.url :original}')"
+          span.block-title = tool.title
+      .row
+        .col-xs-12
+          .block-body.text-center = tool.body.try :html_safe
+
+
 section.container-fluid#cycles
   .container
     .row
       .col-xs-12
-        h2.section-title Ciclos 
+        h2.section-title Ciclos
     .row
 
       - @cycles.each do |c|
