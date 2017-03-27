@@ -70,6 +70,49 @@
               = f.submit 'Salvar', class: "btn"
 
 .row
+  .col-xs-12
+    .title
+      h2 Blocos
+    .row
+      .col-xs-12
+        .card-module
+          p style="margin: 0"
+            b Novos blocos da home
+
+- (1..8).each do |i|
+  .row.row-same-height.margin-vertical
+    .col-xs-8.col-xs-height.col-top
+      .card-background
+      .setting-static-content
+        .row
+          .col-xs-12.setting-title
+            button.edit-setting-button
+              i.icon-edit
+            = Setting.find_by_key("home_block_#{i}_title").value.try :html_safe
+        .row
+          .col-xs-12.setting-content
+            = Setting.find_by_key("home_block_#{i}_body").value.try :html_safe
+      .setting-form
+        .row
+          .col-xs-12
+            = semantic_form_for [:admin, Setting.find_by_key("home_block_#{i}_title")] do |f|
+              = f.input :value, label: false, as: :string
+              = f.submit 'Salvar', class: "btn"
+        .row
+          .col-xs-12
+            = semantic_form_for [:admin, Setting.find_by_key("home_block_#{i}_body")] do |f|
+              = f.input :value, label: false, input_html: { class: "setting-tinymce" }
+              = f.submit 'Salvar', class: "btn"
+    .col-xs-4.col-xs-height
+      = semantic_form_for [:admin, Setting.find_by_key("home_block_#{i}_icon")], html: { class: 'image-form' } do |f|
+        = f.input :picture, as: :file, label: false, input_html: { class: 'image-upload' }
+        .file-input-image.setting-icon style="background-image: url('#{Setting.find_by_key("home_block_#{i}_icon").picture.url(:original)}')"
+        = f.submit 'Salvar', class: "btn pull-right"
+        button.upload-image
+          .background
+          | Atualizar Imagem
+
+.row
   / .col-xs-4
   /   .title
   /     h2 Críticas e Sugestões

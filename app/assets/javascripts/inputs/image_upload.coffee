@@ -1,37 +1,35 @@
-input = undefined
-button = undefined
-img_wrapper = undefined
 filename = undefined
 revert = undefined
 invertExifValues = ['right-top', 'left-bottom']
 imageOrientation = undefined
 
 $ ->
-  if $('form').find('input.image-upload[type="file"]').length > 0
-    input = $('form').find('input.image-upload[type="file"]')
+  $("form").each ->
+    if $(this).find('input.image-upload[type="file"]').length > 0
+      input = $(this).find('input.image-upload[type="file"]')
 
-    button = $('button.upload-image')
-    img_wrapper = $('.file-input-image')
+      button = $(this).find('button.upload-image')
+      img_wrapper = $(this).find('.file-input-image')
 
-    button.click (e) =>
-      e.preventDefault()
-      input.click (e) =>
-        e.stopPropagation()
-      input.click()
+      button.click (e) =>
+        e.preventDefault()
+        input.click (e) =>
+          e.stopPropagation()
+        input.click()
 
 
-    input.change (e) =>
-      file = e.target.files[0]
+      input.change (e) =>
+        file = e.target.files[0]
 
-      if file
-        reader = new FileReader()
-        reader.onload = ->
-          img_wrapper
-            .removeClass("default")
-            .css("background-image": "none")
-            .css("background-image": "url('#{reader.result}')")
+        if file
+          reader = new FileReader()
+          reader.onload = ->
+            img_wrapper
+              .removeClass("default")
+              .css("background-image": "none")
+              .css("background-image": "url('#{reader.result}')")
 
-        reader.readAsDataURL file
+          reader.readAsDataURL file
 
 
 getAndTruncateFilenameFromFileInput = (fullPath) ->
