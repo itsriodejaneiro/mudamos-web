@@ -31,8 +31,6 @@ class Setting < ActiveRecord::Base
 
   validates_attachment :picture, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png", "image/jpg", "image/svg+xml", "application/pdf"] }
 
-  validate :value_or_picture
-
   def all_attributes
     keys = super - [
       "picture_file_size",
@@ -51,10 +49,6 @@ class Setting < ActiveRecord::Base
   end
 
   private
-
-  def value_or_picture
-    errors.add(:base, 'Choose a value or picture for this setting') unless (value? || picture?)
-  end
 
   def forbid_svg
     if self.picture_content_type.include? "image/"
