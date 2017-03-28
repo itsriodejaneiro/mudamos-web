@@ -1,5 +1,8 @@
 ## Next
 
+* [PR #253]: Add home main video (Issue 251)
+  - Set `MUDAMOS_VIDEO_BUCKET`
+  - Run `rake settings:add_home_main_video`
 * [PR #245]: Add new home blocks (Issue 244)
 * [PR #239]: Improves the petition page layout (Issue 202)
 * [PR #238]: Issue 196 complete form (Issue 196)
