@@ -1,5 +1,9 @@
 ## Next
 
+## [1.6.1] - 28/03/2017
+
+* [Hotfix]: Cycle menu won't work
+
 ## [1.6.0] - 28/03/2017
 
 * [PR #256]: Changes the homepage layout (Issue 197)
