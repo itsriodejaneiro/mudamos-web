@@ -1,5 +1,10 @@
 ## Next
 
+* [PR #256]: Changes the homepage layout (Issue 197)
+* [PR #253]: Add home main video (Issue 251)
+  - Set `MUDAMOS_VIDEO_BUCKET`
+  - Run `rake db:migrate`
+  - Run `rake settings:add_home_main_video`
 * [PR #247]: Add tools block mock design (Issue 242)
 * [PR #245]: Add new home blocks (Issue 244)
   - Run `rake settings:add_new_home_blocks`

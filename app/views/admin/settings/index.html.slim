@@ -35,6 +35,24 @@
         | Atualizar Foto
 
 .row
+  .col-xs-4
+    .title
+      h2 Selecione um video
+
+.row
+  .col-xs-4
+    - main_video = Setting.find_by_key("home_main_video")
+    = video_tag main_video.video_url, muted: true, autoplay: false, loop: true, controls: true
+    = semantic_form_for [:admin, main_video], html: { class: 'video-form' } do |f|
+      = f.inputs do
+        = f.input :video_url, as: :hidden, label: false, input_html: { class: "hidden-url" }
+        = f.input :video, as: :file, label: false, input_html: { class: 'video-upload' }
+      label.btn.text-uppercase.select-video-file for="setting_video" Atualizar video
+      button.remove-video type="button"
+        .background
+        | Remover video
+
+.row
   .col-xs-12
     .title
       h2 Descrições

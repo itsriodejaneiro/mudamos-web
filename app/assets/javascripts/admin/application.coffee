@@ -44,6 +44,7 @@
 #= requite admin/notification.js
 #= require simplemde.min
 #= require admin/init-simplemde
+#= require admin/video-upload
 
 document.expiration_default_time = 300
 
