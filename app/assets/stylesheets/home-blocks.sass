@@ -1,8 +1,10 @@
+@import "bourbon"
 @import "bootstrap/variables"
 @import "custom_variables"
 
 
 .home-block-tools
+  padding: 30px
   background-color: purple
   font-family: $font-family-serif
   color: white
@@ -14,12 +16,19 @@
     > .col-xs-height
       vertical-align: middle
 
+  .options
+    .block-icon:hover
+      &.medium
+        width: 70px
+        height: 70px
+
   .block-icon
     background-size: contain
     background-position: center
     background-repeat: no-repeat
     width: 120px
     height: 120px
+    +transition(all 0.3s ease)
 
     &.medium
       width: 60px
