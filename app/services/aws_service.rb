@@ -15,7 +15,6 @@ module AwsService
 
     class CorruptedUpload < StandardError; end
 
-    # @param :expires [Integer] expiration in seconds
     def presign(bucket, key, method:, **options)
       s3 = s3 = Aws::S3::Resource.new
       bucket = s3.bucket(bucket)
