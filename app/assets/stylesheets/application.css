@@ -15,6 +15,7 @@
  *= require same_height_columns
  *= require select2
  *= require_tree ./petition
+ *= require_tree ./cycle
  *= require signature
  *= require simple_navbar
  *= require global

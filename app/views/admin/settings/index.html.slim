@@ -23,7 +23,7 @@
       .row
         .col-xs-12
           = semantic_form_for [:admin, Setting.find_by_key("home_sub_title")] do |f|
-            = f.input :value, label: false, input_html: { rows: 5, style: "height: auto;" }
+            = f.input :value, label: false, input_html: { class: "setting-tinymce" }
             = f.submit 'Salvar', class: "btn"
   .col-xs-8.col-xs-height
     = semantic_form_for [:admin, Setting.find_by_key('home_picture')], html: { class: 'image-form' } do |f|
