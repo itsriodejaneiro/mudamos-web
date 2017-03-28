@@ -1,7 +1,7 @@
 class HomeBlockRepository
-  Block = Struct.new(:title, :body, :picture) do
+  Block = Struct.new(:title, :body, :picture, :video_url) do
     def blank?
-      title.blank? && body.blank? && picture.blank?
+      title.blank? && body.blank? && picture.blank? && video_url.blank?
     end
 
     def present?
@@ -13,7 +13,8 @@ class HomeBlockRepository
     :what_is,
     :solution,
     :tools,
-    :mobilization
+    :mobilization,
+    :main_block
   )
 
   def blocks
@@ -21,7 +22,17 @@ class HomeBlockRepository
       what_is,
       solution,
       tools,
-      mobilization
+      mobilization,
+      main_block
+    )
+  end
+
+  def main_block
+    Block.new(
+      Setting.find_by_key("home_sub_title").try(:value),
+      nil,
+      Setting.find_by_key("home_picture").try(:picture),
+      Setting.find_by_key("home_main_video").try(:video_url)
     )
   end
 

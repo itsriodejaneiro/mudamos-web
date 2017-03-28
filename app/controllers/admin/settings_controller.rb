@@ -21,7 +21,8 @@ class Admin::SettingsController < Admin::ApplicationController
     def setting_params
       params.require(:setting).permit(
         :value,
-        :picture
+        :picture,
+        :video_url
       )
     end
 end

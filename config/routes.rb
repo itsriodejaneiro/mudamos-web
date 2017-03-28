@@ -67,6 +67,8 @@ Rails.application.routes.draw do
     resources :grid_highlights, only: [:index, :update], path: 'destaques'
     post "destaques/:id", to: 'grid_highlights#update'
 
+    post "amazon_s3_presign/video" => "amazon_s3_presign#video", as: :presign_video
+
     get 'tinymce_s3_upload/signed_urls' => 'amazon_s3_tinymce#index', as: :signed_urls
     resources :statistics, only: [:index] , path: 'stats'
     match 'stats/users', to: 'statistics#users_csv', via: :get

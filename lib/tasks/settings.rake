@@ -115,4 +115,12 @@ namespace :settings do
       Setting.find_by_key("home_block_#{index}_icon").really_destroy!
     end
   end
+
+  desc "Add home main video"
+  task add_home_main_video: :environment do
+    Setting.find_or_initialize_by(key: "home_main_video") do |setting|
+      setting.video_url = "https://s3-sa-east-1.amazonaws.com/mudamos-video/home_header.mp4"
+      setting.save!
+    end
+  end
 end

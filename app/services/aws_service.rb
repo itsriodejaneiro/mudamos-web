@@ -15,6 +15,22 @@ module AwsService
 
     class CorruptedUpload < StandardError; end
 
+    # @param :expires [Integer] expiration in seconds
+    def presign(bucket, key, method:, **options)
+      s3 = s3 = Aws::S3::Resource.new
+      bucket = s3.bucket(bucket)
+
+      bucket.object(key).presigned_url(method, **options)
+    end
+
+    def presign_video(filename)
+      key = "videos/#{SecureRandom.uuid}/#{filename}"
+      presign Rails.application.secrets.buckets["mudamos_video"], key,
+        method: :put,
+        acl: "public-read",
+        expires_in: 3600
+    end
+
     def upload(bucket, document_name, content, opts)
       original_md5 = md5(content)
 
