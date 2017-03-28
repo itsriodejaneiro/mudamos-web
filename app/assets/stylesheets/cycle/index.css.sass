@@ -1,0 +1,195 @@
+@import "bourbon"
+@import "bootstrap/variables"
+@import "custom_variables"
+
+#cycles-index
+  margin-top: $navbar-height
+
+  .header
+    position: relative
+    height: 300px
+
+    h1
+      font-family: $nunito-font
+      font-size: 36px
+      margin: 16px 0 0
+
+    strong
+      font-family: $fira-sans-font
+
+    video
+      position: absolute
+      height: 100%
+      left: 0
+
+    .content
+      display: table
+      height: 100%
+
+      .wrapper
+        display: table-cell
+        vertical-align: middle
+
+    .logo
+      height: 120px
+
+  .block
+    background: image-url("textured_paper.png") #e3e3e3
+    font-family: $nunito-font
+    padding: 150px 0
+    font-size: 24px
+
+    &.no-title
+      font-weight: 400
+      font-size: 32px
+
+      strong
+        font-family: $fira-sans-font
+
+    &.purple
+      background: linear-gradient(90deg, rgba(33, 17, 71, 0.85) 0, rgba(81, 51, 147, 0.85) 100%), image-url("textured_paper.png"), #e3e3e3
+      color: #eeede9
+
+    h2
+      font-family: $fira-sans-font
+      font-size: 32px
+      font-weight: bold
+      margin: 0 0 16px
+
+    .drawing
+      .icon
+        background-size: contain
+        background-position: center
+        background-repeat: no-repeat
+        display: inline-block
+        height: 230px
+        width: 230px
+        +transition(all 0.3s ease)
+
+    .background-drawing
+      position: absolute
+
+      &.top-left
+        height: 74px
+        left: calc(100%/12 * 5 - 25px)
+        top: 40px
+        transform: rotate(195deg)
+
+      &.top-right
+        height: 114px
+        right: calc(100%/12 * 2)
+        top: 30px
+        transform: rotate(240deg)
+
+      &.bottom-right
+        bottom: 50px
+        right: calc(100%/12 * 2)
+        transform: rotate(350deg)
+        height: 130px
+
+  @media (min-width: 1.5 * $screen-lg-min)
+    .header
+      video
+        left: 25%
+
+  @media (min-width: $screen-md-min)
+    .block
+      .drawing
+        text-align: right
+
+        .icon
+          background-position: right center
+
+      .content
+        padding-left: 30px
+
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max)
+    .block
+      padding: 50px 0
+      text-align: center
+      font-size: 21px
+
+      .drawing
+        margin-bottom: 25px
+
+        .icon
+          height: 150px
+          width: 150px
+
+      &.no-title
+        font-size: 28px
+
+      h2
+        font-size: 28px
+        margin-bottom: 8px
+
+    .header
+      h1
+        font-size: 32px
+
+      video
+        opacity: 0.3
+
+  @media (max-width: $screen-xs-max)
+    .block
+      padding: 30px 22px
+      text-align: center
+      font-size: 17px
+
+      .drawing
+        margin-bottom: 16px
+
+        .icon
+          height: 100px
+          width: 100px
+
+      &.no-title
+        font-size: 21px
+
+      h2
+        font-size: 21px
+        margin-bottom: 6px
+
+    .header
+      h1
+        font-size: 24px
+
+      video
+        opacity: 0.5
+
+  .home-block-tools
+    &.tool-even
+      background-color: black
+
+    .display
+      vertical-align: middle
+
+    .options
+      .block-icon:hover
+        &.medium
+          width: 70px
+          height: 70px
+
+    .block-icon
+      background-size: contain
+      background-position: center
+      background-repeat: no-repeat
+      width: 120px
+      height: 120px
+      +transition(all 0.3s ease)
+
+      &.medium
+        width: 60px
+        height: 60px
+
+    .tool
+      cursor: pointer
+      text-align: center
+
+      i
+        display: block
+        margin: 0 auto
+
+      span
+        margin-top: 15px
+        display: inline-block
