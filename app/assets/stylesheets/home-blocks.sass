@@ -1,0 +1,47 @@
+@import "bourbon"
+@import "bootstrap/variables"
+@import "custom_variables"
+
+
+.home-block-tools
+  padding: 30px
+  background-color: purple
+  font-family: $font-family-serif
+  color: white
+
+  &.tool-even
+    background-color: black
+
+  .display
+    > .col-xs-height
+      vertical-align: middle
+
+  .options
+    .block-icon:hover
+      &.medium
+        width: 70px
+        height: 70px
+
+  .block-icon
+    background-size: contain
+    background-position: center
+    background-repeat: no-repeat
+    width: 120px
+    height: 120px
+    +transition(all 0.3s ease)
+
+    &.medium
+      width: 60px
+      height: 60px
+
+  .tool
+    cursor: pointer
+    text-align: center
+
+    i
+      display: block
+      margin: 0 auto
+
+    span
+      margin-top: 15px
+      display: inline-block

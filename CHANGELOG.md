@@ -1,6 +1,8 @@
 ## Next
 
+* [PR #247]: Add tools block mock design (Issue 242)
 * [PR #245]: Add new home blocks (Issue 244)
+  - Run `rake settings:add_new_home_blocks`
 * [PR #239]: Improves the petition page layout (Issue 202)
 * [PR #238]: Issue 196 complete form (Issue 196)
 * [PR #236]: Add new reset password modals (Issue 196)

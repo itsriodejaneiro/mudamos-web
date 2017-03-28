@@ -64,6 +64,7 @@
 #= require mu.require-user-form
 #= require moment.min
 #= require asmcrypto
+#= require home-blocks
 
 document.expiration_default_time = 300
 

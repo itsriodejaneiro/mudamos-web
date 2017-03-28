@@ -18,5 +18,6 @@
  *= require signature
  *= require simple_navbar
  *= require global
+ *= require home-blocks
  *= require_self
  */
