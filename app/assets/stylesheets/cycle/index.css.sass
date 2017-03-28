@@ -50,6 +50,18 @@
       background: linear-gradient(90deg, rgba(33, 17, 71, 0.85) 0, rgba(81, 51, 147, 0.85) 100%), image-url("textured_paper.png"), #e3e3e3
       color: #eeede9
 
+    &:not(.purple)
+      .light-wrapper
+        border-radius: 230px
+        height: 230px
+        width: 230px
+        padding: 50px
+        background: linear-gradient(90deg, rgba(33, 17, 71, 0.85) 0, rgba(81, 51, 147, 0.85) 100%)
+
+        .icon
+          width: 100%
+          height: 100%
+
     h2
       font-family: $fira-sans-font
       font-size: 32px
@@ -57,6 +69,9 @@
       margin: 0 0 16px
 
     .drawing
+      .light-wrapper
+        display: inline-block
+
       .icon
         background-size: contain
         background-position: center
@@ -109,6 +124,13 @@
       text-align: center
       font-size: 21px
 
+      &:not(.purple)
+        .drawing
+          .light-wrapper
+            padding: 40px
+            height: 200px
+            width: 200px
+
       .drawing
         margin-bottom: 25px
 
@@ -135,6 +157,13 @@
       padding: 30px 22px
       text-align: center
       font-size: 17px
+
+      &:not(.purple)
+        .drawing
+          .light-wrapper
+            padding: 30px
+            height: 130px
+            width: 130px
 
       .drawing
         margin-bottom: 16px
@@ -189,7 +218,3 @@
       i
         display: block
         margin: 0 auto
-
-      span
-        margin-top: 15px
-        display: inline-block

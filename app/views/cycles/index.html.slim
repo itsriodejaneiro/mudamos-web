@@ -53,7 +53,7 @@
   - home_blocks.tools.each_with_index do |tool, index|
     section.row.visible-xs-block.visible-sm-block.home-block-tools.block class="#{cycle "purple", nil}"
       .col-xs-12.drawing.tool
-        span.icon style="background-image: url('#{tool.picture.url :original}')"
+        .light-wrapper: i.icon style="background-image: url('#{tool.picture.url :original}')"
       .col-sm-offset-2.col-sm-8.col-xs-12.content
         h2 = tool.title
         .block-body= tool.body.try :html_safe
