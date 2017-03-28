@@ -38,15 +38,17 @@
           h2 = home_blocks.solution.title.html_safe
         = home_blocks.solution.body.try :html_safe
 
-  section.home-block-tools.carousel.row.block.purple.visible-md-block.visible-lg-block
-    .col-xs-offset-2.col-xs-3.drawing.display
-      - home_blocks.tools.each do |tool|
-        .tool
-          i.icon.block-icon style="background-image: url('#{tool.picture.url :original}')"
-          h2.block-title = tool.title
-    .col-xs-offset-1.col-xs-4.display.content
-      - home_blocks.tools.each do |tool|
-        .block-body = tool.body.try :html_safe
+  section.row.home-block-tools.carousel.block.purple.visible-md-block.visible-lg-block
+    .col-xs-offset-2.col-xs-8
+      .row.row-md-same-height
+        .col-xs-5.col-md-height.col-middle.drawing.display
+          - home_blocks.tools.each do |tool|
+            .tool
+              i.icon.block-icon style="background-image: url('#{tool.picture.url :original}')"
+              h2.block-title = tool.title
+        .col-xs-offset-1.col-xs-6.col-md-height.col-middle.display.content
+          - home_blocks.tools.each do |tool|
+            .block-body = tool.body.try :html_safe
     .col-xs-12
       .row.options
         - tools_size = home_blocks.tools.size
