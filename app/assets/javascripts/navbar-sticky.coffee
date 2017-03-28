@@ -13,17 +13,6 @@ $ ->
   if bar.length > 0
     offset = parseInt(bar.position().top)
 
-    sticky = new Waypoint.Sticky
-      element: bar[0]
-      offset: -offset
-      # handler: (direction) ->
-      #   if direction == 'down'
-      #     bar.find('.search').animate
-      #       opacity: 1
-      #   else
-      #     bar.find('.search').animate
-      #       opacity: 0
-
     new Waypoint
       element: bar[0],
       offset: offset / 2,
