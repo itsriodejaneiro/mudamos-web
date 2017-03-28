@@ -13,47 +13,48 @@
         h1= home_blocks.main_block.title.try :html_safe
 
   - if home_blocks.what_is.present?
-    section.row.row-md-same-height.block.purple.no-title
-      .col-lg-offset-3.col-md-offset-2.col-lg-2.col-md-3.col-sm-12.col-md-height.col-middle.drawing
+    section.row.block.purple class="#{ home_blocks.what_is.title.blank? && "no-title" }"
+      .col-md-offset-2.col-md-3.col-sm-12.drawing
         - if home_blocks.what_is.picture.present?
           span.icon style="background-image: url('#{home_blocks.what_is.picture.url :original}')"
 
-      .col-md-offset-0.col-sm-offset-2.col-lg-4.col-md-5.col-sm-8.col-md-height.col-middle.content
+      .col-md-offset-0.col-sm-offset-2.col-lg-4.col-md-5.col-sm-8.content
         - if home_blocks.what_is.title.present?
           h2 = home_blocks.what_is.title.html_safe
         = home_blocks.what_is.body.try :html_safe
 
   - if home_blocks.solution.present?
-    section.row.row-md-same-height.block
+    section.row.block.solution class="#{ home_blocks.solution.title.blank? && "no-title" }"
       = image_tag "puzzle-piece.svg", class: "background-drawing top-left visible-lg-block"
       = image_tag "puzzle-piece.svg", class: "background-drawing top-right visible-lg-block"
       = image_tag "puzzle-piece.svg", class: "background-drawing bottom-right visible-lg-block"
 
-      .col-lg-offset-3.col-md-offset-2.col-lg-2.col-md-3.col-sm-12.col-md-height.col-middle.drawing
+      .col-lg-offset-1.col-md-offset-2.col-md-3.col-sm-12.drawing
         - if home_blocks.solution.picture.present?
           span.icon style="background-image: url('#{home_blocks.solution.picture.url :original}')"
 
-      .col-sm-offset-2.col-md-offset-0.col-lg-4.col-md-5.col-sm-8.col-md-height.col-middle.content
+      .col-sm-offset-2.col-md-offset-0.col-lg-4.col-md-5.col-sm-8.content  class="#{ home_blocks.solution.title.blank? && "no-title" }"
         - if home_blocks.solution.title.present?
           h2 = home_blocks.solution.title.html_safe
         = home_blocks.solution.body.try :html_safe
 
-  section.home-block-tools.carousel.row.row-same-height.block.purple.no-title.visible-md-block.visible-lg-block
-    .col-md-offset-2.col-md-3.col-md-height.col-middle.drawing.display
+  section.home-block-tools.carousel.row.block.purple.visible-md-block.visible-lg-block
+    .col-xs-offset-2.col-xs-3.drawing.display
       - home_blocks.tools.each do |tool|
         .tool
-          i.block-icon style="background-image: url('#{tool.picture.url :original}')"
-          span.block-title = tool.title
-    .col-xs-height.col-md-8.display
+          i.icon.block-icon style="background-image: url('#{tool.picture.url :original}')"
+          h2.block-title = tool.title
+    .col-xs-offset-1.col-xs-4.display.content
       - home_blocks.tools.each do |tool|
         .block-body = tool.body.try :html_safe
-    .row.options
-      - tools_size = home_blocks.tools.size
-      - offset = (12 - (tools_size * 2)) / 2
-      - home_blocks.tools.each_with_index do |tool, index|
-        .col-xs-2.tool class="#{index == 0 ? "col-xs-offset-#{offset}" : nil}"
-          i.block-icon.medium style="background-image: url('#{tool.picture.url :original}')"
-          span.block-title = tool.title
+    .col-xs-12
+      .row.options
+        - tools_size = home_blocks.tools.size
+        - offset = (12 - (tools_size * 2)) / 2
+        - home_blocks.tools.each_with_index do |tool, index|
+          .col-xs-2.tool.text-center class="#{index == 0 ? "col-xs-offset-#{offset}" : nil}"
+            i.icon.block-icon.medium style="background-image: url('#{tool.picture.url :original}')"
+            h3.block-title = tool.title
 
   - home_blocks.tools.each_with_index do |tool, index|
     section.row.visible-xs-block.visible-sm-block.home-block-tools.block class="#{cycle "purple", nil}"
@@ -62,3 +63,16 @@
       .col-sm-offset-2.col-sm-8.col-xs-12.content
         h2 = tool.title
         .block-body= tool.body.try :html_safe
+
+  - if home_blocks.mobilization.present?
+    section.row.block.mobilization class="#{ home_blocks.mobilization.title.blank? && "no-title" }"
+      = image_tag "mobilization.svg", class: "background-drawing visible-lg-block"
+
+      .col-lg-offset-1.col-md-offset-2.col-md-3.col-sm-12.drawing
+        - if home_blocks.mobilization.picture.present?
+          span.icon style="background-image: url('#{home_blocks.mobilization.picture.url :original}')"
+
+      .col-md-offset-0.col-sm-offset-2.col-lg-4.col-md-5.col-sm-8.content
+        - if home_blocks.mobilization.title.present?
+          h2 = home_blocks.mobilization.title.html_safe
+        = home_blocks.mobilization.body.try :html_safe

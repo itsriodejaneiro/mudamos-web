@@ -45,12 +45,10 @@
     padding: 150px 0
     font-size: 24px
 
-    &.no-title
+    &.no-title,
+    &.carousel
       font-weight: 400
       font-size: 32px
-
-      strong
-        font-family: $fira-sans-font
 
     &.purple
       background: linear-gradient(90deg, rgba(33, 17, 71, 0.85) 0, rgba(81, 51, 147, 0.85) 100%), image-url("textured_paper.png"), #e3e3e3
@@ -68,11 +66,75 @@
           width: 100%
           height: 100%
 
+    &.carousel
+      .drawing
+        text-align: center
+
+        .block-title
+          margin: 16px 0 0
+
+      .options
+        margin-top: 50px
+
+        .tool
+          &:hover
+            .icon
+              height: 70px
+              width: 70px
+              margin: 0 0 10px
+
+          .block-title
+            font-size: 22px
+            margin-top: 10px
+
+      .icon
+        display: inline-block
+        background-size: contain
+        background-repeat: no-repeat
+        background-position: center
+        +transition(all 0.2s ease)
+
+        &.medium
+          height: 60px
+          width: 60px
+          margin: 10px
+
+    &.solution
+      .background-drawing
+        &.top-left
+          height: 74px
+          left: calc(100%/12 * 4 - 25px)
+          top: 40px
+          transform: rotate(195deg)
+
+        &.top-right
+          height: 114px
+          right: calc(100%/12 * 3)
+          top: 30px
+          transform: rotate(240deg)
+
+        &.bottom-right
+          bottom: 50px
+          right: calc(100%/12 * 3)
+          transform: rotate(350deg)
+          height: 130px
+
+    &.mobilization
+      position: relative
+
+      .background-drawing
+        top: 50px
+        height: calc(100% - 100px)
+        right: calc(100%/12 * 2)
+
     h2
       font-family: $fira-sans-font
       font-size: 32px
       font-weight: bold
       margin: 0 0 16px
+
+    strong
+      font-family: $fira-sans-font
 
     .drawing
       .light-wrapper
@@ -85,33 +147,18 @@
         display: inline-block
         height: 230px
         width: 230px
-        +transition(all 0.3s ease)
 
     .background-drawing
       position: absolute
-
-      &.top-left
-        height: 74px
-        left: calc(100%/12 * 5 - 25px)
-        top: 40px
-        transform: rotate(195deg)
-
-      &.top-right
-        height: 114px
-        right: calc(100%/12 * 2)
-        top: 30px
-        transform: rotate(240deg)
-
-      &.bottom-right
-        bottom: 50px
-        right: calc(100%/12 * 2)
-        transform: rotate(350deg)
-        height: 130px
 
   @media (min-width: 1.5 * $screen-lg-min)
     .header
       video
         left: 25%
+
+    .carousel
+      > .content
+        margin-left: 0
 
   @media (min-width: $screen-md-min)
     .block
@@ -191,36 +238,3 @@
 
       video
         opacity: 0.5
-
-  .home-block-tools
-    &.tool-even
-      background-color: black
-
-    .display
-      vertical-align: middle
-
-    .options
-      .block-icon:hover
-        &.medium
-          width: 70px
-          height: 70px
-
-    .block-icon
-      background-size: contain
-      background-position: center
-      background-repeat: no-repeat
-      width: 120px
-      height: 120px
-      +transition(all 0.3s ease)
-
-      &.medium
-        width: 60px
-        height: 60px
-
-    .tool
-      cursor: pointer
-      text-align: center
-
-      i
-        display: block
-        margin: 0 auto
