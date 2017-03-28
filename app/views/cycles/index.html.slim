@@ -3,35 +3,40 @@
 
 #cycles-index.container-fluid
   .row.header
-    = video_tag "home_header.mp4", poster: image_url("home_header_placeholder.jpg"), muted: true, autoplay: true, loop: true
+    - if home_blocks.main_block.video_url.present?
+      = video_tag home_blocks.main_block.video_url, muted: true, autoplay: true, loop: true
+    - else
+      .image style="background-image: url('#{home_blocks.main_block.picture.url :header}')"
     .col-md-offset-5.col-lg-5.col-md-4.col-sm-12.col-xs-12.text-center.content
       .wrapper
         = image_tag "mudamos-logo-dark.svg", class: "logo"
-        h1
-          | A mudança é
-          strong<>
-            em vc
-          | qm faz.
+        h1= home_blocks.main_block.title.try :html_safe
 
-  section.row.row-md-same-height.block.purple.no-title
-    .col-lg-offset-3.col-md-offset-2.col-lg-2.col-md-3.col-sm-12.col-md-height.col-middle.drawing
-      span.icon style="background-image: url('#{image_url "phone.svg"}')"
+  - if home_blocks.what_is.present?
+    section.row.row-md-same-height.block.purple.no-title
+      .col-lg-offset-3.col-md-offset-2.col-lg-2.col-md-3.col-sm-12.col-md-height.col-middle.drawing
+        - if home_blocks.what_is.picture.present?
+          span.icon style="background-image: url('#{home_blocks.what_is.picture.url :original}')"
 
-    .col-md-offset-0.col-sm-offset-2.col-lg-4.col-md-5.col-sm-8.col-md-height.col-middle.content
-      strong> Mudamos
-      | é uma caixa de ferramentas para você entender, participar e construir soluções de forma democrática na Internet.
+      .col-md-offset-0.col-sm-offset-2.col-lg-4.col-md-5.col-sm-8.col-md-height.col-middle.content
+        - if home_blocks.what_is.title.present?
+          h2 = home_blocks.what_is.title.html_safe
+        = home_blocks.what_is.body.try :html_safe
 
-  section.row.row-md-same-height.block
-    = image_tag "puzzle-piece.svg", class: "background-drawing top-left visible-lg-block"
-    = image_tag "puzzle-piece.svg", class: "background-drawing top-right visible-lg-block"
-    = image_tag "puzzle-piece.svg", class: "background-drawing bottom-right visible-lg-block"
+  - if home_blocks.solution.present?
+    section.row.row-md-same-height.block
+      = image_tag "puzzle-piece.svg", class: "background-drawing top-left visible-lg-block"
+      = image_tag "puzzle-piece.svg", class: "background-drawing top-right visible-lg-block"
+      = image_tag "puzzle-piece.svg", class: "background-drawing bottom-right visible-lg-block"
 
-    .col-lg-offset-3.col-md-offset-2.col-lg-2.col-md-3.col-sm-12.col-md-height.col-middle.drawing
-      span.icon style="background-image: url('#{image_url "puzzle.svg"}')"
+      .col-lg-offset-3.col-md-offset-2.col-lg-2.col-md-3.col-sm-12.col-md-height.col-middle.drawing
+        - if home_blocks.solution.picture.present?
+          span.icon style="background-image: url('#{home_blocks.solution.picture.url :original}')"
 
-    .col-sm-offset-2.col-md-offset-0.col-lg-4.col-md-5.col-sm-8.col-md-height.col-middle.content
-        h2 Cada desafio público precisa de uma solução diferente.
-        | É por isso que Mudamos reúne várias ferramentas de participação, que também podem ser usadas em conjunto.
+      .col-sm-offset-2.col-md-offset-0.col-lg-4.col-md-5.col-sm-8.col-md-height.col-middle.content
+        - if home_blocks.solution.title.present?
+          h2 = home_blocks.solution.title.html_safe
+        = home_blocks.solution.body.try :html_safe
 
   section.home-block-tools.carousel.row.row-same-height.block.purple.no-title.visible-md-block.visible-lg-block
     .col-md-offset-2.col-md-3.col-md-height.col-middle.drawing.display
