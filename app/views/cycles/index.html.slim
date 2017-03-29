@@ -13,7 +13,7 @@
         h1= home_blocks.main_block.title.try :html_safe
 
   - if home_blocks.what_is.present?
-    section.row.block.purple class="#{ home_blocks.what_is.title.blank? && "no-title" }"
+    section#about.row.block.purple class="#{ home_blocks.what_is.title.blank? && "no-title" }"
       .col-md-offset-2.col-md-3.col-sm-12.drawing
         - if home_blocks.what_is.picture.present?
           span.icon style="background-image: url('#{home_blocks.what_is.picture.url :original}')"
@@ -24,7 +24,7 @@
         = home_blocks.what_is.body.try :html_safe
 
   - if home_blocks.solution.present?
-    section.row.block.solution class="#{ home_blocks.solution.title.blank? && "no-title" }"
+    section#contribute.row.block.solution class="#{ home_blocks.solution.title.blank? && "no-title" }"
       = image_tag "puzzle-piece.svg", class: "background-drawing top-left visible-lg-block"
       = image_tag "puzzle-piece.svg", class: "background-drawing top-right visible-lg-block"
       = image_tag "puzzle-piece.svg", class: "background-drawing bottom-right visible-lg-block"
@@ -67,7 +67,7 @@
         .block-body= tool.body.try :html_safe
 
   - if home_blocks.mobilization.present?
-    section.row.block.mobilization class="#{ home_blocks.mobilization.title.blank? && "no-title" }"
+    section#cycles.row.block.mobilization class="#{ home_blocks.mobilization.title.blank? && "no-title" }"
       = image_tag "mobilization.svg", class: "background-drawing visible-lg-block"
 
       .col-lg-offset-1.col-md-offset-2.col-md-3.col-sm-12.drawing

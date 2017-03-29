@@ -155,7 +155,6 @@ nav.navbar.navbar-default
           color: white
           padding: 30px
           font-family: $font-family-sans-serif
-          text-transform: uppercase
           &:hover
             background: transparent
             color: white
@@ -212,15 +211,15 @@ nav.navbar.navbar-default
     a
       padding: 10px 20px
     .user-menu-image
-      border-radius: 2px
+      border-radius: 20px
 
-      margin-right: 6px
+      margin-right: 5px
       width: 20px
       height: 20px
       vertical-align: baseline
 
       @media (min-width: $screen-sm-min)
-        margin-right: 20px
+        // margin-right: 20px
         width: 40px
         height: 40px
         vertical-align: middle
@@ -2437,9 +2436,29 @@ div.mce-edit-area:focus
 [id$="_ifr"]
   height: 100% !important
 
-.non-cycle-header
-  @media (max-width: $screen-xs-max)
-    background-color: $color-dark-grey
+#simple-menu
+  .navbar
+    background: linear-gradient(90deg, rgba(33, 17, 71, 0.85) 0, rgba(81, 51, 147, 0.85) 100%), #fff
+    box-shadow: 0 2px 5px rgba(0,0,0,.26)
+
+    li
+      &:before
+        display: none
+
+  .navbar-toggle
+    border: 2px solid #fff
+    color: #fff
+
+    &:hover,
+    &:focus
+      background-color: #fff
+
+      .icon-bar
+        background-color: #000
+
+    .icon-bar
+      background-color: #fff
+
 .navbar-header
   float: left
 .navbar-header.non-cycle-header
