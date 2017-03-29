@@ -4,5 +4,5 @@ li.dropdown.user-dropdown class=("dropup" if params[:controller] == 'cycles' and
     span = current_user.name.split(' ').first
     span.caret
   ul.dropdown-menu
-    li= link_to 'EDITAR PERFIL', edit_user_registration_path
-    li= link_to 'SAIR', destroy_user_session_path, method: :delete
+    li= link_to 'Editar Perfil', edit_user_registration_path
+    li= link_to 'Sair', destroy_user_session_path, method: :delete

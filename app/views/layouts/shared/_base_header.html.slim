@@ -16,25 +16,27 @@
             = render 'layouts/shared/user_dropdown'
             = render 'layouts/shared/user_notification'
           - else
-            li= link_to 'ENTRAR', '#', onclick: 'javascript:document.open_login();'
+            li= link_to 'Entrar/Cadastro', '#', onclick: 'javascript:document.open_login();', class: "text-uppercase"
           li.icon-item.search style="opacity: 0" = link_to '#' do
             i.icon-search
         ul.nav.navbar-nav.navbar-center.non-cycle
           - if params[:controller] == 'cycles' and params[:action] == 'index'
-            li= link_to 'DESTAQUES', '#', :'scroll-to' => '#highlights'
-            li= link_to 'SOBRE', '#', :'scroll-to' => '#about'
+            li= link_to 'Sobre', '#', :'scroll-to' => '#about'
+            li= link_to 'Participar', '#', :'scroll-to' => '#contribute'
           - else
-            li= link_to 'DESTAQUES', root_path + '#highlights'
-            li= link_to 'SOBRE', root_path + '#about'
+            li= link_to 'Sobre', root_path + '#about'
+            li= link_to 'Participar', root_path + '#contribute'
           li.dropdown class=("dropup" if params[:controller] == 'cycles' and params[:action] == 'index')
             = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, role: 'button' do
-              | CICLOS 
+              | Ciclos
               span.caret
             ul.dropdown-menu
+              - about_cycles_link = (params[:controller] == 'cycles' and params[:action] == 'index') ? ['#', { 'scroll-to': '#cycles' }] : [root_path + '#cycles']
+              li= link_to "Sobre", *about_cycles_link
               - @cycles.each do |c|
                 li= link_to c.title, c
               li= link_to 'Reforma Política do Século 21', 'http://plataformabrasil.org.br/', target: '_blank'
-          li= link_to 'BLOG', blog_posts_path
+          li= link_to 'Validar Documento', verify_petitions_path
     = render 'layouts/search_bar'
 
 - if params[:controller] == 'cycles' and params[:action] == 'index'
