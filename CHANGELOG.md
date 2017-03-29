@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #260]: Changes the upper navbar layout (Issue 246)
 * [PR #258]: Changes the static page layout (Issue 257)
 
 ## [1.6.1] - 28/03/2017
