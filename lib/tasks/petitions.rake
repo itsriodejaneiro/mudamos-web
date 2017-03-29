@@ -29,9 +29,9 @@ namespace :petitions do
         begin
           petition_service.fetch_petition_info detail.id, fresh: true
           log.call "Fetched information for petition #{detail.id}"
-        rescue => error
+        rescue => e
           error.call "Could not fetch information for petition #{detail.id}"
-          error.call error
+          error.call e
         end
       end
     end
@@ -39,7 +39,6 @@ namespace :petitions do
 
   desc "Fetches petitions signers from the api and store it on the cache"
   task :fetch_signers, [:size] => :environment do |_, args|
-
     log = -> message {
       puts message
       Rails.logger.info message
@@ -57,17 +56,16 @@ namespace :petitions do
         begin
           petition_service.fetch_petition_signers detail.id, args[:size], fresh: true
           log.call "Fetched signers for petition #{detail.id}"
-        rescue => error
+        rescue => e
           error.call "Could not fetch signers for petition #{detail.id}"
-          error.call error
+          error.call e
         end
       end
     end
   end
 
   desc "Fetches petitions past versions from the api and store it on the cache"
-  task past_versions: :environment do |_, args|
-
+  task past_versions: :environment do
     log = -> message {
       puts message
       Rails.logger.info message
@@ -85,9 +83,36 @@ namespace :petitions do
         begin
           petition_service.fetch_past_versions detail.id, fresh: true
           log.call "Fetched past versions for petition #{detail.id}"
-        rescue => error
+        rescue => e
           error.call "Could not fetch past versions for petition #{detail.id}"
-          error.call error
+          error.call e
+        end
+      end
+    end
+  end
+
+  desc "Fetches petitions pdf signatures and update the cache"
+  task fetch_petition_pdf_signatures: :environment do
+    log = -> message {
+      puts message
+      Rails.logger.info message
+    }
+
+    error = -> message {
+      puts message
+      Rails.logger.error message
+    }
+
+    petition_service = PetitionService.new
+
+    PetitionPlugin::Detail.all.find_in_batches do |batch|
+      batch.each do |detail|
+        begin
+          petition_service.fetch_petition_signatures detail.id, fresh: true
+          log.call "Fetched pdf signatures for petition #{detail.id}"
+        rescue => e
+          error.call "Could not fetch pdf signatures for petition #{detail.id}"
+          error.call e
         end
       end
     end
