@@ -91,7 +91,7 @@ namespace :petitions do
     end
   end
 
-  desc "Fetches petitions petitions pdf signatures and update the cache"
+  desc "Fetches petitions pdf signatures and update the cache"
   task fetch_petition_pdf_signatures: :environment do
     log = -> message {
       puts message
