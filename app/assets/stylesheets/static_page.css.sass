@@ -1,0 +1,96 @@
+@import "custom_variables"
+@import "bootstrap/variables"
+
+body
+  &.static_pages-show
+    background: #e6e6e6 image-url("textured_paper.png")
+
+    .footer-nav
+      background-color: transparent
+
+section#static_page
+  font-family: $nunito-font
+  font-size: 16px
+  margin-top: $navbar-height + 30px
+  margin-bottom: 60px
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+    font-family: $fira-sans-font
+    font-weight: bold
+
+  h3
+    text-transform: uppercase
+    font-size: 20px
+    margin-bottom: 15px
+    margin-top: 30px
+
+  p
+    margin-bottom: 5px
+
+  ul
+    padding: 0
+
+  .page-title
+    margin-top: 0
+
+  .credits-images
+    display: inline-block
+    margin-bottom: 50px
+
+    .credit-reference
+      min-height: 80px
+
+  .credit-reference
+    img
+      max-height: 80px
+
+  .credit-items
+    display: inline-block
+    margin-bottom: 40px
+    width: 100%
+
+    .credit-content
+      float: left
+      width: 320px
+      display: inline-block
+      padding-right: 10px
+      text-align: left
+
+      p.title
+        color: #3d45fb
+        font-size: 20px
+        line-height: 28px
+        font-weight: 600
+
+      p.url, p.url > a
+        color: #9b9b9b
+        font-size: 12px
+        line-height: 20px
+
+    .credit-reference
+      padding: 0 20px
+      display: inherit
+      border-left: 1px solid #4a4a4a
+
+      img
+        display: inline-block
+        margin-right: 20px
+
+    .credit-reference.inventos-logo
+      img
+        max-width: 180px
+
+  .credits-companies
+    padding: 100px 0
+    border-top: 1px solid #2766fc
+
+  @media (min-width: $screen-md-min)
+    font-size: 18px
+
+  @media (max-width: $screen-xs-max)
+    margin-top: $navbar-height + 22px
