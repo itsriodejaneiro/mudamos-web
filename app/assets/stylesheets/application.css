@@ -19,5 +19,6 @@
  *= require signature
  *= require simple_navbar
  *= require global
+ *= require static_page
  *= require_self
  */
