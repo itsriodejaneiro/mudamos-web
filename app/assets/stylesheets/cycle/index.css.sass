@@ -2,10 +2,18 @@
 @import "bootstrap/variables"
 @import "custom_variables"
 
+body
+  &.cycles-index
+    background: #e6e6e6 image-url("textured_paper.png")
+
+    .footer-nav
+      background-color: transparent
+
 #cycles-index
   margin-top: $navbar-height
 
   .header
+    background-color: #fff
     position: relative
     height: 300px
 
@@ -40,7 +48,7 @@
       height: 120px
 
   .block
-    background: image-url("textured_paper.png") #e3e3e3
+    background: transparent
     font-family: $nunito-font
     padding: 150px 0
     font-size: 24px
