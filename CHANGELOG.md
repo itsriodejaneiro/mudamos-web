@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #259]: Add petition pdf signatures rake which will refresh the cache (Issue 228)
+  - Configure crontab `rake petitions:fetch_petition_pdf_signatures` to every 10 minutes. This will update the cache.
 * [PR #258]: Changes the static page layout (Issue 257)
 
 ## [1.6.1] - 28/03/2017
