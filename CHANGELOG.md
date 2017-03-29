@@ -1,5 +1,7 @@
 ## Next
 
+## [1.7.0] - 29/03/2017
+
 * [PR #260]: Changes the upper navbar layout (Issue 246)
 * [PR #259]: Add petition pdf signatures rake which will refresh the cache (Issue 228)
   - Configure crontab `rake petitions:fetch_petition_pdf_signatures` to every 10 minutes. This will update the cache.
