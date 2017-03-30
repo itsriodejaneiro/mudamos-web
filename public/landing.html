@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mudamos</title>
+    <meta http-equiv="content-language" content="pt-br" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link href="//fonts.googleapis.com/css?family=Fira+Sans:700|Nunito:400,700" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/top_left.png" class="drawing top left" />
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/top_right.png" class="drawing top right" />
+
+    <div class="mockup">
+      <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/mockup.png" />
+    </div>
+
+    <div class="wrapper">
+      <div class="container">
+        <h1>Chegou o novo app</h1>
+        <a href="/home" class="logo">
+          <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/logo.svg"/>
+        </a>
+        <p>Uma ferramenta para assinatura de projetos de lei de iniciativa popular de forma segura e simples.</p>
+        <div class="text-center">
+          <div id="download-links">
+            <a
+              href="https://itunes.apple.com/us/app/mudamos/id1214485690?ls=1&mt=8"
+              title="Baixar o aplicativo para dispositivos iOS"
+              class="store-link"
+              id="app-store"
+              target="_blank">
+              <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/app_store.png" />
+            </a><a
+              href="https://play.google.com/store/apps/details?id=org.mudamos.petition"
+              title="Baixar o aplicativo para dispositivos Android"
+              class="store-link"
+              id="google-play"
+              target="_blank">
+              <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/playstore.png" />
+            </a>
+
+            <a href="#" id="download" class="hidden">
+              <span class="icon"></span>
+              <span class="label">Baixe agora</span>
+            </a>
+          </div>
+          <a href="/home" class="close">Continue para o site >></a>
+        </div>
+      </div>
+    </div>
+
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/bottom_left.png" class="drawing bottom left" />
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/bottom_right.png" class="drawing bottom right" />
+
+    <div class="clearfix"></div>
+
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+      (function($) {
+        $(function() {
+          const userAgent = navigator.userAgent || navigator.vendor;
+          const GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=org.mudamos.petition";
+          const APP_STORE_URL = "https://itunes.apple.com/us/app/mudamos/id1214485690?ls=1&mt=8";
+
+          if (/android/i.test(userAgent)) {
+            $("#download-links .store-link").addClass("hidden");
+
+            $("#download-links #download").removeClass("hidden");
+            $("#download-links #download").attr("href", GOOGLE_PLAY_URL);
+          } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            $("#download-links .store-link").addClass("hidden");
+
+            $("#download-links #download").removeClass("hidden");
+            $("#download-links #download").attr("href", APP_STORE_URL);
+          }
+        });
+      })(window.jQuery);
+    </script>
+  </body>
+</html>
