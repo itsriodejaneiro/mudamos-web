@@ -9,9 +9,21 @@ body
     .footer-nav
       background-color: transparent
 
-#cycles-index
-  margin-top: $navbar-height
+    nav.navbar.navbar-default.navbar-fixed-top
+      position: absolute
+      top: calc(100% - #{$navbar-height})
+      .navbar-brand,
+      .navbar-toggle
+        opacity: 0
+        +transition(opacity 0.3s ease)
+      &.stuck
+        position: fixed
+        top: 0
+        .navbar-brand,
+        .navbar-toggle
+          opacity: 1
 
+#cycles-index
   .header
     background-color: #fff
     overflow: hidden
