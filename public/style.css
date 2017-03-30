@@ -140,6 +140,7 @@ a {
   margin: 0 auto;
   height: 160px;
   max-width: 335px;
+  text-align: center;
 }
 
 .logo img {
