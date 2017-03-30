@@ -1,0 +1,234 @@
+a {
+  text-decoration: none;
+}
+
+body {
+  background:
+    linear-gradient(105deg, rgba(0, 0, 0, 0.24) 42%, transparent 70%),
+    url("https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/background.png") #dedede;
+  font-family: "Nunito", sans-serif;
+  height: 100%;
+  min-height: 100%;
+  position: relative;
+  display: table;
+  width: 100%;
+}
+
+h1, p, .close {
+  text-shadow: 0 0px 2px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #000000;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 0.7px;
+  margin: 0 0 17px;
+  text-transform: uppercase;
+}
+
+html {
+  height: 100%;
+}
+
+p {
+  color: #000;
+  font-size: 24.5px;
+  line-height: 40px;
+  margin: 7px 0 38px;
+}
+
+#download {
+  border: 5px solid #333;
+  border-radius: 100px;
+  padding: 10px 27px;
+}
+
+#download .icon {
+  background: url("https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/download_icon.svg") no-repeat;
+  display: inline-block;
+  height: 37px;
+  margin-right: 13px;
+  width: 39px;
+}
+
+#download .label {
+  color: #333;
+  display: inline-block;
+  font-family: "Nunito", sans-serif;
+  font-size: 29px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  line-height: 37px;
+}
+
+#download * {
+  vertical-align: middle;
+}
+
+#google-play {
+  margin-left: 17px;
+}
+
+.mockup img {
+  width: 100%;
+  max-width: 568px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+a {
+  display: inline-block;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 510px;
+  padding: 0 20px;
+}
+
+.container .close {
+  color: #492F85;
+  font-family: "Nunito", sans-serif;
+  font-size: 19.5px;
+  font-weight: bold;
+  letter-spacing: -0.2px;
+  margin-top: 17px;
+  padding: 22px 0;
+}
+
+.drawing {
+  position: absolute;
+  z-index: -1;
+}
+
+.drawing.bottom {
+  bottom: 0;
+}
+
+.drawing.bottom.left {
+  left: 20%;
+}
+
+.drawing.left {
+  left: 0;
+  float: left;
+}
+
+.drawing.right {
+  right: 0;
+  float: right;
+}
+
+.drawing.top {
+  top: 0;
+}
+
+.drawing.top.right {
+  top: -194px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  height: 160px;
+  max-width: 335px;
+}
+
+.logo img {
+  height: 100%;
+}
+
+.mockup {
+  width: 40%;
+}
+
+.store-link {
+  width: 45%;
+}
+
+.store-link img {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.wrapper, .mockup {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.wrapper {
+  width: 60%;
+  padding: 120px 0;
+}
+
+@media (min-width: 1500px) {
+  .mockup {
+    width: 30%;
+  }
+
+  .wrapper {
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+    background: url("https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/background.png") #dedede;
+  }
+
+  h1 {
+    font-size: 20px;
+    letter-spacing: 0.53px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 18.5px;
+    line-height: 27px;
+  }
+
+  #download-links {
+    position: relative;
+  }
+
+  .drawing.bottom.left {
+    left: 0;
+    width: 45%;
+  }
+
+  .drawing.bottom.right {
+    width: 10%;
+  }
+
+  .drawing.top.left {
+    width: 50%;
+  }
+
+  .drawing.top.right {
+    display: none;
+  }
+
+  .logo {
+    height: 100px;
+  }
+
+  .mockup {
+    display: none;
+  }
+
+  .wrapper {
+    width: 100%;
+  }
+}
