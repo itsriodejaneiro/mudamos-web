@@ -6,4 +6,5 @@ $ ->
 
     elem = $($(this).attr('scroll-to'))
 
-    $.scrollTo(elem, 1000)
+    headerHeight = $(".base-navbar").height()
+    $.scrollTo(elem, 1000, { offset: -headerHeight })
