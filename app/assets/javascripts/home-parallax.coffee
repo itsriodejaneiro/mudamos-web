@@ -1,4 +1,4 @@
 #= require parallax.min
 $ ->
-  p = $('section#about').find('.full-background-image')
+  p = $('#cycles-index').find('.full-background-image.parallax-window')
   p.parallax()
