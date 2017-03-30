@@ -24,6 +24,10 @@ body
           opacity: 1
 
 #cycles-index
+  .blocks
+    background-color: rgba(0, 0, 0, 0.4)
+    position: relative
+
   .header
     background-color: #fff
     overflow: hidden
@@ -61,10 +65,14 @@ body
       height: 120px
 
   .block
-    background: transparent
+    margin-top: 100px
+    background: #e6e6e6 image-url("textured_paper.png")
     font-family: $nunito-font
     padding: 75px 0
     font-size: 24px
+
+    &:first-of-type
+      margin-top: 0
 
     &.no-title,
     &.carousel

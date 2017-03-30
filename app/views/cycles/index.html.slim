@@ -1,97 +1,100 @@
 - title = 'Mudamos'
 - description = strip_tags(Setting.find_by_key('home_sub_title').value)
 
-#cycles-index.container-fluid
-  .row.header
-    - if home_blocks.main_block.video_url.present?
-      = video_tag home_blocks.main_block.video_url, muted: true, autoplay: true, loop: true
-    - else
-      .image style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('#{home_blocks.main_block.picture.url :header}')"
-    .col-xs-12.text-center.content
-      .wrapper
-        = image_tag Setting.find_by_key("home_lead_logo").picture.url(:original), class: "logo"
-        h1= home_blocks.main_block.title.try :html_safe
+#cycles-index
+  .container-fluid
+    .row.header
+      - if home_blocks.main_block.video_url.present?
+        = video_tag home_blocks.main_block.video_url, muted: true, autoplay: true, loop: true
+      - else
+        .image style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('#{home_blocks.main_block.picture.url :header}')"
+      .col-xs-12.text-center.content
+        .wrapper
+          = image_tag Setting.find_by_key("home_lead_logo").picture.url(:original), class: "logo"
+          h1= home_blocks.main_block.title.try :html_safe
 
-  - if home_blocks.what_is.present?
-    section#about.row.block.purple class="#{ home_blocks.what_is.title.blank? && "no-title" }"
-      .col-sm-12.hidden-md.hidden-lg
-        .drawing
-          span.icon style="background-image: url('#{home_blocks.what_is.picture.url :original}')"
+  .container-fluid.blocks
+    .full-background-image.parallax-window data-parallax="scroll" data-image-src=home_blocks.main_block.picture.url(:header)
+    - if home_blocks.what_is.present?
+      section#about.row.block.purple class="#{ home_blocks.what_is.title.blank? && "no-title" }"
+        .col-sm-12.hidden-md.hidden-lg
+          .drawing
+            span.icon style="background-image: url('#{home_blocks.what_is.picture.url :original}')"
 
-      .col-md-offset-2.col-sm-12.col-md-8
-        .media
-          - if home_blocks.what_is.picture.present?
-            .drawing.media-left.media-middle.hidden-sm.hidden-xs
-              span.icon style="background-image: url('#{home_blocks.what_is.picture.url :original}')"
-          .content.media-body.media-middle
-            - if home_blocks.what_is.title.present?
-              h2 = home_blocks.what_is.title.html_safe
-            = home_blocks.what_is.body.try :html_safe
+        .col-md-offset-2.col-sm-12.col-md-8
+          .media
+            - if home_blocks.what_is.picture.present?
+              .drawing.media-left.media-middle.hidden-sm.hidden-xs
+                span.icon style="background-image: url('#{home_blocks.what_is.picture.url :original}')"
+            .content.media-body.media-middle
+              - if home_blocks.what_is.title.present?
+                h2 = home_blocks.what_is.title.html_safe
+              = home_blocks.what_is.body.try :html_safe
 
-  - if home_blocks.solution.present?
-    section#contribute.row.block.solution class="#{ home_blocks.solution.title.blank? && "no-title" }"
-      .col-sm-12.hidden-md.hidden-lg
-        .drawing
-          span.icon style="background-image: url('#{home_blocks.solution.picture.url :original}')"
+    - if home_blocks.solution.present?
+      section#contribute.row.block.solution class="#{ home_blocks.solution.title.blank? && "no-title" }"
+        .col-sm-12.hidden-md.hidden-lg
+          .drawing
+            span.icon style="background-image: url('#{home_blocks.solution.picture.url :original}')"
 
-      .col-md-offset-2.col-sm-12.col-md-8
-        .media
-          - if home_blocks.solution.picture.present?
-            .drawing.media-left.media-middle.hidden-sm.hidden-xs
-              span.icon style="background-image: url('#{home_blocks.solution.picture.url :original}')"
-          .content.media-body.media-middle
-            - if home_blocks.solution.title.present?
-              h2 = home_blocks.solution.title.html_safe
-            = home_blocks.solution.body.try :html_safe
+        .col-md-offset-2.col-sm-12.col-md-8
+          .media
+            - if home_blocks.solution.picture.present?
+              .drawing.media-left.media-middle.hidden-sm.hidden-xs
+                span.icon style="background-image: url('#{home_blocks.solution.picture.url :original}')"
+            .content.media-body.media-middle
+              - if home_blocks.solution.title.present?
+                h2 = home_blocks.solution.title.html_safe
+              = home_blocks.solution.body.try :html_safe
 
-  section#tools_carousel.row.home-block-tools.carousel.block.purple.visible-md-block.visible-lg-block
-    .col-xs-offset-2.col-xs-8
-      .row.row-md-same-height
-        .col-xs-5.col-md-height.col-middle.drawing.display
-          - home_blocks.tools.each do |tool|
-            .tool
-              i.icon.block-icon style="background-image: url('#{tool.picture.url :original}')"
-              h2.block-title = tool.title
-        .col-xs-offset-1.col-xs-6.col-md-height.col-middle.display.content
-          - home_blocks.tools.each do |tool|
-            .block-body = tool.body.try :html_safe
-    .col-xs-12
-      .row.options
-        - tools_size = home_blocks.tools.size
-        - offset = (12 - (tools_size * 2)) / 2
-        - home_blocks.tools.each_with_index do |tool, index|
-          .col-xs-2.tool.text-center class="#{index == 0 ? "col-xs-offset-#{offset}" : nil}"
-            .circle-wrapper
-              i.icon.block-icon.medium style="background-image: url('#{tool.picture.url :original}')"
-            h3.block-title = tool.title
-
-  - home_blocks.tools.each_with_index do |tool, index|
-    section.row.visible-xs-block.visible-sm-block.home-block-tools.block id="#{index.zero? ? "tools_no_carousel" : nil}" class="#{cycle "purple", nil}"
-      .col-xs-12.drawing.tool
-        .light-wrapper: i.icon style="background-image: url('#{tool.picture.url :original}')"
-      .col-sm-offset-2.col-sm-8.col-xs-12.content
-        h2 = tool.title
-        .block-body= tool.body.try :html_safe
-
-  - if home_blocks.mobilization.present?
-    section#cycles.row.block.mobilization class="#{ home_blocks.mobilization.title.blank? && "no-title" }"
-      .col-sm-12.hidden-md.hidden-lg
-        .drawing
-          span.icon style="background-image: url('#{home_blocks.mobilization.picture.url :original}')"
-
-      .col-md-offset-2.col-sm-12.col-md-8
+    section#tools_carousel.row.home-block-tools.carousel.block.purple.visible-md-block.visible-lg-block
+      .col-xs-offset-2.col-xs-8
         .row.row-md-same-height
-          .col-md-10.col-sm-12.col-md-height.col-middle
-            .media
-              - if home_blocks.mobilization.picture.present?
-                .drawing.media-left.media-middle.hidden-sm.hidden-xs
-                  span.icon style="background-image: url('#{home_blocks.mobilization.picture.url :original}')"
+          .col-xs-5.col-md-height.col-middle.drawing.display
+            - home_blocks.tools.each do |tool|
+              .tool
+                i.icon.block-icon style="background-image: url('#{tool.picture.url :original}')"
+                h2.block-title = tool.title
+          .col-xs-offset-1.col-xs-6.col-md-height.col-middle.display.content
+            - home_blocks.tools.each do |tool|
+              .block-body = tool.body.try :html_safe
+      .col-xs-12
+        .row.options
+          - tools_size = home_blocks.tools.size
+          - offset = (12 - (tools_size * 2)) / 2
+          - home_blocks.tools.each_with_index do |tool, index|
+            .col-xs-2.tool.text-center class="#{index == 0 ? "col-xs-offset-#{offset}" : nil}"
+              .circle-wrapper
+                i.icon.block-icon.medium style="background-image: url('#{tool.picture.url :original}')"
+              h3.block-title = tool.title
 
-              .content.media-body.media-middle
-                - if home_blocks.mobilization.title.present?
-                  h2 = home_blocks.mobilization.title.html_safe
-                = home_blocks.mobilization.body.try :html_safe
-          .col-md-2.hidden-sm.hidden-xs.col-md-height.col-middle
-            = image_tag "mobilization.svg"
+    - home_blocks.tools.each_with_index do |tool, index|
+      section.row.visible-xs-block.visible-sm-block.home-block-tools.block id="#{index.zero? ? "tools_no_carousel" : nil}" class="#{cycle "purple", nil}"
+        .col-xs-12.drawing.tool
+          .light-wrapper: i.icon style="background-image: url('#{tool.picture.url :original}')"
+        .col-sm-offset-2.col-sm-8.col-xs-12.content
+          h2 = tool.title
+          .block-body= tool.body.try :html_safe
+
+    - if home_blocks.mobilization.present?
+      section#cycles.row.block.mobilization class="#{ home_blocks.mobilization.title.blank? && "no-title" }"
+        .col-sm-12.hidden-md.hidden-lg
+          .drawing
+            span.icon style="background-image: url('#{home_blocks.mobilization.picture.url :original}')"
+
+        .col-md-offset-2.col-sm-12.col-md-8
+          .row.row-md-same-height
+            .col-md-10.col-sm-12.col-md-height.col-middle
+              .media
+                - if home_blocks.mobilization.picture.present?
+                  .drawing.media-left.media-middle.hidden-sm.hidden-xs
+                    span.icon style="background-image: url('#{home_blocks.mobilization.picture.url :original}')"
+
+                .content.media-body.media-middle
+                  - if home_blocks.mobilization.title.present?
+                    h2 = home_blocks.mobilization.title.html_safe
+                  = home_blocks.mobilization.body.try :html_safe
+            .col-md-2.hidden-sm.hidden-xs.col-md-height.col-middle
+              = image_tag "mobilization.svg"
 
   = javascript_include_tag 'navbar-sticky'
