@@ -1,69 +1,15 @@
 - breadcrumb :settings_edit
 
-.row
-  .col-xs-4
-    .title
-      h2 Lead inicial
-  .col-xs-8
-    .title
-      h2 Selecione uma Imagem
+.container#settings_index
+  .row
+    .col-xs-4
+      .title
+        h2 Lead inicial
+    .col-xs-8
+      .title
+        h2 Selecione uma Imagem
 
-.row.row-same-height
-  .col-xs-4.col-xs-height.col-top
-    .card-background
-    .setting-static-content
-      .row
-        .col-xs-12.setting-title
-          button.edit-setting-button
-            i.icon-edit
-      .row
-        .col-xs-12.setting-content
-          = Setting.find_by_key('home_sub_title').value.try :html_safe
-    .setting-form
-      .row
-        .col-xs-12
-          = semantic_form_for [:admin, Setting.find_by_key("home_sub_title")] do |f|
-            = f.input :value, label: false, input_html: { class: "setting-tinymce" }
-            = f.submit 'Salvar', class: "btn"
-  .col-xs-8.col-xs-height
-    = semantic_form_for [:admin, Setting.find_by_key('home_picture')], html: { class: 'image-form' } do |f|
-      = f.input :picture, as: :file, label: false, input_html: { class: 'image-upload' }
-      .file-input-image style="background-image: url('#{Setting.find_by_key('home_picture').picture.url(:header)}')"
-      = f.submit 'Salvar', class: "btn pull-right"
-      button.upload-image
-        .background
-        | Atualizar Foto
-
-.row
-  .col-xs-4
-    .title
-      h2 Selecione um video
-
-.row
-  .col-xs-4
-    - main_video = Setting.find_by_key("home_main_video")
-    = video_tag main_video.video_url, muted: true, autoplay: false, loop: true, controls: true
-    = semantic_form_for [:admin, main_video], html: { class: 'video-form' } do |f|
-      = f.inputs do
-        = f.input :video_url, as: :hidden, label: false, input_html: { class: "hidden-url" }
-        = f.input :video, as: :file, label: false, input_html: { class: 'video-upload' }
-      label.btn.text-uppercase.select-video-file for="setting_video" Atualizar video
-      button.remove-video type="button"
-        .background
-        | Remover video
-
-.row
-  .col-xs-12
-    .title
-      h2 Descrições
-    .row
-      .col-xs-12
-        .card-module
-          p style="margin: 0"
-            b SOBRE O MUDAMOS
-
-.row.row-same-height
-  - (1..3).each do |i|
+  .row.row-same-height
     .col-xs-4.col-xs-height.col-top
       .card-background
       .setting-static-content
@@ -71,133 +17,210 @@
           .col-xs-12.setting-title
             button.edit-setting-button
               i.icon-edit
-            = Setting.find_by_key("home_title#{i}").value.try :html_safe
         .row
           .col-xs-12.setting-content
-            = Setting.find_by_key("home_text#{i}").value.try :html_safe
+            = Setting.find_by_key('home_sub_title').value.try :html_safe
       .setting-form
         .row
           .col-xs-12
-            = semantic_form_for [:admin, Setting.find_by_key("home_title#{i}")] do |f|
-              = f.input :value, label: false, as: :string
-              = f.submit 'Salvar', class: "btn"
-        .row
-          .col-xs-12
-            = semantic_form_for [:admin, Setting.find_by_key("home_text#{i}")] do |f|
+            = semantic_form_for [:admin, Setting.find_by_key("home_sub_title")] do |f|
               = f.input :value, label: false, input_html: { class: "setting-tinymce" }
               = f.submit 'Salvar', class: "btn"
-
-.row
-  .col-xs-12
-    .title
-      h2 Blocos
-    .row
-      .col-xs-12
-        .card-module
-          p style="margin: 0"
-            b Novos blocos da home
-
-- (1..8).each do |i|
-  .row.row-same-height.margin-vertical
-    .col-xs-8.col-xs-height.col-top
-      .card-background
-      .setting-static-content
-        .row
-          .col-xs-12.setting-title
-            button.edit-setting-button
-              i.icon-edit
-            = Setting.find_by_key("home_block_#{i}_title").value.try :html_safe
-        .row
-          .col-xs-12.setting-content
-            = Setting.find_by_key("home_block_#{i}_body").value.try :html_safe
-      .setting-form
-        .row
-          .col-xs-12
-            = semantic_form_for [:admin, Setting.find_by_key("home_block_#{i}_title")] do |f|
-              = f.input :value, label: false, as: :string
-              = f.submit 'Salvar', class: "btn"
-        .row
-          .col-xs-12
-            = semantic_form_for [:admin, Setting.find_by_key("home_block_#{i}_body")] do |f|
-              = f.input :value, label: false, input_html: { class: "setting-tinymce" }
-              = f.submit 'Salvar', class: "btn"
-    .col-xs-4.col-xs-height
-      = semantic_form_for [:admin, Setting.find_by_key("home_block_#{i}_icon")], html: { class: 'image-form' } do |f|
+    .col-xs-8.col-xs-height
+      = semantic_form_for [:admin, Setting.find_by_key('home_picture')], html: { class: 'image-form' } do |f|
         = f.input :picture, as: :file, label: false, input_html: { class: 'image-upload' }
-        .file-input-image.setting-icon style="background-image: url('#{Setting.find_by_key("home_block_#{i}_icon").picture.url(:original)}')"
+        .file-input-image style="background-image: url('#{Setting.find_by_key('home_picture').picture.url(:header)}')"
         = f.submit 'Salvar', class: "btn pull-right"
         button.upload-image
           .background
-          | Atualizar Imagem
+          | Atualizar Foto
 
-.row
-  / .col-xs-4
-  /   .title
-  /     h2 Críticas e Sugestões
-  /   .card-module
-  /   .title
-  /     h2 Contato
-  /   .card-module
-  .col-xs-4
-    .title
-      h2 Links
-    .card-module
-      p style="margin: 0"
-        b REDES SOCIAIS
-      / .filters
-      /   span= link_to 'Adicionar Nova'
-    .card-module
-      table
-        tbody
-          - SocialLink.all.each do |sl|
-            tr
-              td
-                .setting-static-content
-                  .row
-                    .col-xs-12.text-left
-                      button.edit-setting-button
-                        i.icon-edit
-                      = sl.provider.capitalize
-                .setting-form
-                  = semantic_form_for [:admin, sl] do |f|
-                    = f.input :provider, label: "Rede Social"
-                    = f.input :link, label: "URL"
-                    = f.submit 'Salvar', class: "btn"
-                  = link_to 'Remover', [:admin, sl], method: :delete, class: 'btn'
-  .col-xs-4
-    .title
-      h2 Adicionar Nova Rede Social
-    .setting-form.card-module style="display: block"
-      = semantic_form_for [:admin, @social_link || SocialLink.new] do |f|
-        = f.input :provider, label: "Rede Social"
-        = f.input :description, label: "Descrição (para o Destaque)", as: :string
-        = f.input :link, label: "URL"
-        = f.input :icon_class, label: "Ícone", as: :select, collection: SocialLink.icons, input_html: { data: { 'search-disabled' => true, 'icon-select' => true } }
-        = f.submit 'Salvar', class: "btn"
+  .row
+    .col-xs-4
+      .title
+        h2 Selecione um video
+
+  .row
+    .col-xs-4
+      - main_video = Setting.find_by_key("home_main_video")
+      = video_tag main_video.video_url, muted: true, autoplay: false, loop: true, controls: true
+      = semantic_form_for [:admin, main_video], html: { class: 'video-form' } do |f|
+        = f.inputs do
+          = f.input :video_url, as: :hidden, label: false, input_html: { class: "hidden-url" }
+          = f.input :video, as: :file, label: false, input_html: { class: 'video-upload' }
+        label.btn.text-uppercase.select-video-file for="setting_video" Atualizar video
+        button.remove-video type="button"
+          .background
+          | Remover video
+
+  .row
+    .col-xs-4
+      .title
+        h2 Selecione o logo da capa
+
+  .row
+    .col-xs-8
+      - home_lead_logo = Setting.find_by_key("home_lead_logo")
+      = semantic_form_for [:admin, home_lead_logo], html: { class: 'image-form' } do |f|
+        .row
+          - mudamos_logos_urls.each do |logo|
+            .col-xs-4
+              = image_tag logo, class: "lead-logo"
+              - if home_lead_logo.picture_file_name =~ %r{#{File.basename logo}}
+                input type="radio" name="setting[picture]" value="#{logo}" checked="checked"
+              - else
+                input type="radio" name="setting[picture]" value="#{logo}"
+
+        .row
+          .col-xs-2
+            = f.submit 'Salvar'
+
+  .row
+    .col-xs-12
+      .title
+        h2 Descrições
+      .row
+        .col-xs-12
+          .card-module
+            p style="margin: 0"
+              b SOBRE O MUDAMOS
+
+  .row.row-same-height
+    - (1..3).each do |i|
+      .col-xs-4.col-xs-height.col-top
+        .card-background
+        .setting-static-content
+          .row
+            .col-xs-12.setting-title
+              button.edit-setting-button
+                i.icon-edit
+              = Setting.find_by_key("home_title#{i}").value.try :html_safe
+          .row
+            .col-xs-12.setting-content
+              = Setting.find_by_key("home_text#{i}").value.try :html_safe
+        .setting-form
+          .row
+            .col-xs-12
+              = semantic_form_for [:admin, Setting.find_by_key("home_title#{i}")] do |f|
+                = f.input :value, label: false, as: :string
+                = f.submit 'Salvar', class: "btn"
+          .row
+            .col-xs-12
+              = semantic_form_for [:admin, Setting.find_by_key("home_text#{i}")] do |f|
+                = f.input :value, label: false, input_html: { class: "setting-tinymce" }
+                = f.submit 'Salvar', class: "btn"
+
+  .row
+    .col-xs-12
+      .title
+        h2 Blocos
+      .row
+        .col-xs-12
+          .card-module
+            p style="margin: 0"
+              b Novos blocos da home
+
+  - (1..8).each do |i|
+    .row.row-same-height.margin-vertical
+      .col-xs-8.col-xs-height.col-top
+        .card-background
+        .setting-static-content
+          .row
+            .col-xs-12.setting-title
+              button.edit-setting-button
+                i.icon-edit
+              = Setting.find_by_key("home_block_#{i}_title").value.try :html_safe
+          .row
+            .col-xs-12.setting-content
+              = Setting.find_by_key("home_block_#{i}_body").value.try :html_safe
+        .setting-form
+          .row
+            .col-xs-12
+              = semantic_form_for [:admin, Setting.find_by_key("home_block_#{i}_title")] do |f|
+                = f.input :value, label: false, as: :string
+                = f.submit 'Salvar', class: "btn"
+          .row
+            .col-xs-12
+              = semantic_form_for [:admin, Setting.find_by_key("home_block_#{i}_body")] do |f|
+                = f.input :value, label: false, input_html: { class: "setting-tinymce" }
+                = f.submit 'Salvar', class: "btn"
+      .col-xs-4.col-xs-height
+        = semantic_form_for [:admin, Setting.find_by_key("home_block_#{i}_icon")], html: { class: 'image-form' } do |f|
+          = f.input :picture, as: :file, label: false, input_html: { class: 'image-upload' }
+          .file-input-image.setting-icon style="background-image: url('#{Setting.find_by_key("home_block_#{i}_icon").picture.url(:original)}')"
+          = f.submit 'Salvar', class: "btn pull-right"
+          button.upload-image
+            .background
+            | Atualizar Imagem
+
+  .row
+    / .col-xs-4
+    /   .title
+    /     h2 Críticas e Sugestões
+    /   .card-module
+    /   .title
+    /     h2 Contato
+    /   .card-module
+    .col-xs-4
+      .title
+        h2 Links
+      .card-module
+        p style="margin: 0"
+          b REDES SOCIAIS
+        / .filters
+        /   span= link_to 'Adicionar Nova'
+      .card-module
+        table
+          tbody
+            - SocialLink.all.each do |sl|
+              tr
+                td
+                  .setting-static-content
+                    .row
+                      .col-xs-12.text-left
+                        button.edit-setting-button
+                          i.icon-edit
+                        = sl.provider.capitalize
+                  .setting-form
+                    = semantic_form_for [:admin, sl] do |f|
+                      = f.input :provider, label: "Rede Social"
+                      = f.input :link, label: "URL"
+                      = f.submit 'Salvar', class: "btn"
+                    = link_to 'Remover', [:admin, sl], method: :delete, class: 'btn'
+    .col-xs-4
+      .title
+        h2 Adicionar Nova Rede Social
+      .setting-form.card-module style="display: block"
+        = semantic_form_for [:admin, @social_link || SocialLink.new] do |f|
+          = f.input :provider, label: "Rede Social"
+          = f.input :description, label: "Descrição (para o Destaque)", as: :string
+          = f.input :link, label: "URL"
+          = f.input :icon_class, label: "Ícone", as: :select, collection: SocialLink.icons, input_html: { data: { 'search-disabled' => true, 'icon-select' => true } }
+          = f.submit 'Salvar', class: "btn"
 
 
 
-javascript:
-  $('button.edit-setting-button').click(function(){
-    var static = $(this).parents('.setting-static-content:first');
-    var form = static.next('.setting-form')
+  javascript:
+    $('button.edit-setting-button').click(function(){
+      var static = $(this).parents('.setting-static-content:first');
+      var form = static.next('.setting-form')
 
-    if(static.parents("table").length > 0) {
-      if(form.hasClass('in')) {
-        form.slideUp(function(){
-          form.removeClass("in")
-        });
+      if(static.parents("table").length > 0) {
+        if(form.hasClass('in')) {
+          form.slideUp(function(){
+            form.removeClass("in")
+          });
+        } else {
+          form.slideDown(function(){
+            form.addClass("in")
+          });
+        }
       } else {
-        form.slideDown(function(){
-          form.addClass("in")
-        });
+        var bg = static.prev('.card-background')
+
+        form.show();
+        static.hide();
+        bg.hide();
       }
-    } else {
-      var bg = static.prev('.card-background')
 
-      form.show();
-      static.hide();
-      bg.hide();
-    }
-
-  });
+    });
