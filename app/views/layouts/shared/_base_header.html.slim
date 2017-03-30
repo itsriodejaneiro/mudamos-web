@@ -22,10 +22,10 @@
         ul.nav.navbar-nav.navbar-center.non-cycle
           - if params[:controller] == 'cycles' and params[:action] == 'index'
             li= link_to 'Sobre', '#', :'scroll-to' => '#about'
-            li= link_to 'Participar', '#', :'scroll-to' => '#contribute'
+            li= link_to 'Ferramentas', '#', :'scroll-to' => '#contribute'
           - else
             li= link_to 'Sobre', root_path + '#about'
-            li= link_to 'Participar', root_path + '#contribute'
+            li= link_to 'Ferramentas', root_path + '#contribute'
           li.dropdown class=("dropup" if params[:controller] == 'cycles' and params[:action] == 'index')
             = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, role: 'button' do
               | Ciclos

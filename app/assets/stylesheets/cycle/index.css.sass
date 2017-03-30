@@ -14,6 +14,7 @@ body
 
   .header
     background-color: #fff
+    overflow: hidden
     position: relative
     height: 300px
 
@@ -50,13 +51,13 @@ body
   .block
     background: transparent
     font-family: $nunito-font
-    padding: 150px 0
+    padding: 75px 0
     font-size: 24px
 
     &.no-title,
     &.carousel
       font-weight: 400
-      font-size: 32px
+      font-size: 28px
 
     &.purple
       background: linear-gradient(90deg, rgba(33, 17, 71, 0.85) 0, rgba(81, 51, 147, 0.85) 100%), image-url("textured_paper.png"), #e3e3e3
@@ -85,18 +86,37 @@ body
         margin-top: 50px
 
         .tool
+          .block-title
+            color: rgba(255, 255, 255, 0.8)
+
+          &.active
+            .block-title
+              color: #fff
+
           &:hover
+          &.active
             .icon
               height: 70px
               width: 70px
-              margin: 0 0 10px
+              margin: 5px
+
+            .circle-wrapper
+              background-color: rgba(255, 255, 255, 0.25)
 
           .block-title
             font-size: 22px
             margin-top: 10px
 
+          .circle-wrapper
+            display: inline-block
+            padding: 20px
+            background-color: rgba(255, 255, 255, 0.1)
+            border-radius: 60px
+            cursor: pointer
+            +transition(all 0.2s ease)
+
       .icon
-        display: inline-block
+        display: block
         background-size: contain
         background-repeat: no-repeat
         background-position: center
@@ -137,7 +157,7 @@ body
 
     h2
       font-family: $fira-sans-font
-      font-size: 32px
+      font-size: 28px
       font-weight: bold
       margin: 0 0 16px
 
@@ -153,8 +173,8 @@ body
         background-position: center
         background-repeat: no-repeat
         display: inline-block
-        height: 230px
-        width: 230px
+        height: 175px
+        width: 175px
 
     .background-drawing
       position: absolute
@@ -170,14 +190,18 @@ body
 
   @media (min-width: $screen-md-min)
     .block
+      &.mobilization
+        padding: 30px
+
       .drawing
-        text-align: right
+        text-align: center
 
         .icon
-          background-position: right center
+          background-position: center
 
       .content
-        padding-left: 30px
+        // padding-left: 30px
+        padding-left: 40px
 
   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max)
     .block
@@ -196,14 +220,14 @@ body
         margin-bottom: 25px
 
         .icon
-          height: 150px
-          width: 150px
+          height: 100px
+          width: 100px
 
       &.no-title
-        font-size: 28px
+        font-size: 24px
 
       h2
-        font-size: 28px
+        font-size: 24px
         margin-bottom: 8px
 
     .header
@@ -217,7 +241,7 @@ body
     .block
       padding: 30px 22px
       text-align: center
-      font-size: 17px
+      font-size: 16px
 
       &:not(.purple)
         .drawing
@@ -234,10 +258,10 @@ body
           width: 100px
 
       &.no-title
-        font-size: 21px
+        font-size: 18px
 
       h2
-        font-size: 21px
+        font-size: 18px
         margin-bottom: 6px
 
     .header

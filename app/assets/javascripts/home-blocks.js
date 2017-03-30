@@ -10,12 +10,20 @@
 
     function toggleTool() {
       var $tool = $(this);
-      var index = $tool.parent().children().index($tool);
+      var activeIndex = $tool.parent().children().index($tool);
 
       hideAll();
 
-      $($section.find(".display .tool")[index]).show();
-      $($section.find(".display .block-body")[index]).show();
+      $($section.find(".display .tool")[activeIndex]).show();
+      $($section.find(".display .block-body")[activeIndex]).show();
+
+      $section.find(".options .tool").each(function(index, tool) {
+        if (index == activeIndex) {
+          $(tool).addClass("active");
+        } else {
+          $(tool).removeClass("active");
+        }
+      });
     }
 
     hideAll();

@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #271]: Improves the homepage layout
 * [PR #263]: Add lead logo settings (Issue 263)
   - Run `rake settings:add_home_lead_logo`
 
