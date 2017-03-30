@@ -6,8 +6,8 @@
     - if home_blocks.main_block.video_url.present?
       = video_tag home_blocks.main_block.video_url, muted: true, autoplay: true, loop: true
     - else
-      .image style="background-image: url('#{home_blocks.main_block.picture.url :header}')"
-    .col-md-offset-5.col-lg-5.col-md-4.col-sm-12.col-xs-12.text-center.content
+      .image style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('#{home_blocks.main_block.picture.url :header}')"
+    .col-xs-12.text-center.content
       .wrapper
         = image_tag Setting.find_by_key("home_lead_logo").picture.url(:original), class: "logo"
         h1= home_blocks.main_block.title.try :html_safe
