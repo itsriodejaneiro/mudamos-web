@@ -1,5 +1,7 @@
 ## Next
 
+## [1.8.0] - 30/03/2017
+
 * [PR #273]: Adjust scroll anchor on home page (Issue 268)
 * [PR #272]: Header assets now have the full viewport height (Issue 267)
 * [PR #271]: Improves the homepage layout
