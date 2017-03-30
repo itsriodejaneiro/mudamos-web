@@ -14,29 +14,35 @@
 
   - if home_blocks.what_is.present?
     section#about.row.block.purple class="#{ home_blocks.what_is.title.blank? && "no-title" }"
-      .col-md-offset-2.col-md-3.col-sm-12.drawing
-        - if home_blocks.what_is.picture.present?
+      .col-sm-12.hidden-md.hidden-lg
+        .drawing
           span.icon style="background-image: url('#{home_blocks.what_is.picture.url :original}')"
 
-      .col-md-offset-0.col-sm-offset-2.col-lg-4.col-md-5.col-sm-8.content
-        - if home_blocks.what_is.title.present?
-          h2 = home_blocks.what_is.title.html_safe
-        = home_blocks.what_is.body.try :html_safe
+      .col-md-offset-2.col-sm-12.col-md-8
+        .media
+          - if home_blocks.what_is.picture.present?
+            .drawing.media-left.media-middle.hidden-sm.hidden-xs
+              span.icon style="background-image: url('#{home_blocks.what_is.picture.url :original}')"
+          .content.media-body.media-middle
+            - if home_blocks.what_is.title.present?
+              h2 = home_blocks.what_is.title.html_safe
+            = home_blocks.what_is.body.try :html_safe
 
   - if home_blocks.solution.present?
     section#contribute.row.block.solution class="#{ home_blocks.solution.title.blank? && "no-title" }"
-      = image_tag "puzzle-piece.svg", class: "background-drawing top-left visible-lg-block"
-      = image_tag "puzzle-piece.svg", class: "background-drawing top-right visible-lg-block"
-      = image_tag "puzzle-piece.svg", class: "background-drawing bottom-right visible-lg-block"
-
-      .col-lg-offset-1.col-md-offset-2.col-md-3.col-sm-12.drawing
-        - if home_blocks.solution.picture.present?
+      .col-sm-12.hidden-md.hidden-lg
+        .drawing
           span.icon style="background-image: url('#{home_blocks.solution.picture.url :original}')"
 
-      .col-sm-offset-2.col-md-offset-0.col-lg-4.col-md-5.col-sm-8.content  class="#{ home_blocks.solution.title.blank? && "no-title" }"
-        - if home_blocks.solution.title.present?
-          h2 = home_blocks.solution.title.html_safe
-        = home_blocks.solution.body.try :html_safe
+      .col-md-offset-2.col-sm-12.col-md-8
+        .media
+          - if home_blocks.solution.picture.present?
+            .drawing.media-left.media-middle.hidden-sm.hidden-xs
+              span.icon style="background-image: url('#{home_blocks.solution.picture.url :original}')"
+          .content.media-body.media-middle
+            - if home_blocks.solution.title.present?
+              h2 = home_blocks.solution.title.html_safe
+            = home_blocks.solution.body.try :html_safe
 
   section.row.home-block-tools.carousel.block.purple.visible-md-block.visible-lg-block
     .col-xs-offset-2.col-xs-8
@@ -55,7 +61,8 @@
         - offset = (12 - (tools_size * 2)) / 2
         - home_blocks.tools.each_with_index do |tool, index|
           .col-xs-2.tool.text-center class="#{index == 0 ? "col-xs-offset-#{offset}" : nil}"
-            i.icon.block-icon.medium style="background-image: url('#{tool.picture.url :original}')"
+            .circle-wrapper
+              i.icon.block-icon.medium style="background-image: url('#{tool.picture.url :original}')"
             h3.block-title = tool.title
 
   - home_blocks.tools.each_with_index do |tool, index|
@@ -68,15 +75,23 @@
 
   - if home_blocks.mobilization.present?
     section#cycles.row.block.mobilization class="#{ home_blocks.mobilization.title.blank? && "no-title" }"
-      = image_tag "mobilization.svg", class: "background-drawing visible-lg-block"
-
-      .col-lg-offset-1.col-md-offset-2.col-md-3.col-sm-12.drawing
-        - if home_blocks.mobilization.picture.present?
+      .col-sm-12.hidden-md.hidden-lg
+        .drawing
           span.icon style="background-image: url('#{home_blocks.mobilization.picture.url :original}')"
 
-      .col-md-offset-0.col-sm-offset-2.col-lg-4.col-md-5.col-sm-8.content
-        - if home_blocks.mobilization.title.present?
-          h2 = home_blocks.mobilization.title.html_safe
-        = home_blocks.mobilization.body.try :html_safe
+      .col-md-offset-2.col-sm-12.col-md-8
+        .row.row-md-same-height
+          .col-md-10.col-sm-12.col-md-height.col-middle
+            .media
+              - if home_blocks.mobilization.picture.present?
+                .drawing.media-left.media-middle.hidden-sm.hidden-xs
+                  span.icon style="background-image: url('#{home_blocks.mobilization.picture.url :original}')"
+
+              .content.media-body.media-middle
+                - if home_blocks.mobilization.title.present?
+                  h2 = home_blocks.mobilization.title.html_safe
+                = home_blocks.mobilization.body.try :html_safe
+          .col-md-2.hidden-sm.hidden-xs.col-md-height.col-middle
+            = image_tag "mobilization.svg"
 
   = javascript_include_tag 'navbar-sticky'
