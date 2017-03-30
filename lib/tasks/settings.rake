@@ -123,4 +123,12 @@ namespace :settings do
       setting.save!
     end
   end
+
+  desc "Add lead logo"
+  task add_home_lead_logo: :environment do
+    Setting.find_or_initialize_by(key: "home_lead_logo") do |setting|
+      setting.picture = "https://s3-sa-east-1.amazonaws.com/mudamos-images/images/home-lead-mudamos-logo-dark.svg"
+      setting.save!
+    end
+  end
 end

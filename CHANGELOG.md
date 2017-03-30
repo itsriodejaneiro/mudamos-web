@@ -1,5 +1,8 @@
 ## Next
 
+* [PR #263]: Add lead logo settings (Issue 263)
+  - Run `rake settings:add_home_lead_logo`
+
 ## [1.7.0] - 29/03/2017
 
 * [PR #260]: Changes the upper navbar layout (Issue 246)

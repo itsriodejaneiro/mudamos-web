@@ -90,4 +90,11 @@ module ApplicationHelper
       allowfullscreen: 1,
       class: "you-tube-iframe"
   end
+
+  def mudamos_logos_urls
+    [
+      "https://s3-sa-east-1.amazonaws.com/mudamos-images/images/home-lead-mudamos-logo-dark.svg",
+      "https://s3-sa-east-1.amazonaws.com/mudamos-images/images/home-lead-mudamos-logo.svg"
+    ]
+  end
 end
