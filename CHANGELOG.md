@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #272]: Header assets now have the full viewport height (Issue 267)
 * [PR #271]: Improves the homepage layout
 * [PR #263]: Add lead logo settings (Issue 263)
   - Run `rake settings:add_home_lead_logo`
