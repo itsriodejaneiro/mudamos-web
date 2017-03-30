@@ -7,6 +7,7 @@ body
     background: #e6e6e6 image-url("textured_paper.png")
 
     .footer-nav
+      margin-top: 30px
       background-color: transparent
 
     nav.navbar.navbar-default.navbar-fixed-top
@@ -62,7 +63,8 @@ body
         vertical-align: middle
 
     .logo
-      height: 120px
+      height: 160px
+      max-width: 100%
 
   .block
     margin-top: 100px
@@ -142,6 +144,10 @@ body
         background-position: center
         +transition(all 0.2s ease)
 
+        &.highlighted
+          height: 120px
+          width: 120px
+
         &.medium
           height: 60px
           width: 60px
@@ -168,6 +174,7 @@ body
           height: 130px
 
     &.mobilization
+      margin-bottom: 100px
       position: relative
 
       .background-drawing
