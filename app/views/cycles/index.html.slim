@@ -31,6 +31,8 @@
                 h2 = home_blocks.what_is.title.html_safe
               = home_blocks.what_is.body.try :html_safe
 
+          = next_block_link
+
     - if home_blocks.solution.present?
       section#contribute.row.block.solution class="#{ home_blocks.solution.title.blank? && "no-title" }"
         .col-sm-12.hidden-md.hidden-lg
@@ -46,6 +48,8 @@
               - if home_blocks.solution.title.present?
                 h2 = home_blocks.solution.title.html_safe
               = home_blocks.solution.body.try :html_safe
+
+          = next_block_link
 
     section#tools_carousel.row.home-block-tools.carousel.block.purple.visible-md-block.visible-lg-block
       .col-xs-offset-2.col-xs-8
@@ -68,6 +72,8 @@
                 i.icon.block-icon.medium style="background-image: url('#{tool.picture.url :original}')"
               h3.block-title = tool.title
 
+        = next_block_link
+
     - home_blocks.tools.each_with_index do |tool, index|
       section.row.visible-xs-block.visible-sm-block.home-block-tools.block id="#{index.zero? ? "tools_no_carousel" : nil}" class="#{cycle "purple", nil}"
         .col-xs-12.drawing.tool
@@ -75,6 +81,8 @@
         .col-sm-offset-2.col-sm-8.col-xs-12.content
           h2 = tool.title
           .block-body= tool.body.try :html_safe
+
+          = next_block_link
 
     - if home_blocks.mobilization.present?
       section#cycles.row.block.mobilization class="#{ home_blocks.mobilization.title.blank? && "no-title" }"

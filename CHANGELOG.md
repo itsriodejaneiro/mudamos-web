@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #282]: Add “scroll to” functionality to the home blocks (Issue 270)
+
 ## [1.8.0] - 30/03/2017
 
 * [PR #273]: Adjust scroll anchor on home page (Issue 268)
