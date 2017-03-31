@@ -33,7 +33,28 @@
     $section.find(".options .tool:first").trigger("mouseover");
   }
 
+  function blockScrollTo() {
+    $(".block-scroll-to").each(function() {
+      var $link = $(this);
+      var $block = $link.closest("section");
+
+      // Removes link if there is not next section
+      if ($block.nextAll("section:visible").length == 0) {
+        $link.remove();
+      }
+    }).on("click", function(e) {
+      e.preventDefault();
+
+      var $nextBlock = $(this).closest("section").nextAll("section:visible").get(0);
+      var $navBar = $(".base-navbar");
+      var headerHeight = $navBar.hasClass("stuck") ? -$navBar.height() : 20;
+
+      $.scrollTo($nextBlock, 1000, { offset: headerHeight });
+    });
+  }
+
   $(document).ready(function() {
     homeTools();
+    blockScrollTo();
   });
 })(jQuery);
