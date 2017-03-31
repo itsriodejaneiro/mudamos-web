@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #283]: Center cycle home description when single phased (Issue 218)
 * [PR #282]: Add “scroll to” functionality to the home blocks (Issue 270)
 
 ## [1.8.0] - 30/03/2017
