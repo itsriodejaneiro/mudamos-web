@@ -1,0 +1,19 @@
+.row.phase.text-center
+  div
+    .date
+      = "De #{phase.initial_date.to_short_date}"
+      br
+      = "Até #{phase.final_date.to_short_date}"
+
+  .phase-description.text-center
+    .row
+      .col-xs-12
+        i class="icon-#{(phase.plugin_relation.plugin.icon_class)}" style="color: #{phase.cycle.color}"
+        div
+          .status style="color: #{phase.cycle.color}" = phase.current_status
+    .row
+      .col-xs-12
+        h3.phase-plugin-title = phase.name
+        p= phase.description.html_safe
+    .row.cycle-more
+      .col-xs-12= link_to_plugin_page phase

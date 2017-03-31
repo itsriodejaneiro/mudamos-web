@@ -10,7 +10,8 @@ section.container-fluid#cycle-hero
   .full-background-image style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('#{@cycle.picture(:header)}');"
   .full-background-image.blur style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('#{@cycle.picture(:header)}'); opacity: 0;"
 
-section.not-centered#cycle-description
+- single_phased = @cycle.phases.count == 1
+section.not-centered#cycle-description class="#{single_phased ? "single-phased" : ""}"
   .container
     .row
       .col-xs-12.text-center
@@ -24,17 +25,24 @@ section.not-centered#cycle-description
               .col-xs-12
                 = link_to 'Saiba mais', "https://mudamos-its-production-images.s3.amazonaws.com/uploads/production/compilation_files/1/files/original.pdf?1472596045", style: "color: #{@cycle.color}"
     .row
-      .col-xs-12.col-sm-10.col-sm-offset-1
-        .row.phases.row-same-height
-          .col-xs-12.col-sm-6.col-sm-height.col-top
-            .arrow
-            - @cycle.phases.each_with_index do |phase, i|
-              - next if i % 2 != 0
-              = render 'layouts/shared/phase_description', phase: phase, align: 'right', i: i
-          .col-xs-12.col-sm-6.col-sm-height.col-top style="padding-top: 100px"
-            - @cycle.phases.each_with_index do |phase, i|
-              - next if i % 2 == 0
-              = render 'layouts/shared/phase_description', phase: phase, align: 'left', i: i
+
+      - if single_phased
+        .col-xs-12.col-sm-6.col-sm-offset-3.text-center
+          .row.phases.row-same-height
+            .col-xs-12.col-xs-height.col-top.text-center
+              = render 'layouts/shared/single_phase_description', phase: @cycle.phases.first
+      - else
+        .col-xs-12.col-sm-10.col-sm-offset-1
+          .row.phases.row-same-height
+            .col-xs-12.col-sm-6.col-sm-height.col-top
+              .arrow
+              - @cycle.phases.each_with_index do |phase, i|
+                - next if i % 2 != 0
+                = render 'layouts/shared/phase_description', phase: phase, align: 'right', i: i
+            .col-xs-12.col-sm-6.col-sm-height.col-top style="padding-top: 100px"
+              - @cycle.phases.each_with_index do |phase, i|
+                - next if i % 2 == 0
+                = render 'layouts/shared/phase_description', phase: phase, align: 'left', i: i
 
 
 - if @cycle.current_phase.present?
