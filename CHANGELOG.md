@@ -1,6 +1,7 @@
 ## Next
 
 * [PR #296]: Changed the app store link (Issue 288)
+  - Set `MOBILE_APP_STORE_PAGE_IOS` to `https://itunes.apple.com/br/app/mudamos/id1214485690?ls=1&mt=8`
 * [PR #295]: Show the app landing page only once (Issue 286)
 * [PR #284]: Fix report broken link (Issue 252)
 * [PR #283]: Center cycle home description when single phased (Issue 218)
