@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #284]: Fix report broken link (Issue 252)
 * [PR #283]: Center cycle home description when single phased (Issue 218)
 * [PR #282]: Add “scroll to” functionality to the home blocks (Issue 270)
 

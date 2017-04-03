@@ -4,14 +4,15 @@
       h1.section-title style="border-color: #{@cycle.color};" Relatoria
 
   - if @plugin_relation.compilation_file.file.exists?
+    - compilation_url = @plugin_relation.compilation_file.file.url
     .row
       .col-xs-12
         .report-call-to-action
-          a.report-download style="border: 5px solid #{@cycle.color};" href=@plugin_relation.compilation_file.file.url target="_blank"
+          a.report-download style="border: 5px solid #{@cycle.color};" href=compilation_url target="_blank"
             span Faça o Download do relatório Mudamos
             span.action-tail style="border-top: 80px solid #{@cycle.color};" &nbsp
             .hover-box style="background-color: #{@cycle.color};"
-          a.download-icon href=""
+          a.download-icon href=compilation_url target="_blank"
             .icon
               i.icon-baixeaqui style="color: #{@cycle.color};"
             | Relatorio_mudamos.pdf
