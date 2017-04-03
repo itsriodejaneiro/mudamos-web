@@ -38,7 +38,6 @@
               - @cycles.each do |c|
                 li= link_to c.title, c
               li= link_to 'Reforma Política do Século 21', 'http://plataformabrasil.org.br/', target: '_blank'
-          li= link_to 'Validar Documento', verify_petitions_path
     = render 'layouts/search_bar'
 
 - if params[:controller] == 'cycles' and params[:action] == 'index'
