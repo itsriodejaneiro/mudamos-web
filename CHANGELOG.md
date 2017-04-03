@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #296]: Changed the app store link (Issue 288)
 * [PR #295]: Show the app landing page only once (Issue 286)
 * [PR #284]: Fix report broken link (Issue 252)
 * [PR #283]: Center cycle home description when single phased (Issue 218)
