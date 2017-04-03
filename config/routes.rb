@@ -149,8 +149,7 @@ Rails.application.routes.draw do
 
   match '/ping', to: 'ping#show', via: :get
 
-  root "static_pages#landing"
-  get "home" => "cycles#index"
+  root "cycles#index"
 
   resources :cycles, only: [:show], path: 'temas' do
     cycle_routes

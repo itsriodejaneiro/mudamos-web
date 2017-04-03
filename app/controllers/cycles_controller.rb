@@ -1,5 +1,5 @@
 class CyclesController < ApplicationController
-  before_action :home_blocks, only: %i(index)
+  before_action :home_blocks, :app_landing_page, only: %i(index)
 
   def home_block_repository
     @home_block_repository ||= HomeBlockRepository.new
@@ -17,4 +17,11 @@ class CyclesController < ApplicationController
     @home_blocks ||= home_block_repository.blocks
   end
   helper_method :home_blocks
+
+  def app_landing_page
+    unless cookies[:has_seen_app_landing]
+      cookies[:has_seen_app_landing] = true
+      render file: Rails.public_path.join("landing.html"), layout: false
+    end
+  end
 end
