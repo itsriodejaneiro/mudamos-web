@@ -97,4 +97,12 @@ module ApplicationHelper
       "https://s3-sa-east-1.amazonaws.com/mudamos-images/images/home-lead-mudamos-logo.svg"
     ]
   end
+
+  def mobile_app_ios_store_url
+    Rails.application.secrets.mobile_app["store_page"]["ios"]
+  end
+
+  def mobile_app_android_store_url
+    Rails.application.secrets.mobile_app["store_page"]["android"]
+  end
 end
