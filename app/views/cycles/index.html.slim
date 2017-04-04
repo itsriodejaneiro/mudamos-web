@@ -16,12 +16,13 @@
   .container-fluid.blocks
     .full-background-image.parallax-window data-parallax="scroll" data-image-src=home_blocks.main_block.picture.url(:header)
     - if home_blocks.what_is.present?
-      section#about.row.block.purple class="#{ home_blocks.what_is.title.blank? && "no-title" }"
-        .col-sm-12.hidden-md.hidden-lg
-          .drawing
-            span.icon style="background-image: url('#{home_blocks.what_is.picture.url :original}')"
+      section#about.row.block.purple class="#{ home_blocks.what_is.title.blank? && "no-title" } #{home_blocks.what_is.picture.blank? && "no-icon"}"
+        - if home_blocks.what_is.picture.present?
+          .col-sm-12.hidden-md.hidden-lg
+            .drawing
+              span.icon style="background-image: url('#{home_blocks.what_is.picture.url :original}')"
 
-        .col-md-offset-2.col-sm-12.col-md-8
+        .col-sm-12 class="#{home_blocks.what_is.picture.present? && "col-md-offset-2 col-md-8"}"
           .media
             - if home_blocks.what_is.picture.present?
               .drawing.media-left.media-middle.hidden-sm.hidden-xs
@@ -34,12 +35,13 @@
           = next_block_link
 
     - if home_blocks.solution.present?
-      section#contribute.row.block.solution class="#{ home_blocks.solution.title.blank? && "no-title" }"
-        .col-sm-12.hidden-md.hidden-lg
-          .drawing
-            span.icon style="background-image: url('#{home_blocks.solution.picture.url :original}')"
+      section#contribute.row.block.solution class="#{ home_blocks.solution.title.blank? && "no-title" } #{home_blocks.solution.picture.blank? && "no-icon"}"
+        - if home_blocks.solution.picture.present?
+          .col-sm-12.hidden-md.hidden-lg
+            .drawing
+              span.icon style="background-image: url('#{home_blocks.solution.picture.url :original}')"
 
-        .col-md-offset-2.col-sm-12.col-md-8
+        .col-sm-12 class="#{home_blocks.solution.picture.present? && "col-md-offset-2 col-md-8"}"
           .media
             - if home_blocks.solution.picture.present?
               .drawing.media-left.media-middle.hidden-sm.hidden-xs
@@ -52,6 +54,15 @@
           = next_block_link
 
     section#tools_carousel.row.home-block-tools.carousel.block.purple.visible-md-block.visible-lg-block
+      .col-xs-12
+        .row.options
+          - tools_size = home_blocks.tools.size
+          - offset = (12 - (tools_size * 2)) / 2
+          - home_blocks.tools.each_with_index do |tool, index|
+            .col-xs-2.tool.text-center class="#{index == 0 ? "col-xs-offset-#{offset}" : nil}"
+              .circle-wrapper
+                i.icon.block-icon.medium style="background-image: url('#{tool.picture.url :original}')"
+              h3.block-title = tool.title
       .col-xs-offset-2.col-xs-8
         .row.row-md-same-height
           .col-xs-5.col-md-height.col-middle.drawing.display
@@ -62,15 +73,6 @@
           .col-xs-offset-1.col-xs-6.col-md-height.col-middle.display.content
             - home_blocks.tools.each do |tool|
               .block-body = tool.body.try :html_safe
-      .col-xs-12
-        .row.options
-          - tools_size = home_blocks.tools.size
-          - offset = (12 - (tools_size * 2)) / 2
-          - home_blocks.tools.each_with_index do |tool, index|
-            .col-xs-2.tool.text-center class="#{index == 0 ? "col-xs-offset-#{offset}" : nil}"
-              .circle-wrapper
-                i.icon.block-icon.medium style="background-image: url('#{tool.picture.url :original}')"
-              h3.block-title = tool.title
 
         = next_block_link
 
@@ -85,10 +87,11 @@
           = next_block_link
 
     - if home_blocks.mobilization.present?
-      section#cycles.row.block.mobilization class="#{ home_blocks.mobilization.title.blank? && "no-title" }"
-        .col-sm-12.hidden-md.hidden-lg
-          .drawing
-            span.icon style="background-image: url('#{home_blocks.mobilization.picture.url :original}')"
+      section#cycles.row.block.mobilization class="#{ home_blocks.mobilization.title.blank? && "no-title" } #{home_blocks.mobilization.picture.blank? && "no-icon"}"
+        - if home_blocks.mobilization.picture.present?
+          .col-sm-12.hidden-md.hidden-lg
+            .drawing
+              span.icon style="background-image: url('#{home_blocks.mobilization.picture.url :original}')"
 
         .col-md-offset-2.col-sm-12.col-md-8
           .row.row-md-same-height

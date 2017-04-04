@@ -97,6 +97,10 @@ body
       font-weight: 400
       font-size: 28px
 
+    &.no-icon
+      .content
+        text-align: center
+
     &.purple
       background: linear-gradient(90deg, rgba(33, 17, 71, 0.85) 0, rgba(81, 51, 147, 0.85) 100%), image-url("textured_paper.png"), #e3e3e3
       color: #eeede9
@@ -129,7 +133,7 @@ body
           margin: 16px 0 0
 
       .options
-        margin-top: 50px
+        margin-bottom: 50px
 
         .tool
           .block-title
@@ -251,8 +255,11 @@ body
           background-position: center
 
       .content
-        // padding-left: 30px
         padding-left: 40px
+
+      &.no-icon
+        .content
+          padding-left: 0
 
   @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max)
     .block

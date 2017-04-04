@@ -146,9 +146,14 @@
                 = f.submit 'Salvar', class: "btn"
       .col-xs-4.col-xs-height
         = semantic_form_for [:admin, Setting.find_by_key("home_block_#{i}_icon")], html: { class: 'image-form' } do |f|
+          - setting_icon = Setting.find_by_key("home_block_#{i}_icon")
+          input type="hidden" name="setting[picture_destroy]"
           = f.input :picture, as: :file, label: false, input_html: { class: 'image-upload' }
-          .file-input-image.setting-icon style="background-image: url('#{Setting.find_by_key("home_block_#{i}_icon").picture.url(:original)}')"
+          .file-input-image.setting-icon style="#{setting_icon.picture? ? "background-image: url('#{setting_icon.picture.url(:original)}')" : ""}"
           = f.submit 'Salvar', class: "btn pull-right"
+          button.remove-image type="button"
+            .background
+            | Remover Imagem
           button.upload-image
             .background
             | Atualizar Imagem
@@ -223,4 +228,16 @@
         bg.hide();
       }
 
+    });
+
+    $(document).ready(function() {
+      $("body").on("click", ".remove-image", function(e) {
+        e.preventDefault();
+
+        var $form = $(this).closest("form");
+        $form.find("[name='setting[picture]']").val("");
+        $form.find("[name='setting[picture_destroy]']").val(true);
+        $form.find(".file-input-image").css("background-image", "none");
+        $form.trigger("submit");
+      });
     });

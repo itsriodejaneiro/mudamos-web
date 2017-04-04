@@ -19,10 +19,15 @@ class Admin::SettingsController < Admin::ApplicationController
   private
 
     def setting_params
-      params.require(:setting).permit(
+      return @setting_params if @setting_params
+
+      @setting_params = params.require(:setting).permit(
         :value,
         :picture,
         :video_url
       )
+
+      @setting_params[:picture] = nil if params[:setting][:picture_destroy].present?
+      @setting_params
     end
 end

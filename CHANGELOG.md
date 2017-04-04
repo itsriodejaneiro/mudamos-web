@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #298]: Add new solution and tools home block design (Issue 293)
 * [PR #297]: Remove verify document link from the menu (Issue 292)
 * [PR #296]: Changed the app store link (Issue 288)
   - Set `MOBILE_APP_STORE_PAGE_IOS` to `https://itunes.apple.com/br/app/mudamos/id1214485690?ls=1&mt=8`
