@@ -249,6 +249,10 @@ nav.navbar.navbar-default
 
 
 .base-navbar, nav.navbar.navbar-default .simple-navbar
+  @media (max-width: $screen-xs-max)
+    max-height: 100vh
+    overflow-y: scroll
+
   .search
     opacity: 0
     +transition(all 0.3s ease)
@@ -2193,7 +2197,7 @@ section#vocabularies-index, .vocabulary-search-result
   width: 100%
   z-index: 1000
   padding-bottom: 60px
-  max-height: 100vh
+  max-height: 50vh
   overflow-y: scroll
 
   .no-results
