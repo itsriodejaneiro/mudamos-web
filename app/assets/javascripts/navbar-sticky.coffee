@@ -11,7 +11,8 @@ $ ->
     bar.find('.notification-dropdown').css('top','-325px')
 
   if bar.length > 0
-    offset = parseInt(bar.position().top)
+    smallGap = 3
+    offset = parseInt(bar.position().top) - smallGap
 
     sticky = new Waypoint.Sticky
       element: bar[0]

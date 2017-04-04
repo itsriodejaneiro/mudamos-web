@@ -10,6 +10,25 @@ body
       margin-top: 30px
       background-color: transparent
 
+
+    .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus
+      background: linear-gradient(90deg, rgba(17, 17, 17, 0.7) 0, rgba(17, 17, 17, 0.7) 100%), linear-gradient(90deg, rgba(81, 51, 147, 0.85) 0, rgba(81, 51, 147, 0.85) 100%), #fff
+
+    @media (max-width: $screen-xs-max)
+      #base-navbar-collapse
+        background: linear-gradient(90deg, rgba(17, 17, 17, 0.7) 0, rgba(17, 17, 17, 0.7) 100%), linear-gradient(90deg, rgba(81, 51, 147, 0.85) 0, rgba(81, 51, 147, 0.85) 100%), #fff
+        max-height: initial
+
+      .base-navbar
+        max-height: 100vh
+        overflow-y: scroll
+
+      .search-results
+        position: static
+        height: auto
+        overflow: initial
+        overflow-y: initial
+
     nav.navbar.navbar-default.navbar-fixed-top
       position: absolute
       top: calc(100% - #{$navbar-height})
@@ -23,6 +42,22 @@ body
         .navbar-brand,
         .navbar-toggle
           opacity: 1
+
+      .dropdown-menu
+        border: none
+
+      .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu
+        margin-bottom: 0
+
+      ul.dropdown-menu
+        li
+          border: none
+
+          a
+            background: linear-gradient(90deg, rgba(17, 17, 17, 0.7) 0, rgba(17, 17, 17, 0.7) 100%), linear-gradient(90deg, rgba(81, 51, 147, 0.85) 0, rgba(81, 51, 147, 0.85) 100%), #fff
+
+            &:hover
+              background: linear-gradient(90deg, rgba(17, 17, 17, 0.8) 0, rgba(17, 17, 17, 0.8) 100%), linear-gradient(90deg, rgba(81, 51, 147, 0.85) 0, rgba(81, 51, 147, 0.85) 100%), #fff
 
 #cycles-index
   .blocks
