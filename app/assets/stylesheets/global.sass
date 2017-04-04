@@ -189,7 +189,6 @@ nav.navbar.navbar-default
       color: #fff
 
   .secondary-navbar
-    height: $secondary-navbar-height
     ul.nav.navbar-nav
       li
         a
@@ -2065,19 +2064,15 @@ section#vocabularies-index, .vocabulary-search-result
 .search-bar
   display: none
   background-color: $color-grid-light-grey
-  padding-top: 60px
-  position: relative
-  padding-left: 15px
+  margin: 0
+  padding: 30px 30px 30px 15px
 
   @media (max-width: $screen-xs-max)
-    padding-top: 22px
+    padding: 15px 15px 15px 0
 
-  &.small
-    .close
-      top: 50%
-      +transform(translateY(-50%))
-      &:hover
-        +transform(translateY(-50%) scale(1.2))
+  .close
+    position: static
+    transform: initial
   .search-title
     vertical-align: middle
     font-size: 16px
@@ -2095,7 +2090,7 @@ section#vocabularies-index, .vocabulary-search-result
   input
     font-size: 70px
     font-family: $font-family-sans-serif
-    padding: 30px 0 90px 0
+    padding: 0
     width: 100%
     border: none
     background-color: $color-grid-light-grey
@@ -2105,13 +2100,10 @@ section#vocabularies-index, .vocabulary-search-result
     @media (max-width: $screen-xs-max)
       font-size: 30px
   &.small
-    padding-top: 0
     .search-title-row
       display: none
     input
       font-size: 30px
-      padding: 60px 0
-      padding-right: 120px
 
 .search-results
   display: none
@@ -2119,8 +2111,9 @@ section#vocabularies-index, .vocabulary-search-result
   width: 100%
   z-index: 1000
   padding-bottom: 60px
+  max-height: 100vh
   overflow-y: scroll
-  height: 100vh
+
   .no-results
     color: black
     font-size: 50px
