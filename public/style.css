@@ -6,6 +6,7 @@ body {
   background:
     linear-gradient(105deg, rgba(0, 0, 0, 0.24) 42%, transparent 70%),
     url("https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/background.png") #dedede;
+  background-attachment: fixed;
   font-family: "Nunito", sans-serif;
   height: 100%;
   min-height: 100%;
@@ -72,8 +73,9 @@ p {
 }
 
 .mockup img {
-  width: 100%;
-  max-width: 568px;
+  height: calc(100vh - 40px);
+  max-height: 698px;
+  min-height: 570px;
 }
 
 .clearfix {
@@ -170,7 +172,7 @@ a {
 
 .wrapper {
   width: 60%;
-  padding: 120px 0;
+  padding: 40px 0;
 }
 
 @media (min-width: 1500px) {
@@ -231,5 +233,6 @@ a {
 
   .wrapper {
     width: 100%;
+    padding: 80px 0 10px;
   }
 }
