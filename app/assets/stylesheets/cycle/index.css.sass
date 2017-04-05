@@ -1,6 +1,28 @@
 @import "bourbon"
 @import "bootstrap/variables"
 @import "custom_variables"
+@import "ico-font"
+
+// Mixins
+@mixin arrow($color, $direction)
+  background-color: $color
+  position: relative
+  @if $direction == 'left'
+    +transform(rotate(180deg))
+  &:after
+    @extend [class^="icon-"]
+    @extend .icon-arrow:before
+    color: $color
+    position: absolute
+    top: 50%
+    right: 0
+    margin-right: -3px
+
+@mixin small-arrow($color, $direction: '')
+  +arrow($color, $direction)
+  &:after
+    font-size: 24px
+    margin-top: -12px
 
 body
   &.cycles-index
@@ -219,7 +241,6 @@ body
         padding: 30px 22px
 
     &.mobilization
-      margin-bottom: 100px
       position: relative
 
       .background-drawing
@@ -351,3 +372,82 @@ body
 
       video
         opacity: 0.5
+
+  section#cycles_cards
+    background: #e6e6e6 image-url("textured_paper.png")
+    padding-bottom: 30px
+    margin-bottom: 100px
+    background-color: $color-grid-light-grey
+    .cycle-item
+      @media (max-width: $screen-xs-max)
+        height: 500px
+      @media (max-width: $screen-sm-max)
+        height: 300px
+      @media (max-width: $screen-md-max)
+        height: 400px
+      @media (min-width: $screen-lg-min)
+        height: 500px
+      text-align: center
+      position: relative
+      z-index: 1
+      margin-bottom: 20px
+      border-radius: 5px
+      overflow: hidden
+      font-family: $nunito-font
+
+      .full-background-image
+        +transition(all 0.2s ease)
+
+      &:hover
+        .black-overlay
+          opacity: 0.5
+
+        .full-background-image
+          height: 103%
+
+      .cycle-title
+        color: white
+        font-family: $fira-sans-font
+        font-size: 42px
+        line-height: 56px
+        font-weight: 700
+        text-transform: uppercase
+        position: absolute
+        width: calc(100% - 60px)
+        top: 50%
+        margin-top: -30px
+        left: 30px
+        +transform(translateY(-50%))
+      .cycle-footer
+        position: absolute
+        bottom: 0
+        height: 60px
+        width: 100%
+        left: 0
+        color: white
+        background: linear-gradient(90deg, rgba(17, 17, 17, 0.5), rgba(17, 17, 17, 0.5)), linear-gradient(90deg, rgba(81, 51, 147, 0.95), rgba(81, 51, 147, 0.95)), #fff
+        &:hover
+          text-decoration: none
+          span
+            text-decoration: underline
+        span
+          font-size: 20px
+          text-transform: uppercase
+          font-weight: 700
+        .arrow, span
+          vertical-align: middle
+          color: white
+          line-height: 60px
+        .arrow
+          width: 30px
+          @include small-arrow(white)
+          display: inline-block
+          margin-right: 16px
+          border-color: inherit
+          &::before
+            margin-left: -15px
+          &::after
+            border-color: inherit !important
+
+    @media (max-width: $screen-xs-max)
+      padding: 0 22px 30px

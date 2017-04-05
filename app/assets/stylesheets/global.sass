@@ -796,67 +796,6 @@ section#highlights
     color: $color-blue
 
 
-
-section#cycles
-  padding: 60px 0
-  background-color: $color-grid-light-grey
-  .cycle-item
-    @media (max-width: $screen-xs-max)
-      height: 500px
-    @media (max-width: $screen-sm-max)
-      height: 300px
-    @media (max-width: $screen-md-max)
-      height: 400px
-    @media (min-width: $screen-lg-min)
-      height: 500px
-    text-align: center
-    position: relative
-    z-index: 1
-    margin-bottom: 20px
-    .cycle-title
-      color: white
-      font-size: 42px
-      line-height: 56px
-      font-family: $font-family-sans-serif
-      font-weight: 900
-      text-transform: uppercase
-      position: absolute
-      width: calc(100% - 60px)
-      top: 50%
-      margin-top: -30px
-      left: 30px
-      +transform(translateY(-50%))
-    .cycle-footer
-      position: absolute
-      bottom: 0
-      height: 60px
-      width: 100%
-      left: 0
-      color: white
-      &:hover
-        text-decoration: none
-        span
-          text-decoration: underline
-      span
-        font-family: $font-family-sans-serif
-        font-size: 20px
-        text-transform: uppercase
-        font-weight: 700
-      .arrow, span
-        vertical-align: middle
-        color: white
-        line-height: 60px
-      .arrow
-        width: 30px
-        @include small-arrow(white)
-        display: inline-block
-        margin-right: 10px
-        border-color: inherit
-        &::before
-          margin-left: -15px
-        &::after
-          border-color: inherit !important
-
 .cycle-description
   margin-top: 90px
   padding-bottom: 30px
@@ -2566,7 +2505,6 @@ nav.navbar.navbar-default .navbar-cycle-text
 .nav.navbar-nav.navbar-right
   @media (max-width: $screen-xs-max)
     display: inline-block
-    float: right
   li
     @media (max-width: $screen-xs-max)
       display: inline-block
