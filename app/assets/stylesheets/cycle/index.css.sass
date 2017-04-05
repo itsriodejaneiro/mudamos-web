@@ -77,6 +77,9 @@ body
     padding: 75px 0
     font-size: 24px
 
+    &#tools_carousel, &#tools_no_carousel
+      margin-top: 0
+
     .next
       position: absolute
       bottom: -50px
@@ -186,6 +189,13 @@ body
           margin: 10px
 
     &.solution
+      .next
+        display: none
+
+      .media
+        p
+          margin: 0
+
       .background-drawing
         &.top-left
           height: 74px
@@ -204,6 +214,9 @@ body
           right: calc(100%/12 * 3)
           transform: rotate(350deg)
           height: 130px
+
+      @media (max-width: $screen-xs-max)
+        padding: 30px 22px
 
     &.mobilization
       margin-bottom: 100px
