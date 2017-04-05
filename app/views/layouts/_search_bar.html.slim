@@ -7,9 +7,10 @@
           | Buscar
         p.search-sub-title Comece digitando algo...
     .row
-      .col-xs-12.text-left
+      .col-xs-10.text-left
         = text_field_tag :search, params[:search], onkeyup: "this.setAttribute('value', this.value);", autocomplete: :off
-    .close
-      i.icon-close
+      .col-xs-2
+        .close
+          i.icon-close
 
 .search-results

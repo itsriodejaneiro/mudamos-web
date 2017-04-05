@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #300]: New drop menu colors and fixed mobile interaction (Issue 289, 290)
 * [PR #298]: Add new solution and tools home block design (Issue 293)
 * [PR #297]: Remove verify document link from the menu (Issue 292)
 * [PR #296]: Changed the app store link (Issue 288)

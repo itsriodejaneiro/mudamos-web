@@ -77,9 +77,6 @@ make_the_search = ->
 
         navbar_height = $('nav.navbar.navbar-default.navbar-fixed-top').height()
 
-        $('.search-results').css
-          height: "#{$(window).height() - (navbar_height)}px"
-
         document.stop_loading()
         results.fadeIn 'fast', ->
           tab = results.find('.blog-bottom-area:first').parents('.tab-pane:first')

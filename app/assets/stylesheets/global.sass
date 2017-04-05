@@ -77,6 +77,8 @@ li.icon-item
 // General Styling for all pages
 nav.navbar.navbar-default
   text-align: center
+  border: none
+
   .container
     position: relative
   a
@@ -188,7 +190,6 @@ nav.navbar.navbar-default
       color: #fff
 
   .secondary-navbar
-    height: $secondary-navbar-height
     ul.nav.navbar-nav
       li
         a
@@ -208,6 +209,16 @@ nav.navbar.navbar-default
     font-size: 16px
     font-weight: 300
   .user-dropdown
+    .dropdown-menu
+      position: absolute
+      top: 100%
+      left: 0
+
+      li
+        width: 100%
+
+      @media (max-width: $screen-xs-max)
+        position: absolute
     a
       padding: 10px 20px
     .user-menu-image
@@ -225,7 +236,7 @@ nav.navbar.navbar-default
         vertical-align: middle
 
       &+ span
-        max-width: 48px
+        max-width: 15vw
         text-overflow: ellipsis
         overflow: hidden
         display: inline-block
@@ -237,18 +248,93 @@ nav.navbar.navbar-default
           display: initial
 
 
-.base-navbar
+.base-navbar, nav.navbar.navbar-default .simple-navbar
+  @media (max-width: $screen-xs-max)
+    max-height: 100vh
+    overflow-y: scroll
+
   .search
     opacity: 0
     +transition(all 0.3s ease)
     a
       cursor: default
+
+  .dropdown-menu
+    border: none
+
+  .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu
+    margin-bottom: 0
+
+  .nav.navbar-nav
+    .dropdown.open
+      a
+        background: linear-gradient(90deg, rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.7)), linear-gradient(90deg, rgba(81, 51, 147, 0.85), rgba(81, 51, 147, 0.85)), #fff
+        &:hover
+          background: linear-gradient(90deg, rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.8)), linear-gradient(90deg, rgba(81, 51, 147, 0.85), rgba(81, 51, 147, 0.85)), #fff
+      ul.dropdown-menu
+        li
+          border: none
+          border-color: transparent
+
+          a
+            background: linear-gradient(90deg, rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.7)), linear-gradient(90deg, rgba(81, 51, 147, 0.85), rgba(81, 51, 147, 0.85)), #fff
+
+            &:hover
+              background: linear-gradient(90deg, rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.8)), linear-gradient(90deg, rgba(81, 51, 147, 0.85), rgba(81, 51, 147, 0.85)), #fff
+
+  @media (max-width: $screen-xs-max)
+    .dropdown.user-dropdown.open .dropdown-menu
+      position: static
+
+      li
+        width: initial
+
+    .nav.navbar-nav.navbar-right
+      background: none
+      display: inline-block
+      float: none
+
+      li.dropdown.open
+        background: none
+        .dropdown-menu, a
+          background: none
+
+          li
+            border: none
+            a
+              background: none
+
+  @media (max-width: $screen-xs-max)
+    #base-navbar-collapse
+      background: linear-gradient(90deg, rgba(17, 17, 17, 0.7), rgba(17, 17, 17, 0.7)), linear-gradient(90deg, rgba(81, 51, 147, 0.85), rgba(81, 51, 147, 0.85)), #fff
+      max-height: initial
+
+    .base-navbar
+      max-height: 100vh
+      overflow-y: scroll
+
+    .search-results
+      position: static
+      max-height: initial
+      overflow: initial
+      overflow-y: initial
+
 .base-navbar.stuck
   .search
     opacity: 1 !important
     a
       cursor: pointer !important
 
+nav.navbar.navbar-default .simple-navbar
+  .nav.navbar-nav.navbar-right
+    float: right
+    margin-left: 0
+    margin-right: -50px
+
+    @media (min-width: $screen-sm-min)
+      margin-right: -50px
+    @media (min-width: $screen-md-min)
+      margin-right: -15px
 
 .body-container > nav:first-child + section.auto-spacing
   padding: 22px 0
@@ -2064,15 +2150,15 @@ section#vocabularies-index, .vocabulary-search-result
 .search-bar
   display: none
   background-color: $color-grid-light-grey
-  padding-top: 60px
-  position: relative
-  padding-left: 15px
-  &.small
-    .close
-      top: 50%
-      +transform(translateY(-50%))
-      &:hover
-        +transform(translateY(-50%) scale(1.2))
+  margin: 0
+  padding: 30px 30px 30px 15px
+
+  @media (max-width: $screen-xs-max)
+    padding: 15px 15px 15px 0
+
+  .close
+    position: static
+    transform: initial
   .search-title
     vertical-align: middle
     font-size: 16px
@@ -2090,31 +2176,30 @@ section#vocabularies-index, .vocabulary-search-result
   input
     font-size: 70px
     font-family: $font-family-sans-serif
-    padding: 30px 0 90px 0
+    padding: 0
     width: 100%
     border: none
     background-color: $color-grid-light-grey
     &:focus
       outline: 0
+
+    @media (max-width: $screen-xs-max)
+      font-size: 30px
   &.small
-    padding-top: 0
     .search-title-row
       display: none
     input
       font-size: 30px
-      padding: 60px 0
-      padding-right: 120px
 
 .search-results
   display: none
   background-color: white
   width: 100%
-  position: fixed
   z-index: 1000
-  height: 100vh
-  overflow: hidden
-  overflow-y: auto
   padding-bottom: 60px
+  max-height: 50vh
+  overflow-y: scroll
+
   .no-results
     color: black
     font-size: 50px
@@ -2722,7 +2807,6 @@ a.copy-to-clipboard
 .nav.navbar-nav.navbar-center.non-cycle
   @media (max-width: $screen-xs-max)
     display: block
-    margin-top: 60px
 nav.navbar.navbar-default ul.navbar-center.non-cycle li
   @media (max-width: $screen-xs-max)
     display: block

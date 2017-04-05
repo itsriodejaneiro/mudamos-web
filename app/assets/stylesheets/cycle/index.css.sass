@@ -10,13 +10,17 @@ body
       margin-top: 30px
       background-color: transparent
 
+
     nav.navbar.navbar-default.navbar-fixed-top
       position: absolute
       top: calc(100% - #{$navbar-height})
-      .navbar-brand,
-      .navbar-toggle
-        opacity: 0
+      .navbar-brand, .navbar-toggle
+        opacity: 1
         +transition(opacity 0.3s ease)
+
+        @media (min-width: $screen-sm-min)
+          opacity: 0
+
       &.stuck
         position: fixed
         top: 0
