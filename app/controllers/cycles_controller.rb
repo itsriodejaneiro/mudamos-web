@@ -20,7 +20,13 @@ class CyclesController < ApplicationController
 
   def app_landing_page
     unless cookies[:has_seen_app_landing]
-      cookies[:has_seen_app_landing] = true
+      cookies[:has_seen_app_landing] = {
+        value: true,
+        expires: 1.year.from_now,
+        secure: !Rails.env.development?,
+        httponly: true
+      }
+
       render file: Rails.public_path.join("landing.html"), layout: false
     end
   end
