@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #304]: Glue the solution home block to the tools together (Issue 299)
 * [PR #303]: Fix app landing scroll (Issue 285)
 * [PR #302]: Add app landing cookie as secure and httponly (Issue 301)
 * [PR #300]: New drop menu colors and fixed mobile interaction (Issue 289, 290)
