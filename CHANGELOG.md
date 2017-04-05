@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #302]: Add app landing cookie as secure and httponly (Issue 301)
 * [PR #300]: New drop menu colors and fixed mobile interaction (Issue 289, 290)
 * [PR #298]: Add new solution and tools home block design (Issue 293)
 * [PR #297]: Remove verify document link from the menu (Issue 292)
