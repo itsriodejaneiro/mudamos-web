@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #305]: Add cycles to home (Issue 294)
 * [PR #304]: Glue the solution home block to the tools together (Issue 299)
 * [PR #303]: Fix app landing scroll (Issue 285)
 * [PR #302]: Add app landing cookie as secure and httponly (Issue 301)
