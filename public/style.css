@@ -102,12 +102,149 @@ a {
   padding: 22px 0;
 }
 
+.animatable {
+  visibility: hidden;
+}
+
 .drawing {
   position: absolute;
   z-index: -1;
+  opacity: 0.6;
 }
 
+.drawing.small {
+  width: 114px;
+  height: 114px;
+}
+
+.drawing.big {
+  width: 508px;
+  height: 508px;
+}
+
+.animatable.anim, .animatable.no-anim {
+  visibility: visible; /* after detecting the animation support, make them appear */
+}
+
+.drawing.bottom.right {
+  bottom: -38px;
+  right: -12px;
+  float: right;
+}
+
+.drawing.bottom.right.anim {
+  bottom: -114px; /* hide it before animation to avoid flickering if there is a animation delay */
+}
+
+.drawing.bottom.left {
+  bottom: -154px;
+  left: 20%;
+  float: left;
+  opacity: 0.75;
+}
+
+.drawing.bottom.left.anim {
+  bottom: -508px; /* hide it before animation to avoid flickering if there is a animation delay */
+}
+
+.drawing.top.right {
+  top: -194px;
+  right: -245px;
+  float: right;
+  width: 606px;
+  height: 606px;
+}
+
+.drawing.top.right.anim {
+  top: 100vh;
+  right: -217px;
+}
+
+.drawing.top.left.one {
+  top: -78px;
+  left: -120px;
+  float: left;
+}
+
+.drawing.top.left.one.anim {
+  top: 100vh;
+  left: -148px;
+}
+
+.drawing.top.left.two {
+  top: -148px;
+  left: 25%;
+  float: left;
+  width: 320px;
+  height: 320px;
+}
+
+.drawing.top.left.two.anim {
+  top: 100vh;
+  left: 16%;
+}
+
+.drawing.top.left.three {
+  top: 260px;
+  left: -18px;
+  float: left;
+}
+
+.drawing.top.left.three.anim {
+  top: 100vh;
+  left: -46px;
+}
+
+.drawing.top.left.four {
+  top: 54px;
+  left: 162px;
+  float: left;
+}
+
+.drawing.top.left.four.anim {
+  top: 100vh;
+  left: 136px;
+}
+
+.drawing.top.left.five {
+  top: 4px;
+  left: 274px;
+  float: left;
+}
+
+.drawing.top.left.five.anim {
+  top: 100vh;
+  left: 246px;
+}
+
+.drawing.top.left.six {
+  top: 68px;
+  left: 354px;
+  float: left;
+}
+
+.drawing.top.left.six.anim {
+  top: 100vh;
+  left: 326px;
+}
+
+.drawing.top.left.seven {
+  top: 140px;
+  left: 538px;
+  float: left;
+}
+
+.drawing.top.left.seven.anim {
+  top: 100vh;
+  left: 510px;
+}
+
+/*
 .drawing.bottom {
+  bottom: 0;
+}
+
+.drawing.bottom.no-anim {
   bottom: 0;
 }
 
@@ -132,6 +269,7 @@ a {
 .drawing.top.right {
   top: -194px;
 }
+*/
 
 .hidden {
   display: none !important;
@@ -206,7 +344,7 @@ a {
     position: relative;
   }
 
-  .drawing.bottom.left {
+  /*.drawing.bottom.left {
     left: 0;
     width: 45%;
   }
@@ -217,7 +355,7 @@ a {
 
   .drawing.top.left {
     width: 50%;
-  }
+  }*/
 
   .drawing.top.right {
     display: none;
@@ -234,5 +372,128 @@ a {
   .wrapper {
     width: 100%;
     padding: 80px 0 10px;
+  }
+}
+
+.drawing.anim {
+  animation: 6s linear 0s infinite normal fly;
+}
+
+.drawing.anim.small {
+  animation-delay: 0s;
+}
+
+.drawing.anim.big {
+  animation-delay: 2s;
+  animation-duration: 3s;
+}
+
+.drawing.anim.small.bottom.right {
+  animation-name: fly-small-bottom-right;
+}
+
+.drawing.anim.big.bottom.left {
+  animation-name: fly-big-bottom-left;
+}
+
+.drawing.anim.big.top.right {
+  animation-name: fly-big-top-right;
+}
+
+.drawing.anim.big.top.left.one {
+  animation-name: fly-big-top-left-one;
+}
+
+.drawing.anim.big.top.left.two {
+  animation-name: fly-big-top-left-two;
+}
+
+.drawing.anim.small.top.left.three {
+  animation-name: fly-small-top-left-three;
+}
+
+.drawing.anim.small.top.left.four {
+  animation-name: fly-small-top-left-four;
+}
+
+.drawing.anim.small.top.left.five {
+  animation-name: fly-small-top-left-five;
+}
+
+.drawing.anim.small.top.left.six {
+  animation-name: fly-small-top-left-six;
+}
+
+.drawing.anim.small.top.left.seven {
+  animation-name: fly-small-top-left-seven;
+}
+
+@keyframes fly-small-bottom-right {
+  to {
+    bottom: 100vh;
+    right: -40px;
+  }
+}
+
+@keyframes fly-big-bottom-left {
+  to {
+    bottom: 100vh;
+    left: 28%;
+  }
+}
+
+@keyframes fly-big-top-right {
+  to {
+    top: -606px;
+    right: -245px;
+  }
+}
+
+@keyframes fly-big-top-left-one {
+  to {
+    top: -508px;
+    left: 0;
+  }
+}
+
+@keyframes fly-big-top-left-two {
+  to {
+    top: -320px;
+    left: 26%;
+  }
+}
+
+@keyframes fly-small-top-left-three {
+  to {
+    top: -114px;
+    left: 0
+  }
+}
+
+@keyframes fly-small-top-left-four {
+  to {
+    top: -114px;
+    left: 174px
+  }
+}
+
+@keyframes fly-small-top-left-five {
+  to {
+    top: -114px;
+    left: 284px
+  }
+}
+
+@keyframes fly-small-top-left-six {
+  to {
+    top: -114px;
+    left: 362px;
+  }
+}
+
+@keyframes fly-small-top-left-seven {
+  to {
+    top: -114px;
+    left: 546px;
   }
 }
