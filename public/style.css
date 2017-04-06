@@ -328,17 +328,18 @@ a {
 
   .drawing.bottom.right {
     bottom: -6px;
-    right: -6px;
+    right: -2%;
   }
 
   .drawing.bottom.right.anim {
     bottom: 0;
+    right: -2%;
     transform: translateY(100%);
   }
 
   .drawing.bottom.left {
     left: 0;
-    bottom: 0;
+    bottom: -22px;
   }
 
   .drawing.bottom.left.anim {
@@ -349,70 +350,72 @@ a {
 
   .drawing.top.left.one {
     top: -6px;
-    left: -6px;
+    left: -4%;
   }
 
   .drawing.top.left.one.anim {
     top: 100%;
-    left: -34px;
+    left: -7%;
   }
 
   .drawing.top.left.two {
     top: -36px;
+    left: 25%;
   }
 
   .drawing.top.left.two.anim {
     top: 100%;
+    left: 22%;
   }
 
   .drawing.top.left.three {
     top: 46px;
-    left: -4px;
+    left: -1.5%;
   }
 
   .drawing.top.left.three.anim {
     top: 100%;
-    left: -36px;
+    left: -4.5%;
   }
 
   .drawing.top.left.four {
     top: 6px;
-    left: 38px;
+    left: 9%;
   }
 
   .drawing.top.left.four.anim {
     top: 100%;
-    left: 10px;
+    left: 6%;
   }
 
   .drawing.top.left.five {
     top: 0;
-    left: 64px;
+    left: 17%;
   }
 
   .drawing.top.left.five.anim {
     top: 100%;
-    left: 36px;
+    left: 14%;
   }
 
   .drawing.top.left.six {
     top: 14px;
-    left: 90px;
+    left: 24%;
   }
 
   .drawing.top.left.six.anim {
     top: 100%;
-    left: 62px;
+    left: 21%;
   }
 
   .drawing.top.left.seven {
     top: 40px;
-    left: 125px;
+    left: 40%;
   }
 
   .drawing.top.left.seven.anim {
     top: 100%;
-    left: 97px;
+    left: 37%;
   }
 
   .logo {
@@ -595,7 +598,7 @@ a {
   }
 
   .drawing.anim.small.top.left.six {
-    animation-delay: 170ms;
+    animation-delay: 230ms;
   }
 
   .drawing.anim.small.top.left.seven {
@@ -613,7 +616,7 @@ a {
   @keyframes fly-small-bottom-right {
     to {
       bottom: 100%;
-      right: -34px;
+      right: -6%;
       transform: translateY(0);
     }
   }
@@ -621,7 +624,7 @@ a {
   @keyframes fly-big-bottom-left {
     to {
       bottom: 100%;
-      left: 28px;
+      left: 4%;
       transform: translateY(0);
     }
   }
@@ -629,7 +632,7 @@ a {
   @keyframes fly-big-top-left-one {
     to {
       top: 0;
-      left: 2px;
+      left: -3%;
       transform: translateY(-100%);
     }
   }
@@ -645,7 +648,7 @@ a {
   @keyframes fly-small-top-left-three {
     to {
       top: 0;
-      left: 4px;
+      left: -2.5%;
       transform: translateY(-100%);
     }
   }
@@ -653,7 +656,7 @@ a {
   @keyframes fly-small-top-left-four {
     to {
       top: 0;
-      left: 46px;
+      left: 10%;
       transform: translateY(-100%);
     }
   }
@@ -661,7 +664,7 @@ a {
   @keyframes fly-small-top-left-five {
     to {
       top: 0;
-      left: 72px;
+      left: 18%;
       transform: translateY(-100%);
     }
   }
@@ -669,7 +672,7 @@ a {
   @keyframes fly-small-top-left-six {
     to {
       top: 0px;
-      left: 98px;
+      left: 25%;
       transform: translateY(-100%);
     }
   }
@@ -677,7 +680,7 @@ a {
   @keyframes fly-small-top-left-seven {
     to {
       top: 0px;
-      left: 133px;
+      left: 41%;
       transform: translateY(-100%);
     }
   }
