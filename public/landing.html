@@ -93,9 +93,8 @@
           var animation = false,
               elm = document.createElement('div');
 
-          if( elm.style.animationName !== undefined ) { animation = true; }
+          if(elm.style.animationName !== undefined) { animation = true; }
 
-          animation = true;
           $(".animatable").addClass(animation ? "anim" : "no-anim");
         });
       })(window.jQuery);
