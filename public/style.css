@@ -379,52 +379,57 @@ a {
   animation: 6s linear 0s infinite normal fly;
 }
 
-.drawing.anim.small {
-  animation-delay: 0s;
-}
-
 .drawing.anim.big {
-  animation-delay: 2s;
   animation-duration: 3s;
 }
 
 .drawing.anim.small.bottom.right {
+  animation-delay: 1.7s;
   animation-name: fly-small-bottom-right;
 }
 
 .drawing.anim.big.bottom.left {
+  animation-delay: 2s;
   animation-name: fly-big-bottom-left;
 }
 
 .drawing.anim.big.top.right {
+  animation-delay: 400ms;
   animation-name: fly-big-top-right;
 }
 
 .drawing.anim.big.top.left.one {
+  animation-delay: 500ms;
   animation-name: fly-big-top-left-one;
 }
 
 .drawing.anim.big.top.left.two {
+  animation-delay: 0s;
   animation-name: fly-big-top-left-two;
 }
 
 .drawing.anim.small.top.left.three {
+  animation-delay: 1.3s;
   animation-name: fly-small-top-left-three;
 }
 
 .drawing.anim.small.top.left.four {
+  animation-delay: 520ms;
   animation-name: fly-small-top-left-four;
 }
 
 .drawing.anim.small.top.left.five {
+  animation-delay: 250ms;
   animation-name: fly-small-top-left-five;
 }
 
 .drawing.anim.small.top.left.six {
+  animation-delay: 500ms;
   animation-name: fly-small-top-left-six;
 }
 
 .drawing.anim.small.top.left.seven {
+  animation-delay: 850ms;
   animation-name: fly-small-top-left-seven;
 }
 
