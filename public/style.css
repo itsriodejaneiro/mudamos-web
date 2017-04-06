@@ -156,7 +156,7 @@ a {
 }
 
 .drawing.top.right.anim {
-  top: 100vh;
+  top: 100%;
   right: -217px;
 }
 
@@ -167,7 +167,7 @@ a {
 }
 
 .drawing.top.left.one.anim {
-  top: 100vh;
+  top: 100%;
   left: -148px;
 }
 
@@ -180,7 +180,7 @@ a {
 }
 
 .drawing.top.left.two.anim {
-  top: 100vh;
+  top: 100%;
   left: 16%;
 }
 
@@ -191,7 +191,7 @@ a {
 }
 
 .drawing.top.left.three.anim {
-  top: 100vh;
+  top: 100%;
   left: -46px;
 }
 
@@ -202,7 +202,7 @@ a {
 }
 
 .drawing.top.left.four.anim {
-  top: 100vh;
+  top: 100%;
   left: 136px;
 }
 
@@ -213,7 +213,7 @@ a {
 }
 
 .drawing.top.left.five.anim {
-  top: 100vh;
+  top: 100%;
   left: 246px;
 }
 
@@ -224,7 +224,7 @@ a {
 }
 
 .drawing.top.left.six.anim {
-  top: 100vh;
+  top: 100%;
   left: 326px;
 }
 
@@ -235,7 +235,7 @@ a {
 }
 
 .drawing.top.left.seven.anim {
-  top: 100vh;
+  top: 100%;
   left: 510px;
 }
 
@@ -489,14 +489,14 @@ a {
 
 @keyframes fly-small-bottom-right {
   to {
-    bottom: 100vh;
+    bottom: 100%;
     right: -40px;
   }
 }
 
 @keyframes fly-big-bottom-left {
   to {
-    bottom: 100vh;
+    bottom: 100%;
     left: 28%;
   }
 }
