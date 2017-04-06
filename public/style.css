@@ -144,7 +144,7 @@ a {
 }
 
 .drawing.bottom.left.anim {
-  bottom: -508px; /* hide it before animation to avoid flickering if there is a animation delay */
+  bottom: -508px;
 }
 
 .drawing.top.right {
@@ -279,6 +279,29 @@ a {
 .wrapper {
   width: 60%;
   padding: 40px 0;
+}
+
+.wrapper h1.anim,
+.wrapper .logo.anim,
+.mockup.anim
+{
+  animation: 1s linear 0s 1 normal fade-in;
+}
+
+.wrapper .description.anim,
+.wrapper .actions.anim
+{
+  animation: 750ms linear 0s 1 normal fade-in;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @media (min-width: 1500px) {
@@ -559,30 +582,6 @@ a {
     left: 546px;
   }
 }
-
-.wrapper h1.anim,
-.wrapper .logo.anim,
-.mockup.anim
-{
-  animation: 1s linear 0s 1 normal fade-in;
-}
-
-.wrapper .description.anim,
-.wrapper .actions.anim
-{
-  animation: 750ms linear 0s 1 normal fade-in;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
 
 @media (max-width: 768px) {
   .drawing.anim.big.top.left.one {
