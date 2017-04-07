@@ -130,7 +130,6 @@ a {
 .drawing.bottom.right {
   bottom: -38px;
   right: -12px;
-  float: right;
 }
 
 .drawing.bottom.right.anim {
@@ -140,7 +139,6 @@ a {
 .drawing.bottom.left {
   bottom: -154px;
   left: 20%;
-  float: left;
 }
 
 .drawing.bottom.left.anim {
@@ -150,7 +148,6 @@ a {
 .drawing.top.right {
   top: -194px;
   right: -245px;
-  float: right;
   width: 606px;
   height: 606px;
 }
@@ -163,7 +160,6 @@ a {
 .drawing.top.left.one {
   top: -78px;
   left: -120px;
-  float: left;
 }
 
 .drawing.top.left.one.anim {
@@ -174,7 +170,6 @@ a {
 .drawing.top.left.two {
   top: -148px;
   left: 25%;
-  float: left;
   width: 320px;
   height: 320px;
 }
@@ -187,7 +182,6 @@ a {
 .drawing.top.left.three {
   top: 260px;
   left: -18px;
-  float: left;
 }
 
 .drawing.top.left.three.anim {
@@ -198,7 +192,6 @@ a {
 .drawing.top.left.four {
   top: 54px;
   left: 162px;
-  float: left;
 }
 
 .drawing.top.left.four.anim {
@@ -209,7 +202,6 @@ a {
 .drawing.top.left.five {
   top: 4px;
   left: 274px;
-  float: left;
 }
 
 .drawing.top.left.five.anim {
@@ -220,7 +212,6 @@ a {
 .drawing.top.left.six {
   top: 68px;
   left: 354px;
-  float: left;
 }
 
 .drawing.top.left.six.anim {
@@ -231,7 +222,6 @@ a {
 .drawing.top.left.seven {
   top: 140px;
   left: 538px;
-  float: left;
 }
 
 .drawing.top.left.seven.anim {
