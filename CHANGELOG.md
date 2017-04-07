@@ -2,6 +2,7 @@
 
 ## [1.9.0] - 07/04/2017
 
+* [PR #309]: Fix landing scroll after animations (Issue 308)
 * [PR #306]: Add animations to the app landing page (Issue 287)
 * [PR #305]: Add cycles to home (Issue 294)
 * [PR #304]: Glue the solution home block to the tools together (Issue 299)
