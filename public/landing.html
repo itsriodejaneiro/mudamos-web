@@ -12,21 +12,29 @@
   </head>
 
   <body>
-    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/top_left.png" class="drawing top left" />
-    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/top_right.png" class="drawing top right" />
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/plus.svg" class="animatable drawing big one top left" />
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/plus.svg" class="animatable drawing big two top left" />
 
-    <div class="mockup">
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/plus.svg" class="animatable drawing small three top left" />
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/plus.svg" class="animatable drawing small four top left" />
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/plus.svg" class="animatable drawing small five top left" />
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/plus.svg" class="animatable drawing small six top left" />
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/plus.svg" class="animatable drawing small seven top left" />
+
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/plus.svg" class="animatable drawing big top right" />
+
+    <div class="mockup animatable">
       <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/mockup.png" />
     </div>
 
     <div class="wrapper">
       <div class="container">
-        <h1>Chegou o novo app</h1>
-        <a href="/" class="logo">
+        <h1 class="animatable">Chegou o novo app</h1>
+        <a href="/" class="animatable logo">
           <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/logo.svg"/>
         </a>
-        <p>Uma ferramenta para assinatura de projetos de lei de iniciativa popular de forma segura e simples.</p>
-        <div class="text-center">
+        <p class="animatable description">Uma ferramenta para assinatura de projetos de lei de iniciativa popular de forma segura e simples.</p>
+        <div class="animatable actions text-center">
           <div id="download-links">
             <a
               href="https://itunes.apple.com/br/app/mudamos/id1214485690?ls=1&mt=8"
@@ -54,8 +62,8 @@
       </div>
     </div>
 
-    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/bottom_left.png" class="drawing bottom left" />
-    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/bottom_right.png" class="drawing bottom right" />
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/plus.svg" class="animatable drawing big bottom left" />
+    <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/plus.svg" class="animatable drawing small bottom right" />
 
     <div class="clearfix"></div>
 
@@ -78,6 +86,15 @@
             $("#download-links #download").removeClass("hidden");
             $("#download-links #download").attr("href", APP_STORE_URL);
           }
+        });
+
+        $(function() {
+          var animation = false,
+              elm = document.createElement('div');
+
+          if(elm.style.animationName !== undefined) { animation = true; }
+
+          $(".animatable").addClass(animation ? "anim" : "no-anim");
         });
       })(window.jQuery);
     </script>

@@ -1,5 +1,5 @@
 class CyclesController < ApplicationController
-  before_action :home_blocks, :app_landing_page, only: %i(index)
+  before_action :app_landing_page, :home_blocks, only: %i(index)
 
   def home_block_repository
     @home_block_repository ||= HomeBlockRepository.new
