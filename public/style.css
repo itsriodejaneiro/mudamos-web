@@ -107,7 +107,7 @@ a {
 }
 
 .drawing {
-  position: absolute;
+  position: fixed;
   z-index: -1;
 }
 
