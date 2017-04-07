@@ -623,7 +623,7 @@ a {
   @keyframes fly-big-bottom-left {
     to {
       bottom: 100%;
-      left: 4%;
+      left: 10%;
       transform: translateY(0);
     }
   }
@@ -631,7 +631,7 @@ a {
   @keyframes fly-big-top-left-one {
     to {
       top: 0;
-      left: -3%;
+      left: 3%;
       transform: translateY(-100%);
     }
   }
@@ -639,7 +639,7 @@ a {
   @keyframes fly-big-top-left-two {
     to {
       top: 0;
-      left: 26%;
+      left: 32%%;
       transform: translateY(-100%);
     }
   }
@@ -647,7 +647,7 @@ a {
   @keyframes fly-small-top-left-three {
     to {
       top: 0;
-      left: -2.5%;
+      left: 4.5%;
       transform: translateY(-100%);
     }
   }
@@ -655,7 +655,7 @@ a {
   @keyframes fly-small-top-left-four {
     to {
       top: 0;
-      left: 10%;
+      left: 16%;
       transform: translateY(-100%);
     }
   }
@@ -663,7 +663,7 @@ a {
   @keyframes fly-small-top-left-five {
     to {
       top: 0;
-      left: 18%;
+      left: 24%;
       transform: translateY(-100%);
     }
   }
@@ -671,7 +671,7 @@ a {
   @keyframes fly-small-top-left-six {
     to {
       top: 0px;
-      left: 25%;
+      left: 31%;
       transform: translateY(-100%);
     }
   }
@@ -679,7 +679,7 @@ a {
   @keyframes fly-small-top-left-seven {
     to {
       top: 0px;
-      left: 41%;
+      left: 47%;
       transform: translateY(-100%);
     }
   }
