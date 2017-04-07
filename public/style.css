@@ -109,17 +109,18 @@ a {
 .drawing {
   position: absolute;
   z-index: -1;
-  opacity: 0.6;
 }
 
 .drawing.small {
   width: 114px;
   height: 114px;
+  opacity: 0.6;
 }
 
 .drawing.big {
   width: 508px;
   height: 508px;
+  opacity: 0.75;
 }
 
 .animatable.anim, .animatable.no-anim {
@@ -140,7 +141,6 @@ a {
   bottom: -154px;
   left: 20%;
   float: left;
-  opacity: 0.75;
 }
 
 .drawing.bottom.left.anim {
