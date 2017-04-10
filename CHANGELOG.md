@@ -1,5 +1,7 @@
 ## Next
 
+## [1.11.0] - 10/04/2017
+
 * [PR #313]: Some layout changes for the app launch (Issue 312)
 
 ## [1.10.0] - 10/04/2017
