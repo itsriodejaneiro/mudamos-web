@@ -12,13 +12,8 @@ nav.navbar.navbar-default.navbar-fixed-top
             p.navbar-cycle-text= @cycle.title
 
         ul.nav.navbar-nav.navbar-right
-          - if user_signed_in?
-            / li.navbar-text= "Olá, #{current_user.name}"
-            / li= link_to 'SAIR', destroy_user_session_path, method: :delete
-            = render 'layouts/shared/user_dropdown'
-            = render 'layouts/shared/user_notification'
-          - else
-            li= link_to 'ENTRAR', '#', onclick: 'javascript:document.open_login();'
+          li
+            a.text-uppercase href="https://app.mudamos.org" Baixe o App
           li.icon-item.search= link_to '#' do
             i.icon-search
   .row.secondary-navbar

@@ -12,11 +12,8 @@
 
       .collapse.navbar-collapse#base-navbar-collapse.non-cycle-header
         ul.nav.navbar-nav.navbar-right
-          - if user_signed_in?
-            = render 'layouts/shared/user_dropdown'
-            = render 'layouts/shared/user_notification'
-          - else
-            li= link_to 'Entrar/Cadastro', '#', onclick: 'javascript:document.open_login();', class: "text-uppercase"
+          li
+            a.text-uppercase href="https://app.mudamos.org" Baixe o App
           li.icon-item.search style="opacity: 0" = link_to '#' do
             i.icon-search
         ul.nav.navbar-nav.navbar-center.non-cycle
