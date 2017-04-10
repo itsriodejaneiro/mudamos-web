@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_user, if: -> { cookies[:omniauth_auth].present? and not user_signed_in? }
 
+  before_action :app_landing_page
+
   def send_csv data, filename
     send_data(
       data.encode('UTF-8', invalid: :replace, undef: :replace, replace: "?"),
@@ -34,6 +36,19 @@ class ApplicationController < ActionController::Base
   def check_if_user_can_interact_with!(plugin_type_name)
     plugin_type = plugin_type_repository.get_plugin_type(plugin_type_name)
     return render json: { error: "user_cant_interact_with_plugin" }, status: 403 unless plugin_type.can_user_interact?(current_user)
+  end
+
+  def app_landing_page
+    unless cookies[:has_seen_app_landing]
+      cookies[:has_seen_app_landing] = {
+        value: true,
+        expires: 1.year.from_now,
+        secure: !Rails.env.development?,
+        httponly: true
+      }
+
+      render file: Rails.public_path.join("landing.html"), layout: false
+    end
   end
 
   private
