@@ -1,5 +1,7 @@
 ## Next
 
+## [1.10.0] - 10/04/2017
+
 * [PR #311]: App landing now appears on every route (Issue 310)
 
 ## [1.9.0] - 07/04/2017
