@@ -30,7 +30,7 @@
     <div class="wrapper">
       <div class="container">
         <h1 class="animatable">Chegou o novo app</h1>
-        <a href="" class="animatable logo">
+        <a href="" class="animatable logo app-link">
           <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/landing/logo.svg"/>
         </a>
         <p class="animatable description">Uma ferramenta para assinatura de projetos de lei de iniciativa popular de forma segura e simples.</p>
@@ -57,7 +57,7 @@
               <span class="label">Baixe agora</span>
             </a>
           </div>
-          <a href="" class="close">Continue para o site >></a>
+          <a href="" class="close app-link">Continue para o site >></a>
         </div>
       </div>
     </div>
@@ -95,6 +95,12 @@
           if(elm.style.animationName !== undefined) { animation = true; }
 
           $(".animatable").addClass(animation ? "anim" : "no-anim");
+        });
+
+        $(function() {
+          if (location.hostname === "app.mudamos.org") {
+            $(".app-link").attr("href", "https://www.mudamos.org")
+          }
         });
       })(window.jQuery);
     </script>
