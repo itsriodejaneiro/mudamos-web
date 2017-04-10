@@ -16,7 +16,7 @@
   .container-fluid.blocks
     .full-background-image.parallax-window data-parallax="scroll" data-image-src=home_blocks.main_block.picture.url(:header)
     - if home_blocks.what_is.present?
-      section#about.row.block.purple class="#{ home_blocks.what_is.title.blank? && "no-title" } #{home_blocks.what_is.picture.blank? && "no-icon"}"
+      section#about.row.block class="#{ home_blocks.what_is.title.blank? && "no-title" } #{home_blocks.what_is.picture.blank? && "no-icon"}"
         - if home_blocks.what_is.picture.present?
           .col-sm-12.hidden-md.hidden-lg
             .drawing
@@ -35,7 +35,7 @@
           = next_block_link
 
     - if home_blocks.solution.present?
-      section#contribute.row.block.solution class="#{ home_blocks.solution.title.blank? && "no-title" } #{home_blocks.solution.picture.blank? && "no-icon"}"
+      section#contribute.row.block.purple.solution class="#{ home_blocks.solution.title.blank? && "no-title" } #{home_blocks.solution.picture.blank? && "no-icon"}"
         - if home_blocks.solution.picture.present?
           .col-sm-12.hidden-md.hidden-lg
             .drawing
