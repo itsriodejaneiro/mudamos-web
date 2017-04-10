@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def app_landing_page
-    unless cookies[:has_seen_app_landing]
+    if !cookies[:has_seen_app_landing] || request.host =~ %r{app.mudamos.org}
       cookies[:has_seen_app_landing] = {
         value: true,
         expires: 1.year.from_now,
