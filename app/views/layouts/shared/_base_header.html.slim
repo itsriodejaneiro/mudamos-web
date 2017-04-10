@@ -33,8 +33,6 @@
               | Ciclos
               span.caret
             ul.dropdown-menu
-              - about_cycles_link = (params[:controller] == 'cycles' and params[:action] == 'index') ? ['#', { 'scroll-to': '#cycles' }] : [root_path + '#cycles']
-              li= link_to "Sobre", *about_cycles_link
               - @cycles.each do |c|
                 li= link_to c.title, c
               li= link_to 'Reforma Política do Século 21', 'http://plataformabrasil.org.br/', target: '_blank'
