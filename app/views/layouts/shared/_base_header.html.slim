@@ -12,11 +12,8 @@
 
       .collapse.navbar-collapse#base-navbar-collapse.non-cycle-header
         ul.nav.navbar-nav.navbar-right
-          - if user_signed_in?
-            = render 'layouts/shared/user_dropdown'
-            = render 'layouts/shared/user_notification'
-          - else
-            li= link_to 'Entrar/Cadastro', '#', onclick: 'javascript:document.open_login();', class: "text-uppercase"
+          li
+            a.text-uppercase href="https://app.mudamos.org" Baixe o App
           li.icon-item.search style="opacity: 0" = link_to '#' do
             i.icon-search
         ul.nav.navbar-nav.navbar-center.non-cycle
@@ -33,8 +30,6 @@
               | Ciclos
               span.caret
             ul.dropdown-menu
-              - about_cycles_link = (params[:controller] == 'cycles' and params[:action] == 'index') ? ['#', { 'scroll-to': '#cycles' }] : [root_path + '#cycles']
-              li= link_to "Sobre", *about_cycles_link
               - @cycles.each do |c|
                 li= link_to c.title, c
               li= link_to 'Reforma Política do Século 21', 'http://plataformabrasil.org.br/', target: '_blank'
