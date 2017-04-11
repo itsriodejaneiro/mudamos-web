@@ -32,7 +32,7 @@
     $(this).each(function() {
       var $element = $(this);
       $element.muModal({
-        title: "Incorporar petição"
+        title: "Incorporar projeto de lei"
       });
 
       var $petitionWidgetBuilder = $(template);

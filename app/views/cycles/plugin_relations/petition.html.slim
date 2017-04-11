@@ -116,7 +116,7 @@ section#petition-index
         div.embedded-link
           strong.pull-right style="color: #{@cycle.color}"
             i.icon-share
-            |  Incorporar
+            |  Compartilhar
         p.presentation= @petition.presentation
         .row
           .col-xs-12
@@ -126,7 +126,7 @@ section#petition-index
             h3.section-title.petition-body-title style="border-color: #{@cycle.color}" Projeto de lei
         .petition-body= markdown @petition.published_version.body
       - else
-        p Esta petição ainda não foi publicada, aguarde enquanto a edição do documento seja finalizada e tente novamento mais tarde.
+        p Este projeto de lei ainda não foi publicado, aguarde enquanto a edição do documento seja finalizada e tente novamento mais tarde.
 
       = render 'layouts/shared/footer'
 
