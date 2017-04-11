@@ -50,7 +50,7 @@ section#petition-index
               div.medium-padded
                 - if @phase.remaining_days > 0
                   strong>= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias" : "dia"}"
-                  .visible-lg-inline= "#{@phase.remaining_days > 1 ? "restantes" : "restante"} para o encerramento"
+                  .visible-lg-inline= "#{@phase.remaining_days > 1 ? "restantes" : "restante"} para o atingimento da meta final"
                 - else
                   strong Último dia
               div.medium-padded.subtitle
@@ -100,7 +100,7 @@ section#petition-index
               - else
                 strong Último dia
               div
-                small para o encerramento
+                small para o atingimento da meta final
           .col-xs-6.text-right.signatures
             .total-signatures
             div
