@@ -7,7 +7,7 @@ section.auto-spacing.container-fluid#view-signature
       .subtitle Essa assinatura foi autenticada pela Mudamos
 
       dl.simple-definition-list.list-unstyled
-        dt Petição
+        dt Projeto de Lei
         dd
           a.petition href="#{@signature.petition_page_url}" ="#{@signature.petition_name}"
 
@@ -16,7 +16,7 @@ section.auto-spacing.container-fluid#view-signature
 
         dt
           = "Realizada em "
-          span.info-dark-icon data-placement="right" data-trigger="hover focus click" data-toggle="tooltip" title="Esse é o momento em que o usuário assinou a petição"
+          span.info-dark-icon data-placement="right" data-trigger="hover focus click" data-toggle="tooltip" title="Esse é o momento em que o usuário assinou o Projeto de Lei"
         dd
           = "#{@signature.updated_at.strftime("%d/%m/%Y - %H:%M")} (BRST)"
 
