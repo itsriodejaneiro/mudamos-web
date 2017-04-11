@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #321]: Fix wrong signatures count progress bar (Issue 320)
 * [PR #319]: Change petition label and video position (Issue 318)
 * [PR #317]: Force hide “Informe-se” in the cycle menu (Issue 316)
 * [PR #315]: Fix pdf generation with hardcoded data (Issue 314)
