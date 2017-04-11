@@ -117,10 +117,13 @@ section#petition-index
           strong.pull-right style="color: #{@cycle.color}"
             i.icon-share
             |  Incorporar
+        - if @petition.video_id.present?
+          .row
+            .col-xs-12 style="margin-bottom: 15px"
+              = you_tube_embed @petition.video_id
+
         p.presentation= @petition.presentation
-        .row
-          .col-xs-12
-            = you_tube_embed @petition.video_id
+
         .row
           .col-xs-12
             h3.section-title.petition-body-title style="border-color: #{@cycle.color}" Projeto de lei
