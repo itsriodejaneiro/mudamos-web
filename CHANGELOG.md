@@ -2,6 +2,7 @@
 
 ## [1.12.0] - 11/04/2017
 
+* [PR #325]: Fix “Incorporar” css issues (Issue 324)
 * [PR #323]: Simplify the pre signature process (Issue 322)
   - Run `rake db:migrate`
 * [PR #321]: Fix wrong signatures count progress bar (Issue 320)
