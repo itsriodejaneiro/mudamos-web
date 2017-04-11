@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #317]: Force hide “Informe-se” in the cycle menu (Issue 316)
 * [PR #315]: Fix pdf generation with hardcoded data (Issue 314)
 
 ## [1.11.0] - 10/04/2017
