@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_cycles
-      @cycles = Cycle.all
+      @cycles = Cycle.order("cycles.id DESC")
     end
 
     def set_social_links
