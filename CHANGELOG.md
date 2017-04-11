@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #333]: Change cycles order (Issue 332)
+
 ## [1.12.1] - 11/04/2017
 
 * [PR #331]: Fix js error (Issue 330)
