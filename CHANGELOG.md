@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #337]: Parsing mobile api timestamps in the BRST zone (Issue 336)
 * [PR #335]: Fix typo on footer (Issue 334)
 
 ## [1.12.2] - 11/04/2017
