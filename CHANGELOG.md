@@ -2,6 +2,7 @@
 
 ## [1.12.0] - 11/04/2017
 
+* [PR #329]: Melhora na apresentação do modal do compartilhar
 * [PR #328]: Correção dos termos públicos de Petição para Projeto de Lei
 * [PR #325]: Fix “Incorporar” css issues (Issue 324)
 * [PR #323]: Simplify the pre signature process (Issue 322)
