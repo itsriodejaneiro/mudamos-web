@@ -154,7 +154,7 @@ crumb :subjects do |c, pr|
 end
 
 crumb :petitions do |c, pr|
-  link 'Petição', admin_cycle_plugin_relation_petitions_path(c, pr)
+  link 'Projeto de Lei', admin_cycle_plugin_relation_petitions_path(c, pr)
   parent :cycle, c
 end
 
