@@ -29,7 +29,7 @@
 
       $container.append($marker);
 
-      $container.on("update", function(percentage) {
+      $container.on("update", function(event, percentage) {
         $currentPercentageBar.css("width", percentage);
         $marker.css("left", percentage);
       });
