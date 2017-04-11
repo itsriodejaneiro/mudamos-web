@@ -13,6 +13,12 @@ class PetitionsController < ApplicationController
     params[:action] == "verify"
   end
 
+  def approve
+    attrs = params.require(:approver).permit(:email)
+    PetitionPlugin::Approver.find_or_create_by email: attrs[:email], plugin_relation_id: params[:petition_id]
+    head :ok
+  end
+
   private
 
   def petition

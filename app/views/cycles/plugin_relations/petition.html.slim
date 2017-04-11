@@ -133,6 +133,9 @@ section#petition-index
 
       = render 'layouts/shared/footer'
 
+- content_for :modals
+  = render "layouts/shared/modal", modal_id: 'modal_petition_sign', size: 'sm', cache: true, content: render(file: "cycles/plugin_relations/petition_sign_modal")
+
 css:
   .petition-side-bar {
     background-image:
