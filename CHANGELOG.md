@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #331]: Fix js error (Issue 330)
+
 ## [1.12.0] - 11/04/2017
 
 * [PR #329]: Melhora na apresentação do modal do compartilhar
