@@ -1,14 +1,12 @@
 .modal-body
   .row
     .col-xs-12
-      span Entre com seu email abaixo para receber mais informações
+      span Digite seu e-mail e escolha a plataforma para abaixar o App de Assinatura
   .row.dividers
     .col-xs-12
       hr
 
   .row.result
-    .col-xs-12
-      span.success
     .col-xs-12
       span.error
 
@@ -16,11 +14,14 @@
     = f.inputs class: "col-xs-12" do
       = input f, :email, as: :email, label: 'Email'
 
-    .col-xs-12
-      button.rounded-button.new type="submit" disabled="disabled" Enviar
+    ol.col-xs-12.stores.list-inline
+      li
+        label
+          input.app type="radio" value="ios" name="store" required="required"
+          .store-badge.app
+        label
+          input.app type="radio" value="android" name="store" required="required"
+          .store-badge.play
 
-.modal-footer
-  .row
     .col-xs-12
-      a.store-badge.app href=mobile_app_ios_store_url target="_blank" style="margin-right: 15px"
-      a.store-badge.play href=mobile_app_android_store_url target="_blank"
+      button.rounded-button.new type="submit" disabled="disabled" Baixar

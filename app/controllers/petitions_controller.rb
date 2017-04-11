@@ -16,10 +16,15 @@ class PetitionsController < ApplicationController
   def approve
     attrs = params.require(:approver).permit(:email)
     PetitionPlugin::Approver.find_or_create_by email: attrs[:email], plugin_relation_id: params[:petition_id]
-    head :ok
+    render json: { store: url_for_store }
   end
 
   private
+
+  def url_for_store
+    store = Rails.application.secrets.mobile_app["store_page"]
+    store[params[:store] == "ios" ? "ios" : "android"]
+  end
 
   def petition
     @petition ||= petition_repository.find_by_id!(params[:petition_id])
