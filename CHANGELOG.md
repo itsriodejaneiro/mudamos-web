@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #335]: Fix typo on footer (Issue 334)
+
 ## [1.12.2] - 11/04/2017
 
 * [PR #333]: Change cycles order (Issue 332)
