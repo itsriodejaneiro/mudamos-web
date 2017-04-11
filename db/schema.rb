@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170328114132) do
+ActiveRecord::Schema.define(version: 20170411113811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -332,6 +332,16 @@ ActiveRecord::Schema.define(version: 20170328114132) do
 
   add_index "permissions", ["deleted_at"], name: "index_permissions_on_deleted_at", using: :btree
 
+  create_table "petition_plugin_approvers", force: :cascade do |t|
+    t.string   "email",              null: false
+    t.integer  "plugin_relation_id", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "petition_plugin_approvers", ["email", "plugin_relation_id"], name: "index_petition_approvers", unique: true, using: :btree
+  add_index "petition_plugin_approvers", ["plugin_relation_id"], name: "index_petition_plugin_approvers_on_plugin_relation_id", using: :btree
+
   create_table "petition_plugin_detail_versions", force: :cascade do |t|
     t.integer  "petition_plugin_detail_id",                 null: false
     t.string   "document_url"
@@ -638,6 +648,7 @@ ActiveRecord::Schema.define(version: 20170328114132) do
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
+  add_foreign_key "petition_plugin_approvers", "plugin_relations", on_delete: :cascade
   add_foreign_key "petition_plugin_detail_versions", "petition_plugin_details", on_delete: :cascade
   add_foreign_key "petition_plugin_details", "plugin_relations", on_delete: :cascade
   add_foreign_key "petition_plugin_presignatures", "plugin_relations", on_delete: :cascade

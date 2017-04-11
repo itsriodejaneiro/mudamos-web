@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #323]: Simplify the pre signature process (Issue 322)
+  - Run `rake db:migrate`
 * [PR #321]: Fix wrong signatures count progress bar (Issue 320)
 * [PR #319]: Change petition label and video position (Issue 318)
 * [PR #317]: Force hide “Informe-se” in the cycle menu (Issue 316)

@@ -64,3 +64,6 @@ html
         = render 'layouts/shared/modal', modal_id: 'modal-passwords-edit', size: 'sm', cache: true, content: render(file: 'users/passwords/edit')
         javascript:
           $('#modal-passwords-edit').modal('show');
+
+      - if yield :modals
+        = yield :modals

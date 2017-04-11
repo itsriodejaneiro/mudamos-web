@@ -65,6 +65,8 @@ module ApplicationHelper
       'number_field'
     when :check_box
       'check_box'
+    when :email
+      'email_field'
     else
       'text_field'
     end
