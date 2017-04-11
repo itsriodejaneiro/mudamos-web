@@ -47,6 +47,7 @@
 
   $(document).ready(function() {
     var $form = $("form#new_petition_approver");
+    if (!$form.length) return;
 
     $("body").on("click", ".sign-petition", function(e) {
       e.preventDefault();
