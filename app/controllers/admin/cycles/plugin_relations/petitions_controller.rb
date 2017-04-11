@@ -17,17 +17,17 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
     response = detail_updater.perform @petition, petition_params, petition_body
     if response.success
       enqueue_pdf_generation response
-      flash[:success] = "Petição salva com sucesso."
+      flash[:success] = "Projeto de Lei salvo com sucesso."
       redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     else
-      flash[:error] = "Ocorreu algum erro ao atualizar a petição."
+      flash[:error] = "Ocorreu algum erro ao atualizar o Projeto de Lei."
       render :edit
     end
   end
 
   def create
     if @plugin_relation.petition_detail
-      flash[:error] = "Esta petição já foi salva por outra pessoa, tente novamente clicando em Editar Petição"
+      flash[:error] = "Esta petição já foi salva por outra pessoa, tente novamente clicando em Editar Projeto de Lei"
       return redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     end
 
@@ -36,7 +36,7 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
     response = detail_updater.perform @petition, petition_params, petition_body
     if response.success
       enqueue_pdf_generation response
-      flash[:success] = "Petição salva com sucesso."
+      flash[:success] = "Projeto de Lei salvo com sucesso."
       redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     else
       flash[:error] = "Ocorreu algum erro ao criar a petição."
