@@ -52,8 +52,8 @@ class MobileApiService
       PetitionVersion.new(
         version["petition_version"],
         body.length - index,
-        version["petition_updatedat"].present? ? Time.parse(version["petition_updatedat"]) : nil,
-        version["petition_blockstamp"].present? ? Time.parse(version["petition_blockstamp"]) : nil,
+        version["petition_updatedat"].present? ? Time.zone.parse(version["petition_updatedat"]) : nil,
+        version["petition_blockstamp"].present? ? Time.zone.parse(version["petition_blockstamp"]) : nil,
         version["petition_name"],
         version["petition_signature"],
         version["petition_page_url"],
@@ -93,7 +93,7 @@ class MobileApiService
     return nil unless body
 
     PetitionInfo.new(
-      body["updatedAt"].present? ? Time.parse(body["updatedAt"]) : nil,
+      body["updatedAt"].present? ? Time.zone.parse(body["updatedAt"]) : nil,
       body["signaturesCount"],
       body["blockchainAddress"]
     )
@@ -109,7 +109,7 @@ class MobileApiService
     signers = []
     signers_json.each do |signer|
       signers << PetitionSigner.new(
-        Time.parse(signer["vote_date"]),
+        Time.zone.parse(signer["vote_date"]),
         signer["user_name"],
         signer["user_city"],
         signer["user_state"],
@@ -133,8 +133,8 @@ class MobileApiService
     status = SignatureStatus.new(
       sign["petition_name"],
       sign["petition_page_url"],
-      sign["blockchain_updatedat"].present? ? Time.parse(sign["blockchain_updatedat"]) : nil,
-      sign["updatedat"].present? ? Time.parse(sign["updatedat"]) : nil,
+      sign["blockchain_updatedat"].present? ? Time.zone.parse(sign["blockchain_updatedat"]) : nil,
+      sign["updatedat"].present? ? Time.zone.parse(sign["updatedat"]) : nil,
       sign["user_name"],
       sign["signatures_pdf_url"]
     )
@@ -155,9 +155,9 @@ class MobileApiService
       PetitionSignature.new(
          json["petition_pdf_url"],
          json["petition_blockchain_transaction_id"],
-         json["petition_updatedat"] ? Time.parse(json["petition_updatedat"]) : nil,
-         json["petition_txstamp"] ? Time.parse(json["petition_txstamp"]) : nil,
-         json["petition_blockstamp"] ? Time.parse(json["petition_blockstamp"]) : nil,
+         json["petition_updatedat"] ? Time.zone.parse(json["petition_updatedat"]) : nil,
+         json["petition_txstamp"] ? Time.zone.parse(json["petition_txstamp"]) : nil,
+         json["petition_blockstamp"] ? Time.zone.parse(json["petition_blockstamp"]) : nil,
          json["petition_signature"]
       )
     end
@@ -172,9 +172,9 @@ class MobileApiService
 
     PetitionStatus.new(
       blockchain_info["status"],
-      blockchain_info["blockstamp"] ? Time.parse(blockchain_info["blockstamp"]) : nil,
+      blockchain_info["blockstamp"] ? Time.zone.parse(blockchain_info["blockstamp"]) : nil,
       blockchain_info["transaction"],
-      blockchain_info["txstamp"] ? Time.parse(blockchain_info["txstamp"]) : nil
+      blockchain_info["txstamp"] ? Time.zone.parse(blockchain_info["txstamp"]) : nil
     )
   end
 
