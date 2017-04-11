@@ -29,7 +29,8 @@ nav.navbar.navbar-default.navbar-fixed-top
           - if @cycle.blog_plugin.present?
             li= link_to 'BLOG', cycle_blog_posts_path(@cycle)
 
-          - if @cycle.past_phases.any? or @cycle.plugins.where(plugin_type: ["Biblioteca", "Glossário"]).where.not(plugin_type: 'Blog').any?
+          - should_hide_information = @cycle.name != "Segurança Pública"
+          - if !should_hide_information && (@cycle.past_phases.any? || @cycle.plugins.where(plugin_type: ["Biblioteca", "Glossário"]).where.not(plugin_type: 'Blog').any?)
             li.dropdown
               = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, role: 'button' do
                 | INFORME-SE
