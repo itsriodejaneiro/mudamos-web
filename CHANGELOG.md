@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #315]: Fix pdf generation with hardcoded data (Issue 314)
+
 ## [1.11.0] - 10/04/2017
 
 * [PR #313]: Some layout changes for the app launch (Issue 312)

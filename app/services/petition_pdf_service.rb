@@ -9,7 +9,7 @@ class PetitionPdfService
   Result = Struct.new(:document_name, :sha, :document_url)
 
   def generate(version)
-    pdf = Pdf::Generator.new.from_markdown(version.body)
+    pdf = Pdf::Generator.new.from_petition_detail_version(version)
 
     cycle = version.petition_plugin_detail.plugin_relation.related.cycle
     phase = version.petition_plugin_detail.plugin_relation.related

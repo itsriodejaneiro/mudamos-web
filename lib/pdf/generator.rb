@@ -2,13 +2,14 @@ class Pdf::Generator
 
   include MarkdownHelper
 
-  def from_markdown(text)
+  def from_petition_detail_version(version)
     pdf = Prawn::Document.new
+    text = version.body
 
     setup pdf
-    
+
     pdf.repeat(:all) do
-      render_header pdf
+      render_header pdf, version: version
       render_border pdf
       render_footer pdf
     end
@@ -34,14 +35,16 @@ class Pdf::Generator
     pdf.font "Roboto"
   end
 
-  def render_header(pdf)
+  def render_header(pdf, version:)
+    phase = version.petition_plugin_detail.plugin_relation.related
+
     y_position = pdf.cursor
     pdf.text_box "Projeto de iniciativa popular", size: 12, style: :bold, at: [70, pdf.cursor]
     pdf.move_down 15
-    pdf.text_box "Ficha limpa", size: 12, style: :bold, at: [70, pdf.cursor]
+    pdf.text_box phase.name, size: 12, style: :bold, at: [70, pdf.cursor]
 
     pdf.move_down 30
-    pdf.text_box "Ajude a acabar com a corrupção eleitoral no Brasil", size: 10, at: [70, pdf.cursor]
+    pdf.text_box phase.description, size: 10, at: [70, pdf.cursor]
 
     pdf.move_down 30
 
@@ -49,15 +52,15 @@ class Pdf::Generator
   end
 
   def render_border(pdf)
-    pdf.rectangle [0, pdf.cursor], 540, 585 
+    pdf.rectangle [0, pdf.cursor], 540, 585
     pdf.stroke
   end
 
   def render_footer(pdf)
     image_x = 230
-    image_y = 75 
+    image_y = 75
 
-    pdf.rectangle [image_x - 10, image_y + 5], 90, 40 
+    pdf.rectangle [image_x - 10, image_y + 5], 90, 40
     pdf.fill_color "ffffff"
     pdf.fill
     pdf.fill_color "000000"
@@ -72,7 +75,7 @@ class Pdf::Generator
     pdf.span(pdf.cursor, position: :left) do
       pdf.bounding_box([20, pdf.cursor - 30], width: 505, height: 530) do
         html_document.css("body").children.each do |element|
-          
+
           case element.name
           when "p" then Pdf::Elements::P.render pdf, element
           when "blockquote" then Pdf::Elements::Blockquote.render pdf, element
@@ -80,7 +83,7 @@ class Pdf::Generator
           when /ul|ol/ then Pdf::Elements::List.render pdf, element
           end
 
-          pdf.move_down 5 
+          pdf.move_down 5
         end
       end
     end
