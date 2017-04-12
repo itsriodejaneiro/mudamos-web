@@ -1,5 +1,7 @@
 ## Next
 
+## [1.13.1] - 12/04/2017
+
 * [PR #344]: TEMP FIX using cycle final date to calculate remaining days (Issue 343)
 
 ## [1.13.0] - 12/04/2017
