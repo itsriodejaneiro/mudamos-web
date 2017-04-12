@@ -1,4 +1,8 @@
 class Cycles::PluginRelationsController < ApplicationController
+  skip_before_action :app_landing_page, if: -> do
+    # skip landing page if it is the petition page
+    action_name == "show" && plugin_relation.plugin.plugin_type == "Petição"
+  end
 
   attr_writer :presignature_repository
   attr_accessor :petition_service
@@ -12,12 +16,9 @@ class Cycles::PluginRelationsController < ApplicationController
   end
 
   def show
-    @cycle = Cycle.find params[:cycle_id]
-    @plugin_relation = @cycle.plugin_relations.find params[:id]
-
-    case @plugin_relation.plugin.plugin_type
+    case plugin_relation.plugin.plugin_type
     when 'Discussão'
-      # redirect_to [:admin, @cycle, @plugin_relation, :subjects]
+      # redirect_to [:admin, cycle, plugin_relation, :subjects]
     when 'Relatoria'
       respond_to do |format|
         format.html {
@@ -25,19 +26,27 @@ class Cycles::PluginRelationsController < ApplicationController
           render 'compilation'
         }
         format.csv {
-          send_csv @cycle.comments.to_public_csv, "comentarios-#{@cycle.slug}"
+          send_csv cycle.comments.to_public_csv, "comentarios-#{cycle.slug}"
         }
       end
     when 'Petição'
       set_petition_info
       render 'petition'
     when 'Biblioteca'
-      # redirect_to [:admin, @cycle, @plugin_relation, :materials]
+      # redirect_to [:admin, cycle, plugin_relation, :materials]
     when 'Glossário'
-      # redirect_to [:admin, @cycle, @plugin_relation, :vocabularies]
+      # redirect_to [:admin, cycle, plugin_relation, :vocabularies]
     when 'Blog'
-      # redirect_to [:admin, @cycle, :blog_posts]
+      # redirect_to [:admin, cycle, :blog_posts]
     end
+  end
+
+  def cycle
+    @cycle ||= Cycle.find(params[:cycle_id])
+  end
+
+  def plugin_relation
+    @plugin_relation ||= cycle.plugin_relations.find(params[:id])
   end
 
   def custom_footer
