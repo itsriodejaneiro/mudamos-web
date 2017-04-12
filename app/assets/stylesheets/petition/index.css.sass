@@ -18,11 +18,15 @@
     margin-top: 16px
 
   .embedded-link
+    display: none
     height: 10px
     margin-bottom: 20px
 
     strong
       cursor: pointer
+
+    @media (min-width: $screen-md-min)
+      display: block
 
   #petition-signers-desktop
     .title
