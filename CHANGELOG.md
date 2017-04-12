@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #344]: TEMP FIX using cycle final date to calculate remaining days (Issue 343)
+
 ## [1.13.0] - 12/04/2017
 
 * [PR #341]: Hide “incorporar” share if not on a desktop (Issue 340)
