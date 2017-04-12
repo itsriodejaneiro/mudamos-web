@@ -1,5 +1,7 @@
 ## Next
 
+## [1.13.0] - 12/04/2017
+
 * [PR #341]: Hide “incorporar” share if not on a desktop (Issue 340)
 * [PR #339]: Do not show the landing page if it is the petition page (Issue 338)
 * [PR #337]: Parsing mobile api timestamps in the BRST zone (Issue 336)
