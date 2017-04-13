@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #348]: Revert TEMPFIX hack (issue 347)
+
 ## [1.13.1] - 12/04/2017
 
 * [PR #344]: TEMP FIX using cycle final date to calculate remaining days (Issue 343)
