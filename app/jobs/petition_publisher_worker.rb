@@ -23,9 +23,19 @@ class PetitionPublisherWorker
       Rails.logger.info "Version published #{petition_detail_version_id}"
 
       refresh_caches version
+
+      if is_first_version version
+        PetitionNotifierWorker.perform_async id: version.id
+      else
+        Rails.logger.info "Skipping push message. This is just a new version."
+      end
     else
       Rails.logger.warn "Version not found #{petition_detail_version_id}"
     end
+  end
+
+  def is_first_version(version)
+    version.petition_plugin_detail.petition_detail_versions.count == 1
   end
 
   def refresh_caches(version)
