@@ -1,5 +1,9 @@
 ## Next
 
+* [PR #351]: Add petition push message notifier (Issue 307)
+  - Set env `ONESIGNAL_API_KEY`
+  - Set env `ONESIGNAL_APP_ID`
+  - Set env `PETITION_NOTIFIER_QUEUE` with the push message queue
 * [PR #348]: Revert TEMPFIX hack (issue 347)
 
 ## [1.13.1] - 12/04/2017

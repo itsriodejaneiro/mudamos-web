@@ -40,6 +40,8 @@ Follow the instructions, and use the created user to access the admin area.
   - 'PETITION_PDF_GENERATION_QUEUE': Name of the sqs queue used for the generation of the PDFs of the petitions
   - 'PETITION_PDF_GENERATION_QUEUE_PRIORITY': The priority of the sqs queue for the generation of the PDFs of the petitions
   - 'PETITION_PDF_BUCKET': Name of the bucket where the petition's pdfs are stored
+  - 'PETITION_NOTIFIER_QUEUE': Name of the bucket where push messages are sent
+  - 'PETITION_NOTIFIER_QUEUE_PRIORITY': The priority of the notifier queue
   - 'AWS_ACCESS_KEY_ID': AWS access key id used to access the aws resources
   - 'AWS_SECRET_ACCESS_KEY': AWS secret access key used to access the aws resources
   - 'AWS_REGION': The region where the AWS resources are
@@ -48,6 +50,8 @@ Follow the instructions, and use the created user to access the admin area.
   - 'MOBILE_API_URL': The Mobile API url
   - 'MOBILE_API_SECRET': The Mobile secret key
   - 'MOBILE_API_TIMEOUT': The ammount in seconds the system will use as timeout when trying to communicate with the Mobile API 
+  - 'ONESIGNAL_API_KEY': The one signal api key (push message)
+  - 'ONESIGNAL_APP_ID': The one signal app id (push message)
   - `API_CACHE_EXPIRES_IN`: The ammount in minutes that the system will use to expire requests from the Mobile API
   - `MOBILE_API_ID_IOS`: The iOs Mobile app id
 
@@ -112,9 +116,20 @@ Recommended values:
  * Delivery Delay: 0 secs (SQS default)
  * Receive Message Wait Time: 0 secs (SQS default)
 
+## Petition notifier
+
+Recommended values:
+ * Default Visibility Timeout: 60 secs
+ * Message Retention Period: 14 days
+ * Maximum Message Size: 256 KB (SQS default)
+ * Delivery Delay: 15 secs (SQS default)
+ * Receive Message Wait Time: 15 secs
+
 ### Running the workers
 
 `bundle exec shoryuken -C config/shoryuken.yml -R`
+
+> Remember to export your env vars
 
 ### Petition flow
 
@@ -149,4 +164,11 @@ This diagram shows the flow of the petition, from the user creation, to its publ
         |   |                      |   |                           |   |                          |   |                         |   |
         +---+                      +---+                           +---+                          +---+                         +---+
 
+```
+
+## Send a push message
+
+
+```
+$ rake push:message["A title", "A body"]
 ```
