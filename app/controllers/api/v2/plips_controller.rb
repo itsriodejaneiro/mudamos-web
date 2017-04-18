@@ -11,7 +11,7 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
     operation :get do
       extend Api::V2::SwaggerResponses::InternalError
 
-      key :description, "Returns all plips"
+      key :description, "Returns all nationwide plips, optionally filtered by UF or city id"
       key :operationId, "v2findPlips"
       key :produces, ["application/json"]
       key :tags, ["plip"]
@@ -27,6 +27,20 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
         key :name, :page
         key :in, :query
         key :description, "Which page of the pagination"
+        key :type, :integer
+      end
+
+      parameter do
+        key :name, :uf
+        key :in, :query
+        key :description, "The statewide plip UF"
+        key :type, :string
+      end
+
+      parameter do
+        key :name, :city_id
+        key :in, :query
+        key :description, "The citywide city id"
         key :type, :integer
       end
 
@@ -58,7 +72,8 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
   def paginated_plips
     limit = [params[:limit].try(:to_i) || 10, 25].min
     page = params[:page].try(:to_i) || 1
+    filters = params.slice(:uf, :city_id)
 
-    @paginated_plips ||= plip_repository.all_initiated(page: page, limit: limit)
+    @paginated_plips ||= plip_repository.all_initiated(filters: filters, page: page, limit: limit)
   end
 end

@@ -36,6 +36,8 @@ class PetitionPlugin::Detail < ActiveRecord::Base
   validates :city, presence: true, if: -> { scope_coverage == CITYWIDE_SCOPE }
   validates :uf, presence: true, inclusion: { in: UFS }, if: -> { scope_coverage == STATEWIDE_SCOPE }
 
+  validate :ensure_scope_coverage_detail
+
   validate :plugin_type_petition
 
   def past_versions
@@ -49,6 +51,18 @@ class PetitionPlugin::Detail < ActiveRecord::Base
 
   def published_version
     petition_detail_versions.where(published: true).last
+  end
+
+  # Do not allow setting incorrect scope coverage detail if the wrong scope
+  def ensure_scope_coverage_detail
+    has_city = city.present? || city_id.present?
+    has_state = uf.present?
+
+    invalid = (scope_coverage == NATIONWIDE_SCOPE && (has_city || has_state)) ||
+              (scope_coverage == STATEWIDE_SCOPE && has_city) ||
+              (scope_coverage == CITYWIDE_SCOPE && has_state)
+
+    errors.add(:scope_coverage, :invalid) if invalid
   end
 
   def translate_scope_coverage
