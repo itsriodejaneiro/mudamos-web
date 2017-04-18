@@ -15,60 +15,80 @@
                 = link_to 'Editar Petição', [:new, :admin, @cycle, @plugin_relation, :petition], class: 'btn'
 
 - if @petition.present?
- .row
-   .col-xs-7
-     .card-module
-       .title
-         h3 Chamada para ação
-       = @petition.call_to_action
- .row
-   .col-xs-6
-     .card-module
-       .title
-         h3 Número de assinaturas necessárias
-       = @petition.signatures_required
-   .col-xs-6
-     .card-module
-       .title
-         h3= PetitionPlugin::Detail.human_attribute_name(:video_id)
-       = you_tube_link_to @petition.video_id
- .row
-   .col-xs-12
-     .card-module
-       .title
-         h3 Apresentação
-       = @petition.presentation
- .row
-   .col-xs-12
-     .card-module
-       .title
-         h3 Texto completo
-       .filters.clearfix
-         .pull-right
-           - if @petition.published_version
-             = link_to 'Baixar documento', @petition.published_version.document_url, class: 'btn', target: '_blank'
-           - else
-             = 'Nenhuma versão publicada ainda'
-       - if @petition.current_version
-         .plip-body= markdown @petition.current_version.body
- - if @petition.past_versions.length > 0
-   .row
-     .col-xs-12
-       .card-module
-         .title
-           h3
-             a#past_versions_title href="#"
-               | Versões anteriores
-         div#past_versions style="display: none"
-           ul.list-unstyled
-             - past_versions.each do |version|
-               li
-                 = link_to version.created_at.strftime("%d/%m/%Y - %H:%M"), version.document_url
-     javascript:
-       $("#past_versions_title").click(function(e) {
-         $("#past_versions").slideToggle();
-         e.preventDefault();
-         return false;
-       });
+  .row
+    .col-xs-7
+      .card-module
+        .title
+          h3 Chamada para ação
+        = @petition.call_to_action
+  .row
+    .col-xs-6
+      .card-module
+        .title
+          h3 Número de assinaturas necessárias
+        = @petition.signatures_required
+    .col-xs-6
+      .card-module
+        .title
+          h3= PetitionPlugin::Detail.human_attribute_name(:video_id)
+        = you_tube_link_to @petition.video_id
+  .row
+    .col-xs-6
+      .card-module
+        .title
+          h3=@petition.class.human_attribute_name :scope_coverage
+        = @petition.translated_scope_coverage
+
+    - if @petition.statewide?
+      .col-xs-6
+        .card-module
+          .title
+            h3=@petition.class.human_attribute_name :uf
+          = @petition.uf
+
+    - if @petition.citywide?
+      .col-xs-6
+        .card-module
+          .title
+            h3=@petition.class.human_attribute_name :city
+          = @petition.city.name
+
+  .row
+    .col-xs-12
+      .card-module
+        .title
+          h3 Apresentação
+        = @petition.presentation
+  .row
+    .col-xs-12
+      .card-module
+        .title
+          h3 Texto completo
+        .filters.clearfix
+          .pull-right
+            - if @petition.published_version
+              = link_to 'Baixar documento', @petition.published_version.document_url, class: 'btn', target: '_blank'
+            - else
+              = 'Nenhuma versão publicada ainda'
+        - if @petition.current_version
+          .plip-body= markdown @petition.current_version.body
+  - if @petition.past_versions.length > 0
+    .row
+      .col-xs-12
+        .card-module
+          .title
+            h3
+              a#past_versions_title href="#"
+                | Versões anteriores
+          div#past_versions style="display: none"
+            ul.list-unstyled
+              - past_versions.each do |version|
+                li= link_to version.created_at.strftime("%d/%m/%Y - %H:%M"), version.document_url
+    javascript:
+      $("#past_versions_title").click(function(e) {
+        $("#past_versions").slideToggle();
+        e.preventDefault();
+        return false;
+      });
 - else
   = 'Petição em branco, edite para adicionar conteúdo.'

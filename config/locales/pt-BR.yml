@@ -217,6 +217,7 @@ pt-BR:
       petition_plugin/presignature:
         plugin_relation: Relacionamento do plugin
       petition_plugin/detail:
+        city: Cidade
         scope_coverage: Abrangência
         scope_coverages:
           nationwide: Nacional

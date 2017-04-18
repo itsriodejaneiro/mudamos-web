@@ -53,6 +53,12 @@ class PetitionPlugin::Detail < ActiveRecord::Base
     petition_detail_versions.where(published: true).last
   end
 
+  SCOPE_COVERAGES.each do |scope|
+    define_method "#{scope}?" do
+      scope_coverage == scope
+    end
+  end
+
   # Do not allow setting incorrect scope coverage detail if the wrong scope
   def ensure_scope_coverage_detail
     has_city = city.present? || city_id.present?
@@ -65,7 +71,7 @@ class PetitionPlugin::Detail < ActiveRecord::Base
     errors.add(:scope_coverage, :invalid) if invalid
   end
 
-  def translate_scope_coverage
+  def translated_scope_coverage
     self.class.translate_scope_coverage(scope_coverage)
   end
 
