@@ -16,6 +16,7 @@ module Api
         expose :video_id
         expose :cycle, using: Api::V2::Entities::Cycle
         expose :phase, using: Api::V2::Entities::Phase
+        expose :scope_coverage, using: Api::V2::Entities::ScopeCoverage
 
         swagger_schema :'Api::V2::Entities::Plip' do
           property :id do
@@ -53,6 +54,10 @@ module Api
 
           property :phase do
             key :'$ref', :'Api::V2::Entities::Phase'
+          end
+
+          property :scope_coverage do
+            key :'$ref', :'Api::V2::Entities::ScopeCoverage'
           end
         end
       end
