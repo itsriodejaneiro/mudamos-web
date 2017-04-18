@@ -7,9 +7,23 @@
       = f.input :signatures_required, as: :number, label: 'Número de assinaturas necessárias'
     .col-xs-6
       = f.input :video_id
+  .row.scopes
+    .col-xs-12
+      = f.input :scope_coverage, as: :radio, collection: PetitionPlugin::Detail::SCOPE_COVERAGES.map { |v| [@petition.class.translate_scope_coverage(v), v] }
+
+  .row.scope-row.states.statewide
+    .col-xs-12
+      = f.input :uf, as: :select, collection: state_options, include_blank: "Selecione o Estado"
+
+  .row.scope-row.cities.citywide
+    .col-xs-12
+      - city_values = f.object.city.present? ? [["#{f.object.city.name}, #{f.object.city.uf}", f.object.city.id]] : []
+      = f.input :city, as: :select, collection: city_values, include_blank: "Selecione a cidade"
+
   .row
     .col-xs-12
       = f.input :presentation, as: :text, label: 'Apresentaçao'
+
   = f.fields_for :current_version, @petition.current_version do |version_form|
     .row
       .col-xs-12
@@ -17,3 +31,35 @@
   .row
     .col-xs-12
       button.btn.btn-with-bg= 'Salvar'
+
+  javascript:
+    $(document).ready(function() {
+      $(".scopes input[type='radio']").on("change", function() {
+        $(".scope-row").hide().find("select").val("").trigger("change");
+        $(".row." + $(this).val()).slideDown();
+      });
+
+      $(".row.cities").find("select").select2({
+          placeholder: "Selecione a cidade",
+          ajax: {
+            url: "/admin/cities",
+            dataType: "json",
+            type: "GET",
+            delay: 350,
+            cache: true,
+            data: function(data) {
+              return { name: data.term };
+            },
+            processResults: function(data) {
+              return {
+                results: $.map(data.cities, function(city) {
+                  return { text: city.name + ", " + city.uf, id: city.id }
+                })
+              }
+            }
+          }
+        })
+
+        $(".scope-row").hide();
+        $(".row.#{f.object.scope_coverage}").show();
+    });

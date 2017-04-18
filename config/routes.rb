@@ -58,6 +58,9 @@ Rails.application.routes.draw do
       end
       resources :charts, only: [:index], controller: 'cycles/charts', path: 'graficos-personalizados'
     end
+
+    resources :cities, only: %i(index)
+
     match 'users/:id/comments', to: 'users#user_comment_csv', via: :get
 
     resources :users, only: [:index, :show], path: 'usuarios'
