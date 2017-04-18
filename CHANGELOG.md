@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #352]: Add scope coverage (nationwide, statewide, citywide) to the petition (Issue 345)
+  - Run `rake db:migrate`
 * [PR #351]: Add petition push message notifier (Issue 307)
   - Set env `ONESIGNAL_API_KEY`
   - Set env `ONESIGNAL_APP_ID`
