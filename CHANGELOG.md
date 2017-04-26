@@ -1,5 +1,7 @@
 ## Next
 
+## [1.14.0] - 26/04/2017
+
 * [PR #352]: Add scope coverage (nationwide, statewide, citywide) to the petition (Issue 345)
   - Run `rake db:migrate`
 * [PR #351]: Add petition push message notifier (Issue 307)
