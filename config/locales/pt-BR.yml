@@ -217,6 +217,13 @@ pt-BR:
       petition_plugin/presignature:
         plugin_relation: Relacionamento do plugin
       petition_plugin/detail:
+        city: Cidade
+        scope_coverage: Abrangência
+        scope_coverages:
+          nationwide: Nacional
+          statewide: Estadual
+          citywide: Municipal
+        uf: Estado
         video_id: Id do vídeo do YouTube
     models:
       petition_plugin/presignature:

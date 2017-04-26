@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170411113811) do
+ActiveRecord::Schema.define(version: 20170417195810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -357,18 +357,24 @@ ActiveRecord::Schema.define(version: 20170411113811) do
   add_index "petition_plugin_detail_versions", ["petition_plugin_detail_id"], name: "idx_petition_plg_detail_versions_on_petition_plg_detail_id", using: :btree
 
   create_table "petition_plugin_details", force: :cascade do |t|
-    t.integer  "plugin_relation_id",  null: false
+    t.integer  "plugin_relation_id",                         null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "call_to_action",      null: false
-    t.integer  "signatures_required", null: false
-    t.text     "presentation",        null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "call_to_action",                             null: false
+    t.integer  "signatures_required",                        null: false
+    t.text     "presentation",                               null: false
     t.string   "video_id"
+    t.integer  "city_id"
+    t.string   "scope_coverage",      default: "nationwide", null: false
+    t.string   "uf"
   end
 
+  add_index "petition_plugin_details", ["city_id"], name: "index_petition_plugin_details_on_city_id", using: :btree
   add_index "petition_plugin_details", ["deleted_at"], name: "index_petition_plugin_details_on_deleted_at", using: :btree
   add_index "petition_plugin_details", ["plugin_relation_id"], name: "index_petition_plugin_details_on_plugin_relation_id", using: :btree
+  add_index "petition_plugin_details", ["scope_coverage", "uf"], name: "index_petition_plugin_details_on_scope_coverage_and_uf", using: :btree
+  add_index "petition_plugin_details", ["scope_coverage"], name: "index_petition_plugin_details_on_scope_coverage", using: :btree
 
   create_table "petition_plugin_presignatures", force: :cascade do |t|
     t.integer  "user_id",            null: false
@@ -650,6 +656,7 @@ ActiveRecord::Schema.define(version: 20170411113811) do
   add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
   add_foreign_key "petition_plugin_approvers", "plugin_relations", on_delete: :cascade
   add_foreign_key "petition_plugin_detail_versions", "petition_plugin_details", on_delete: :cascade
+  add_foreign_key "petition_plugin_details", "cities", on_delete: :restrict
   add_foreign_key "petition_plugin_details", "plugin_relations", on_delete: :cascade
   add_foreign_key "petition_plugin_presignatures", "plugin_relations", on_delete: :cascade
   add_foreign_key "petition_plugin_presignatures", "users", on_delete: :cascade

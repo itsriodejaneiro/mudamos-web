@@ -17,5 +17,6 @@
  *= require select2
  *= require simplemde.min
  *= require_tree ./settings
+ *= require_tree ./petition
  *= require_self
  */

@@ -1,9 +1,11 @@
 class Plip
   extend Forwardable
 
-  def_delegators :detail, :published_version, :presentation, :signatures_required, :call_to_action, :video_id
+  def_delegators :detail, :published_version, :presentation, :signatures_required, :call_to_action, :video_id, :uf, :city
   def_delegators :published_version, :id, :document_url
   def_delegators :phase, :cycle
+
+  ScopeCoverage = Struct.new(:scope, :uf, :city)
 
   # @!attribute [rw] detail
   #   @return [PetitionPlugin::Detail]
@@ -25,5 +27,9 @@ class Plip
 
   def content
     published_version.body
+  end
+
+  def scope_coverage
+    ScopeCoverage.new(detail.scope_coverage, detail.uf, detail.city)
   end
 end
