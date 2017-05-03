@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #356]: Redirect temporarily `envie-sua-ideia` (Issue 355)
+
 ## [1.14.0] - 26/04/2017
 
 * [PR #352]: Add scope coverage (nationwide, statewide, citywide) to the petition (Issue 345)
