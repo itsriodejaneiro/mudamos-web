@@ -139,7 +139,9 @@ Rails.application.routes.draw do
     get :sub_profiles
   end
 
-  get "/envie-sua-ideia", to: redirect("https://itsrio2.typeform.com/to/nGzwjv", status: 302)
+  help_form_url = "https://itsrio2.typeform.com/to/nGzwjv"
+  get "/envie-sua-ideia", to: redirect(help_form_url, status: 302)
+  get "/ajuda", to: redirect(help_form_url, status: 302)
 
   match '/busca', to: 'search#show', as: :search, via: :get
 
