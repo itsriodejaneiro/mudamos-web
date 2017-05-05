@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #359]: New favicon (no optimizations) (Issue 224)
 * [PR #358]: Redirect “/ajuda” to the help form (Issue 357)
 * [PR #356]: Redirect temporarily `envie-sua-ideia` (Issue 355)
 
