@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #358]: Redirect “/ajuda” to the help form (Issue 357)
 * [PR #356]: Redirect temporarily `envie-sua-ideia` (Issue 355)
 
 ## [1.14.0] - 26/04/2017
