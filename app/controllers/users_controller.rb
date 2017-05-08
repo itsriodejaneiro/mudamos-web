@@ -2,7 +2,13 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_filter :check_current_user, only: [:update]
 
-  def me 
+  attr_writer :account_remover
+
+  def account_remover
+    @account_remover ||= PetitionPlugin::AccountRemover.new
+  end
+
+  def me
     render json: current_user.to_json
   end
 
@@ -16,6 +22,16 @@ class UsersController < ApplicationController
       head :no_content
     else
       render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
+  def remove_account
+    result = account_remover.perform(email: remove_account_params[:email])
+
+    if result.success
+      render json: { message: I18n.t(:success, scope: %i(actions remove_account))}
+    else
+      head 422
     end
   end
 
@@ -34,5 +50,9 @@ class UsersController < ApplicationController
 
   def check_current_user
     return head :forbiden unless @user.id == current_user.id
+  end
+
+  def remove_account_params
+    params.require(:user).permit(:email)
   end
 end

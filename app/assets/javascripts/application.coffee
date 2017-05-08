@@ -40,6 +40,7 @@
 #= require inputs/date_mask
 #= require inputs/image_upload
 #= require users/login
+#= require users/remove-account
 #= require dotdotdot-comments
 #= require comments
 #= require search

@@ -16,6 +16,7 @@
  *= require select2
  *= require_tree ./petition
  *= require_tree ./cycle
+ *= require_tree ./users
  *= require signature
  *= require simple_navbar
  *= require global

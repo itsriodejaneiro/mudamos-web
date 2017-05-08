@@ -133,6 +133,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:update, :me] do
     get :me, on: :collection
+    post :remove_account, on: :collection
   end
 
   resources :profiles, only: [:index, :sub_profiles] do
