@@ -25,8 +25,14 @@
     .col-xs-6
       .card-module
         .title
-          h3 Número de assinaturas necessárias
-        = @petition.signatures_required
+          h3= @petition.class.human_attribute_name(:signatures_required)
+        = number_with_delimiter @petition.signatures_required
+    .col-xs-6
+      .card-module
+        .title
+          h3= @petition.class.human_attribute_name(:initial_signatures_goal)
+        = number_with_delimiter @petition.initial_signatures_goal
+  .row
     .col-xs-6
       .card-module
         .title

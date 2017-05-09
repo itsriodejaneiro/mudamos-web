@@ -2,11 +2,14 @@
   .row
     .col-xs-6
       = f.input :call_to_action, label: 'Chamada para ação'
-  .row
-    .col-xs-6
-      = f.input :signatures_required, as: :number, label: 'Número de assinaturas necessárias'
     .col-xs-6
       = f.input :video_id
+  .row
+    .col-xs-6
+      = f.input :initial_signatures_goal, as: :number
+    .col-xs-6
+      = f.input :signatures_required, as: :number
+
   .row.scopes
     .col-xs-12
       = f.input :scope_coverage, as: :radio, collection: PetitionPlugin::Detail::SCOPE_COVERAGES.map { |v| [@petition.class.translate_scope_coverage(v), v] }
