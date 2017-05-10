@@ -47,6 +47,8 @@ html
         = render 'layouts/shared/footer'
 
     .modal-container
+      = render "layouts/shared/modal", modal_id: 'modal_remove_account', size: 'sm', cache: true, content: render(file: "layouts/shared/_remove_account")
+
       - unless user_signed_in?
         = render 'layouts/shared/modal', modal_id: 'modal-session-new', size: 'sm', cache: true, content: render(file: 'users/sessions/new')
         = render 'layouts/shared/modal', modal_id: 'modal-session-login', size: 'sm', cache: true, content: render(file: 'users/sessions/login')

@@ -17,10 +17,11 @@ module ApplicationHelper
   def input f, attribute, options = {}
     m = f.object.class.to_s.underscore
 
+    value = options[:value] || f.object && f.object.send(attribute)
     input_options = {
       autocomplete: :off,
-      html: { value: options[:value] || f.object.send(attribute) },
-      value: options[:value] || f.object.send(attribute)
+      html: { value: value },
+      value: value
     }
 
     if options[:class]

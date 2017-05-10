@@ -1,0 +1,23 @@
+.modal-body
+  .row
+    .col-xs-12
+      span Remova sua conta da Mudamos+
+  .row.dividers
+    .col-xs-12
+      hr
+
+  .row.result
+    .col-xs-12
+      span.error
+      span.success
+
+  = semantic_form_for "user", url: remove_account_users_path, html: { id: "remove_account_form", class: "row", novalidate: nil }, remote: true do |f|
+    = f.inputs class: "col-xs-12" do
+      = input f, :email, as: :email, label: "Email"
+
+    .col-xs-12
+      button.rounded-button.new type="submit" disabled="disabled" Enviar
+
+.modal-footer.hidden
+  .col-xs-12
+    button.rounded-button.new type="button" data-dismiss="modal" Fechar

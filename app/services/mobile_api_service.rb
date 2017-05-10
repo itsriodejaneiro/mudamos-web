@@ -17,6 +17,7 @@ class MobileApiService
   end
 
   attr_accessor :mobile_api_secret
+  attr_writer :connection
 
   def initialize(
     url: Rails.application.secrets.apis['mobile']['url'],
@@ -31,6 +32,13 @@ class MobileApiService
     @mobile_api_secret = mobile_api_secret
     @logger = logger
     @timeout = timeout
+  end
+
+  def connection
+    @connection ||= Faraday.new(:url => @url) do |connection|
+      connection.response :logger, @logger
+      connection.adapter Faraday.default_adapter
+    end
   end
 
   PetitionVersion = Struct.new(
@@ -178,6 +186,10 @@ class MobileApiService
     )
   end
 
+  def remove_account(email:)
+    post("/api/v1/users/remove/account", user: { email: email })
+  end
+
   private
 
   [:get, :head].each do |verb|
@@ -226,12 +238,5 @@ class MobileApiService
     end
 
     fail InvalidRequest.new("Request failed with errors: #{body["data"]}") unless body["status"] == "success"
-  end
-
-  def connection
-    @connection ||= Faraday.new(:url => @url) do |connection|
-      connection.response :logger, @logger
-      connection.adapter Faraday.default_adapter
-    end
   end
 end

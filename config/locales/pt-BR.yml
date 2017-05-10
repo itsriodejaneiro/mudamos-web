@@ -237,3 +237,7 @@ pt-BR:
   mailer:
     pre_signature:
       subject: "Pré assinatura feita com sucesso!"
+
+  actions:
+    remove_account:
+      success: Você receberá um e-mail com um link para confirmar a sua ação. Verifique a caixa de entrada.
