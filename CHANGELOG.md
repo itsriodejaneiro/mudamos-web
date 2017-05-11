@@ -3,6 +3,7 @@
 ## [1.15.0] - 11/05/2017
 
 * [PR #361]: Auto increase the signatures goal (Issue 346)
+  - Run `rake db:migrate`
   - Run `rake petitions:fetch_info` in order to build new caches
 * [PR #360]: Remove your account (Issue 349)
 * [PR #359]: New favicon (no optimizations) (Issue 224)
