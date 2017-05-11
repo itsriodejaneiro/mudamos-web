@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417195810) do
+ActiveRecord::Schema.define(version: 20170509115010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -357,17 +357,18 @@ ActiveRecord::Schema.define(version: 20170417195810) do
   add_index "petition_plugin_detail_versions", ["petition_plugin_detail_id"], name: "idx_petition_plg_detail_versions_on_petition_plg_detail_id", using: :btree
 
   create_table "petition_plugin_details", force: :cascade do |t|
-    t.integer  "plugin_relation_id",                         null: false
+    t.integer  "plugin_relation_id",                             null: false
     t.datetime "deleted_at"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
-    t.string   "call_to_action",                             null: false
-    t.integer  "signatures_required",                        null: false
-    t.text     "presentation",                               null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "call_to_action",                                 null: false
+    t.integer  "signatures_required",                            null: false
+    t.text     "presentation",                                   null: false
     t.string   "video_id"
     t.integer  "city_id"
-    t.string   "scope_coverage",      default: "nationwide", null: false
+    t.string   "scope_coverage",          default: "nationwide", null: false
     t.string   "uf"
+    t.integer  "initial_signatures_goal", default: 10000,        null: false
   end
 
   add_index "petition_plugin_details", ["city_id"], name: "index_petition_plugin_details_on_city_id", using: :btree

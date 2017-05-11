@@ -27,9 +27,14 @@ html
             div para o encerramento
         div.petition-signatures-information
           div#signatures_count
-            span 0
-            =" de #{petition.signatures_required}"
+            span 0 de 0
           div assinaturas
+        div.final-goal
+          small>
+            | Nossa meta final é de
+            strong<>= petition.signatures_required
+          small assinaturas
+
       div.petition-button-container
         = link_to generate_link, target: "_parent" do
           button style="background-color: #{cycle.color}"
@@ -48,18 +53,18 @@ javascript:
     }
 
     function updateSignaturesCount() {
-      var signaturesRequired = "#{petition.signatures_required}";
-
       apiClient.getPetitionInfo(#{petition.id}).then(function(petitionInfo) {
         if (petitionInfo) {
           var count = petitionInfo.signatures_count;
+          var currentGoal = petitionInfo.current_signatures_goal;
+          var message = count + " de " + currentGoal;
 
-          var percentage = (count / signaturesRequired) * 100;
+          var percentage = (count / currentGoal) * 100;
           $(".petition-progress").css("width", percentage + "%");
 
-          $("#signatures_count span").text(count);
+          $("#signatures_count span").text(message);
 
-          $(".petition-progress-container").attr("title", count + " de " + signaturesRequired + " assinaturas")
+          $(".petition-progress-container").attr("title", message + " assinaturas")
         }
       });
     }

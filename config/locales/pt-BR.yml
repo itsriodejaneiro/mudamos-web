@@ -218,11 +218,14 @@ pt-BR:
         plugin_relation: Relacionamento do plugin
       petition_plugin/detail:
         city: Cidade
+        current_signatures_goal: Meta atual de assinaturas
+        initial_signatures_goal: Meta inicial de assinaturas
         scope_coverage: Abrangência
         scope_coverages:
           nationwide: Nacional
           statewide: Estadual
           citywide: Municipal
+        signatures_required: Meta final de assinaturas
         uf: Estado
         video_id: Id do vídeo do YouTube
     models:

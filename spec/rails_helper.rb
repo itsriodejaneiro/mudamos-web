@@ -56,6 +56,8 @@ RSpec.configure do |config|
   config.include Paperclip::Shoulda::Matchers
   config.include Devise::TestHelpers, :type => :controller
   config.include WithEnvHelper
+
+  config.before { Rails.cache.clear }
 end
 
 Shoulda::Matchers.configure do |config|

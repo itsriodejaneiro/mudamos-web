@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #361]: Auto increase the signatures goal (Issue 346)
 * [PR #360]: Remove your account (Issue 349)
 * [PR #359]: New favicon (no optimizations) (Issue 224)
 * [PR #358]: Redirect “/ajuda” to the help form (Issue 357)

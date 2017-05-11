@@ -41,8 +41,13 @@ section#petition-index
           .col-xs-12.progress-description
             | Faltam
             strong.remaining-signatures
-            | assinaturas para a meta de
-            strong=" #{@petition.signatures_required}"
+            | assinaturas para a meta de&nbsp;
+            strong.current-goal
+          .col-xs-12.final-goal
+            small
+              | Nossa meta final é de
+              strong<>= @petition.signatures_required
+              small assinaturas
 
           - if @phase.in_progress?
             .col-lg-12.col-sm-6.col-xs-12.remaining-days.bottom-info-container
@@ -50,7 +55,7 @@ section#petition-index
               div.medium-padded
                 - if @phase.remaining_days > 0
                   strong>= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias" : "dia"}"
-                  .visible-lg-inline= "#{@phase.remaining_days > 1 ? "restantes" : "restante"} para o atingimento da meta final"
+                  .visible-lg-inline= "#{@phase.remaining_days > 1 ? "restantes" : "restante"} para o atingimento da meta"
                 - else
                   strong Último dia
               div.medium-padded.subtitle
@@ -104,6 +109,11 @@ section#petition-index
           .col-xs-6.text-right.signatures
             .total-signatures
             div
+              small assinaturas
+            div style="margin-top: 6px"
+              small>
+                | Nossa meta final é de
+                strong<>= @petition.signatures_required
               small assinaturas
 
         .row#petition-signers-desktop.signatures-list.visible-lg-block
@@ -179,17 +189,17 @@ javascript:
       });
 
       function updatePetitionInfo() {
-        var signaturesRequired = "#{@petition.signatures_required}";
-
         apiClient.getPetitionInfo(#{@petition.id}).then(function(petitionInfo) {
           if (petitionInfo) {
             var count = petitionInfo.signatures_count;
+            var currentGoal = petitionInfo.current_signatures_goal;
 
-            var percentage = (count / signaturesRequired) * 100;
+            var percentage = (count / currentGoal) * 100;
             $(".petition-signatures-progress").trigger("update", percentage + "%");
             $(".already-signed strong").text(count + " ");
-            $(".remaining-signatures").text(" " + (signaturesRequired - count) + " ");
-            $(".phone-bottom-info .total-signatures").text(count + " de " + signaturesRequired);
+            $(".remaining-signatures").text(" " + (currentGoal - count) + " ");
+            $(".phone-bottom-info .total-signatures").text(count + " de " + currentGoal);
+            $(".progress-description .current-goal").text(currentGoal);
           }
         });
       }
