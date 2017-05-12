@@ -12,7 +12,7 @@ RSpec.describe PetitionService do
     let(:service) { described_class.new mobile_service: mobile_service }
     let(:fresh) { true }
     let(:petition) do
-      double :petition_detail, id: 666, initial_signatures_goal: 10, signatures_required: 100
+      double :petition_detail, id: 666, initial_signatures_goal: 10_000, signatures_required: 100_000
     end
 
     let(:api_info) do
@@ -30,7 +30,7 @@ RSpec.describe PetitionService do
     its(:blockchain_address) { is_expected.to eq api_info.blockchain_address }
     its(:initial_signatures_goal) { is_expected.to eq petition.initial_signatures_goal }
     its(:total_signatures_required) { is_expected.to eq petition.signatures_required }
-    its(:current_signatures_goal) { is_expected.to eq 10 }
+    its(:current_signatures_goal) { is_expected.to eq 10_000 }
 
     context "when not fresh but cached" do
       let(:fresh) { false }
@@ -66,9 +66,9 @@ RSpec.describe PetitionService do
   end
 
   describe "#compute_current_signatures_goal" do
-    let(:signatures_count) { 10 }
-    let(:initial_signatures_goal) { 20 }
-    let(:total_signatures_required) { 100 }
+    let(:signatures_count) { 5_000 }
+    let(:initial_signatures_goal) { 10_000 }
+    let(:total_signatures_required) { 100_000 }
 
     subject do
       service.compute_current_signatures_goal signatures_count: signatures_count,
@@ -81,19 +81,11 @@ RSpec.describe PetitionService do
     end
 
     context "when the signatures count is equal the goal" do
-      let(:signatures_count) { 20 }
-      it { is_expected.to eq initial_signatures_goal * 2 }
-    end
+      let(:signatures_count) { initial_signatures_goal }
+      let(:expected_goal) { 13_000 }
 
-    signatures_count = (25..100).step(20)
-    expected_goal = (40..100).step(20).to_a
-    signatures_count.each_with_index do |count, index|
-      context "when the count increases and pass the current goal" do
-        let(:signatures_count) { count }
-
-        it "doubles the initial goal" do
-          is_expected.to eq expected_goal[index]
-        end
+      it "increases by 25%" do
+        is_expected.to eq expected_goal
       end
     end
   end

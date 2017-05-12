@@ -88,10 +88,23 @@ class PetitionService
     end
   end
 
-  def compute_current_signatures_goal(signatures_count:, initial_signatures_goal:, total_signatures_required:)
+  # Increases the current goal by the given ratio
+  # Clamps the goal to a 1_000 multiplier
+  def compute_current_signatures_goal(ratio: 1.25, signatures_count:, initial_signatures_goal:, total_signatures_required:)
     signatures_count ||= 0
-    current_signatures_goal = ((signatures_count / initial_signatures_goal) + 1) * initial_signatures_goal
+    current_goal = initial_signatures_goal
 
-    [current_signatures_goal, total_signatures_required].min
+    loop do
+      if signatures_count >= current_goal
+        current_goal = (current_goal * ratio).round
+      else
+        # Normalize #000
+        adjust = current_goal % 1000
+        adjust = adjust > 0 ? 1000 - adjust : adjust
+        current_goal = current_goal + adjust
+
+        return [current_goal, total_signatures_required].min
+      end
+    end
   end
 end
