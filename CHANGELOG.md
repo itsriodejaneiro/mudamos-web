@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #366]: Change petition days remaining message (Issue 364)
+
 ## [1.15.0] - 11/05/2017
 
 * [PR #361]: Auto increase the signatures goal (Issue 346)
