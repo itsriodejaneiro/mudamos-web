@@ -30,7 +30,9 @@ class PetitionPlugin::Detail < ActiveRecord::Base
   UFS = %w(AC AL AM AP BA CE DF ES GO MA MG MS MT PA PB PE PI PR RJ RN RO RR RS SC SE SP TO)
 
   validates :call_to_action, presence: true
-  validates :signatures_required, presence: true
+  validates :signatures_required, presence: true, numericality: { greater_than_or_equal_to: :initial_signatures_goal }
+  validates :initial_signatures_goal, presence: true
+  validates :signatures_required, :initial_signatures_goal, numericality: { greater_than_or_equal_to: 1_000 }
   validates :presentation, presence: true
   validates :scope_coverage, presence: true, inclusion: { in: SCOPE_COVERAGES }
   validates :city, presence: true, if: -> { scope_coverage == CITYWIDE_SCOPE }
