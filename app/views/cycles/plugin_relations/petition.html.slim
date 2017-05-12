@@ -55,12 +55,12 @@ section#petition-index
               div.medium-padded
                 - if @phase.remaining_days > 0
                   strong>= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias" : "dia"}"
-                  .visible-lg-inline= "#{@phase.remaining_days > 1 ? "restantes" : "restante"} para o atingimento da meta"
+                  .visible-lg-inline= "#{@phase.remaining_days > 1 ? "restantes" : "restante"} para o atingimento da meta final"
                 - else
                   strong Último dia
               div.medium-padded.subtitle
                 small.visible-lg-block= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}"
-                small.hidden-lg para o encerramento
+                small.hidden-lg para o atingimento da meta final
 
             .col-lg-12.col-sm-6.col-xs-12.download-document.bottom-info-container
               i.pull-left.material-icons style="color: #{@cycle.color}" file_download
