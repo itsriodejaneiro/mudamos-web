@@ -13,6 +13,8 @@
 #= require routes
 #= require jquery
 #= require jquery_ujs
+#= require numeraljs
+#= require numeraljs/locales/pt-br
 #= require jquery.remotipart
 #= require parallax.min
 #= require loading
@@ -66,6 +68,8 @@
 #= require moment.min
 #= require asmcrypto
 #= require home-blocks
+
+numeral.locale "pt-br"
 
 document.expiration_default_time = 300
 
