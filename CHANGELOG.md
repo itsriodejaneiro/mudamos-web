@@ -1,5 +1,6 @@
 ## Next
 
+* [PR #368]: Expose plip signature goals (Issue 363)
 * [PR #367]: Changes the current goal algorithm to increase by a 25% ratio (Issue 365)
 * [PR #366]: Change petition days remaining message (Issue 364)
 

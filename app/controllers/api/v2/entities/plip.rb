@@ -11,6 +11,8 @@ module Api
         expose :plip_url
         expose :content
         expose :presentation
+        expose :initial_signatures_goal
+        expose :total_signatures_required
         expose :signatures_required
         expose :call_to_action
         expose :video_id
@@ -36,8 +38,16 @@ module Api
             key :type, :string
           end
 
+          property :initial_signatures_goal do
+            key :type, :integer
+          end
+
           property :signatures_required do
-            key :type, :string
+            key :type, :integer
+          end
+
+          property :total_signatures_required do
+            key :type, :integer
           end
 
           property :call_to_action do
