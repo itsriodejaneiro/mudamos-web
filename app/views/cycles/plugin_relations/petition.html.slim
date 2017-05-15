@@ -46,7 +46,7 @@ section#petition-index
           .col-xs-12.final-goal
             small
               | Nossa meta final é de
-              strong<>= @petition.signatures_required
+              strong<>= number_with_delimiter @petition.signatures_required
               small assinaturas
 
           - if @phase.in_progress?
@@ -54,13 +54,13 @@ section#petition-index
               i.pull-left.material-icons style="color: #{@cycle.color}" access_time
               div.medium-padded
                 - if @phase.remaining_days > 0
-                  strong>= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias" : "dia"}"
-                  .visible-lg-inline= "#{@phase.remaining_days > 1 ? "restantes" : "restante"} para o atingimento da meta final"
+                  strong>= "#{number_with_delimiter @phase.remaining_days} #{@phase.remaining_days > 1 ? "dias" : "dia"}"
+                  .visible-lg-inline= "#{@phase.remaining_days > 1 ? "restantes" : "restante"} para atingirmos a meta final"
                 - else
                   strong Último dia
               div.medium-padded.subtitle
                 small.visible-lg-block= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}"
-                small.hidden-lg para o atingimento da meta final
+                small.hidden-lg para atingirmos a meta final
 
             .col-lg-12.col-sm-6.col-xs-12.download-document.bottom-info-container
               i.pull-left.material-icons style="color: #{@cycle.color}" file_download
@@ -101,11 +101,11 @@ section#petition-index
           - if @phase.in_progress?
             .col-xs-6.progress
               - if @phase.remaining_days > 0
-                strong= "#{@phase.remaining_days} #{@phase.remaining_days > 1 ? "dias restantes" : "dia restante"} "
+                strong= "#{number_with_delimiter @phase.remaining_days} #{@phase.remaining_days > 1 ? "dias restantes" : "dia restante"} "
               - else
                 strong Último dia
               div
-                small para o atingimento da meta final
+                small para atingirmos a meta final
           .col-xs-6.text-right.signatures
             .total-signatures
             div
@@ -113,7 +113,7 @@ section#petition-index
             div style="margin-top: 6px"
               small>
                 | Nossa meta final é de
-                strong<>= @petition.signatures_required
+                strong<>= number_with_delimiter @petition.signatures_required
               small assinaturas
 
         .row#petition-signers-desktop.signatures-list.visible-lg-block
@@ -195,11 +195,13 @@ javascript:
             var currentGoal = petitionInfo.current_signatures_goal;
 
             var percentage = (count / currentGoal) * 100;
+            var nCount = numeral(count);
+            var nCurrentGoal = numeral(currentGoal);
             $(".petition-signatures-progress").trigger("update", percentage + "%");
-            $(".already-signed strong").text(count + " ");
-            $(".remaining-signatures").text(" " + (currentGoal - count) + " ");
-            $(".phone-bottom-info .total-signatures").text(count + " de " + currentGoal);
-            $(".progress-description .current-goal").text(currentGoal);
+            $(".already-signed strong").text(nCount.format() + " ");
+            $(".remaining-signatures").text(" " + numeral(currentGoal - count).format() + " ");
+            $(".phone-bottom-info .total-signatures").text(nCount.format() + " de " + nCurrentGoal.format());
+            $(".progress-description .current-goal").text(nCurrentGoal.format());
           }
         });
       }

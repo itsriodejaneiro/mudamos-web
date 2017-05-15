@@ -23,8 +23,8 @@ html
             div= petition.plugin_relation.related.final_date.strftime("%d/%m/%Y")
             div data de encerramento
           - else
-            div= "#{petition.plugin_relation.related.remaining_days} dias restantes"
-            div para o atingimento da meta final
+            div= "#{number_with_delimiter petition.plugin_relation.related.remaining_days} dias restantes"
+            div para atingirmos a meta final
         div.petition-signatures-information
           div#signatures_count
             span 0 de 0
@@ -32,7 +32,7 @@ html
         div.final-goal
           small>
             | Nossa meta final é de
-            strong<>= petition.signatures_required
+            strong<>= number_with_delimiter petition.signatures_required
           small assinaturas
 
       div.petition-button-container
@@ -57,7 +57,7 @@ javascript:
         if (petitionInfo) {
           var count = petitionInfo.signatures_count;
           var currentGoal = petitionInfo.current_signatures_goal;
-          var message = count + " de " + currentGoal;
+          var message = numeral(count).format() + " de " + numeral(currentGoal).format();
 
           var percentage = (count / currentGoal) * 100;
           $(".petition-progress").css("width", percentage + "%");

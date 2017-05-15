@@ -62,6 +62,7 @@ gem 'slim-rails'
 
 gem 'awesome_nested_set'
 gem "select2-rails"
+gem 'rails-assets-numeraljs', source: 'https://rails-assets.org'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
