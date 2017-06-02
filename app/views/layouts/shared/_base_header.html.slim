@@ -25,14 +25,6 @@
             li= link_to 'Sobre', root_path + '#about'
             li.visible-md-inline-block.visible-lg-inline-block= link_to 'Ferramentas', root_path + '#tools_carousel'
             li.visible-xs-inline-block.visible-sm-inline-block= link_to 'Ferramentas', root_path + '#tools_no_carousel'
-          li.dropdown class=("dropup" if params[:controller] == 'cycles' and params[:action] == 'index')
-            = link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' }, aria: { haspopup: 'true', expanded: 'false' }, role: 'button' do
-              | Ciclos
-              span.caret
-            ul.dropdown-menu
-              - @cycles.each do |c|
-                li= link_to c.title, c
-              li= link_to 'Reforma Política do Século 21', 'http://plataformabrasil.org.br/', target: '_blank'
     = render 'layouts/search_bar'
 
 - if params[:controller] == 'cycles' and params[:action] == 'index'
