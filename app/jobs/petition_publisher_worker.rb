@@ -4,13 +4,16 @@ class PetitionPublisherWorker
 
   attr_reader :repository
   attr_accessor :petition_service
+  attr_accessor :notifier
 
   def initialize(
     repository: PetitionPlugin::DetailVersionRepository.new,
-    petition_service: PetitionService.new
+    petition_service: PetitionService.new,
+    notifier: PetitionNotifierWorker
   )
     @repository = repository
     @petition_service = petition_service
+    @notifier = notifier
   end
 
   def perform(sqs_msg, body)
@@ -24,14 +27,18 @@ class PetitionPublisherWorker
 
       refresh_caches version
 
-      if is_first_version version
-        PetitionNotifierWorker.perform_async id: version.id
+      if should_notify_users? version
+        notifier.perform_async id: version.id
       else
-        Rails.logger.info "Skipping push message. This is just a new version."
+        Rails.logger.info "Skipping push message."
       end
     else
       Rails.logger.warn "Version not found #{petition_detail_version_id}"
     end
+  end
+
+  def should_notify_users?(version)
+    version.nationwide? && is_first_version(version)
   end
 
   def is_first_version(version)

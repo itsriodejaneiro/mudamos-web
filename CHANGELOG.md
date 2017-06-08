@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #379]: Only notify users when it is a nationwide plip (Issue 378)
+
 ## [1.16.0] - 15/05/2017
 
 * [PR #370]: Format the plip’s metrics (Issue 369)
