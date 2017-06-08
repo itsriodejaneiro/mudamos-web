@@ -21,4 +21,6 @@ class PetitionPlugin::DetailVersion < ActiveRecord::Base
   scope :published, -> { where published: true }
 
   validates :body, presence: true
+
+  delegate :nationwide?, :statewide?, :citywide?, to: :petition_plugin_detail
 end
