@@ -1,0 +1,207 @@
+html {
+  height: 100%;
+}
+
+.static {
+  &.about {
+    font-family: "Arvo", serif;
+    height: 100%;
+
+    .content {
+    	background: url(image-path("static/background.png")) no-repeat left top;
+    	background-size: cover;
+    }
+
+    .custom-container {
+    	padding-top: 20px;
+    	margin: 0 auto;
+    	width: 760px;
+    }
+
+    .faq .question .link,
+    .faq .question .text,
+    .faq .question .title,
+    .general-info .section .text,
+    .header .link {
+    	color: #252525;
+    	font-size: 14px;
+    }
+
+    .faq, .general-info {
+    	background: linear-gradient(rgba(0,0,0,0.1) 0, rgba(255,255,255,0) 60%);
+    }
+
+    .faq, .general-info, .header {
+    	padding: 30px;
+    }
+
+    .faq {
+    	padding-top: 60px;
+    }
+    	.faq .download {
+    		text-align: center;
+    	}
+    		.faq .download .btn {
+    			background: linear-gradient(to right, #713aa6 0%,#7f3f98 30%,#7f3f98 70%,#713aa6 100%);
+    			border-radius: 25px;
+    			color: white;
+    			font-size: 15px;
+    			padding: 10px 28px;
+    			text-align: center;
+    			text-transform: uppercase;
+    		}
+
+    	.faq > .title {
+    		padding-bottom: 10px;
+    	}
+
+    	.faq .question {
+    		padding-bottom: 25px;
+    	}
+    		.faq .question .link,
+    		.faq .question .title {
+    			font-weight: bold;
+    		}
+
+    	.faq .questions {
+    		padding-bottom: 20px;
+    	}
+
+    .general-info {
+    	margin-top: -110px;
+    	padding-top: 130px;
+    }
+    	.general-info .aboutus-mobile {
+    		display: block;
+    		height: auto;
+    		margin: 0 auto;
+    		padding-bottom: 40px;
+    		width: 110px;
+    	}
+    	.general-info .section {
+    		padding-bottom: 65px;
+    		text-align: justify;
+    	}
+    		.general-info .section:nth-child(even) {
+    	    margin-left: 10%;
+    		}
+
+    		.general-info .section.about-us {
+    			width: 66%;
+    		}
+
+    		.general-info .section.history {
+    			width: 80%;
+    		}
+
+    		.general-info .section.problem {
+    			width: 80%;
+    		}
+
+    		.general-info .section.solution {
+    			width: 72%;
+    		}
+
+    		.general-info .section .text {
+    			margin-bottom: 0;
+    		}
+
+    		.general-info .section .title {
+    			padding-bottom: 25px;
+    		}
+
+    .header .logo {
+    	display: block;
+    	float: left;
+    	height: 50px;
+    	width: 50px;
+    }
+
+    .header .links {
+    	float: right;
+    	margin-top: -15px;
+    }
+    	.header .links .link {
+    		display: inline-block;
+    		margin-left: 20px;
+    	}
+
+    .major-title {
+    	font-size: 28px;
+    	font-weight: bold;
+    	margin: 0;
+    }
+
+    .underscore {
+    	border-bottom: 4px #6f00a7 solid;
+    	box-shadow: 0 10px 23px -4px rgba(111, 0, 167, 0.2);
+    }
+
+    @media only screen and (max-width: 991px) {
+    	.content .general-info .section {
+    		margin: 0;
+    		text-align: center;
+    		width: 100%;
+    	}
+    }
+
+    @media only screen and (max-width: 799px) {
+    	.content {
+    		background: url(image-path("static/background-mobile.png")) no-repeat left top;
+    	}
+    	.custom-container {
+    		padding-top: 20px;
+    		width: 440px;
+    	}
+
+    	.faq .question .link,
+    	.faq .question .text,
+    	.faq .question .title,
+    	.general-info .section .text,
+    	.header .link {
+    		font-size: 16px;
+    	}
+
+    	.faq {
+    		padding-bottom: 40px;
+    		text-align: center;
+    	}
+
+    	.faq .question .text {
+    		margin-bottom: 20px;
+    	}
+
+    	.general-info {
+        margin-top: -70px;
+      }
+
+    	.general-info .section {
+    		padding-bottom: 46px;
+    	}
+
+    	.general-info .section.history {
+    		padding-bottom: 10px;
+    	}
+
+    	.header {
+    		padding: 10px;
+    	}
+
+    	.major-title {
+    		font-size: 16px;
+    	}
+    }
+
+    @media only screen and (max-width: 479px) {
+    	.custom-container {
+        width: 310px;
+    	}
+    }
+
+    @media only screen and (max-width: 359px) {
+    	.custom-container {
+        width: 280px;
+    	}
+    }
+  }
+}
