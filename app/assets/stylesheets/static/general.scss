@@ -1,0 +1,219 @@
+body,
+html {
+  height: 100%;
+}
+body {
+  font-family: 'Arvo', serif;
+}
+
+.static {
+  small.text {
+    display: block;
+    font-size: 18px;
+  }
+
+  small.text.disclaimer {
+   margin: 30px 30%;
+  }
+
+  .content {
+    background: url(image-path("static/background.png")) no-repeat left top;
+    background-size: cover;
+  }
+
+  .custom-container {
+    margin: 0 auto;
+    padding-top: 40px;
+    width: 1280px;
+  }
+
+  .download {
+    text-align: center;
+    
+    .btn {
+      background: linear-gradient(to right, #713aa6 0%, #7f3f98 30%, #7f3f98 70%, #713aa6 100%);
+      border-radius: 41px;
+      color: white;
+      font-size: 26px;
+      padding: 20px 48px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+  .link,
+  .text,
+  .title {
+    color: #252525;
+    font-size: 24px;
+  }
+
+  .link,
+  .title {
+    font-weight: bold;
+  }
+
+  .gradient-section {
+    background: linear-gradient(rgba(0,0,0,0.1) 0, rgba(255,255,255,0) 60%);
+  }
+
+  .header {
+    padding: 60px;
+  }
+
+  .header .links {
+    float: right;
+    margin-top: -15px;
+    
+    .link {
+      display: inline-block;
+      font-weight: normal;
+      margin-left: 20px;
+    }
+  }
+
+  .header .logo {
+    display: block;
+    float: left;
+  }
+
+  .header .logos.great .logo {
+    width: 140px;
+  }
+
+  .header .logos.small {
+    text-align: center;
+
+    .logo,
+    .mudamos {
+      display: inline-block;
+    }
+
+    .logo {
+      width: 60px;
+    }
+
+    .mudamos {
+      width: 250px;
+    }
+  }
+
+  .major-title {
+    font-size: 46px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .only-mobile {
+    display: none !important;
+  }
+
+  .underscore {
+    border-bottom: 8px #6f00a7 solid;
+    box-shadow: 0 10px 23px -4px rgba(111, 0, 167, 0.2);
+  }
+
+  @media only screen and (max-width: 1365px) {
+    .custom-container {
+      padding-top: 30px;
+      width: 1140px;
+    }
+  }
+
+  @media only screen and (max-width: 1199px) {
+    .custom-container {
+      width: 880px;
+    }
+  }
+
+  @media only screen and (max-width: 939px) {
+    small.text {
+      font-size: 12px;
+      margin: 30px 13%;
+    }
+
+    .content {
+      background: url(image-path("static/background-mobile.png")) no-repeat left top;
+      text-align: center;
+
+      .general-info .section {
+        margin: 0;
+        width: 100%;
+      }
+    }
+
+    .custom-container {
+      padding-top: 0;
+      width: 480px;
+    }
+
+    .download .btn {
+      font-size: 20px;
+      padding: 10px 28px;
+    }
+
+    .link,
+    .major-title,
+    .title,
+    .text {
+      font-size: 16px;
+    }
+
+    .header .logo,
+    .header .links {
+      float: none;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .header .links {
+      padding-bottom: 20px;
+    }
+
+    .only-desktop {
+      display: none;
+    }
+
+    .only-mobile {
+      display: block;
+    }
+
+    .underscore {
+      border-bottom: 4px #6f00a7 solid;
+    }
+  }
+
+  @media only screen and (max-width: 479px) {
+    .custom-container {
+      width: 100%;
+    }
+
+    .download .btn {
+      font-size: 13px;
+      padding: 6px 25px;
+    }
+
+    .header {
+      padding: 60px 0;
+    }
+
+    .header .logos {
+      padding-top: 20px;
+    }
+
+    .header .logos.small .logo {
+      width: 38px;
+    }
+
+    .header .logos.small .mudamos {
+      margin-left: 5px;
+      width: 153px;
+    }
+  }
+
+  @media only screen and (max-width: 479px) {
+    .header .link {
+      font-size: 14px;
+    }
+  }
+}

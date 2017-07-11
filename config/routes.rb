@@ -157,7 +157,9 @@ Rails.application.routes.draw do
 
   match '/ping', to: 'ping#show', via: :get
 
-  root "cycles#index"
+  match "/quem-somos", to: "static#about", via: :get
+
+  root "static#index"
 
   resources :cycles, only: [:show], path: 'temas' do
     cycle_routes

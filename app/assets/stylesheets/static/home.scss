@@ -1,0 +1,376 @@
+.homepage {
+	.app-info {
+	  margin-top: -260px;
+	  padding: 256px 60px 0;
+	}
+	  .app-info .app-mobile {
+	    padding-bottom: 75px;
+	  }
+	  	.app-info .app-mobile .inner-content {
+	  		width: calc(100% - 370px);
+
+				.download {
+		      text-align: left;
+		    }
+
+		    .major-title {
+		      font-size: 31px;
+		      margin-bottom: 25px;
+		    }
+
+		    .mudamos-title {
+		      padding-bottom: 30px;
+		      width: 290px;
+		    }
+
+		    .text {
+		      margin-bottom: 0px;
+		      padding-bottom: 30px;
+		    }
+	  	}
+
+	    .app-info .app-mobile .section-image {
+	      margin-top: -120px;
+	      position: relative;
+	      width: 370px;
+
+	      .download {
+	      	display: none;
+	      	position: absolute;
+	      	top: 50%;
+	      }
+
+	      .image {
+	        width: 100%;
+	      }
+
+	      .plus {
+	        opacity: .7;
+	        position: absolute;
+	        width: 200px;
+
+		      &.bottom {
+		        bottom: 61px;
+		        left: -13px;
+		      }
+		      &.top {
+		        right: -20px;
+		        top: 30px;
+		      }
+	      }
+	    }
+
+	    .app-info .law-proposal {
+	    	padding-bottom: 140px;
+	    }
+
+	    .app-info .law-proposal .section-image .image {
+	      padding: 0 90px 0 130px;
+	    }
+
+	    .app-info .section .text {
+	      margin-bottom: 25px;
+	    }
+
+	    .app-info .section .title {
+	      padding-bottom: 40px;
+	    }
+
+	    .app-info .sign-project {
+	      padding-bottom: 150px;
+	    }
+	      .app-info .sign-project .section-image {
+	        margin-right: 70px;
+	      }
+
+	.carousel .carousel-control {
+	    background: none;
+	    opacity: .8;
+	}
+		.carousel .carousel-control img {
+		    position: absolute;
+		    top: 50%;
+		}
+		.carousel .carousel-control.left {
+		 left: -110px;
+		}
+		.carousel .carousel-control.right {
+		 right: -48px;
+		}
+	.carousel .carousel-inner .item {
+    padding: 50px;
+	}
+		.carousel .carousel-inner .item .aditional-info {
+	    float: right;
+	    width: 30%;
+		}
+			.carousel .carousel-inner .item .aditional-info .image {
+		    display: block;
+		    margin: auto;
+		    padding-bottom: 20px;
+		    padding-top: 52px;
+		    width: 167px;
+			}
+		.carousel .carousel-inner .item .signatures {
+		  float: left;
+		  width: 64%;
+		}
+
+	.sponsors {
+	  text-align: center;
+	}
+	  .sponsors .title {
+	    font-size: 30px;
+	  }
+
+	  .sponsors .media {
+	    padding-bottom: 90px;
+	  }
+
+	  .sponsors .media .g1,
+	  .sponsors .sponsor-images .image {
+	    padding: 0 35px;
+	  }
+
+	  .sponsors .sponsor-images {
+	    padding-top: 20px;
+	  }
+	    .sponsors .sponsor-images .google,
+	    .sponsors .sponsor-images .meu-rio {
+	      margin: 0 -35px;
+	    }
+
+	@media only screen and (max-width: 1365px) {
+		.sponsors .media .g1,
+		.sponsors .sponsor-images .image {
+		  padding: 0 30px;
+		}
+	}
+
+	@media only screen and (max-width: 1199px) {
+	  .sponsors .sponsor-images .image {
+	    padding: 0 10px;
+	  }
+
+	  .sponsors .sponsor-images .image.google,
+	  .sponsors .sponsor-images .image.meu-rio {
+	    margin: 0 -20px;
+	  }
+
+	  .sponsors .sponsor-images .google {
+	    width: 200px;
+	  }
+
+	  .sponsors .sponsor-images .meu-rio {
+	    width: 170px;
+	  }
+
+	  .sponsors .sponsor-images .mcce {
+	    width: 110px;
+	  }
+
+	  .sponsors .sponsor-images .nossas-cidades {
+	    width: 140px;
+	  }
+
+	  .sponsors .sponsor-images .mtp {
+	    width: 240px;
+	  }
+	}
+
+	@media only screen and (max-width: 939px) {
+	  text-align: center;
+
+		.app-info {
+		  margin-top: -321px;
+		  padding: 321px 60px 0;
+
+		  .app-mobile {
+				.download {
+				  text-align: center;
+				  z-index: 2;
+				}
+
+				.inner-content {
+					width: 100%;
+
+					.download {
+						display: none;
+					}
+
+					.major-title {
+					  font-size: 16px;
+					  margin-bottom: 0px;
+					}
+
+					.mudamos-title {
+					  padding-bottom: 30px;
+					  width: 180px;
+					}
+				}
+
+				.section-image {
+				  margin-top: 0;
+				  width: 175px;
+				  z-index: 1;
+					
+					.download {
+						display: inline-block;
+						left: -50%;
+						top: 39%;
+					}
+
+					.plus {
+				    display: none;
+				  }
+				}
+		  }
+
+			.law-proposal {
+				.section-image .image {
+				  padding: 0 0px 38px 20px;
+				  width: 130px;
+				}
+			}
+
+			.link {
+			  font-size: 12px;
+			}
+
+			.inner-content,
+			.section-image {
+				float: none !important;
+			}
+
+			.section-image {
+			  margin: 0 auto;
+			}
+
+			.sign-project {
+			    padding-bottom: 95px;
+
+			  .section-image {
+			    margin-right: 0;
+			    padding-bottom: 38px;
+
+			    .image {
+			      width: 140px;
+			    }
+			  }
+			}
+		}
+
+		.sponsors .media {
+		  padding-bottom: 50px;
+		}
+		  .sponsors .media .epoca,
+		  .sponsors .media .folha,
+		  .sponsors .media .g1 {
+		    width: 50px;
+		  }
+
+		  .sponsors .media .conversa-bial {
+		    margin: 0 -10px;
+		    width: 120px;
+		  }
+
+		  .sponsors .media .globo-news {
+		    width: 120px;
+		  }
+
+		.sponsors .media .g1,
+		.sponsors .sponsor-images .image {
+		  margin: 0 5px;
+		  padding: 0px 0px;
+		}
+
+		.sponsors .sponsor-images .image.google,
+		.sponsors .sponsor-images .image.meu-rio {
+		  margin: 0 -10px;
+		}
+
+		.sponsors .sponsor-images .google {
+		  width: 90px;
+		}
+
+		.sponsors .sponsor-images .meu-rio {
+		  width: 65px;
+		}
+
+		.sponsors .sponsor-images .mcce {
+		  width: 70px;
+		}
+
+		.sponsors .sponsor-images .nossas-cidades {
+		  width: 82px;
+		}
+
+		.sponsors .sponsor-images .mtp {
+		  width: 135px;
+		}
+
+		.sponsors .title {
+		  font-size: 16px;
+		}
+	}
+
+	@media only screen and (max-width: 479px) {
+
+		.app-info .app-mobile .section-image .download {
+	    left: -8%;
+		}
+
+		.app-info .app-mobile .download .btn {
+		  margin-left: -13px;
+		}
+
+		.sponsors {
+			.media .epoca,
+			.media .folha,
+			.media .g1 {
+			  width: 30px;
+			}
+
+			.media .conversa-bial {
+			  width: 85px;
+			}
+
+			.media .globo-news {
+			  width: 80px;
+			}
+
+			.media .g1,
+			.sponsor-images .image {
+			  margin: 0 5px;
+			  padding: 0px 0px;
+			}
+
+			.sponsor-images .image.google,
+			.sponsor-images .image.meu-rio {
+			  margin: 0 -10px;
+			}
+
+			.sponsor-images .google {
+			  width: 60px;
+			}
+
+			.sponsor-images .meu-rio {
+			  width: 50px;
+			}
+
+			.sponsor-images .mcce {
+			  width: 43px;
+			}
+
+			.sponsor-images .nossas-cidades {
+			  width: 45px;
+			}
+
+			.sponsor-images .mtp {
+			  width: 95px;
+			}
+		}
+
+	}
+}
+	
