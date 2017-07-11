@@ -1,5 +1,16 @@
-<article class="content">
-  <div class="general-info">
+<header class="header clearfix">
+  <nav class="links">
+    <a class="link def-text-color" href="#">Assine um Projeto</a>
+    <a class="link def-text-color current underscore" href="#">Quem somos</a>
+  </nav>
+  <div class="logos small">
+    <%= image_tag "static/logo.png", class: "logo" %>
+    <%= image_tag "static/mudamos.png", class: "mudamos only-mobile" %>
+  </div>
+</header>
+
+<article class="content about-us">
+  <div class="general-info gradient-section">
     <%= image_tag "static/about-us-mobile.png",  class: "aboutus-mobile hidden-lg" %>
 
     <div class="about-us section">
@@ -28,7 +39,7 @@
       </p>
     </div>
   </div>
-  <div class="faq">
+  <div class="faq gradient-section">
     <h2 class="title major-title">Fale conosco</h2>
     <div class="questions">
       <div class="question">
@@ -43,7 +54,7 @@
 
       <div class="question">
         <h3 class="title">
-          2) Quero relatar problema ou obter ajuda sobre o aplicativo
+          2) Quero relatar problema ou obter ajuda sobre o aplicativo 
         </h3>
         <p class="text">
           Se você percebeu alguma falha ou bug de funcionamento no App, por favor, nos avise! Contamos com sua contribuição para tornar essa experiência cada vez melhor.

@@ -1,0 +1,145 @@
+<header class="header clearfix">
+  <nav class="links">
+    <a class="link def-text-color" href="#">Assine um Projeto</a>
+    <a class="link def-text-color" href="#">Quem somos</a>
+  </nav>
+  <div class="logo great">
+	  <%= image_tag "static/logo.png", class: "logo" %>
+  </div>
+</header>
+
+<article class="content homepage">
+	<div class="app-info gradient-section">
+		<div class="app-mobile section clearfix">
+			<div class="inner-content pull-left">
+				<%= image_tag "static/mudamos.png", class: "mudamos-title" %>
+				<h1 class="title major-title">
+					Assine projetos de lei de iniciativa popular de um jeito simples, gratuito e seguro
+				</h1>
+				<p class="text def-text-color">
+					Mudamos é um aplicativo que coleta assinaturas eletrônicas em projetos de lei de iniciativa popular, revolucionando a relação entre eleitores e seus representantes.
+				</p>
+				<div class="download">
+					<a class="btn" href="#">Faça o download do app</a>
+				</div>
+			</div>
+			<div class="section-image pull-left">
+				<%= image_tag "static/plus.png", class: "plus top" %>
+				<%= image_tag "static/app-mobile.png", class: "image" %>
+				<%= image_tag "static/plus.png", class: "plus bottom" %>
+				<div class="download">
+					<a class="btn" href="#">Faça o download do app</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="sign-project section clearfix">
+			<div class="section-image pull-right">
+				<%= image_tag "static/sign-a-law-project.png", class: "image" %>
+			</div>
+			<div class="inner-content">
+				<h2 class="title major-title">Assine um projeto de lei</h2>
+				<p class="text def-text-color">
+					O aplicativo apresenta diversos projeto de lei de iniciativa popular para
+					assinatura nos níveis municipal, estadual e nacional.
+				</p>
+				<a class="link underscore" href="#">
+					Conheça os projetos e assine
+				</a>
+			</div>
+		</div>
+
+		<div class="law-proposal section clearfix">
+			<div class="section-image pull-left">
+				<%= image_tag "static/law-proposal.png", class: "image" %>
+			</div>
+			<div class="inner-content">
+				<h2 class="title major-title">Proponha seu projeto</h2>
+				<p class="text def-text-color">
+					Seu próprio projeto de lei de iniciativa popular também pode estar aqui. Envie-nos sua ideia.
+				</p>
+				<a class="link underscore" href="#">
+					Envie seu projeto para nós
+				</a>
+			</div>
+		</div>
+		<div class="signatures section clearfix only-mobile">
+      <div class="section-image">
+        <%= image_tag "static/signatures-mobile.png", class: "image" %>
+      </div>
+      <div class="inner-content">
+        <h2 class="title major-title">
+          Mudamos evoluiu a coleta de assinaturas em projetos de lei de iniciativa popular
+        </h2>
+        <p class="text def-text-color">
+          Antes da Mudamos, os projetos  dependiam de um parlamentar que os adotassem para serem votados na casa legislativa correspondente, esvaziando o espírito original desse mecanismo de democracia direta previsto na Constituição de 1988.
+        </p>
+        <a class="link underscore" href="#">
+          Saiba mais em nosso relatório
+        </a>
+      </div>
+    </div>
+
+    <div class="carousel section only-desktop">
+      <div id="carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="item active clearfix">
+            <div class="signatures carousel-section">
+              <h2 class="title major-title">
+                Mudamos evolui a coleta de assinaturas em projetos de iniciativa popular.
+              </h2>
+              <p class="text def-text-color">
+                Até hoje no Brasil, nenhum projeto de lei de iniciativa popular foi efetivamente tramitado como tal, devido à dificuldade da verificação das assinaturas em papel. Para ser votado na casa legislativa correspondente, o projeto ainda depende de um parlamentar que o adote, esvaziando o espírito original desse mecanismo de democracia direta previsto na Constituição de 1988.
+              </p>
+              <a class="link underscore" href="#">
+                Saiba mais em nosso relatório
+              </a>
+            </div>
+            <div class="aditional-info carousel-section">
+              <%= image_tag "static/2ton.png", class: "image" %>
+              <small class="text def-text-color">
+                <strong>2 toneladas</strong>. É a quandidade de papel necessária para contemplar as mais de <strong>1,7 milhão de assinaturas</strong> necessárias para aprovar um projeto de lei popular no Congresso Nacional. Imagina conferir tudo isso de forma manual?
+              </small>
+            </div>
+          </div>
+        </div>
+        <a class="left carousel-control" href="#carousel" data-slide="prev">
+          <%= image_tag "static/left-arrow.png", class: "arrow left" %>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel" data-slide="next">
+          <%= image_tag "static/right-arrow.png", class: "arrow right" %>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>		
+	</div>
+	<div class="sponsors gradient-section">
+		<div class="sponsor-images">
+			<h2 class="title">Apoiadores</h2>
+			<%= image_tag "static/sponsor/google.png", class: "google image" %>
+			<%= image_tag "static/sponsor/meu-rio.png", class: "meu-rio image" %>
+			<%= image_tag "static/sponsor/nossas-cidades.png", class: "nossas-cidades image" %>
+			<%= image_tag "static/sponsor/mcce.png", class: "mcce image" %>
+			<%= image_tag "static/sponsor/mtp.png", class: "mtp image" %>
+		</div>
+
+		<div class="media images">
+			<h2 class="title">Na mídia</h2>
+			<%= image_tag "static/sponsor/folha.png",  class: "folha image" %>
+			<%= image_tag "static/sponsor/conversa-bial.png",  class: "conversa-bial image" %>
+			<%= image_tag "static/sponsor/globo-news.png",  class: "globo-news image" %>
+			<%= image_tag "static/sponsor/g1.png",  class: "g1 image" %>
+			<%= image_tag "static/sponsor/epoca.png",  class: "epoca image" %>
+		</div>
+
+		<div class="download">
+			<a class="btn" href="#">Faça o download do app</a>
+
+			<small class="text">
+				Mudamos é um aplicativo desenvolvido pelo Instituto de Tecnologia e Sociedade do Rio de Janeiro (ITS Rio)
+			</small>
+		</div>
+	</div>
+
+</article>
