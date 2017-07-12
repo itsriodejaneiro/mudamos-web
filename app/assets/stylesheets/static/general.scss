@@ -7,13 +7,14 @@ body {
 }
 
 .static {
-  small.text {
+  small {
+    &.text {
     display: block;
     font-size: 18px;
-  }
-
-  small.text.disclaimer {
-   margin: 30px 30%;
+      &.disclaimer {
+        margin: 30px 30%;
+      }
+    }
   }
 
   .content {
@@ -72,29 +73,29 @@ body {
     }
   }
 
-  .header .logo {
+  .header .logos {
     display: block;
     float: left;
-  }
 
-  .header .logos.great .logo {
-    width: 140px;
-  }
-
-  .header .logos.small {
-    text-align: center;
-
-    .logo,
-    .mudamos {
-      display: inline-block;
+    &.great .logo {
+      width: 140px;
     }
 
-    .logo {
-      width: 60px;
-    }
+    &.small {
+      text-align: center;
 
-    .mudamos {
-      width: 250px;
+      .logo,
+      .mudamos {
+        display: inline-block;
+      }
+
+      .logo {
+        width: 60px;
+      }
+
+      .mudamos {
+        width: 250px;
+      }
     }
   }
 
@@ -159,16 +160,19 @@ body {
       font-size: 16px;
     }
 
-    .header .logo,
-    .header .links {
-      float: none;
-      margin: 0 auto;
-      text-align: center;
+    .header {
+      .logos,
+      .links {
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .links {
+        padding-bottom: 20px;
+      }
     }
 
-    .header .links {
-      padding-bottom: 20px;
-    }
 
     .only-desktop {
       display: none;
@@ -195,19 +199,21 @@ body {
 
     .header {
       padding: 60px 0;
-    }
 
-    .header .logos {
-      padding-top: 20px;
-    }
+      .logos {
+        padding-top: 20px;
 
-    .header .logos.small .logo {
-      width: 38px;
-    }
+        .small {
+          .logo {
+            width: 38px;
+          }
 
-    .header .logos.small .mudamos {
-      margin-left: 5px;
-      width: 153px;
+          .mudamos {
+            margin-left: 5px;
+            width: 153px;
+          }
+        }
+      }
     }
   }
 

@@ -1,0 +1,108 @@
+header.header.clearfix
+  nav.links
+    a.link.def-text-color href="#"  Assine um Projeto
+    a.link.def-text-color href="/quem-somos"  Quem somos
+  .logos.great
+    = image_tag "static/logo.png", class: "logo"
+
+article.content.homepage
+  .app-info.gradient-section
+    .app-mobile.section.clearfix
+      .inner-content.pull-left
+        = image_tag "static/mudamos.png", class: "mudamos-title"
+        h1.title.major-title
+          | Assine projetos de lei de iniciativa popular de um jeito simples, gratuito e seguro
+        p.text.def-text-color
+          | Mudamos é um aplicativo que coleta assinaturas eletrônicas em projetos de lei de iniciativa popular, revolucionando a relação entre eleitores e seus representantes.
+        .download
+          a.btn href="#"  Faça o download do app
+      .section-image.pull-left
+        = image_tag "static/plus.png", class: "plus top"
+        = image_tag "static/app-mobile.png", class: "image"
+        = image_tag "static/plus.png", class: "plus bottom"
+        .download
+          a.btn href="#"  Faça o download do app
+    
+    .sign-project.section.clearfix
+      .section-image.pull-right
+        = image_tag "static/sign-a-law-project.png", class: "image"
+      
+      .inner-content
+        h2.title.major-title Assine um projeto de lei
+        p.text.def-text-color
+          | O aplicativo apresenta diversos projeto de lei de iniciativa popular para
+          | assinatura nos níveis municipal, estadual e nacional.
+        a.link.underscore href="#" 
+          | Conheça os projetos e assine
+    
+    .law-proposal.section.clearfix
+      .section-image.pull-left
+        = image_tag "static/law-proposal.png", class: "image"
+      
+      .inner-content
+        h2.title.major-title Proponha seu projeto
+        p.text.def-text-color
+          | Seu próprio projeto de lei de iniciativa popular também pode estar aqui. Envie-nos sua ideia.
+        a.link.underscore href="#" 
+          | Envie seu projeto para nós
+
+    .signatures.section.clearfix.only-mobile
+      .section-image
+        = image_tag "static/signatures-mobile.png", class: "image"
+      .inner-content
+        h2.title.major-title
+          | Mudamos evoluiu a coleta de assinaturas em projetos de lei de iniciativa popular
+        p.text.def-text-color
+          | Antes da Mudamos, os projetos  dependiam de um parlamentar que os adotassem para serem votados na casa legislativa correspondente, esvaziando o espírito original desse mecanismo de democracia direta previsto na Constituição de 1988.
+        a.link.underscore href="#" 
+          | Saiba mais em nosso relatório
+
+    .carousel.section.only-desktop
+      #carousel.carousel.slide data-ride="carousel" 
+        .carousel-inner
+          .item.active.clearfix
+            .signatures.carousel-section
+              h2.title.major-title
+                | Mudamos evolui a coleta de assinaturas em projetos de iniciativa popular.
+              p.text.def-text-color
+                | Até hoje no Brasil, nenhum projeto de lei de iniciativa popular foi efetivamente tramitado como tal, devido à dificuldade da verificação das assinaturas em papel. Para ser votado na casa legislativa correspondente, o projeto ainda depende de um parlamentar que o adote, esvaziando o espírito original desse mecanismo de democracia direta previsto na Constituição de 1988.
+              a.link.underscore href="#" 
+                | Saiba mais em nosso relatório
+
+            .aditional-info.carousel-section
+              = image_tag "static/2ton.png", class: "image"
+              small.text.def-text-color
+                strong> 2 toneladas
+                | \. É a quandidade de papel necessária para contemplar as mais de
+                strong 1,7 milhão de assinaturas
+                | necessárias para aprovar um projeto de lei popular no Congresso Nacional. Imagina conferir tudo isso de forma manual?
+
+        a.left.carousel-control data-slide="prev" href="#carousel" 
+          = image_tag "static/left-arrow.png", class: "arrow left"
+          span.sr-only Previous
+
+        a.right.carousel-control data-slide="next" href="#carousel" 
+          = image_tag "static/right-arrow.png", class: "arrow right"
+          span.sr-only Next
+
+  .sponsors.gradient-section
+    .sponsor-images
+      h2.title Apoiadores
+      = image_tag "static/sponsor/google.png", class: "google image"
+      = image_tag "static/sponsor/meu-rio.png", class: "meu-rio image"
+      = image_tag "static/sponsor/nossas-cidades.png", class: "nossas-cidades image"
+      = image_tag "static/sponsor/mcce.png", class: "mcce image"
+      = image_tag "static/sponsor/mtp.png", class: "mtp image"
+
+    .media.images
+      h2.title Na mídia
+      = image_tag "static/sponsor/folha.png",  class: "folha image"
+      = image_tag "static/sponsor/conversa-bial.png",  class: "conversa-bial image"
+      = image_tag "static/sponsor/globo-news.png",  class: "globo-news image"
+      = image_tag "static/sponsor/g1.png",  class: "g1 image"
+      = image_tag "static/sponsor/epoca.png",  class: "epoca image"
+
+    .download
+      a.btn href="#"  Faça o download do app
+      small.text.disclaimer
+        | Mudamos é um aplicativo desenvolvido pelo Instituto de Tecnologia e Sociedade do Rio de Janeiro (ITS Rio)

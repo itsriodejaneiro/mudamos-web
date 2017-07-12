@@ -1,0 +1,32 @@
+doctype html
+html lang="pt-br" 
+  head
+    meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+    meta charset="utf-8"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+    title Aplicativo Mudamos de Assinaturas Eletrônicas
+
+    meta content="Com o aplicativo Mudamos você pode assinar projetos de lei de iniciativa popular de forma eletrônica, tendo sua privacidade, autenticidade e transparência garantidas com a segurança da tecnologia blockchain." name="description"
+    meta content="mudamos, assinatura eletrônica, assinatura digital, lei de iniciativa popular" name="keywords"
+    = favicon_link_tag "static/icon/apple-touch-icon.png", rel: "apple-touch-icon", type: "image/png"
+    = favicon_link_tag "static/icon/favicon-16x16.png", type: "image/png"
+
+    meta content="Aplicativo Mudamos de Assinaturas Eletrônicas" name="twitter:title"
+    meta content="Com o aplicativo Mudamos você pode assinar projetos de lei de iniciativa popular de forma eletrônica, tendo sua privacidade, autenticidade e transparência garantidas com a segurança da tecnologia blockchain." name="twitter:description"
+    meta content="#{image_url("static/logo.png")}" name="twitter:image"
+
+    meta content="Aplicativo Mudamos de Assinaturas Eletrônicas" property="og:title"
+    meta content="Com o aplicativo Mudamos você pode assinar projetos de lei de iniciativa popular de forma eletrônica, tendo sua privacidade, autenticidade e transparência garantidas com a segurança da tecnologia blockchain." property="og:description"
+    meta content="#{image_url("static/logo.png")}" property="og:image"
+
+    = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", media: "all", integrity: "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", crossorigin: "anonymous"
+    = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Arvo:400,700", media: "all"
+    = stylesheet_link_tag "static", media: "all"
+
+  body class="#{controller_name} #{action_name}"
+    .main
+      .custom-container
+        = yield
+
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
+    = javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

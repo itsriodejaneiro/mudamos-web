@@ -3,45 +3,45 @@
 		.general-info {
 		  margin-top: -180px;
 		  padding-top: 180px !important;
-		}
-		  .general-info .aboutus-mobile {
+
+		  .aboutus-mobile {
 		    display: block;
 		    height: auto;
 		    margin: 0 auto;
 		    padding-bottom: 40px;
 		    width: 110px;
 		  }
-		  .general-info .section {
+
+		  .section {
 		    padding-bottom: 120px;
 		    text-align: justify;
-		  }
-		    .general-info .section:nth-child(odd) {
+	      width: 66%;
+
+		    &:nth-child(odd) {
 		      margin-left: 9%;
 		    }
 
-		    .general-info .section{
-		      width: 66%;
-		    }
-
-		    .general-info .section.history {
+		    &.history {
 		      width: 82%;
 		    }
 
-		    .general-info .section.problem {
+		    &.problem {
 		      width: 82%;
 		    }
 
-		    .general-info .section.solution {
+		    &.solution {
 		      width: 73%;
 		    }
 
-		    .general-info .section .text {
+		    .text {
 		      margin-bottom: 0;
 		    }
 
-		    .general-info .section .title {
+		    .title {
 		      padding-bottom: 25px;
 		    }
+		  }
+		}
 
 		.faq,
 		.general-info {
@@ -49,49 +49,51 @@
 		}
 
 		.faq {
-		  padding-top: 90px
-		}
-		  .faq > .title {
+		  padding-top: 90px;
+
+		  > .title {
 		    padding-bottom: 26px;
 		  }
 
-		  .faq .question {
+		  .question {
 		    padding-bottom: 80px;
 		  }
 
-		  .faq .questions {
+		  .questions {
 		    padding-bottom: 20px;
 		  }
+		}
 	}
 
 	@media only screen and (max-width: 1199px) {
 	  .about-us .general-info .section {
 	    margin: 0;
+	    padding-bottom: 50px;
 	    text-align: center;
 	    width: 100% !important;
+
+		  &:nth-child(odd) {
+		    margin: 0;
+		  }
 	  }
 
-	  .about-us .general-info .section:nth-child(odd) {
-	    margin: 0;
-	  }
-
-	  .about-us .general-info .section {
-	    padding-bottom: 50px;
-	  }
 	}
 
 	@media only screen and (max-width: 939px) {
-	  .about-us .faq, .about-us .general-info, .header {
-	    padding: 30px;
-	  }
+		.about-us {
+		  .faq,
+		  .general-info, .header {
+		    padding: 30px;
+		  }
 
-	  .about-us .faq .question {
-	    padding-bottom: 30px;
-	  }
+		  .faq .question {
+		    padding-bottom: 30px;
+		  }
 
-		.about-us .general-info {
-	    margin-top: -306px;
-	    padding-top: 306px !important;
+			.general-info {
+		    margin-top: -306px;
+		    padding-top: 306px !important;
+			}
 		}
 	}
 }
