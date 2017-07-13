@@ -70,6 +70,9 @@
     }
 
     .section {
+    	margin: 0 auto;
+    	width: 1020px;
+
     	.text {
       	margin-bottom: 25px;
     	}
@@ -157,10 +160,18 @@
 	}
 
 	@media only screen and (max-width: 1365px) {
+		.app-info {
+			.section {
+				margin: 0 auto;
+				width: 100%;
+			}
+		}
+
 		.sponsors .media .g1,
 		.sponsors .sponsor-images .image {
 		  padding: 0 30px;
 		}
+
 	}
 
 	@media only screen and (max-width: 1199px) {

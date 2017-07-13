@@ -5,7 +5,7 @@
 		  padding-top: 180px !important;
 
 		  .aboutus-mobile {
-		    display: block;
+		    display: none;
 		    height: auto;
 		    margin: 0 auto;
 		    padding-bottom: 40px;
@@ -63,6 +63,17 @@
 		    padding-bottom: 20px;
 		  }
 		}
+
+		.main-section {
+			margin: 0 auto;
+			width: 1020px;
+		}
+	}
+
+	@media only screen and (max-width: 1365px) {
+		.about-us .main-section {
+			width: 100%;
+		}
 	}
 
 	@media only screen and (max-width: 1199px) {
@@ -93,6 +104,10 @@
 			.general-info {
 		    margin-top: -306px;
 		    padding-top: 306px !important;
+
+		    .aboutus-mobile {
+		    	display: block;
+		    }
 			}
 		}
 	}
