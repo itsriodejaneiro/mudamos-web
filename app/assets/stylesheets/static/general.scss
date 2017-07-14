@@ -7,13 +7,14 @@ body {
 }
 
 .static {
-  small.text {
+  small {
+    &.text {
     display: block;
     font-size: 18px;
-  }
-
-  small.text.disclaimer {
-   margin: 30px 30%;
+      &.disclaimer {
+        margin: 30px 30%;
+      }
+    }
   }
 
   .content {
@@ -23,8 +24,6 @@ body {
 
   .custom-container {
     margin: 0 auto;
-    padding-top: 40px;
-    width: 1280px;
   }
 
   .download {
@@ -58,7 +57,9 @@ body {
   }
 
   .header {
+    margin: 0 auto;
     padding: 60px;
+    width: 1140px
   }
 
   .header .links {
@@ -72,29 +73,29 @@ body {
     }
   }
 
-  .header .logo {
+  .header .logos {
     display: block;
     float: left;
-  }
 
-  .header .logos.great .logo {
-    width: 140px;
-  }
-
-  .header .logos.small {
-    text-align: center;
-
-    .logo,
-    .mudamos {
-      display: inline-block;
+    &.great .logo {
+      width: 140px;
     }
 
-    .logo {
-      width: 60px;
-    }
+    &.small {
+      text-align: center;
 
-    .mudamos {
-      width: 250px;
+      .logo,
+      .mudamos {
+        display: inline-block;
+      }
+
+      .logo {
+        width: 60px;
+      }
+
+      .mudamos {
+        width: 250px;
+      }
     }
   }
 
@@ -108,21 +109,15 @@ body {
     display: none !important;
   }
 
-  .underscore {
+  .underscore:hover {
     border-bottom: 8px #6f00a7 solid;
-    box-shadow: 0 10px 23px -4px rgba(111, 0, 167, 0.2);
+    box-shadow: 13px 18px 23px -4px rgba(111, 0, 167, 0.2);
+    text-decoration: none;
   }
 
   @media only screen and (max-width: 1365px) {
-    .custom-container {
-      padding-top: 30px;
-      width: 1140px;
-    }
-  }
-
-  @media only screen and (max-width: 1199px) {
-    .custom-container {
-      width: 880px;
+    .header {
+      width: 100%;
     }
   }
 
@@ -144,7 +139,6 @@ body {
 
     .custom-container {
       padding-top: 0;
-      width: 480px;
     }
 
     .download .btn {
@@ -159,16 +153,19 @@ body {
       font-size: 16px;
     }
 
-    .header .logo,
-    .header .links {
-      float: none;
-      margin: 0 auto;
-      text-align: center;
+    .header {
+      .logos,
+      .links {
+        float: none;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .links {
+        padding-bottom: 20px;
+      }
     }
 
-    .header .links {
-      padding-bottom: 20px;
-    }
 
     .only-desktop {
       display: none;
@@ -184,10 +181,6 @@ body {
   }
 
   @media only screen and (max-width: 479px) {
-    .custom-container {
-      width: 100%;
-    }
-
     .download .btn {
       font-size: 13px;
       padding: 6px 25px;
@@ -195,19 +188,21 @@ body {
 
     .header {
       padding: 60px 0;
-    }
 
-    .header .logos {
-      padding-top: 20px;
-    }
+      .logos {
+        padding-top: 20px;
 
-    .header .logos.small .logo {
-      width: 38px;
-    }
+        .small {
+          .logo {
+            width: 38px;
+          }
 
-    .header .logos.small .mudamos {
-      margin-left: 5px;
-      width: 153px;
+          .mudamos {
+            margin-left: 5px;
+            width: 153px;
+          }
+        }
+      }
     }
   }
 

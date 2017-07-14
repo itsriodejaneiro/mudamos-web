@@ -2,11 +2,11 @@
 	.app-info {
 	  margin-top: -260px;
 	  padding: 256px 60px 0;
-	}
-	  .app-info .app-mobile {
+	  
+	  .app-mobile {
 	    padding-bottom: 75px;
-	  }
-	  	.app-info .app-mobile .inner-content {
+
+	  	.inner-content {
 	  		width: calc(100% - 370px);
 
 				.download {
@@ -29,7 +29,7 @@
 		    }
 	  	}
 
-	    .app-info .app-mobile .section-image {
+	    .section-image {
 	      margin-top: -120px;
 	      position: relative;
 	      width: 370px;
@@ -59,123 +59,152 @@
 		      }
 	      }
 	    }
+	  }
 
-	    .app-info .law-proposal {
-	    	padding-bottom: 140px;
-	    }
-
-	    .app-info .law-proposal .section-image .image {
+    .law-proposal {
+    	padding-bottom: 140px;
+	    
+	    .section-image .image {
 	      padding: 0 90px 0 130px;
 	    }
+    }
 
-	    .app-info .section .text {
-	      margin-bottom: 25px;
-	    }
+    .section {
+    	margin: 0 auto;
+    	width: 1020px;
 
-	    .app-info .section .title {
+    	.text {
+      	margin-bottom: 25px;
+    	}
+	    .title {
 	      padding-bottom: 40px;
 	    }
+    }
 
-	    .app-info .sign-project {
-	      padding-bottom: 150px;
-	    }
-	      .app-info .sign-project .section-image {
-	        margin-right: 70px;
-	      }
+    .sign-project {
+      padding-bottom: 150px;
 
-	.carousel .carousel-control {
+      .section-image {
+        margin-right: 70px;
+      }
+    }
+	}
+
+	.carousel {
+		.carousel-control {
 	    background: none;
 	    opacity: .8;
-	}
-		.carousel .carousel-control img {
+
+			img {
 		    position: absolute;
 		    top: 50%;
-		}
-		.carousel .carousel-control.left {
-		 left: -110px;
-		}
-		.carousel .carousel-control.right {
-		 right: -48px;
-		}
-	.carousel .carousel-inner .item {
-    padding: 50px;
-	}
-		.carousel .carousel-inner .item .aditional-info {
-	    float: right;
-	    width: 30%;
-		}
-			.carousel .carousel-inner .item .aditional-info .image {
-		    display: block;
-		    margin: auto;
-		    padding-bottom: 20px;
-		    padding-top: 52px;
-		    width: 167px;
 			}
-		.carousel .carousel-inner .item .signatures {
-		  float: left;
-		  width: 64%;
+
+			&.left {
+			 left: -110px;
+			}
+
+			&.right {
+			 right: -48px;
+			}
 		}
+
+		.carousel-inner .item {
+	    padding: 50px;
+
+			.aditional-info {
+		    float: right;
+		    width: 30%;
+
+				.image {
+			    display: block;
+			    margin: auto;
+			    padding-bottom: 20px;
+			    padding-top: 52px;
+			    width: 167px;
+				}
+			}
+
+			.signatures {
+			  float: left;
+			  width: 64%;
+			}
+		}
+	}
+
 
 	.sponsors {
 	  text-align: center;
-	}
-	  .sponsors .title {
+
+	  .title {
 	    font-size: 30px;
 	  }
 
-	  .sponsors .media {
+	  .media {
 	    padding-bottom: 90px;
 	  }
 
-	  .sponsors .media .g1,
-	  .sponsors .sponsor-images .image {
+	  .media .g1,
+	  .sponsor-images .image {
 	    padding: 0 35px;
 	  }
 
-	  .sponsors .sponsor-images {
+	  .sponsor-images {
 	    padding-top: 20px;
-	  }
-	    .sponsors .sponsor-images .google,
-	    .sponsors .sponsor-images .meu-rio {
+
+	    .google,
+	    .meu-rio {
 	      margin: 0 -35px;
 	    }
+	  }
+	}
 
 	@media only screen and (max-width: 1365px) {
+		.app-info {
+			.section {
+				margin: 0 auto;
+				width: 100%;
+			}
+		}
+
 		.sponsors .media .g1,
 		.sponsors .sponsor-images .image {
 		  padding: 0 30px;
 		}
+
 	}
 
 	@media only screen and (max-width: 1199px) {
-	  .sponsors .sponsor-images .image {
-	    padding: 0 10px;
-	  }
+		.sponsors .sponsor-images {
+		  .image {
+		    padding: 0 10px;
+		  }
 
-	  .sponsors .sponsor-images .image.google,
-	  .sponsors .sponsor-images .image.meu-rio {
-	    margin: 0 -20px;
-	  }
+		  .image.google,
+		  .image.meu-rio {
+		    margin: 0 -20px;
+		  }
 
-	  .sponsors .sponsor-images .google {
-	    width: 200px;
-	  }
+		  .google {
+		    width: 200px;
+		  }
 
-	  .sponsors .sponsor-images .meu-rio {
-	    width: 170px;
-	  }
+		  .meu-rio {
+		    width: 170px;
+		  }
 
-	  .sponsors .sponsor-images .mcce {
-	    width: 110px;
-	  }
+		  .mcce {
+		    width: 110px;
+		  }
 
-	  .sponsors .sponsor-images .nossas-cidades {
-	    width: 140px;
-	  }
+		  .mtp {
+		    width: 240px;
+		  }
 
-	  .sponsors .sponsor-images .mtp {
-	    width: 240px;
-	  }
+		  .nossas-cidades {
+		    width: 140px;
+		  }
+		}
 	}
 
 	@media only screen and (max-width: 939px) {
@@ -262,21 +291,22 @@
 
 		.sponsors .media {
 		  padding-bottom: 50px;
-		}
-		  .sponsors .media .epoca,
-		  .sponsors .media .folha,
-		  .sponsors .media .g1 {
+
+		  .epoca,
+		  .folha,
+		  .g1 {
 		    width: 50px;
 		  }
 
-		  .sponsors .media .conversa-bial {
+		  .conversa-bial {
 		    margin: 0 -10px;
 		    width: 120px;
 		  }
 
-		  .sponsors .media .globo-news {
+		  .globo-news {
 		    width: 120px;
 		  }
+		}
 
 		.sponsors .media .g1,
 		.sponsors .sponsor-images .image {
@@ -284,59 +314,67 @@
 		  padding: 0px 0px;
 		}
 
-		.sponsors .sponsor-images .image.google,
-		.sponsors .sponsor-images .image.meu-rio {
-		  margin: 0 -10px;
-		}
+		.sponsors {
+			.sponsor-images {
+				.image.google,
+				.image.meu-rio {
+				  margin: 0 -10px;
+				}
 
-		.sponsors .sponsor-images .google {
-		  width: 90px;
-		}
+				.google {
+				  width: 90px;
+				}
 
-		.sponsors .sponsor-images .meu-rio {
-		  width: 65px;
-		}
+				.meu-rio {
+				  width: 65px;
+				}
 
-		.sponsors .sponsor-images .mcce {
-		  width: 70px;
-		}
+				.mcce {
+				  width: 70px;
+				}
 
-		.sponsors .sponsor-images .nossas-cidades {
-		  width: 82px;
-		}
+				.nossas-cidades {
+				  width: 82px;
+				}
 
-		.sponsors .sponsor-images .mtp {
-		  width: 135px;
-		}
+				.mtp {
+				  width: 135px;
+				}
 
-		.sponsors .title {
-		  font-size: 16px;
+			}
+
+		  .title {
+			  font-size: 16px;
+			}
 		}
 	}
 
 	@media only screen and (max-width: 479px) {
+		.app-info .app-mobile {
+		  .download .btn {
+			  margin-left: -13px;
+			}
 
-		.app-info .app-mobile .section-image .download {
-	    left: -8%;
-		}
-
-		.app-info .app-mobile .download .btn {
-		  margin-left: -13px;
+			.section-image .download {
+		    left: -8%;
+			}
 		}
 
 		.sponsors {
-			.media .epoca,
-			.media .folha,
-			.media .g1 {
-			  width: 30px;
-			}
+			.media {
+				.epoca,
+				.folha,
+				.g1 {
+				  width: 30px;
+				}
 
-			.media .conversa-bial {
-			  width: 85px;
-			}
+				.conversa-bial {
+				  width: 85px;
+				}
 
-			.media .globo-news {
-			  width: 80px;
+				.globo-news {
+				  width: 80px;
+				}
 			}
 
 			.media .g1,
@@ -345,32 +383,33 @@
 			  padding: 0px 0px;
 			}
 
-			.sponsor-images .image.google,
-			.sponsor-images .image.meu-rio {
-			  margin: 0 -10px;
-			}
+			.sponsor-images {
+				.image.google,
+				.image.meu-rio {
+				  margin: 0 -10px;
+				}
 
-			.sponsor-images .google {
-			  width: 60px;
-			}
+				.google {
+				  width: 60px;
+				}
 
-			.sponsor-images .meu-rio {
-			  width: 50px;
-			}
+				.meu-rio {
+				  width: 50px;
+				}
 
-			.sponsor-images .mcce {
-			  width: 43px;
-			}
+				.mcce {
+				  width: 43px;
+				}
 
-			.sponsor-images .nossas-cidades {
-			  width: 45px;
-			}
+				.mtp {
+				  width: 95px;
+				}
 
-			.sponsor-images .mtp {
-			  width: 95px;
+				.nossas-cidades {
+				  width: 45px;
+				}
 			}
 		}
-
 	}
 }
 	
