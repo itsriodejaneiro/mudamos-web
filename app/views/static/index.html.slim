@@ -1,6 +1,5 @@
 header.header.clearfix
   nav.links
-    a.link.def-text-color.underscore href="#"  Assine um Projeto
     a.link.def-text-color.underscore href="/quem-somos"  Quem somos
   .logos.great
     = image_tag "static/logo.png", class: "logo"
@@ -15,13 +14,13 @@ article.content.homepage
         p.text.def-text-color
           | Mudamos é um aplicativo que coleta assinaturas eletrônicas em projetos de lei de iniciativa popular, revolucionando a relação entre eleitores e seus representantes.
         .download
-          a.btn href="#"  Faça o download do app
+          a.btn href="https://zbzv6.app.goo.gl/VMUp"  Faça o download do app
       .section-image.pull-left
         = image_tag "static/plus.png", class: "plus top"
         = image_tag "static/app-mobile.png", class: "image"
         = image_tag "static/plus.png", class: "plus bottom"
         .download
-          a.btn href="#"  Faça o download do app
+          a.btn href="https://zbzv6.app.goo.gl/VMUp"  Faça o download do app
     
     .sign-project.section.clearfix
       .section-image.pull-right
@@ -31,9 +30,7 @@ article.content.homepage
         h2.title.major-title Assine um projeto de lei
         p.text.def-text-color
           | O aplicativo apresenta diversos projeto de lei de iniciativa popular para
-          | assinatura nos níveis municipal, estadual e nacional.
-        a.link.underscore.underscore href="#" 
-          | Conheça os projetos e assine
+          |  assinatura nos níveis municipal, estadual e nacional.
     
     .law-proposal.section.clearfix
       .section-image.pull-left
@@ -43,8 +40,8 @@ article.content.homepage
         h2.title.major-title Proponha seu projeto
         p.text.def-text-color
           | Seu próprio projeto de lei de iniciativa popular também pode estar aqui. Envie-nos sua ideia.
-        a.link.underscore.underscore href="#" 
-          | Envie seu projeto para nós
+        a.link.underscore.underscore href="https://itsrio2.typeform.com/to/iulNZI"
+          | Envie seu projeto
 
     .signatures.section.clearfix.only-mobile
       .section-image
@@ -54,7 +51,7 @@ article.content.homepage
           | Mudamos evoluiu a coleta de assinaturas em projetos de lei de iniciativa popular
         p.text.def-text-color
           | Antes da Mudamos, os projetos  dependiam de um parlamentar que os adotassem para serem votados na casa legislativa correspondente, esvaziando o espírito original desse mecanismo de democracia direta previsto na Constituição de 1988.
-        a.link.underscore.underscore href="#" 
+        a.link.underscore.underscore href="https://itsrio.org/pt/publicacoes/iniciativapopular/"
           | Saiba mais em nosso relatório
 
     .carousel.section.only-desktop
@@ -66,43 +63,45 @@ article.content.homepage
                 | Mudamos evolui a coleta de assinaturas em projetos de iniciativa popular.
               p.text.def-text-color
                 | Até hoje no Brasil, nenhum projeto de lei de iniciativa popular foi efetivamente tramitado como tal, devido à dificuldade da verificação das assinaturas em papel. Para ser votado na casa legislativa correspondente, o projeto ainda depende de um parlamentar que o adote, esvaziando o espírito original desse mecanismo de democracia direta previsto na Constituição de 1988.
-              a.link.underscore.underscore href="#" 
+              a.link.underscore.underscore href="https://itsrio.org/pt/publicacoes/iniciativapopular/"
                 | Saiba mais em nosso relatório
 
             .aditional-info.carousel-section
               = image_tag "static/2ton.png", class: "image"
               small.text.def-text-color
-                strong> 2 toneladas
-                | \. É a quandidade de papel necessária para contemplar as mais de
-                strong 1,7 milhão de assinaturas
-                | necessárias para aprovar um projeto de lei popular no Congresso Nacional. Imagina conferir tudo isso de forma manual?
-
-        a.left.carousel-control data-slide="prev" href="#carousel" 
-          = image_tag "static/left-arrow.png", class: "arrow left"
-          span.sr-only Previous
-
-        a.right.carousel-control data-slide="next" href="#carousel" 
-          = image_tag "static/right-arrow.png", class: "arrow right"
-          span.sr-only Next
+                strong> 2 toneladas.
+                |  É a quandidade de papel necessária para contemplar as mais de
+                strong  1,7 milhão de assinaturas
+                |  necessárias para aprovar um projeto de lei popular no Congresso Nacional. Imagina conferir tudo isso de forma manual?
 
   .sponsors.gradient-section
     .sponsor-images
       h2.title Apoiadores
-      = image_tag "static/sponsor/google.png", class: "google image"
-      = image_tag "static/sponsor/meu-rio.png", class: "meu-rio image"
-      = image_tag "static/sponsor/nossas-cidades.png", class: "nossas-cidades image"
-      = image_tag "static/sponsor/mcce.png", class: "mcce image"
-      = image_tag "static/sponsor/mtp.png", class: "mtp image"
+      = link_to "https://desafiosocial.withgoogle.com/brazil2016/charity/its-rio", title: "Desafio Google de Impacto Social" do
+        = image_tag "static/sponsor/google.png", class: "google image"
+      = link_to "https://www.meurio.org.br/", title: "Meu Rio" do
+        = image_tag "static/sponsor/meu-rio.png", class: "meu-rio image"
+      = link_to "https://www.nossas.org/", title: "Nossas Cidades" do
+        = image_tag "static/sponsor/nossas-cidades.png", class: "nossas-cidades image"
+      = link_to "http://www.mcce.org.br/", title: "Movimento de Combate a Corrupção Eleitoral" do
+        = image_tag "static/sponsor/mcce.png", class: "mcce image"
+      = link_to "http://www.transparenciapartidaria.org/", title: "Movimento Transparência Partidária" do
+        = image_tag "static/sponsor/mtp.png", class: "mtp image"
 
     .media.images
       h2.title Na mídia
-      = image_tag "static/sponsor/folha.png",  class: "folha image"
-      = image_tag "static/sponsor/conversa-bial.png",  class: "conversa-bial image"
-      = image_tag "static/sponsor/globo-news.png",  class: "globo-news image"
-      = image_tag "static/sponsor/g1.png",  class: "g1 image"
-      = image_tag "static/sponsor/epoca.png",  class: "epoca image"
+      = link_to "http://www1.folha.uol.com.br/colunas/monicabergamo/2017/02/1860817-diretoria-da-vale-tenta-convencer-governo-a-desistir-de-mudar-comando-da-empresa.shtml" do
+        = image_tag "static/sponsor/folha.png",  class: "folha image"
+      = link_to "http://gshow.globo.com/tv/noticia/pedro-bial-discute-uso-de-aplicativo-na-criacao-de-projetos-de-lei.ghtml" do
+        = image_tag "static/sponsor/conversa-bial.png",  class: "conversa-bial image"
+      = link_to "http://g1.globo.com/globo-news/estudio-i/videos/v/aplicativo-mudamos-faz-coleta-de-assinaturas-para-apoiar-ou-combater-projetos-de-lei/5815601/" do
+        = image_tag "static/sponsor/globo-news.png",  class: "globo-news image"
+      = link_to "http://g1.globo.com/politica/noticia/advogado-cria-app-para-coletar-e-conferir-apoio-a-projetos-de-iniciativa-popular.ghtml" do
+        = image_tag "static/sponsor/g1.png",  class: "g1 image"
+      = link_to "http://exame.abril.com.br/tecnologia/its-rio-vence-premio-do-google-para-ongs-e-ganha-r-1-5-mi/" do
+        = image_tag "static/sponsor/epoca.png",  class: "epoca image"
 
     .download
-      a.btn href="#"  Faça o download do app
+      a.btn href="https://zbzv6.app.goo.gl/VMUp"  Faça o download do app
       small.text.disclaimer
         | Mudamos é um aplicativo desenvolvido pelo Instituto de Tecnologia e Sociedade do Rio de Janeiro (ITS Rio)

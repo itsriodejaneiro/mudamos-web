@@ -8,8 +8,6 @@ nav.navbar.footer-nav
     ul.nav.navbar-nav.navbar-right
       - if @cycle
         li= link_to 'Críticas e Sugestões', cycle_blog_post_path(@cycle, BlogPost.find('sobre-a-ombudsperson-silvia-ramos'))
-      li= link_to 'Créditos', credits_path
-      li= link_to 'Contato', 'mailto:contato@mudamos.org'
       li
         a.remove-account href="#" Remover conta
   .container
