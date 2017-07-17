@@ -10,6 +10,7 @@ class PlipRepository
     filters = filters || {}
     uf = filters[:uf]
     city_id = filters[:city_id]
+    include_all = filters[:all] =~ /\Atrue\z/i
     is_nationwide_search = uf.blank? && city_id.blank?
 
     filtered_phases = Phase
@@ -25,9 +26,15 @@ class PlipRepository
       .where.not(petition_plugin_detail_versions: { id: nil })
       .where(petition_plugin_detail_versions: { published: true })
 
-    filtered_phases = filtered_phases.where(petition_plugin_details: { uf: uf }) if uf.present?
-    filtered_phases = filtered_phases.where(petition_plugin_details: { city_id: city_id }) if city_id.present?
-    filtered_phases = filtered_phases.where(petition_plugin_details: { scope_coverage: PetitionPlugin::Detail::NATIONWIDE_SCOPE }) if is_nationwide_search
+    if include_all
+      limit = [limit, 100].min
+    else
+      limit = [limit, 25].min
+
+      filtered_phases = filtered_phases.where(petition_plugin_details: { uf: uf }) if uf.present?
+      filtered_phases = filtered_phases.where(petition_plugin_details: { city_id: city_id }) if city_id.present?
+      filtered_phases = filtered_phases.where(petition_plugin_details: { scope_coverage: PetitionPlugin::Detail::NATIONWIDE_SCOPE }) if is_nationwide_search
+    end
 
     phases =
       Phase.where(id: filtered_phases.pluck(:id))
