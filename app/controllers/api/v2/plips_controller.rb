@@ -45,10 +45,12 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
       end
 
       parameter do
-        key :name, :all
+        key :name, :scope
         key :in, :query
-        key :description, "Returns all plips"
-        key :type, :boolean
+        key :description, "Returns plips from the given scope"
+        key :type, :list
+        key :enum, %w(nationwide statewide citywide all)
+        key :default, :all
       end
 
       response 200 do
@@ -77,9 +79,9 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
   private
 
   def paginated_plips
-    limit = [params[:limit].try(:to_i) || 10, 25].min
+    limit = params[:limit]
     page = params[:page].try(:to_i) || 1
-    filters = params.slice(:uf, :city_id, :all)
+    filters = params.slice(:uf, :city_id, :scope)
 
     @paginated_plips ||= plip_repository.all_initiated(filters: filters, page: page, limit: limit)
   end
