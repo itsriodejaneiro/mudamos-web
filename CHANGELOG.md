@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #386]: Add option to fetch all plips (Issue 385)
+
 ## [1.17.0] - 08/06/2017
 
 * [PR #379]: Only notify users when it is a nationwide plip (Issue 378)
