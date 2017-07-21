@@ -1,5 +1,7 @@
 ## Next
 
+## [1.18.0] - 21/07/2017
+
 * [PR #386]: Add option to fetch all plips (Issue 385)
 
 ## [1.17.0] - 08/06/2017
