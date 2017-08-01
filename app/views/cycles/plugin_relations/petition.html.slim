@@ -12,7 +12,6 @@ section#petition-index
     .col-lg-6.col-md-12.petition-side-bar.petition-view
       h1.petition-name= @phase.name
       h3.petition-description= @phase.description
-
       - if @phase.plugin_relation.ready?
         .row.signatures-info.hidden-xs
           .col-xs-12.already-signed
