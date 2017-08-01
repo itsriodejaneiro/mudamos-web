@@ -14,21 +14,6 @@ section#petition-index
       h3.petition-description= @phase.description
 
       - if @phase.plugin_relation.ready?
-        - if @phase.in_progress?
-          - if @user_signed_petition
-            .row
-              .col-xs-12
-                | Recebemos sua pré-assinatura! Por um requisito legal, agora você precisa baixar o App da Mudamos para confirmar a assinatura
-            .row.small-gap
-              .col-xs-12
-                a.store-badge.app href=mobile_app_ios_store_url target="_blank"
-                a.store-badge.play href=mobile_app_android_store_url target="_blank"
-          - else
-            .row
-              .col-xs-12
-                button.rounded-button.sign-petition style="background: #{cycle_background @cycle.color}"
-                 =@petition.call_to_action
-
         .row.signatures-info.hidden-xs
           .col-xs-12.already-signed
             strong
@@ -120,6 +105,21 @@ section#petition-index
         .row.view-all-signatures
           .container-fluid
             a href="#{petition_signatures_path(@petition)}" style="color: #{@cycle.color}" Confira as assinaturas autenticadas
+
+        - if @phase.in_progress?
+          - if @user_signed_petition
+            .row
+              .col-xs-12
+                | Recebemos sua pré-assinatura! Por um requisito legal, agora você precisa baixar o App da Mudamos para confirmar a assinatura
+            .row.small-gap
+              .col-xs-12
+                a.store-badge.app href=mobile_app_ios_store_url target="_blank"
+                a.store-badge.play href=mobile_app_android_store_url target="_blank"
+          - else
+            .row
+              .col-xs-12
+                button.rounded-button.sign-petition style="background: #{cycle_background @cycle.color}"
+                  = @petition.call_to_action
 
     .col-lg-6.col-md-12.petition-view.petition-body-container
       - if  @phase.plugin_relation.ready?
