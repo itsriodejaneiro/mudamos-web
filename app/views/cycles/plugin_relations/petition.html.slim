@@ -34,18 +34,6 @@ section#petition-index
               small assinaturas
 
           - if @phase.in_progress?
-            .col-lg-12.col-sm-6.col-xs-12.remaining-days.bottom-info-container
-              i.pull-left.material-icons style="color: #{@cycle.color}" access_time
-              div.medium-padded
-                - if @phase.remaining_days > 0
-                  strong>= "#{number_with_delimiter @phase.remaining_days} #{@phase.remaining_days > 1 ? "dias" : "dia"}"
-                  .visible-lg-inline= "#{@phase.remaining_days > 1 ? "restantes" : "restante"} para atingirmos a meta final"
-                - else
-                  strong Último dia
-              div.medium-padded.subtitle
-                small.visible-lg-block= "As colaborações podem ser feitas até o dia #{@phase.final_date.strftime("%d/%m/%Y")}"
-                small.hidden-lg para atingirmos a meta final
-
             .col-lg-12.col-sm-6.col-xs-12.download-document.bottom-info-container
               i.pull-left.material-icons style="color: #{@cycle.color}" file_download
               div.medium-padded
@@ -83,14 +71,7 @@ section#petition-index
 
         .row.phone-bottom-info.visible-xs-block
           - if @phase.in_progress?
-            .col-xs-6.progress
-              - if @phase.remaining_days > 0
-                strong= "#{number_with_delimiter @phase.remaining_days} #{@phase.remaining_days > 1 ? "dias restantes" : "dia restante"} "
-              - else
-                strong Último dia
-              div
-                small para atingirmos a meta final
-          .col-xs-6.text-right.signatures
+          .col-xs-12.text-right.signatures
             .total-signatures
             div
               small assinaturas
