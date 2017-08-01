@@ -52,7 +52,9 @@
     $("body").on("click", ".sign-petition", function(e) {
       e.preventDefault();
 
-      $("#modal_petition_sign").modal("show");
+      // $("#modal_petition_sign").modal("show");
+      // Redirecionamento da assinatura para o link dinâmico Firebase
+        $(location).attr('href', 'https://zbzv6.app.goo.gl/VMUp');
     });
 
     checkStore();
