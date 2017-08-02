@@ -158,8 +158,6 @@
   width: 90px;
 }
 
-
-
 .margin-auto{
   margin: 0 auto;
 }
@@ -191,8 +189,6 @@
   color: white;  
 }
 
-
-
 .carousel-control .icon-prev:before {
   content: '\2039';
   position: absolute;
@@ -210,50 +206,10 @@
   margin-top: -3px;
 }
 
-.slick-prev:before, .slick-next:before {
-    font-family: "Glyphicons Halflings", "slick", sans-serif;
-    font-size: 40px;
-}
-
-.slick-prev:before { 
-  content: '\2039';
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  background-color: purple;
-  border-radius: 50%;
-  font-family: serif;
-  color: white;  
-  
-}
-.slick-next:before { 
-  content: "\203a"; 
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  background-color: purple;
-  border-radius: 50%;
-  font-family: serif;
-  color: white;;
-}
-
 .filtering button{
   display: grid;
   border: none;
   background-color: white;
-}
-
-.slider{
-  display: flex;
-  padding-top: 60px;
-}
-
-.slick-slide{
-  max-width: 240px;;
-  margin-left: 15px;
-  margin-right: 15px;
 }
 
 small {
@@ -474,7 +430,6 @@ small {
 }
 
 
-//ENCONTRAR O AQRUIVO QUE IMPORTA ESSE NAV E EXCLUÍ-LO DE FATO
 #simple-menu{
   display: none;
 }
