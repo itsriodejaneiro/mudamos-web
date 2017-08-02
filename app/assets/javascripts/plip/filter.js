@@ -10,10 +10,6 @@ var VIEWPORT_WIDTH = $(window).width();
 
 $(document).ready(function() {
 
-
-    
-
-
     $('#btn-quemsomos').hover(
         function(){ 
            $('#btn-assine').toggleClass('active') 
