@@ -38,18 +38,10 @@ html lang="pt_br"
             strong Projetos de lei
 
           .text-center.row
-            button.filtro-municipais.btn
-              | Municipais
-            button.filtro-estaduais.btn
-              | Estaduais
-            button.filtro-nacionais.btn
-              | Federais
-            button.filtro-todos.btn
-              | Todos
-            = link_to "Municipais", scope_coverage: :citywide
-            = link_to "Estaduais", scope_coverage: :statewide
-            = link_to "Federais", scope_coverage: :nationwide
-            = link_to "Todos" 
+            = link_to "Municipais", "?scope_coverage=citywide", class: "btn"
+            = link_to "Estaduais", "?scope_coverage=statewide", class: "btn"
+            = link_to "Federais", "?scope_coverage=nationwide", class: "btn"
+            = link_to "Todos", plips_path, class: "btn"
           
           .container-fluid.section-slider
           
