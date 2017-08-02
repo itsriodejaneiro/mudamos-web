@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     $('#btn-quemsomos').hover(
         function(){ 
-           $('#btn-assine').toggleClass('active') 
+           $('#btn-assine').toggleClass('active-btn') 
         }
     )
 
