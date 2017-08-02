@@ -1,0 +1,128 @@
+doctype html
+html lang="pt_br" 
+  head
+    title Assine um projeto
+    meta charset="utf-8" /
+    meta content="width=device-width, initial-scale=1" name="viewport" /
+    link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" /
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" 
+    link href="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" rel="stylesheet" type="text/css" /
+    script src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js" type="text/javascript" 
+    script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+    = stylesheet_link_tag "plips", media: "all"
+    = javascript_include_tag "plips"
+  body
+    
+    header.header.clearfix
+      nav.links
+        a.link.def-text-color.underscore.active#btn-assine href="#" target="_blank"  Assine um projeto
+        a.link.def-text-color.underscore#btn-quemsomos href="/quem-somos"  Quem somos
+      .logos.small
+        = image_tag "static/logo.png", class: "logo"
+
+
+    section.jumbotron.intro
+      .container
+        .row
+          .col-md-8.col-xs-12
+            h2.title Assine um projeto de lei
+            p
+              | Um projeto de lei de iniciativa popular precisa atingir uma porcentagem mínima de assinaturas de eleitores para ser encaminhado e apresentado em uma classe legislativa.
+              strong Clique nos projetos já disponíveis abaixo para conhecer mais e assinar.
+          .col-md-4.col-xs-12.text-center
+            img.intro-img alt=("icone de projeto assinado") src="assets/static/sign-a-law-project.png" /
+    section.container-fluid.section-slider
+      .row
+        .container
+          h3.text-center.hr-bottom
+            strong Projetos de lei
+
+          .text-center.row
+            button.filtro-municipais.btn
+              | Municipais
+            button.filtro-estaduais.btn
+              | Estaduais
+            button.filtro-nacionais.btn
+              | Federais
+            button.filtro-todos.btn
+              | Todos
+            = link_to "Municipais", scope_coverage: :citywide
+            = link_to "Estaduais", scope_coverage: :statewide
+            = link_to "Federais", scope_coverage: :nationwide
+            = link_to "Todos" 
+          
+          .container-fluid.section-slider
+          
+            #desktop.desktop-carousel
+              /! slider
+              #myCarousel-desktop.container-fluid.carousel.slide data-ride="carousel" 
+                /! Indicators
+                ol.carousel-indicators
+                  li.active data-slide-to="0" data-target="#myCarousel-desktop" 
+                  li data-slide-to="1" data-target="#myCarousel-desktop" 
+                /! Wrapper for slides
+                #gallery.carousel-inner.container-fluid
+                  - slider_index = 0
+                  - @plips.items.in_groups_of(8, false) do |slider|
+                    .item.each-item class=(:active if slider_index == 0)
+                      - slider.in_groups_of(4, false) do |row|
+                        .row
+                          - row.each do |plip|
+                            .col-md-3
+                              .card.filter.municipal
+                              .card-block
+                                h4.card-title
+                                  = plip.phase.name
+                                .card-img
+                                  img alt="" src="assets/icon.png" /
+                                p.card-text Ajude a acabar com a compra de apoio político no Brasil.
+                                a.card-btn href="#"  Assine o projeto
+                    - slider_index += 1
+                /! end wrapper for slides
+                /! Left and right controls
+                a.left.carousel-control.desktop data-slide="prev" href="#myCarousel-desktop" 
+                  span.glyphicon.icon-prev
+                  span.sr-only Previous
+                a.right.carousel-control.desktop data-slide="next" href="#myCarousel-desktop" 
+                  span.glyphicon.icon-next
+                  span.sr-only Next
+            /! END DESKTOP SLIDER
+
+
+
+
+
+
+
+
+
+          /
+            .filtering.slider
+              - @plips.items.each do |plip|
+                .card-block class=("#{plip.detail.scope_coverage}") 
+                  h4.card-title
+                    = plip.phase.name
+                    br
+                    = scope_name(plip.detail)
+                  .card-img
+                    = image_tag(plip.cycle.picture(:thumb))
+                  p.card-text
+                    = plip.phase.description
+                  a.card-btn href=("#")
+                    = plip.call_to_action
+
+    section.container-fluid.footer-section.footer
+      .col-md-10.col-md-offset-1
+        .row
+          .col-md-6.col-md-offset-3
+            .col-md-4.text-center
+              img.footer-img alt=("icone de proposta de lei") src="assets/static/law-proposal.png" /
+            .col-md-8.text-center
+              h4
+                strong Não encontrou o que queria?
+              p
+                a.underscore href="" 
+                  strong Envie seu projeto para nós
+        .row.intro-text-footer
+          .col-md-6.col-md-offset-3.text-center
+            p Mudamos é um aplicativo desenvolvido pelo Instituto de Tecnologia e Sociedade do Rio de Janeiro (ITS Rio)

@@ -1,0 +1,479 @@
+.port-image{
+  width: 100%;
+}
+
+.col-md-3{
+  margin-bottom:20px;
+}
+
+.each-item{
+  position:relative;
+  overflow:hidden;
+}
+
+.each-item:hover .cap2, .each-item:hover .cap1{
+  left:0px;
+}
+
+.hr-bottom{
+  border-bottom: 5px solid #7a4199;
+  padding-bottom: 10px;
+}
+
+.title{
+  padding: 20px 0;
+  font-weight: bold;
+}
+
+.intro-img{
+  padding-top: 40px;
+}
+
+.desktop-carousel {
+  padding-top: 60px;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.mobile-slider {
+  padding-top: 60px;
+}
+
+.footer-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.intro-text-footer {
+  padding-top: 60px;
+}
+
+.intro {
+  padding-bottom: 60px;
+}
+
+.section-slider {
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.second-line-slider {
+  padding-top: 60px;
+}
+
+.btn{
+  margin: 0 10px;
+  border-bottom: 5px solid transparent;
+  background-color: transparent;
+}
+
+.btn:hover{
+  border-bottom: 5px solid #7a4199;
+}
+
+.card-block{
+  height: auto;
+  width: 200px;
+  background: #e9e9e9;
+  border-radius: 5px;
+}
+
+.card-title{
+  background: #70439a;
+  background: -webkit-radial-gradient(#804098, #70439a); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#804098, #70439a); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#804098, #70439a); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#804098, #70439a); /* Standard syntax */
+  border-radius: 5px 5px 0 0;
+  height: 20%;
+  color: #f1f1f1;
+  padding: 15px;
+  line-height: 150%;
+  display: block;
+  font-weight: bold;
+}
+
+.card-subtitle{
+  background: #7a4199;
+  color: #f1f1f1;
+  padding: 15px;
+}
+
+.card-text{
+  padding: 20px;
+  display: block;
+}
+
+.card-img{
+  display: block;
+  padding: 10px;
+  background: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-btn{
+  background: #70439a;
+  background: -webkit-radial-gradient(#804098, #70439a); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#804098, #70439a); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#804098, #70439a); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#804098, #70439a); /* Standard syntax */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin: 5px auto;
+  width: 95%;
+}
+
+.card-btn:hover{
+  text-decoration: none;
+  box-shadow: 13px 18px 23px -4px rgba(111, 0, 167, 0.2);
+  background-color: #5a4199;
+  color: white;
+}
+
+.card{
+  width: 20rem;
+}
+
+.card-block img {
+  margin: 0 auto;
+  width: 90px;
+}
+
+.footer{
+  background: #d8d8d8;
+}
+
+.footer-img{
+  width: 90px;
+}
+
+
+
+.margin-auto{
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1194px) {
+  #mobile { display: block; } /* show it on small screens */
+  #desktop { display: none; } /* hide it on small screens */
+}
+
+@media screen and (min-width: 1195px) {
+  #mobile { display: none; }  /* hide it elsewhere */
+  #desktop { display: block; }/* show it elsewhere */
+}
+
+.carousel-indicators {
+  display: none;
+}
+
+.carousel-control .glyphicon, .icon-prev {
+  font-size: 6rem;
+  position: relative;
+  top: 50%;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: purple;
+  border-radius: 50%;
+  font-family: serif;
+  color: white;  
+}
+
+
+
+.carousel-control .icon-prev:before {
+  content: '\2039';
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -3px;
+  
+}
+
+.carousel-control .icon-next:before {
+  content: '\203a';
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -3px;
+}
+
+.slick-prev:before, .slick-next:before {
+    font-family: "Glyphicons Halflings", "slick", sans-serif;
+    font-size: 40px;
+}
+
+.slick-prev:before { 
+  content: '\2039';
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: purple;
+  border-radius: 50%;
+  font-family: serif;
+  color: white;  
+  
+}
+.slick-next:before { 
+  content: "\203a"; 
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: purple;
+  border-radius: 50%;
+  font-family: serif;
+  color: white;;
+}
+
+.filtering button{
+  display: grid;
+  border: none;
+  background-color: white;
+}
+
+.slider{
+  display: flex;
+  padding-top: 60px;
+}
+
+.slick-slide{
+  max-width: 240px;;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+small {
+  &.text {
+  display: block;
+  font-size: 18px;
+    &.disclaimer {
+      margin: 30px 30%;
+    }
+  }
+}
+
+.content {
+  background: url(image-path("static/background.png")) no-repeat left top;
+  background-size: cover;
+}
+
+.custom-container {
+  margin: 0 auto;
+}
+
+.download {
+  text-align: center;
+  
+  .btn {
+    background: linear-gradient(to right, #713aa6 0%, #7f3f98 30%, #7f3f98 70%, #713aa6 100%);
+    border-radius: 41px;
+    color: white;
+    font-size: 26px;
+    padding: 20px 48px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.link,
+.text,
+.title {
+  color: #252525;
+  font-size: 24px;
+}
+
+.link,
+.title {
+  font-weight: bold;
+}
+
+.gradient-section {
+  background: linear-gradient(rgba(0,0,0,0.1) 0, rgba(255,255,255,0) 60%);
+}
+
+.header {
+  margin: 0 auto;
+  padding: 60px 60px 0;
+  width: 1140px;
+  background-color: #eeeeee;
+}
+
+.header .links {
+  float: right;
+  margin-top: -15px;
+  
+  .link {
+    display: inline-block;
+    font-weight: normal;
+    margin-left: 20px;
+  }
+}
+
+.header .logos {
+  display: block;
+  float: left;
+
+  &.great .logo {
+    width: 140px;
+  }
+
+  &.small {
+    text-align: center;
+
+    .logo,
+    .mudamos {
+      display: inline-block;
+    }
+
+    .logo {
+      width: 60px;
+    }
+
+    .mudamos {
+      width: 250px;
+    }
+  }
+}
+
+.major-title {
+  font-size: 46px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.only-mobile {
+  display: none !important;
+}
+
+.underscore:hover {
+  border-bottom: 8px #6f00a7 solid;
+  box-shadow: 13px 18px 23px -4px rgba(111, 0, 167, 0.2);
+  text-decoration: none;
+  color: #333;
+}
+
+.underscore{
+  color: #333;
+}
+
+.active{
+  border-bottom: 8px #6f00a7 solid;
+  box-shadow: 13px 18px 23px -4px rgba(111, 0, 167, 0.2);
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 1365px) {
+  .header {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 939px) {
+  small.text {
+    font-size: 12px;
+    margin: 30px 13%;
+  }
+
+  .content {
+    background: url(image-path("static/background-mobile.png")) no-repeat left top;
+    text-align: center;
+
+    .general-info .section {
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+  .custom-container {
+    padding-top: 0;
+  }
+
+  .download .btn {
+    font-size: 20px;
+    padding: 10px 28px;
+  }
+
+  .link,
+  .major-title,
+  .title,
+  .text {
+    font-size: 16px;
+  }
+
+  .header {
+    .logos,
+    .links {
+      float: none;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .links {
+      padding-bottom: 20px;
+    }
+  }
+
+
+  .only-desktop {
+    display: none;
+  }
+
+  .only-mobile {
+    display: block;
+  }
+
+  .underscore {
+    border-bottom: 4px #6f00a7 solid;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .download .btn {
+    font-size: 13px;
+    padding: 6px 25px;
+  }
+
+  .header {
+    padding: 60px 0;
+
+    .logos {
+      padding-top: 20px;
+
+      .small {
+        .logo {
+          width: 38px;
+        }
+
+        .mudamos {
+          margin-left: 5px;
+          width: 153px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .header .link {
+    font-size: 14px;
+  }
+}
+
+
+//ENCONTRAR O AQRUIVO QUE IMPORTA ESSE NAV E EXCLUÍ-LO DE FATO
+#simple-menu{
+  display: none;
+}
