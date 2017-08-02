@@ -44,7 +44,7 @@ html lang="pt_br"
             = link_to "Todos", plips_path, class: "btn"
           
           .container-fluid.section-slider
-          
+            /! DESKTOP SLIDER
             #desktop.desktop-carousel
               /! slider
               #myCarousel-desktop.container-fluid.carousel.slide data-ride="carousel" 
@@ -61,7 +61,7 @@ html lang="pt_br"
                         .row
                           - row.each do |plip|
                             .col-md-3
-                              .card.filter.municipal
+                              .card
                               .card-block
                                 h4.card-title
                                   = plip.phase.name
@@ -80,28 +80,44 @@ html lang="pt_br"
                   span.sr-only Next
             /! END DESKTOP SLIDER
 
+            /!MOBILE SLIDER
+            #mobile.desktop-carousel
+              /! slider
+              #myCarousel-mobile.container-fluid.carousel.slide data-ride="carousel" 
+                /! Indicators
+                ol.carousel-indicators
+                  li.active data-slide-to="0" data-target="#myCarousel-mobile" 
+                  li data-slide-to="1" data-target="#myCarousel-mobile" 
+                /! Wrapper for slides
+                #gallery.carousel-inner.container-fluid
+                  - slider_index = 0
+                  - @plips.items.in_groups_of(1, false) do |slider|
+                    .item.each-item class=(:active if slider_index == 0)
+                      - slider.in_groups_of(1, false) do |row|
+                        .row
+                          - row.each do |plip|
+                            .col-md-12
+                              .card
+                              .card-block
+                                h4.card-title
+                                  = plip.phase.name
+                                .card-img
+                                  img alt="" src="assets/icon.png" /
+                                p.card-text Ajude a acabar com a compra de apoio político no Brasil.
+                                a.card-btn href="#"  Assine o projeto
+                    - slider_index += 1
+                /! end wrapper for slides
+                /! Left and right controls
+                a.left.carousel-control.mobile data-slide="prev" href="#myCarousel-mobile" 
+                  span.glyphicon.icon-prev
+                  span.sr-only Previous
+                a.right.carousel-control.mobile data-slide="next" href="#myCarousel-mobile" 
+                  span.glyphicon.icon-next
+                  span.sr-only Next
+            /! END MOBILE SLIDER
 
 
-
-
-
-
-
-
-          /
-            .filtering.slider
-              - @plips.items.each do |plip|
-                .card-block class=("#{plip.detail.scope_coverage}") 
-                  h4.card-title
-                    = plip.phase.name
-                    br
-                    = scope_name(plip.detail)
-                  .card-img
-                    = image_tag(plip.cycle.picture(:thumb))
-                  p.card-text
-                    = plip.phase.description
-                  a.card-btn href=("#")
-                    = plip.call_to_action
+          
 
     section.container-fluid.footer-section.footer
       .col-md-10.col-md-offset-1

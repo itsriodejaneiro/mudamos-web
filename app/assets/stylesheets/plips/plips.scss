@@ -54,7 +54,6 @@
 
 .section-slider {
   padding-bottom: 60px;
-  position: relative;
 }
 
 .second-line-slider {
@@ -77,6 +76,7 @@
   width: 200px;
   background: #e9e9e9;
   border-radius: 5px;
+  margin: 0 auto;
 }
 
 .card-title{
@@ -167,7 +167,7 @@
   #desktop { display: none; } /* hide it on small screens */
 }
 
-@media screen and (min-width: 1195px) {
+@media screen and (min-width: 1194px) {
   #mobile { display: none; }  /* hide it elsewhere */
   #desktop { display: block; }/* show it elsewhere */
 }
