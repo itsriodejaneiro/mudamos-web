@@ -27,7 +27,7 @@ html lang="pt_br"
           .col-md-8.col-xs-12
             h2.title Assine um projeto de lei
             p
-              | Um projeto de lei de iniciativa popular precisa atingir uma porcentagem mínima de assinaturas de eleitores para ser encaminhado e apresentado em uma classe legislativa.
+              | Um projeto de lei de iniciativa popular precisa atingir uma porcentagem mínima de assinaturas de eleitores para ser encaminhado e apresentado em uma classe legislativa. 
               strong Clique nos projetos já disponíveis abaixo para conhecer mais e assinar.
           .col-md-4.col-xs-12.text-center
             img.intro-img alt=("icone de projeto assinado") src="assets/static/sign-a-law-project.png" /
@@ -64,11 +64,20 @@ html lang="pt_br"
                               .card
                               .card-block
                                 h4.card-title
-                                  = plip.phase.name
+                                  span
+                                    = plip.phase.name
+                                  - if plip.detail.city || plip.detail.uf
+                                    span.glyphicon.glyphicon-map-marker
+                                      = scope_name(plip.detail)
+                                  - else
+                                    span
+                                      = scope_name(plip.detail)
                                 .card-img
                                   = image_tag plip.cycle.picture(:thumb)
-                                p.card-text Ajude a acabar com a compra de apoio político no Brasil.
-                                a.card-btn href="#"  Assine o projeto
+                                p.card-text
+                                  = plip.phase.description
+                                a.card-btn href="#"
+                                  = plip.call_to_action
                     - slider_index += 1
                 /! end wrapper for slides
                 /! Left and right controls
