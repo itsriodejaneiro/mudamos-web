@@ -72,8 +72,16 @@
   color: #333;
 }
 
-.btn:hover{
+@mixin active-btn {
   border-bottom: 5px solid #7a4199;
+}
+
+.active_btn{
+  @include active-btn
+}
+
+.btn:hover{
+  @include active-btn
 }
 
 .card-block{

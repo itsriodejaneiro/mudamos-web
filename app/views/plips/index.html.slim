@@ -38,10 +38,18 @@ html lang="pt_br"
             strong Projetos de lei
 
           .text-center.row
-            = link_to "Municipais", "?scope_coverage=citywide", class: "btn"
-            = link_to "Estaduais", "?scope_coverage=statewide", class: "btn"
-            = link_to "Federais", "?scope_coverage=nationwide", class: "btn"
-            = link_to "Todos", plips_path, class: "btn"
+            = link_to "Municipais",
+                { scope_coverage: :citywide },
+                class: [:btn, (:active_btn if params[:scope_coverage] == 'citywide')].compact
+            = link_to "Estaduais",
+              { scope_coverage: :statewide },
+              class: [:btn, (:active_btn if params[:scope_coverage] == 'statewide')].compact
+            = link_to "Federais",
+              { scope_coverage: :nationwide },
+              class: [:btn, (:active_btn if params[:scope_coverage] == 'nationwide')].compact
+            = link_to "Todos",
+              {},
+              class: [:btn, (:active_btn if !params[:scope_coverage] || params[:scope_coverage] == 'all')].compact
 
           .container-fluid.section-slider
             /! DESKTOP SLIDER
