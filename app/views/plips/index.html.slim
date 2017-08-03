@@ -66,7 +66,7 @@ html lang="pt_br"
                                 h4.card-title
                                   = plip.phase.name
                                 .card-img
-                                  img alt="" src="assets/icon.png" /
+                                  = image_tag plip.cycle.picture(:thumb)
                                 p.card-text Ajude a acabar com a compra de apoio político no Brasil.
                                 a.card-btn href="#"  Assine o projeto
                     - slider_index += 1
@@ -102,9 +102,11 @@ html lang="pt_br"
                                 h4.card-title
                                   = plip.phase.name
                                 .card-img
-                                  img alt="" src="assets/icon.png" /
-                                p.card-text Ajude a acabar com a compra de apoio político no Brasil.
-                                a.card-btn href="#"  Assine o projeto
+                                  = image_tag plip.cycle.picture(:thumb)
+                                p.card-text
+                                  = plip.phase.description
+                                a.card-btn href="#"
+                                  = plip.call_to_action
                     - slider_index += 1
                 /! end wrapper for slides
                 /! Left and right controls
