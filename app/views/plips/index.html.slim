@@ -1,18 +1,18 @@
 doctype html
-html lang="pt_br" 
+html lang="pt_br"
   head
     title Assine um projeto
     meta charset="utf-8" /
     meta content="width=device-width, initial-scale=1" name="viewport" /
     link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" /
-    script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" 
+    script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
     link href="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" rel="stylesheet" type="text/css" /
-    script src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js" type="text/javascript" 
-    script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+    script src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js" type="text/javascript"
+    script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
     = stylesheet_link_tag "plips", media: "all"
     = javascript_include_tag "plips"
   body
-    
+
     header.header.clearfix
       nav.links
         a.link.def-text-color.underscore.active-btn#btn-assine href="#" target="_blank"  Assine um projeto
@@ -27,7 +27,7 @@ html lang="pt_br"
           .col-md-8.col-xs-12
             h2.title Assine um projeto de lei
             p
-              | Um projeto de lei de iniciativa popular precisa atingir uma porcentagem mínima de assinaturas de eleitores para ser encaminhado e apresentado em uma classe legislativa. 
+              | Um projeto de lei de iniciativa popular precisa atingir uma porcentagem mínima de assinaturas de eleitores para ser encaminhado e apresentado em uma classe legislativa.
               strong Clique nos projetos já disponíveis abaixo para conhecer mais e assinar.
           .col-md-4.col-xs-12.text-center
             img.intro-img alt=("icone de projeto assinado") src="assets/static/sign-a-law-project.png" /
@@ -42,16 +42,16 @@ html lang="pt_br"
             = link_to "Estaduais", "?scope_coverage=statewide", class: "btn"
             = link_to "Federais", "?scope_coverage=nationwide", class: "btn"
             = link_to "Todos", plips_path, class: "btn"
-          
+
           .container-fluid.section-slider
             /! DESKTOP SLIDER
             #desktop.desktop-carousel
               /! slider
-              #myCarousel-desktop.container-fluid.carousel.slide data-ride="carousel" 
+              #myCarousel-desktop.container-fluid.carousel.slide data-ride="carousel"
                 /! Indicators
                 ol.carousel-indicators
-                  li.active data-slide-to="0" data-target="#myCarousel-desktop" 
-                  li data-slide-to="1" data-target="#myCarousel-desktop" 
+                  li.active data-slide-to="0" data-target="#myCarousel-desktop"
+                  li data-slide-to="1" data-target="#myCarousel-desktop"
                 /! Wrapper for slides
                 #gallery.carousel-inner.container-fluid
                   - slider_index = 0
@@ -66,7 +66,7 @@ html lang="pt_br"
                                 h4.card-title
                                   span
                                     = plip.phase.name
-                                  - if plip.detail.city || plip.detail.uf
+                                  - if plip.detail.city || plip.detail.uf?
                                     span.glyphicon.glyphicon-map-marker
                                       = scope_name(plip.detail)
                                   - else
@@ -81,10 +81,10 @@ html lang="pt_br"
                     - slider_index += 1
                 /! end wrapper for slides
                 /! Left and right controls
-                a.left.carousel-control.desktop data-slide="prev" href="#myCarousel-desktop" 
+                a.left.carousel-control.desktop data-slide="prev" href="#myCarousel-desktop"
                   span.glyphicon.icon-prev
                   span.sr-only Previous
-                a.right.carousel-control.desktop data-slide="next" href="#myCarousel-desktop" 
+                a.right.carousel-control.desktop data-slide="next" href="#myCarousel-desktop"
                   span.glyphicon.icon-next
                   span.sr-only Next
             /! END DESKTOP SLIDER
@@ -92,11 +92,11 @@ html lang="pt_br"
             /!MOBILE SLIDER
             #mobile.desktop-carousel
               /! slider
-              #myCarousel-mobile.container-fluid.carousel.slide data-ride="carousel" 
+              #myCarousel-mobile.container-fluid.carousel.slide data-ride="carousel"
                 /! Indicators
                 ol.carousel-indicators
-                  li.active data-slide-to="0" data-target="#myCarousel-mobile" 
-                  li data-slide-to="1" data-target="#myCarousel-mobile" 
+                  li.active data-slide-to="0" data-target="#myCarousel-mobile"
+                  li data-slide-to="1" data-target="#myCarousel-mobile"
                 /! Wrapper for slides
                 #gallery.carousel-inner.container-fluid
                   - slider_index = 0
@@ -126,16 +126,16 @@ html lang="pt_br"
                     - slider_index += 1
                 /! end wrapper for slides
                 /! Left and right controls
-                a.left.carousel-control.mobile data-slide="prev" href="#myCarousel-mobile" 
+                a.left.carousel-control.mobile data-slide="prev" href="#myCarousel-mobile"
                   span.glyphicon.icon-prev
                   span.sr-only Previous
-                a.right.carousel-control.mobile data-slide="next" href="#myCarousel-mobile" 
+                a.right.carousel-control.mobile data-slide="next" href="#myCarousel-mobile"
                   span.glyphicon.icon-next
                   span.sr-only Next
             /! END MOBILE SLIDER
 
 
-          
+
 
     section.container-fluid.footer-section.footer
       .col-md-10.col-md-offset-1
@@ -147,7 +147,7 @@ html lang="pt_br"
               h4
                 strong Não encontrou o que queria?
               p
-                a.underscore href="" 
+                a.underscore href=""
                   strong Envie seu projeto para nós
         .row.intro-text-footer
           .col-md-6.col-md-offset-3.text-center
