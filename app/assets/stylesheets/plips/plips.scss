@@ -334,6 +334,19 @@ small {
   text-decoration: none;
 }
 
+@media only screen and (min-width: 1366px) {
+  .header {
+    width: 100%;
+
+    .small{
+      padding-left: 10%;
+    }
+    .links{
+      padding-right: 10%;
+    }
+  }
+}
+
 @media only screen and (max-width: 1365px) {
   .header {
     width: 100%;
