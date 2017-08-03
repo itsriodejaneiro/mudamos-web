@@ -51,13 +51,6 @@ class Plip
   end
 
   def petition_info
-    # @petition_info ||= petition_service.fetch_petition_info_with(petition: detail)
-    OpenStruct.new(
-      updated_at: Time.now,
-      signatures_count: 1000,
-      initial_signatures_goal: 1000,
-      total_signatures_required: 100_000,
-      current_signatures_goal: 5000,
-    )
+    @petition_info ||= petition_service.fetch_petition_info_with(petition: detail)
   end
 end
