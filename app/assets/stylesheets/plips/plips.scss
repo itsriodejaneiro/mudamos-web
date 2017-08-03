@@ -167,6 +167,19 @@ h4 span{
   width: 90px;
 }
 
+.scope-name{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+}
+
+.icon-inline{
+  display: inline-flex;
+}
+
+.glyphicon-map-marker::before {
+  padding-right: 5px;
+}
+
 .footer{
   background: #d8d8d8;
 }
