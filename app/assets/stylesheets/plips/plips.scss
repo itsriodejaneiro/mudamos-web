@@ -193,6 +193,18 @@ h4 span{
   display: none;
 }
 
+#myCarousel-mobile, #myCarousel-desktop a {
+  outline: none !important; /* this will remove the outline when we click the anchor tag */
+}
+
+.carousel-control:focus {
+  opacity: 0.5; /* this will remove the darker color on focus and hover */
+}
+
+.carousel-control:hover{
+  opacity: 1 !important;
+}
+
 .carousel-control .glyphicon, .icon-prev {
   font-size: 6rem;
   top: 50%;
@@ -209,7 +221,7 @@ h4 span{
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  margin-top: -3px;
+  margin-top: -5px;
 
 }
 
@@ -218,7 +230,7 @@ h4 span{
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  margin-top: -3px;
+  margin-top: -5px;
 }
 
 

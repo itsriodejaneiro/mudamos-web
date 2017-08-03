@@ -63,9 +63,9 @@ html lang="pt_br"
                 /! Wrapper for slides
                 #gallery.carousel-inner.container-fluid
                   - slider_index = 0
-                  - @plips.items.in_groups_of(8, false) do |slider|
+                  - @plips.items.in_groups_of(4, false) do |slider|
                     .item.each-item class=(:active if slider_index == 0)
-                      - slider.in_groups_of(4, false) do |row|
+                      - slider.in_groups_of(2, false) do |row|
                         .row
                           - row.each do |plip|
                             .col-md-3
