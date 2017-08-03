@@ -426,7 +426,7 @@ small {
 
 .row.flex {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   padding-top: 20px;
 }
 
@@ -479,7 +479,7 @@ h4 {
   
 }
 
-.card-img{
+.card-img img{
   width: 70%;
   height: 70%;
   display: flex;
@@ -487,7 +487,7 @@ h4 {
   align-items: center;
   margin: 0 auto; 
   align-self: center;
-  margin-top: 10px;
+  margin-top: 90px;
 }
 
 .card-text{
@@ -513,7 +513,7 @@ h4 {
   margin: 5px auto;
   width: 95%;
   position: absolute;
-  margin-top: 350px;
+  margin-top: 380px;
   align-self: center;
   height: 75px;
   line-height: 75px;
