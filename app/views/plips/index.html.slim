@@ -63,12 +63,10 @@ html lang="pt_br"
                   li data-slide-to="1" data-target="#myCarousel-desktop"
                 /! Wrapper for slides
                 #gallery.carousel-inner.container-fluid
-
                   - slider_config = { items: 8, rows: 4 }
                   - @plips.items.in_groups_of(slider_config[:items], false).each_with_index do |slider, i|
                     .item.each-item class=(:active if i == 0)
                       - slider.in_groups_of(slider_config[:rows], false) do |row|
->>>>>>> 774e5b8b4f330de4c9cf7973d16e33dff15018a3
                         .row.flex
                           - row.each do |plip|
                             .col-md-3
