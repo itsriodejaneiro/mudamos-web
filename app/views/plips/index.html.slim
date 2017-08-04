@@ -27,7 +27,7 @@ html lang="pt_br"
           .col-md-8.col-xs-12
             h2.title Assine um projeto de lei
             p
-              | Um projeto de lei de iniciativa popular precisa atingir uma porcentagem mínima de assinaturas de eleitores para ser encaminhado e apresentado em uma classe legislativa. 
+              | Um projeto de lei de iniciativa popular precisa atingir uma porcentagem mínima de assinaturas de eleitores para ser encaminhado e apresentado em uma classe legislativa.
               strong Clique nos projetos já disponíveis abaixo para conhecer mais e assinar.
           .col-md-4.col-xs-12.text-center
             img.intro-img alt=("icone de projeto assinado") src="assets/static/sign-a-law-project.png" /
@@ -70,7 +70,7 @@ html lang="pt_br"
                           - row.each do |plip|
                             .col-md-3
                               .card
-                                h4.card-title
+                                h4.card-title style="background: #{plip.cycle.color}"
                                   span.locate-icon title=plip.phase.name
                                     = plip.phase.name.truncate(plip.detail.nationwide? ? 35 : 17)
                                   - if plip.detail.city || plip.detail.uf?
@@ -84,7 +84,7 @@ html lang="pt_br"
                                   = image_tag plip.cycle.picture(:thumb)
                                 p.card-text title=plip.phase.description
                                   = plip.phase.description.truncate(87)
-                                a.card-btn href="#" title=plip.call_to_action
+                                a.card-btn href=cycle_plugin_relation_path(plip.cycle, plip.phase.plugin_relation) title=plip.call_to_action style="background: #{plip.cycle.color};"
                                   = plip.call_to_action.truncate(20)
                     - slider_index += 1
                 /! end wrapper for slides
@@ -115,7 +115,7 @@ html lang="pt_br"
                           - row.each do |plip|
                             .center-mobile
                               .card
-                                h4.card-title
+                                h4.card-title style="background: #{plip.cycle.color};"
                                   span.locate-icon title=plip.phase.name
                                     = plip.phase.name.truncate(plip.detail.nationwide? ? 35 : 17)
                                   - if plip.detail.city || plip.detail.uf?
@@ -129,7 +129,7 @@ html lang="pt_br"
                                   = image_tag plip.cycle.picture(:thumb)
                                 p.card-text title=plip.phase.description
                                   = plip.phase.description.truncate(110)
-                                a.card-btn href="#" title=plip.call_to_action
+                                a.card-btn href=cycle_plugin_relation_path(plip.cycle, plip.phase.plugin_relation) title=plip.call_to_action style="background: #{plip.cycle.color};"
                                   = plip.call_to_action.truncate(20)
                     - slider_index += 1
                 /! end wrapper for slides
@@ -143,7 +143,7 @@ html lang="pt_br"
             /! END MOBILE SLIDER
 
 
-    
+
     section.container-fluid.footer-section.footer
       .col-md-10.col-md-offset-1
         .row
