@@ -51,11 +51,12 @@
 
 .section-slider {
   padding-bottom: 20px;
-  background-color: linear-gradient(#eeeeee, transparent);
-  background: -webkit-linear-gradient(#eeeeee, transparent); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#eeeeee, transparent); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#eeeeee, transparent); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#eeeeee, transparent); /* Standard syntax */
+  background-color: linear-gradient(#eaeaea 0, transparent 50%);
+  background: -webkit-linear-gradient(#eaeaea 0, transparent 50%); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#eaeaea 0, transparent 50%); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#eaeaea 0, transparent 50%); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#eaeaea 0, transparent 50%); /* Standard syntax */
+  z-index: 1;
 }
 
 .second-line-slider {
@@ -113,10 +114,6 @@
 
 .glyphicon-map-marker::before {
   padding-right: 5px;
-}
-
-.footer{
-  background: #d8d8d8;
 }
 
 .footer-img{
@@ -225,13 +222,15 @@ small {
 
 .gradient-section {
   background: linear-gradient(rgba(0,0,0,0.1) 0, rgba(255,255,255,0) 60%);
+  z-index: 1;
+  position: relative;
 }
 
 .header {
   margin: 0 auto;
   padding: 60px 60px 0;
   width: 1140px;
-  background-color: #eeeeee;
+  background-color: #eaeaea;
 }
 
 .header .links {
@@ -326,6 +325,8 @@ small {
   .content {
     background: url(image-path("static/background-mobile.png")) no-repeat left top;
     text-align: center;
+    z-index: 5;
+    position: absolute;
 
     .general-info .section {
       margin: 0;
@@ -538,4 +539,18 @@ h4 {
 
 .filtros{
   padding-top: 10px;
+}
+
+.jumbotron{
+  background-color: #eaeaea;
+  z-index: 1;
+}
+
+.section-carousel{
+  padding-bottom: 20px; 
+}
+
+.footer{
+  background: #eeeeee;
+  z-index: 1;
 }

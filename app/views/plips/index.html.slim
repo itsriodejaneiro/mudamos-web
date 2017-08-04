@@ -11,7 +11,7 @@ html lang="pt_br"
     script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
     = stylesheet_link_tag "plips", media: "all"
     = javascript_include_tag "plips"
-  body
+  body.content
 
     header.header.clearfix
       nav.links
@@ -21,7 +21,7 @@ html lang="pt_br"
         = image_tag "static/logo.png", class: "logo"
 
 
-    section.jumbotron.intro
+    section.jumbotron.intro.content
       .container
         .row
           .col-md-8.col-xs-12
@@ -51,7 +51,7 @@ html lang="pt_br"
               {},
               class: [:btn, (:active_btn if !params[:scope_coverage] || params[:scope_coverage] == 'all')].compact
 
-          .container-fluid.section-slider
+          .container-fluid.section-carousel
             /! DESKTOP SLIDER
             #desktop.wrapper-carousel
               /! slider
@@ -145,7 +145,7 @@ html lang="pt_br"
 
     
     section.container-fluid.footer-section.footer
-      .col-md-10.col-md-offset-1
+      .col-md-10.col-md-offset-1.content
         .row
           .col-md-6.col-md-offset-3
             .col-md-4.text-center
