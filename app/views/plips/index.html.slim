@@ -37,7 +37,7 @@ html lang="pt_br"
           h3.text-center.hr-bottom.active-btn
             strong Projetos de lei
 
-          .text-center.row
+          .text-center.row.filtros
             = link_to "Municipais",
                 { scope_coverage: :citywide },
                 class: [:btn, (:active_btn if params[:scope_coverage] == 'citywide')].compact
