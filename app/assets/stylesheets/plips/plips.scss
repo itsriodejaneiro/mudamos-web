@@ -1,0 +1,556 @@
+.port-image{
+  width: 100%;
+}
+
+.each-item{
+  position:relative;
+  overflow:hidden;
+}
+
+.each-item:hover .cap2, .each-item:hover .cap1{
+  left:0px;
+}
+
+.hr-bottom{
+  border-bottom: 5px solid #7a4199;
+  padding-bottom: 10px;
+}
+
+.title{
+  padding: 20px 0;
+  font-weight: bold;
+}
+
+.intro-img{
+  padding-top: 40px;
+}
+
+.wrapper-carousel {
+  padding-top: 40px;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.mobile-slider {
+  padding-top: 60px;
+}
+
+.footer-section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.intro-text-footer {
+  padding-top: 60px;
+}
+
+.intro {
+  padding-bottom: 60px;
+  margin-bottom: 0;
+}
+
+.section-slider {
+  padding-bottom: 20px;
+  background-color: linear-gradient(#eaeaea 0, transparent 50%);
+  background: -webkit-linear-gradient(#eaeaea 0, transparent 50%); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#eaeaea 0, transparent 50%); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#eaeaea 0, transparent 50%); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#eaeaea 0, transparent 50%); /* Standard syntax */
+  z-index: 1;
+}
+
+.second-line-slider {
+  padding-top: 60px;
+}
+
+.btn{
+  margin: 0 10px;
+  border-bottom: 5px solid transparent;
+  background-color: transparent;
+  color: #333;
+}
+
+@mixin active-btn {
+  border-bottom: 6px #6f00a7 solid;
+  box-shadow: 0 18px 23px -6px rgba(111, 0, 167, 0.2);
+  text-decoration: none;
+}
+
+.active_btn{
+  @include active-btn
+}
+
+.btn:hover{
+  @include active-btn
+}
+
+.card-block{
+  height: auto;
+  max-width: 300px;
+  background: #e9e9e9;
+  border-radius: 5px;
+  margin: 0 auto;
+}
+
+.card-subtitle{
+  background: #7a4199;
+  color: #f1f1f1;
+  padding: 15px;
+}
+
+.card-block img {
+  margin: 0 auto;
+  width: 90px;
+}
+
+.scope-name{
+  font-family: sans-serif;
+  font-weight: 500;
+}
+
+.icon-inline{
+  display: inline-flex;
+}
+
+.glyphicon-map-marker::before {
+  padding-right: 5px;
+}
+
+.footer-img{
+  width: 90px;
+}
+
+.margin-auto{
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1194px) {
+  #mobile { display: block; } /* show it on small screens */
+  #desktop { display: none; } /* hide it on small screens */
+}
+
+@media screen and (min-width: 1194px) {
+  #mobile { display: none; }  /* hide it elsewhere */
+  #desktop { display: block; }/* show it elsewhere */
+}
+
+.carousel-indicators {
+  display: none;
+}
+
+.carousel-control:focus {
+  opacity: 0.5; /* this will remove the darker color on focus and hover */
+}
+
+.carousel-control:hover{
+  opacity: 1 !important;
+}
+
+.carousel-control .glyphicon, .icon-prev {
+  font-size: 6rem;
+  top: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: purple;
+  border-radius: 50%;
+  font-family: serif;
+  color: white;
+}
+
+.carousel-control .icon-prev:before {
+  content: '\2039';
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -5px;
+
+}
+
+.carousel-control .icon-next:before {
+  content: '\203a';
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: -5px;
+}
+
+
+small {
+  &.text {
+  display: block;
+  font-size: 18px;
+    &.disclaimer {
+      margin: 30px 30%;
+    }
+  }
+}
+
+.content {
+  background: url(image-path("static/background.png")) no-repeat left top;
+  background-size: cover;
+}
+
+.custom-container {
+  margin: 0 auto;
+}
+
+.download {
+  text-align: center;
+
+  .btn {
+    background: linear-gradient(to right, #713aa6 0%, #7f3f98 30%, #7f3f98 70%, #713aa6 100%);
+    border-radius: 41px;
+    color: white;
+    font-size: 26px;
+    padding: 20px 48px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.link,
+.text,
+.title {
+  color: #252525;
+  font-size: 24px;
+}
+
+.link,
+.title {
+  font-weight: bold;
+}
+
+.gradient-section {
+  background: linear-gradient(rgba(0,0,0,0.1) 0, rgba(255,255,255,0) 60%);
+  z-index: 1;
+  position: relative;
+}
+
+.header {
+  margin: 0 auto;
+  padding: 60px 60px 0;
+  width: 1140px;
+  background-color: #eaeaea;
+}
+
+.header .links {
+  float: right;
+  margin-top: -15px;
+
+  .link {
+    display: inline-block;
+    font-weight: normal;
+    margin-left: 20px;
+  }
+}
+
+.header .logos {
+  display: block;
+  float: left;
+
+  &.great .logo {
+    width: 140px;
+  }
+
+  &.small {
+    text-align: center;
+
+    .logo,
+    .mudamos {
+      display: inline-block;
+    }
+
+    .logo {
+      width: 60px;
+    }
+
+    .mudamos {
+      width: 250px;
+    }
+  }
+}
+
+.major-title {
+  font-size: 46px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.only-mobile {
+  display: none !important;
+}
+
+.underscore:hover {
+  border-bottom: 6px #6f00a7 solid;
+  box-shadow: 0 18px 23px -6px rgba(111, 0, 167, 0.2);
+  text-decoration: none;
+  color: #333;
+}
+
+.underscore{
+  color: #333;
+}
+
+.active-btn{
+  border-bottom: 6px #6f00a7 solid;
+  box-shadow: 0 18px 23px -6px rgba(111, 0, 167, 0.2);
+  text-decoration: none;
+}
+
+@media only screen and (min-width: 1330px) {
+  .header {
+    width: 100%;
+
+    .small{
+      padding-left: 10%;
+    }
+    .links{
+      padding-right: 10%;
+    }
+  }
+}
+
+@media only screen and (max-width: 1365px) {
+  .header {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 939px) {
+  small.text {
+    font-size: 12px;
+    margin: 30px 13%;
+  }
+
+  .content {
+    background: url(image-path("static/background-mobile.png")) no-repeat left top;
+    text-align: center;
+    z-index: 5;
+    position: absolute;
+
+    .general-info .section {
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+  .custom-container {
+    padding-top: 0;
+  }
+
+  .download .btn {
+    font-size: 20px;
+    padding: 10px 28px;
+  }
+
+  .link,
+  .major-title,
+  .text {
+    font-size: 16px;
+  }
+
+  .header {
+    .logos,
+    .links {
+      float: none;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .links {
+      padding-bottom: 20px;
+    }
+  }
+
+
+  .only-desktop {
+    display: none;
+  }
+
+  .only-mobile {
+    display: block;
+  }
+
+}
+
+@media only screen and (max-width: 479px) {
+  .download .btn {
+    font-size: 13px;
+    padding: 6px 25px;
+  }
+
+  .header {
+    padding: 60px 0;
+
+    .logos {
+      padding-top: 20px;
+
+      .small {
+        .logo {
+          width: 38px;
+        }
+
+        .mudamos {
+          margin-left: 5px;
+          width: 153px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .header .link {
+    font-size: 14px;
+  }
+}
+
+a .left, .carousel-control, .desktop{
+  margin-left: -130px;
+}
+
+a .right, .carousel-control, .desktop{
+  margin-right: -110px;
+}
+
+.row.flex {
+  display: flex;
+  margin-bottom: 10px;
+  padding-top: 20px;
+}
+
+.row.flex .col-md-3 {
+  float:none;
+  background: #e9e9e9;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  margin-left: 15px;
+  margin-right: 5px;
+  width: 200px; 
+  border-radius: 5px 5px 0 0;
+  padding-left: 0;
+  padding-right: 0;
+  
+}
+
+.row.flex .center-mobile {
+  float:none;
+  background: #e9e9e9;
+  display: flex;
+  flex-direction: column;
+  height: 390px;
+  margin: 0 auto;
+  max-width: 200px; 
+  border-radius: 5px 5px 0 0;
+  padding-left: 0;
+  padding-right: 0;
+  
+}
+
+.card {
+  font: 100%;
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 0;
+  background-color: #eee;
+  border-radius: 5px 5px 0 0;
+}
+
+h4 {
+  align-self: center;
+  margin: 0 auto;
+}
+
+.card-title{
+  background: #70439a;
+  background: -webkit-radial-gradient(#804098, #70439a); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#804098, #70439a); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#804098, #70439a); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#804098, #70439a); /* Standard syntax */
+  color: #f1f1f1;
+  line-height: 150%;
+  display: block;
+  font-weight: bold;
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+  
+}
+
+.card-img img{
+  width: 70%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; 
+  align-self: center;
+  margin-top: 90px;
+}
+
+.card-text{
+  padding: 10px;
+  position: absolute;
+  margin-top: 230px;
+  align-self: center;
+}
+
+.card-btn{
+  background: #70439a;
+  background: -webkit-radial-gradient(#804098, #70439a); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#804098, #70439a); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#804098, #70439a); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#804098, #70439a); /* Standard syntax */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin: 5px auto;
+  width: 95%;
+  position: absolute;
+  margin-top: 340px;
+  align-self: center;
+  height: 55px;
+  line-height: 55px;
+}
+
+.card-btn:hover{
+  text-decoration: none;
+  box-shadow: 13px 18px 23px -4px rgba(111, 0, 167, 0.2) inset;
+  background-color: #5a4199;
+  color: white;
+}
+
+.locate-icon{
+  display: block;
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+
+.filtros{
+  padding-top: 10px;
+}
+
+.jumbotron{
+  background-color: #eaeaea;
+  z-index: 1;
+}
+
+.section-carousel{
+  padding-bottom: 20px; 
+}
+
+.footer{
+  background: #eeeeee;
+  z-index: 1;
+}

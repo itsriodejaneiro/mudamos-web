@@ -23,6 +23,8 @@ end
 include BaseRouting::RoutingMethods
 
 Rails.application.routes.draw do
+  get 'plips' => 'plips#index', path: 'projetos'
+
   use_doorkeeper
   devise_for :admin_users, controllers: {
     sessions: 'admin/admin_users/sessions',
