@@ -2,11 +2,6 @@
   width: 100%;
 }
 
-
-.col-md-12{
-  padding-bottom: 60px;
-}
-
 .each-item{
   position:relative;
   overflow:hidden;
@@ -88,18 +83,11 @@
   margin: 0 auto;
 }
 
-
-
-
-
 .card-subtitle{
   background: #7a4199;
   color: #f1f1f1;
   padding: 15px;
 }
-
-
-
 
 .card-block img {
   margin: 0 auto;
@@ -439,6 +427,20 @@ small {
   margin-left: 15px;
   margin-right: 10px;
   width: 200px; 
+  border-radius: 5px 5px 0 0;
+  padding-left: 0;
+  padding-right: 0;
+  
+}
+
+.row.flex .center-mobile {
+  float:none;
+  background: #e9e9e9;
+  display: flex;
+  flex-direction: column;
+  height: 430px;
+  margin: 0 auto;
+  max-width: 200px; 
   border-radius: 5px 5px 0 0;
   padding-left: 0;
   padding-right: 0;
