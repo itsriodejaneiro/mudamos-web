@@ -421,7 +421,7 @@ small {
   flex-direction: column;
   height: 430px;
   margin-left: 15px;
-  margin-right: 10px;
+  margin-right: 5px;
   width: 200px; 
   border-radius: 5px 5px 0 0;
   padding-left: 0;
@@ -513,13 +513,13 @@ h4 {
   position: absolute;
   margin-top: 380px;
   align-self: center;
-  height: 75px;
-  line-height: 75px;
+  height: 55px;
+  line-height: 55px;
 }
 
 .card-btn:hover{
   text-decoration: none;
-  box-shadow: 13px 18px 23px -4px rgba(111, 0, 167, 0.2);
+  box-shadow: 13px 18px 23px -4px rgba(111, 0, 167, 0.2) inset;
   background-color: #5a4199;
   color: white;
 }
