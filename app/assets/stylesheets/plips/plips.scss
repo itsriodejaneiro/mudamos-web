@@ -408,12 +408,12 @@ small {
   }
 }
 
-#desktop .carousel-control .icon-prev {
-  left: -50px;
+a .left, .carousel-control, .desktop{
+  margin-left: -130px;
 }
 
-#desktop .carousel-control .icon-next {
-  left: 150px;
+a .right, .carousel-control, .desktop{
+  margin-right: -110px;
 }
 
 .row.flex {
