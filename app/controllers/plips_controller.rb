@@ -1,5 +1,5 @@
 class PlipsController < ApplicationController
-  layout false
+  layout "static"
 
   def index
     plip_repository = PlipRepository.new
