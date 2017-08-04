@@ -70,7 +70,9 @@
 }
 
 @mixin active-btn {
-  border-bottom: 5px solid #7a4199;
+  border-bottom: 6px #6f00a7 solid;
+  box-shadow: 0 18px 23px -6px rgba(111, 0, 167, 0.2);
+  text-decoration: none;
 }
 
 .active_btn{
@@ -284,7 +286,7 @@ small {
 }
 
 .underscore:hover {
-  border-bottom: 8px #6f00a7 solid;
+  border-bottom: 6px #6f00a7 solid;
   box-shadow: 0 18px 23px -6px rgba(111, 0, 167, 0.2);
   text-decoration: none;
   color: #333;
@@ -295,7 +297,7 @@ small {
 }
 
 .active-btn{
-  border-bottom: 8px #6f00a7 solid;
+  border-bottom: 6px #6f00a7 solid;
   box-shadow: 0 18px 23px -6px rgba(111, 0, 167, 0.2);
   text-decoration: none;
 }
