@@ -72,7 +72,7 @@ html lang="pt_br"
                               .card
                                 h4.card-title alt=plip.phase.name
                                   span.locate-icon 
-                                    = plip.phase.name.truncate(30)
+                                    = plip.phase.name.truncate(plip.detail.nationwide? ? 35 : 17)
                                   - if plip.detail.city || plip.detail.uf?
                                     span.glyphicon.glyphicon-map-marker
                                       span.scope-name.icon-inline
@@ -83,7 +83,7 @@ html lang="pt_br"
                                 .card-img
                                   = image_tag plip.cycle.picture(:thumb)
                                 p.card-text alt=plip.phase.description
-                                  = plip.phase.description.truncate(90)
+                                  = plip.phase.description.truncate(110)
                                 a.card-btn href="#" alt=plip.call_to_action
                                   = plip.call_to_action.truncate(20)
                     - slider_index += 1
@@ -117,7 +117,7 @@ html lang="pt_br"
                               .card
                                 h4.card-title alt=plip.phase.name
                                   span.locate-icon
-                                    = plip.phase.name.truncate(30)
+                                    = plip.phase.name.truncate(plip.detail.nationwide? ? 35 : 17)
                                   - if plip.detail.city || plip.detail.uf?
                                     span.glyphicon.glyphicon-map-marker
                                       span.scope-name.icon-inline
@@ -128,7 +128,7 @@ html lang="pt_br"
                                 .card-img
                                   = image_tag plip.cycle.picture(:thumb)
                                 p.card-text alt=plip.phase.description
-                                  = plip.phase.description.truncate(90)
+                                  = plip.phase.description.truncate(110)
                                 a.card-btn href="#" alt=plip.call_to_action
                                   = plip.call_to_action.truncate(20)
                     - slider_index += 1
