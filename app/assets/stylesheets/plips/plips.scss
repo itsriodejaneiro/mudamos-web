@@ -141,10 +141,6 @@
   display: none;
 }
 
-#myCarousel-mobile, #myCarousel-desktop a {
-  outline: none !important; /* this will remove the outline when we click the anchor tag */
-}
-
 .carousel-control:focus {
   opacity: 0.5; /* this will remove the darker color on focus and hover */
 }
