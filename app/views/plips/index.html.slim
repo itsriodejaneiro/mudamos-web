@@ -75,8 +75,8 @@ html lang="pt_br"
                                     = plip.phase.name.truncate(plip.detail.nationwide? ? 35 : 17)
                                   - if plip.detail.city || plip.detail.uf?
                                     span.glyphicon.glyphicon-map-marker
-                                      span.scope-name.icon-inline
-                                      = scope_name(plip.detail)
+                                    span.scope-name.icon-inline
+                                    = scope_name(plip.detail)
                                   - else
                                     span
                                       = scope_name(plip.detail)
