@@ -70,8 +70,8 @@ html lang="pt_br"
                           - row.each do |plip|
                             .col-md-3
                               .card
-                                h4.card-title alt=plip.phase.name
-                                  span.locate-icon 
+                                h4.card-title
+                                  span.locate-icon title=plip.phase.name
                                     = plip.phase.name.truncate(plip.detail.nationwide? ? 35 : 17)
                                   - if plip.detail.city || plip.detail.uf?
                                     span.glyphicon.glyphicon-map-marker
@@ -82,9 +82,9 @@ html lang="pt_br"
                                       = scope_name(plip.detail)
                                 .card-img
                                   = image_tag plip.cycle.picture(:thumb)
-                                p.card-text alt=plip.phase.description
-                                  = plip.phase.description.truncate(110)
-                                a.card-btn href="#" alt=plip.call_to_action
+                                p.card-text title=plip.phase.description
+                                  = plip.phase.description.truncate(87)
+                                a.card-btn href="#" title=plip.call_to_action
                                   = plip.call_to_action.truncate(20)
                     - slider_index += 1
                 /! end wrapper for slides
@@ -115,8 +115,8 @@ html lang="pt_br"
                           - row.each do |plip|
                             .center-mobile
                               .card
-                                h4.card-title alt=plip.phase.name
-                                  span.locate-icon
+                                h4.card-title
+                                  span.locate-icon title=plip.phase.name
                                     = plip.phase.name.truncate(plip.detail.nationwide? ? 35 : 17)
                                   - if plip.detail.city || plip.detail.uf?
                                     span.glyphicon.glyphicon-map-marker
@@ -127,9 +127,9 @@ html lang="pt_br"
                                       = scope_name(plip.detail)
                                 .card-img
                                   = image_tag plip.cycle.picture(:thumb)
-                                p.card-text alt=plip.phase.description
+                                p.card-text title=plip.phase.description
                                   = plip.phase.description.truncate(110)
-                                a.card-btn href="#" alt=plip.call_to_action
+                                a.card-btn href="#" title=plip.call_to_action
                                   = plip.call_to_action.truncate(20)
                     - slider_index += 1
                 /! end wrapper for slides
