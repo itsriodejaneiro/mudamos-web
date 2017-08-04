@@ -63,10 +63,10 @@ html lang="pt_br"
                   li data-slide-to="1" data-target="#myCarousel-desktop"
                 /! Wrapper for slides
                 #gallery.carousel-inner.container-fluid
-                  - slider_index = 0
-                  - @plips.items.in_groups_of(8, false) do |slider|
-                    .item.each-item class=(:active if slider_index == 0)
-                      - slider.in_groups_of(4, false) do |row|
+                  - slider_config = { items: 8, rows: 4 }
+                  - @plips.items.in_groups_of(slider_config[:items], false).each_with_index do |slider, i|
+                    .item.each-item class=(:active if i == 0)
+                      - slider.in_groups_of(slider_config[:rows], false) do |row|
                         .row.flex
                           - row.each do |plip|
                             .col-md-3
@@ -87,7 +87,6 @@ html lang="pt_br"
                                   = plip.phase.description.truncate(87)
                                 a.card-btn href=cycle_plugin_relation_path(plip.cycle, plip.phase.plugin_relation) title=plip.call_to_action style="background: #{plip.cycle.color};"
                                   = plip.call_to_action.truncate(20)
-                    - slider_index += 1
                 /! end wrapper for slides
                 /! Left and right controls
                 a.left.carousel-control.desktop data-slide="prev" href="#myCarousel-desktop"
