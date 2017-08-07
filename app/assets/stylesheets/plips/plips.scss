@@ -564,6 +564,11 @@ h4 {
   position: relative;
 }
 
+.footer-text{
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
 @media only screen and (max-width: 650px) {
   a .left, .carousel-control, .mobile{
     margin-left: -30px;
@@ -595,6 +600,11 @@ h4 {
   .btn{
     margin: 0 6px 0 6px;
     padding: 0;
+  }
+
+  .footer-text{
+    padding-bottom: 30px;
+    padding-top: 30px;
   }
 
 }
