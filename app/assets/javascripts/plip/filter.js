@@ -1,13 +1,19 @@
 $(document).ready(function() {
-  $('#btn-quemsomos').hover(
-    function(){
-      $('#btn-assine').toggleClass('active-btn');
-    }
-  );
+    $('#btn-quemsomos').hover(
+        function(){
+        $('#btn-assine').toggleClass('active-btn');
+        }
+    );
 
-  $('.carousel').carousel({
-    interval: false
-  });
+    $('#btn-envie').hover(
+        function(){
+        $('#btn-assine').toggleClass('active-btn');
+        }
+    );
+
+    $('.carousel').carousel({
+        interval: false
+    });
 });
 
 
