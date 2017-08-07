@@ -544,6 +544,7 @@ h4 {
 .jumbotron{
   background-color: #eaeaea;
   z-index: 1;
+  position: relative;
 }
 
 .section-carousel{
@@ -553,4 +554,42 @@ h4 {
 .footer{
   background: #eeeeee;
   z-index: 1;
+}
+
+.img-intro{
+  float: right;
+}
+
+.footer-row{
+  position: relative;
+}
+
+@media only screen and (max-width: 650px) {
+  a .left, .carousel-control, .mobile{
+    margin-left: -30px;
+  }
+
+  a .right, .carousel-control, .mobile{
+    margin-right: -30px;
+  }
+
+  #myCarousel-mobile, #gallery{
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .carousel-control .glyphicon, .icon-prev {
+    font-size: 3rem;
+    width: 30px;
+    height: 30px;
+  }
+
+  .carousel-control .icon-prev:before {
+    margin-top: -2px;
+  }
+
+  .carousel-control .icon-next:before {
+    margin-top: -2px;
+  }
+
 }

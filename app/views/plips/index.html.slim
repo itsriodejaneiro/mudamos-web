@@ -6,8 +6,6 @@ html lang="pt_br"
     meta content="width=device-width, initial-scale=1" name="viewport" /
     link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" /
     script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-    link href="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" rel="stylesheet" type="text/css" /
-    script src="http://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js" type="text/javascript"
     script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
     = stylesheet_link_tag "plips", media: "all"
     = javascript_include_tag "plips"
@@ -24,14 +22,14 @@ html lang="pt_br"
     section.jumbotron.intro.content
       .container
         .row
+          .col-md-4.col-xs-12.text-center.img-intro
+            img.intro-img alt=("icone de projeto assinado") src="assets/static/sign-a-law-project.png" /
           .col-md-8.col-xs-12
             h2.title Assine um projeto de lei
             p
               | Um projeto de lei de iniciativa popular precisa atingir uma porcentagem mínima de assinaturas de eleitores para ser encaminhado e apresentado em uma classe legislativa.
               | &nbsp;
               strong Clique nos projetos já disponíveis abaixo para conhecer mais e assinar.
-          .col-md-4.col-xs-12.text-center
-            img.intro-img alt=("icone de projeto assinado") src="assets/static/sign-a-law-project.png" /
     section.container-fluid.section-slider
       .row
         .container
@@ -63,10 +61,10 @@ html lang="pt_br"
                   li data-slide-to="1" data-target="#myCarousel-desktop"
                 /! Wrapper for slides
                 #gallery.carousel-inner.container-fluid
-                  - slider_config = { items: 8, rows: 4 }
-                  - @plips.items.in_groups_of(slider_config[:items], false).each_with_index do |slider, i|
+                  - slider_config = { rows: 2, columns: 4 }
+                  - @plips.items.in_groups_of(slider_config[:rows] * slider_config[:columns], false).each_with_index do |slider, i|
                     .item.each-item class=(:active if i == 0)
-                      - slider.in_groups_of(slider_config[:rows], false) do |row|
+                      - slider.in_groups_of(slider_config[:columns], false) do |row|
                         .row.flex
                           - row.each do |plip|
                             .col-md-3
@@ -107,10 +105,10 @@ html lang="pt_br"
                   li data-slide-to="1" data-target="#myCarousel-mobile"
                 /! Wrapper for slides
                 #gallery.carousel-inner.container-fluid
-                  - slider_index = 0
-                  - @plips.items.in_groups_of(1, false) do |slider|
-                    .item.each-item class=(:active if slider_index == 0)
-                      - slider.in_groups_of(1, false) do |row|
+                  - slider_config = { rows: 1, columns: 1 }
+                  - @plips.items.in_groups_of(slider_config[:rows] * slider_config[:columns], false).each_with_index do |slider, i|
+                    .item.each-item class=(:active if i == 0)
+                      - slider.in_groups_of(slider_config[:columns], false) do |row|
                         .row.flex
                           - row.each do |plip|
                             .center-mobile
@@ -131,7 +129,6 @@ html lang="pt_br"
                                   = plip.phase.description.truncate(110)
                                 a.card-btn href=cycle_plugin_relation_path(plip.cycle, plip.phase.plugin_relation) title=plip.call_to_action style="background: #{plip.cycle.color};"
                                   = plip.call_to_action.truncate(20)
-                    - slider_index += 1
                 /! end wrapper for slides
                 /! Left and right controls
                 a.left.carousel-control.mobile data-slide="prev" href="#myCarousel-mobile"
@@ -145,7 +142,7 @@ html lang="pt_br"
 
 
     section.container-fluid.footer-section.footer
-      .col-md-10.col-md-offset-1.content
+      .col-md-10.col-md-offset-1.content.footer-row
         .row
           .col-md-6.col-md-offset-3
             .col-md-4.text-center
