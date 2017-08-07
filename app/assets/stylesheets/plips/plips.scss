@@ -577,4 +577,19 @@ h4 {
     padding-left: 0;
     padding-right: 0;
   }
+
+  .carousel-control .glyphicon, .icon-prev {
+    font-size: 3rem;
+    width: 30px;
+    height: 30px;
+  }
+
+  .carousel-control .icon-prev:before {
+    margin-top: -2px;
+  }
+
+  .carousel-control .icon-next:before {
+    margin-top: -2px;
+  }
+
 }
