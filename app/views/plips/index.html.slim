@@ -58,10 +58,10 @@ section.container-fluid.section-slider
               li data-slide-to="1" data-target="#myCarousel-desktop"
             /! Wrapper for slides
             #gallery.carousel-inner.container-fluid
-              - slider_config = { rows: 2, columns: 4 }
-              - @plips.items.in_groups_of(slider_config[:rows] * slider_config[:columns], false).each_with_index do |slider, i|
+              - slider_config_desktop = { rows: 2, columns: 4 }
+              - @plips.items.in_groups_of(slider_config_desktop[:rows] * slider_config_desktop[:columns], false).each_with_index do |slider, i|
                 .item.each-item class=(:active if i == 0)
-                  - slider.in_groups_of(slider_config[:columns], false) do |row|
+                  - slider.in_groups_of(slider_config_desktop[:columns], false) do |row|
                     .row.flex
                       - row.each do |plip|
                         .col-md-3
@@ -83,13 +83,15 @@ section.container-fluid.section-slider
                             a.card-btn href=cycle_plugin_relation_path(plip.cycle, plip.phase.plugin_relation) title=plip.call_to_action style="background: #{plip.cycle.color};"
                               = plip.call_to_action.truncate(20)
             /! end wrapper for slides
-            /! Left and right controls
-            a.left.carousel-control.desktop data-slide="prev" href="#myCarousel-desktop"
-              span.glyphicon.icon-prev
-              span.sr-only Previous
-            a.right.carousel-control.desktop data-slide="next" href="#myCarousel-desktop"
-              span.glyphicon.icon-next
-              span.sr-only Next
+
+            - if @plips.items.count > slider_config_desktop[:rows] * slider_config_desktop[:columns]
+              /! Left and right controls
+              a.left.carousel-control.desktop data-slide="prev" href="#myCarousel-desktop"
+                span.glyphicon.icon-prev
+                span.sr-only Previous
+              a.right.carousel-control.desktop data-slide="next" href="#myCarousel-desktop"
+                span.glyphicon.icon-next
+                span.sr-only Next
         /! END DESKTOP SLIDER
 
         /!MOBILE SLIDER
@@ -102,10 +104,10 @@ section.container-fluid.section-slider
               li data-slide-to="1" data-target="#myCarousel-mobile"
             /! Wrapper for slides
             #gallery.carousel-inner.container-fluid
-              - slider_config = { rows: 1, columns: 1 }
-              - @plips.items.in_groups_of(slider_config[:rows] * slider_config[:columns], false).each_with_index do |slider, i|
+              - slider_config_mobile = { rows: 1, columns: 1 }
+              - @plips.items.in_groups_of(slider_config_mobile[:rows] * slider_config_mobile[:columns], false).each_with_index do |slider, i|
                 .item.each-item class=(:active if i == 0)
-                  - slider.in_groups_of(slider_config[:columns], false) do |row|
+                  - slider.in_groups_of(slider_config_mobile[:columns], false) do |row|
                     .row.flex
                       - row.each do |plip|
                         .center-mobile
@@ -127,13 +129,15 @@ section.container-fluid.section-slider
                             a.card-btn href=cycle_plugin_relation_path(plip.cycle, plip.phase.plugin_relation) title=plip.call_to_action style="background: #{plip.cycle.color};"
                               = plip.call_to_action.truncate(20)
             /! end wrapper for slides
-            /! Left and right controls
-            a.left.carousel-control.mobile data-slide="prev" href="#myCarousel-mobile"
-              span.glyphicon.icon-prev
-              span.sr-only Previous
-            a.right.carousel-control.mobile data-slide="next" href="#myCarousel-mobile"
-              span.glyphicon.icon-next
-              span.sr-only Next
+
+            - if @plips.items.count > slider_config_mobile[:rows] * slider_config_mobile[:columns]
+              /! Left and right controls
+              a.left.carousel-control.mobile data-slide="prev" href="#myCarousel-mobile"
+                span.glyphicon.icon-prev
+                span.sr-only Previous
+              a.right.carousel-control.mobile data-slide="next" href="#myCarousel-mobile"
+                span.glyphicon.icon-next
+                span.sr-only Next
         /! END MOBILE SLIDER
 
 section.container-fluid.footer-section.footer
