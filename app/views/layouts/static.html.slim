@@ -1,5 +1,5 @@
 doctype html
-html lang="pt-br" 
+html lang="pt-br"
   head
     meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
     meta charset="utf-8"
@@ -79,6 +79,6 @@ html lang="pt-br"
                     .on("keyup", validateForm);
             });
         })(jQuery, document);
-        
+
     .modal-container
       = render "layouts/shared/modal", modal_id: 'modal_remove_account', size: 'sm', cache: true, content: render(file: "layouts/shared/_remove_account")
