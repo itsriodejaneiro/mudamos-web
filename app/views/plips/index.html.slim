@@ -114,7 +114,7 @@ section.container-fluid.section-slider
                           .card
                             h4.card-title style="background: #{plip.cycle.color};"
                               span.locate-icon title=plip.phase.name
-                                = plip.phase.name.truncate(plip.detail.nationwide? ? 35 : 17)
+                                = plip.phase.name.truncate(plip.detail.nationwide? ? 48 : 24)
                               - if plip.detail.city || plip.detail.uf?
                                 span.glyphicon.glyphicon-map-marker
                                   span.scope-name.icon-inline
@@ -125,9 +125,9 @@ section.container-fluid.section-slider
                             .card-img
                               = image_tag plip.cycle.picture(:thumb)
                             p.card-text title=plip.phase.description
-                              = plip.phase.description.truncate(110)
+                              = plip.phase.description.truncate(85)
                             a.card-btn href=cycle_plugin_relation_path(plip.cycle, plip.phase.plugin_relation) title=plip.call_to_action style="background: #{plip.cycle.color};"
-                              = plip.call_to_action.truncate(20)
+                              = plip.call_to_action.truncate(25)
             /! end wrapper for slides
 
             - if @plips.items.count > slider_config_mobile[:rows] * slider_config_mobile[:columns]
