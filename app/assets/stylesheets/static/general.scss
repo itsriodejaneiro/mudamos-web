@@ -6,6 +6,13 @@ body {
   font-family: 'Arvo', serif;
 }
 
+#desktop{
+  display: block;
+}
+#mobile{
+  display: none;
+}
+
 .static {
   small {
     &.text {
@@ -177,6 +184,27 @@ body {
 
     .underscore {
       border-bottom: 4px #6f00a7 solid;
+    }
+  }
+
+  @media only screen and (max-width: 770px) {
+    #desktop{
+      display: none;
+    }
+    #mobile{
+      display: block;      
+    }
+    .mobile{
+      padding: 10px;
+    }
+    .link-mobile{
+      margin-bottom: 20px;
+    }
+    .mobile-img{
+      padding-bottom: 35px;
+    }
+    .link{
+      font-weight: normal !important;
     }
   }
 
