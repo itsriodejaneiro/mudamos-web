@@ -10,8 +10,8 @@ header.header.clearfix#desktop
     =link_to root_path do
       = image_tag "static/mudamos.png", class: "mudamos only-mobile"
 
-article.content.about-us
-  nav.links#mobile.text-mobile
+article.about-us.gradient-section
+  nav.links#mobile.text-mobile.mobile
     span.link-mobile
       a.link.def-text-color.menu-underscore href="https://itsrio2.typeform.com/to/iulNZI" target="_blank" Envie seu projeto
     span.link-mobile
@@ -23,7 +23,7 @@ article.content.about-us
       = image_tag "static/logo.png", class: "logo"
     =link_to root_path do
       = image_tag "static/mudamos.png", class: "mudamos only-mobile"
-  .general-info.gradient-section
+  .general-info.content
     .main-section
       = image_tag "static/about-us-mobile.png",  class: "aboutus-mobile hidden-lg"
       .about-us.section

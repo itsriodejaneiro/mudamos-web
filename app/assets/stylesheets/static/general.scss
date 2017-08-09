@@ -60,7 +60,7 @@ body {
   }
 
   .gradient-section {
-    background: linear-gradient(rgba(0,0,0,0.1) 0, rgba(255,255,255,0) 60%);
+    background: linear-gradient(#eaeaea 60%, transparent);
   }
 
   .header {
@@ -195,13 +195,14 @@ body {
       display: block;      
     }
     .mobile{
-      padding: 10px;
+      padding: 40px 0 20px 0;
     }
     .link-mobile{
       margin-bottom: 20px;
     }
     .mobile-img{
       padding-bottom: 35px;
+      text-align: center;
     }
     .link{
       font-weight: normal !important;
