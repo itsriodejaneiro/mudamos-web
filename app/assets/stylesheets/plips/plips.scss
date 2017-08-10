@@ -481,10 +481,6 @@ h4 {
   border-radius: 5px 5px 0 0;
 }
 
-.card-img {
-  position: absolute;
-}
-
 .card-img img{
   width: 70%;
   height: 70%;
@@ -516,7 +512,8 @@ h4 {
   text-decoration: none;
   display: block;
   font-size: 16px;
-  margin: 5px auto;
+  margin: 5px 2.5%;
+  left: 0;
   width: 95%;
   position: absolute;
   margin-top: 340px;

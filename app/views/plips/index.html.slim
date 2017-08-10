@@ -76,12 +76,12 @@ section.container-fluid.section-slider
                               - else
                                 span
                                   = scope_name(plip.detail)
-                            .card-img
-                              = image_tag plip.cycle.picture(:thumb)
                             p.card-text title=plip.phase.description
                               = plip.phase.description.truncate(70)
                             a.card-btn href=cycle_plugin_relation_path(plip.cycle, plip.phase.plugin_relation) title=plip.call_to_action style="background: #{plip.cycle.color};"
                               = plip.call_to_action.truncate(22)
+                            .card-img
+                              = image_tag plip.cycle.picture(:thumb)
             /! end wrapper for slides
 
             - if @plips.items.count > slider_config_desktop[:rows] * slider_config_desktop[:columns]
@@ -122,12 +122,12 @@ section.container-fluid.section-slider
                               - else
                                 span
                                   = scope_name(plip.detail)
-                            .card-img
-                              = image_tag plip.cycle.picture(:thumb)
                             p.card-text title=plip.phase.description
                               = plip.phase.description.truncate(85)
                             a.card-btn href=cycle_plugin_relation_path(plip.cycle, plip.phase.plugin_relation) title=plip.call_to_action style="background: #{plip.cycle.color};"
                               = plip.call_to_action.truncate(25)
+                            .card-img
+                              = image_tag plip.cycle.picture(:thumb)
             /! end wrapper for slides
 
             - if @plips.items.count > slider_config_mobile[:rows] * slider_config_mobile[:columns]
