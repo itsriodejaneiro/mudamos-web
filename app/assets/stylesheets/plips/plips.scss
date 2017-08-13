@@ -1,3 +1,7 @@
+$card-img: 90px;
+$card-text: $card-img + 160px;
+$card-btn: $card-text + 90px;
+
 .port-image{
   width: 100%;
 }
@@ -489,13 +493,13 @@ h4 {
   align-items: center;
   margin: 0 auto; 
   align-self: center;
-  margin-top: 90px;
+  margin-top: $card-img;
 }
 
 .card-text{
   padding: 10px;
   position: absolute;
-  margin-top: 250px;
+  margin-top: $card-text;
   align-self: center;
 }
 
@@ -516,7 +520,7 @@ h4 {
   left: 0;
   width: 95%;
   position: absolute;
-  margin-top: 340px;
+  margin-top: $card-btn;
   align-self: center;
   height: 55px;
   line-height: 55px;
