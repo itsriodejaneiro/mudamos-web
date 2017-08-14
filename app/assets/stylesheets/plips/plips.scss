@@ -2,6 +2,10 @@ $card-img: 90px;
 $card-text: $card-img + 160px;
 $card-btn: $card-text + 90px;
 
+section .container-fluid .content .section-slider #slider{
+  position: relative !important;
+}
+
 .port-image{
   width: 100%;
 }
@@ -328,10 +332,9 @@ small {
   }
 
   .content {
-    background: url(image-path("static/background-mobile.png")) no-repeat left top;
+    background: url(image-path("static/background-mobile.png")) no-repeat left 47%;
     text-align: center;
     z-index: 5;
-    position: absolute;
 
     .general-info .section {
       margin: 0;
