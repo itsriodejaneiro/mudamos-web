@@ -25,7 +25,9 @@ section.jumbotron.intro.content
           | Um projeto de lei de iniciativa popular precisa atingir uma porcentagem mínima de assinaturas de eleitores para ser encaminhado e apresentado em uma classe legislativa.
           | &nbsp;
           strong Clique nos projetos já disponíveis abaixo para conhecer mais e assinar.
-section.container-fluid.section-slider
+
+a href="#slider"
+section.container-fluid.section-slider#slider
   .row
     .container
       h3.text-center.hr-bottom.active-btn#desktop
@@ -35,16 +37,16 @@ section.container-fluid.section-slider
 
       .text-center.row.filtros
         = link_to "Municipais",
-            { scope_coverage: :citywide },
+            { scope_coverage: :citywide, anchor: :slider },
             class: [:btn, (:active_btn if params[:scope_coverage] == 'citywide')].compact
         = link_to "Estaduais",
-          { scope_coverage: :statewide },
+          { scope_coverage: :statewide, anchor: :slider },
           class: [:btn, (:active_btn if params[:scope_coverage] == 'statewide')].compact
         = link_to "Federais",
-          { scope_coverage: :nationwide },
+          { scope_coverage: :nationwide, anchor: :slider },
           class: [:btn, (:active_btn if params[:scope_coverage] == 'nationwide')].compact
         = link_to "Todos",
-          {},
+          { anchor: :slider },
           class: [:btn, (:active_btn if !params[:scope_coverage] || params[:scope_coverage] == 'all')].compact
 
       .container-fluid.section-carousel
