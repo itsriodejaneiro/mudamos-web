@@ -1,5 +1,7 @@
 ## Next
 
+* [PR #388]: Return lib folder (Issue 387)
+
 ## [1.18.0] - 21/07/2017
 
 * [PR #386]: Add option to fetch all plips (Issue 385)
