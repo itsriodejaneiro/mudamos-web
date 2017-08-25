@@ -57,17 +57,6 @@ RSpec.describe PetitionPublisherWorker do
       it { expect { subject }.to raise_error JSON::ParserError }
     end
 
-    context "when it is not a nationwide plip" do
-      before do
-        allow(version).to receive(:nationwide?).and_return false
-      end
-
-      it do
-        subject
-        expect(notifier).to_not have_received(:perform_async)
-      end
-    end
-
     context "when it is not the first version" do
       let(:versions) { [double, double] }
 

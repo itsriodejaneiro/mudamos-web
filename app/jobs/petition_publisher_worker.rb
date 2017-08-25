@@ -38,7 +38,7 @@ class PetitionPublisherWorker
   end
 
   def should_notify_users?(version)
-    version.nationwide? && is_first_version(version)
+    is_first_version(version)
   end
 
   def is_first_version(version)
