@@ -1,5 +1,7 @@
 ## Next
 
+## [1.20.0] - 25/08/2017
+
 * [PR #391]: Notify users on all scope coverages (Issue 390)
 
 ## [1.19.0] - 23/08/2017
