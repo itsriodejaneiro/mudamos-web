@@ -1,5 +1,7 @@
 ## Next
 
+* [PR xxx]: Send location info to the blockchain api (Issue 392)
+
 ## [1.20.0] - 25/08/2017
 
 * [PR #391]: Notify users on all scope coverages (Issue 390)

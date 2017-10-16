@@ -71,7 +71,8 @@ class MobileApiService
   end
 
   def register_petition_version(petition_detail_version)
-    phase = petition_detail_version.petition_plugin_detail.plugin_relation.related
+    petition_plugin_detail = petition_detail_version.petition_plugin_detail
+    phase = petition_plugin_detail.plugin_relation.related
 
     page_url = Rails.application.routes.url_helpers.cycle_plugin_relation_url(
       phase.cycle,
@@ -87,7 +88,10 @@ class MobileApiService
         name: phase.name,
         url: petition_detail_version.document_url,
         page_url: page_url,
-        sha: petition_detail_version.sha
+        sha: petition_detail_version.sha,
+        scope_coverage: petition_plugin_detail.scope_coverage,
+        uf: petition_plugin_detail.uf.presence,
+        city_id: petition_plugin_detail.city_id,
       },
     }, headers)
   end
