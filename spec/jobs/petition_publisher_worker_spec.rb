@@ -5,12 +5,10 @@ RSpec.describe PetitionPublisherWorker do
 
   its(:repository) { is_expected.to be_a PetitionPlugin::DetailVersionRepository }
   its(:petition_service) { is_expected.to be_a PetitionService }
-  its(:notifier) { is_expected.to be PetitionNotifierWorker }
 
   describe "#perform" do
     let(:detail_version_repository) { instance_spy PetitionPlugin::DetailVersionRepository }
     let(:petition_service) { instance_spy PetitionService }
-    let(:notifier) { class_spy PetitionNotifierWorker }
     let(:worker) { described_class.new repository: detail_version_repository }
     let(:detail){ spy PetitionPlugin::Detail.new id: 1 }
     let(:version) do
@@ -20,8 +18,7 @@ RSpec.describe PetitionPublisherWorker do
 
     let(:worker) do
       described_class.new repository: detail_version_repository,
-                          petition_service: petition_service,
-                          notifier: notifier
+                          petition_service: petition_service
     end
 
     before do
@@ -46,24 +43,10 @@ RSpec.describe PetitionPublisherWorker do
         .with(version.petition_plugin_detail_id, fresh: true)
     end
 
-    it "schedules a notification" do
-      subject
-      expect(notifier).to have_received(:perform_async).with id: version.id
-    end
-
     context "when the body is invalid" do
       subject { worker.perform nil, "{" }
 
       it { expect { subject }.to raise_error JSON::ParserError }
-    end
-
-    context "when it is not the first version" do
-      let(:versions) { [double, double] }
-
-      it do
-        subject
-        expect(notifier).to_not have_received(:perform_async)
-      end
     end
   end
 end
