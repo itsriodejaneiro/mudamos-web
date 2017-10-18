@@ -1,6 +1,8 @@
 ## Next
 
-* [PR xxx]: Send location info to the blockchain api (Issue 392)
+* [PR 398]: Show user location if present (Issue 397)
+* [PR 395]: Do not send push message when creating a new plip (Issue 393)
+* [PR 394]: Send location info to the blockchain api (Issue 392)
 
 ## [1.20.0] - 25/08/2017
 

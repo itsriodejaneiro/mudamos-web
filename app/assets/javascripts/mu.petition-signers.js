@@ -75,10 +75,12 @@
         $row.append($name);
 
         var $signTimeAndLocation = $("<div class='sign-time-and-location'></div>");
-        $signTimeAndLocation.text(
-          capitalizeFirstLetter(jQuery.timeago(new Date(userInfo.date))) + " | " +
-          userInfo.city + " - " + userInfo.uf
-        );
+        var userLocation = userInfo.city && userInfo.uf ? userInfo.city + " - " + userInfo.uf : null;
+        var signTimeText = capitalizeFirstLetter(jQuery.timeago(new Date(userInfo.date)));
+
+        if (userLocation) signTimeText += " | " + userLocation;
+
+        $signTimeAndLocation.text(signTimeText);
         $row.append($signTimeAndLocation);
 
         $element.append($row);
