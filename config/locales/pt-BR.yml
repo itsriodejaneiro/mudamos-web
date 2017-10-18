@@ -218,6 +218,7 @@ pt-BR:
         plugin_relation: Relacionamento do plugin
       petition_plugin/detail:
         city: Cidade
+        city_cause?: Causa nacional nos municípios
         current_signatures_goal: Meta atual de assinaturas
         initial_signatures_goal: Meta inicial de assinaturas
         scope_coverage: Abrangência

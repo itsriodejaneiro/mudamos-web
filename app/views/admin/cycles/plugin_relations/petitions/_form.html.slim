@@ -20,6 +20,8 @@
 
   .row.scope-row.cities.citywide
     .col-xs-12
+      = f.input :city_cause?, as: :boolean, input_html: { class: "cause-input citywide" }
+    .col-xs-12
       - city_values = f.object.city.present? ? [["#{f.object.city.name}, #{f.object.city.uf}", f.object.city.id]] : []
       = f.input :city, as: :select, collection: city_values, include_blank: "Selecione a cidade"
 
@@ -39,7 +41,12 @@
     $(document).ready(function() {
       $(".scopes input[type='radio']").on("change", function() {
         $(".scope-row").hide().find("select").val("").trigger("change");
+        $(".cause-input").attr("checked", false);
         $(".row." + $(this).val()).slideDown();
+      });
+
+      $(".cause-input").on("change", function() {
+        $(this).closest(".scope-row").find("select").val("").trigger("change");
       });
 
       $(".row.cities").find("select").select2({

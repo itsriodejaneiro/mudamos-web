@@ -57,7 +57,7 @@
         .card-module
           .title
             h3=@petition.class.human_attribute_name :city
-          = @petition.city.name
+          = @petition.city.try(:name) || @petition.class.human_attribute_name(:city_cause?)
 
   .row
     .col-xs-12
