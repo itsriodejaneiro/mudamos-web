@@ -1,5 +1,7 @@
 ---
 pt-BR:
+  national_cause: Causa nacional
+
   date:
     abbr_day_names:
     - Dom

@@ -1,6 +1,7 @@
 header.header.clearfix
   = stylesheet_link_tag "plips", media: "all"
-  = javascript_include_tag "plips"
+  - content_for :javascript
+    = javascript_include_tag "plips"
 
   nav.links
     span
@@ -45,6 +46,9 @@ section.container-fluid.content.section-slider#slider
         = link_to "Federais",
           { scope_coverage: :nationwide, anchor: :slider },
           class: [:btn, (:active_btn if params[:scope_coverage] == 'nationwide')].compact
+        = link_to "Causas nacionais",
+          { scope_coverage: :causes, anchor: :slider },
+          class: [:btn, (:active_btn if params[:scope_coverage] == 'causes')].compact
         = link_to "Todos",
           { anchor: :slider },
           class: [:btn, (:active_btn if !params[:scope_coverage] || params[:scope_coverage] == 'all')].compact
@@ -71,13 +75,13 @@ section.container-fluid.content.section-slider#slider
                             h4.card-title style="background: #{plip.cycle.color}"
                               span.locate-icon title=plip.phase.name
                                 = plip.phase.name.truncate(plip.detail.nationwide? ? 40 : 20)
-                              - if plip.detail.city || plip.detail.uf?
+                              - if include_plip_pin? plip.detail
                                 span.glyphicon.glyphicon-map-marker
                                 span.scope-name.icon-inline
-                                  = scope_name(plip.detail)
+                                  = plip_scope_description(plip.detail)
                               - else
                                 span
-                                  = scope_name(plip.detail)
+                                  = plip_scope_description(plip.detail)
                             p.card-text title=plip.phase.description
                               = plip.phase.description.truncate(70)
                             a.card-btn href=cycle_plugin_relation_path(plip.cycle, plip.phase.plugin_relation) title=plip.call_to_action style="background: #{plip.cycle.color};"
@@ -120,10 +124,10 @@ section.container-fluid.content.section-slider#slider
                               - if plip.detail.city || plip.detail.uf?
                                 span.glyphicon.glyphicon-map-marker
                                   span.scope-name.icon-inline
-                                  = scope_name(plip.detail)
+                                  = plip_scope_description(plip.detail)
                               - else
                                 span
-                                  = scope_name(plip.detail)
+                                  = plip_scope_description(plip.detail)
                             p.card-text title=plip.phase.description
                               = plip.phase.description.truncate(85)
                             a.card-btn href=cycle_plugin_relation_path(plip.cycle, plip.phase.plugin_relation) title=plip.call_to_action style="background: #{plip.cycle.color};"
