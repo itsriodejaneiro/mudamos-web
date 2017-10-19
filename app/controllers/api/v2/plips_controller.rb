@@ -49,14 +49,14 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
         key :in, :query
         key :description, "Returns plips from the given scope"
         key :type, :list
-        key :enum, %w(nationwide statewide citywide all)
+        key :enum, %w(nationwide statewide citywide all causes)
         key :default, :all
       end
 
       parameter do
-        key :name, :cause
+        key :name, :include_causes
         key :in, :query
-        key :description, "Returns national causes"
+        key :description, "Returns national causes with the given scope"
         key :type, :boolean
       end
 
@@ -88,7 +88,7 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
   def paginated_plips
     limit = params[:limit]
     page = params[:page].try(:to_i) || 1
-    filters = params.slice(:uf, :city_id, :scope, :cause)
+    filters = params.slice(:uf, :city_id, :scope, :include_causes)
 
     @paginated_plips ||= plip_repository.all_initiated(filters: filters, page: page, limit: limit)
   end
