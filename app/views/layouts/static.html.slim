@@ -32,6 +32,9 @@ html lang="pt-br"
     = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"
     = javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
 
+    - if yield :javascript
+      - yield :javascript
+
     javascript:
         (function ($, document) {
             "use strict";
