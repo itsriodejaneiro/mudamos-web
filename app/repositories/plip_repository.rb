@@ -1,5 +1,6 @@
 class PlipRepository
   include Repository
+  include UserInput
 
   def current_plip
     plips = all_initiated(page: 1, limit: 1).items
@@ -7,9 +8,15 @@ class PlipRepository
   end
 
   def all_initiated(filters: {}, page: 1, limit: 10)
-    filters = filters || {}
+    default_filters = {
+      cause: false,
+    }
+    filters = (filters || {}).reverse_merge(default_filters)
+    cause = bool(filters[:cause])
     uf = filters[:uf]
     city_id = filters[:city_id]
+    city_id = nil if cause
+
     # Backwards compatibility
     is_nationwide_search = uf.blank? && city_id.blank? && filters[:scope].blank?
     limit = (limit || 10).to_i
@@ -28,8 +35,6 @@ class PlipRepository
       .where.not(petition_plugin_detail_versions: { id: nil })
       .where(petition_plugin_detail_versions: { published: true })
 
-    filtered_phases = filtered_phases.where(petition_plugin_details: { uf: uf }) if uf.present?
-    filtered_phases = filtered_phases.where(petition_plugin_details: { city_id: city_id }) if city_id.present?
 
     scope = if is_nationwide_search
               PetitionPlugin::Detail::NATIONWIDE_SCOPE
@@ -37,10 +42,32 @@ class PlipRepository
               filters[:scope]
             end
 
+    filtered_phases = filtered_phases.where(petition_plugin_details: { uf: uf }) if uf.present?
+    filtered_phases = filtered_phases.where(petition_plugin_details: { city_id: city_id }) if city_id.present?
+
+    if !scope && !cause
+      statements = Hash[*PetitionPlugin::Detail::SCOPE_COVERAGES.map { |coverage| [coverage, coverage] }.flatten].symbolize_keys
+      filtered_phases = filtered_phases.where(<<-SQL, statements)
+        petition_plugin_details.scope_coverage = :nationwide
+        OR petition_plugin_details.scope_coverage = :statewide
+        OR (petition_plugin_details.scope_coverage = :citywide AND petition_plugin_details.city_id IS NOT NULL)
+      SQL
+    end
+
     filtered_phases = filtered_phases.where(petition_plugin_details: { scope_coverage: scope }) if scope
+
+    if scope === PetitionPlugin::Detail::CITYWIDE_SCOPE
+      if !cause
+        filtered_phases = filtered_phases.where.not(petition_plugin_details: { city_id: nil })
+      else
+        filtered_phases = filtered_phases.where(petition_plugin_details: { city_id: nil })
+      end
+    end
 
     phases =
       Phase.where(id: filtered_phases.pluck(:id))
+        .includes(:cycle)
+        .includes(plugin_relation: { petition_detail: %i(petition_detail_versions city) })
         .order("initial_date DESC")
         .page(page)
         .per(limit)
