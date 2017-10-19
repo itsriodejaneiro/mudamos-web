@@ -6,6 +6,12 @@ module PetitionPlugin
     def perform(detail, attrs, detail_body)
       response = Response.new
 
+      attrs = if detail.new_record?
+                create_attrs(attrs)
+              else
+                update_attrs(attrs)
+              end
+
       detail.update_attributes attrs
 
       current_version = detail.current_version
@@ -18,6 +24,30 @@ module PetitionPlugin
       response.detail = detail
 
       response
+    end
+
+    def create_attrs(attrs)
+      attrs = attrs.slice(
+        :call_to_action,
+        :initial_signatures_goal,
+        :signatures_required,
+        :presentation,
+        :video_id,
+        :scope_coverage,
+        :city_id,
+        :uf,
+      )
+
+      attrs[:uf] = attrs[:uf].presence
+      attrs
+    end
+
+    def update_attrs(attrs)
+      create_attrs(attrs).except(
+        :scope_coverage,
+        :city_id,
+        :uf,
+      )
     end
   end
 end

@@ -35,7 +35,7 @@ class PetitionPlugin::Detail < ActiveRecord::Base
   validates :signatures_required, :initial_signatures_goal, numericality: { greater_than_or_equal_to: 1_000 }
   validates :presentation, presence: true
   validates :scope_coverage, presence: true, inclusion: { in: SCOPE_COVERAGES }
-  validates :uf, presence: true, inclusion: { in: UFS }, if: -> { scope_coverage == STATEWIDE_SCOPE }
+  validates :uf, inclusion: { in: UFS, allow_blank: true }, if: -> { scope_coverage == STATEWIDE_SCOPE }
 
   validate :ensure_scope_coverage_detail
 
@@ -62,6 +62,10 @@ class PetitionPlugin::Detail < ActiveRecord::Base
 
   def city_cause?
     scope_coverage === CITYWIDE_SCOPE && city.blank?
+  end
+
+  def state_cause?
+    scope_coverage === STATEWIDE_SCOPE && uf.blank?
   end
 
   # Do not allow setting incorrect scope coverage detail if the wrong scope

@@ -12,18 +12,33 @@
 
   .row.scopes
     .col-xs-12
-      = f.input :scope_coverage, as: :radio, collection: PetitionPlugin::Detail::SCOPE_COVERAGES.map { |v| [@petition.class.translate_scope_coverage(v), v] }
+      = f.input :scope_coverage,
+          as: :radio,
+          collection: PetitionPlugin::Detail::SCOPE_COVERAGES.map { |v| [@petition.class.translate_scope_coverage(v), v] },
+          input_html: { disabled: @petition.persisted? }
 
   .row.scope-row.states.statewide
     .col-xs-12
-      = f.input :uf, as: :select, collection: state_options, include_blank: "Selecione o Estado"
+      = f.input :state_cause?,
+          as: :boolean,
+          input_html: { class: "cause-input statewide", disabled: @petition.persisted? }
+    .col-xs-12
+      = f.input :uf,
+          as: :select,
+          collection: state_options, include_blank: "Selecione o Estado",
+          input_html: { disabled: @petition.persisted? }
 
   .row.scope-row.cities.citywide
     .col-xs-12
-      = f.input :city_cause?, as: :boolean, input_html: { class: "cause-input citywide" }
+      = f.input :city_cause?,
+          as: :boolean,
+          input_html: { class: "cause-input citywide", disabled: @petition.persisted? }
     .col-xs-12
       - city_values = f.object.city.present? ? [["#{f.object.city.name}, #{f.object.city.uf}", f.object.city.id]] : []
-      = f.input :city, as: :select, collection: city_values, include_blank: "Selecione a cidade"
+      = f.input :city,
+          as: :select,
+          collection: city_values, include_blank: "Selecione a cidade",
+          input_html: { disabled: @petition.persisted? }
 
   .row
     .col-xs-12
@@ -40,13 +55,23 @@
   javascript:
     $(document).ready(function() {
       $(".scopes input[type='radio']").on("change", function() {
-        $(".scope-row").hide().find("select").val("").trigger("change");
-        $(".cause-input").attr("checked", false);
+        $(".scope-row").hide().find("select").val(null).trigger("change");
         $(".row." + $(this).val()).slideDown();
       });
 
       $(".cause-input").on("change", function() {
-        $(this).closest(".scope-row").find("select").val("").trigger("change");
+        $(this)
+          .closest(".scope-row")
+          .find("select")
+          .val(null)
+          .trigger("change");
+      });
+
+      $(".scope-row select").on("change", function() {
+        $(this)
+          .closest(".scope-row")
+          .find(".cause-input")
+          .attr("checked", $(this).val() ? false : true);
       });
 
       $(".row.cities").find("select").select2({
