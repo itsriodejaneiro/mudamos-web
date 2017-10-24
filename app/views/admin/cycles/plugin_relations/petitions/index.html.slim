@@ -50,7 +50,7 @@
         .card-module
           .title
             h3=@petition.class.human_attribute_name :uf
-          = @petition.uf
+          = @petition.uf.presence || @petition.class.human_attribute_name(:state_cause?)
 
     - if @petition.citywide?
       .col-xs-6

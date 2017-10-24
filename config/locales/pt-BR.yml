@@ -229,6 +229,7 @@ pt-BR:
           statewide: Estadual
           citywide: Municipal
         signatures_required: Meta final de assinaturas
+        state_cause?: Causa nacional nos estados
         uf: Estado
         video_id: Id do vídeo do YouTube
     models:
