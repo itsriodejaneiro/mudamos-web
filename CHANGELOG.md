@@ -4,8 +4,11 @@
 * [PR 402]: Return national causes on the plips api (Issue 400)
 * [PR 399]: Allow creating national cause plips (Issue 396)
 * [PR 398]: Show user location if present (Issue 397)
-* [PR 395]: Do not send push message when creating a new plip (Issue 393)
 * [PR 394]: Send location info to the blockchain api (Issue 392)
+
+## [1.21.0] - 25/10/2017
+
+* [PR 395]: Do not send push message when creating a new plip (Issue 393)
 
 ## [1.20.0] - 25/08/2017
 
