@@ -1,5 +1,6 @@
 ## Next
 
+* [PR 409]: Handle national cause goals (Issue 408)
 * [PR 406]: Allow national cause creation (statewide) (Issue 403, 405)
 * [PR 402]: Return national causes on the plips api (Issue 400)
 * [PR 399]: Allow creating national cause plips (Issue 396)
