@@ -86,9 +86,10 @@ section#petition-index
               small assinaturas
 
         .row#petition-signers-desktop.signatures-list.visible-lg-block
-        .row.view-all-signatures
+        .row.view-all-signatures class="#{@petition.national_cause? ? "national-cause" : ""}"
           .container-fluid
-            a href="#{petition_signatures_path(@petition)}" style="color: #{@cycle.color}" Confira as assinaturas autenticadas
+            - unless @petition.national_cause?
+              a href="#{petition_signatures_path(@petition)}" style="color: #{@cycle.color}" Confira as assinaturas autenticadas
 
         - if @phase.in_progress?
           - if @user_signed_petition
