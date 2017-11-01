@@ -68,6 +68,10 @@ class PetitionPlugin::Detail < ActiveRecord::Base
     scope_coverage === STATEWIDE_SCOPE && uf.blank?
   end
 
+  def national_cause?
+    city_cause? || state_cause?
+  end
+
   # Do not allow setting incorrect scope coverage detail if the wrong scope
   def ensure_scope_coverage_detail
     has_city = city.present? || city_id.present?

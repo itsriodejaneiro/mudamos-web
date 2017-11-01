@@ -16,22 +16,26 @@ section#petition-index
         .row.signatures-info.hidden-xs
           .col-xs-12.already-signed
             strong
-            | já assinaram
+            - if @petition.national_cause?
+              | já assinaram em todo o país
+            - else
+              | já assinaram
             div#petition-signers-tablet.signatures-list.visible-md-block.visible-sm-block
 
-          .col-xs-12
-            .petition-signatures-progress
+          - unless @petition.national_cause?
+            .col-xs-12
+              .petition-signatures-progress
 
-          .col-xs-12.progress-description
-            | Faltam
-            strong.remaining-signatures
-            | assinaturas para a meta de&nbsp;
-            strong.current-goal
-          .col-xs-12.final-goal
-            small
-              | Nossa meta final é de
-              strong<>= number_with_delimiter @petition.signatures_required
-              small assinaturas
+            .col-xs-12.progress-description
+              | Faltam
+              strong.remaining-signatures
+              | assinaturas para a meta de&nbsp;
+              strong.current-goal
+            .col-xs-12.final-goal
+              small
+                | Nossa meta final é de
+                strong<>= number_with_delimiter @petition.signatures_required
+                small assinaturas
 
           - if @phase.in_progress?
             .col-lg-12.col-sm-6.col-xs-12.download-document.bottom-info-container
@@ -187,7 +191,7 @@ javascript:
       }
 
       if (petitionInProgress) {
-        setInterval(updatePetitionInfo, 10000)
+        setInterval(updatePetitionInfo, 60000)
       }
       updatePetitionInfo();
     });

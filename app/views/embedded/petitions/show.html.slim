@@ -13,7 +13,7 @@ html
       div.petition-progress-container
         - if phase.finished?
           div.petition-progress.finished
-        - else
+        - elsif !petition.national_cause?
           div.petition-progress
       div.petition-body
         p= petition.presentation
@@ -24,16 +24,20 @@ html
             div data de encerramento
           - else
             div= "#{number_with_delimiter petition.plugin_relation.related.remaining_days} dias restantes"
-            div para atingirmos a meta final
+            - if petition.national_cause?
+              div para o encerramento
+            - else
+              div para atingirmos a meta final
         div.petition-signatures-information
           div#signatures_count
-            span 0 de 0
+            span 0
           div assinaturas
-        div.final-goal
-          small>
-            | Nossa meta final é de
-            strong<>= number_with_delimiter petition.signatures_required
-          small assinaturas
+        - unless petition.national_cause?
+          div.final-goal
+            small>
+              | Nossa meta final é de
+              strong<>= number_with_delimiter petition.signatures_required
+            small assinaturas
 
       div.petition-button-container
         = link_to generate_link, target: "_parent" do
@@ -48,6 +52,8 @@ html
 javascript:
   $(document).ready(function() {
     var petitionInProgress = #{phase.in_progress?};
+    var isNationalCause = #{petition.national_cause?};
+
     if ($(".petition-container").is(".has_signers")) {
       $(".signers").muPetitionSignersSmall(#{@petition.id}, petitionInProgress, apiClient, { size: 9 });
     }
@@ -57,20 +63,24 @@ javascript:
         if (petitionInfo) {
           var count = petitionInfo.signatures_count;
           var currentGoal = petitionInfo.current_signatures_goal;
-          var message = numeral(count).format() + " de " + numeral(currentGoal).format();
+          var message = numeral(count).format();
 
-          var percentage = (count / currentGoal) * 100;
-          $(".petition-progress").css("width", percentage + "%");
+          if (!isNationalCause) {
+            message += " de " + numeral(currentGoal).format();
+
+            var percentage = (count / currentGoal) * 100;
+            $(".petition-progress").css("width", percentage + "%");
+          }
 
           $("#signatures_count span").text(message);
 
-          $(".petition-progress-container").attr("title", message + " assinaturas")
+          $(".petition-progress-container").attr("title", message + " assinaturas");
         }
       });
     }
 
     if (petitionInProgress) {
-      setInterval(updateSignaturesCount, 10000)
+      setInterval(updateSignaturesCount, 60000)
     }
     updateSignaturesCount();
   });

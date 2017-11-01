@@ -32,7 +32,7 @@
     };
 
     refreshList();
-    if (petitionInProgress) setInterval(refreshList, 10000)
+    if (petitionInProgress) setInterval(refreshList, 60000)
   }
 
   $.fn.muPetitionSignersSmall = function(petitionId, petitionInProgress, apiClient, opts) {
