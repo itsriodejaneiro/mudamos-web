@@ -1,5 +1,6 @@
 ## Next
 
+* [PR 412]: Hide pdf signature list link when national cause
 * [PR 409]: Handle national cause goals (Issue 408)
 * [PR 406]: Allow national cause creation (statewide) (Issue 403, 405)
 * [PR 402]: Return national causes on the plips api (Issue 400)
