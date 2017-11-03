@@ -3,7 +3,7 @@ class PlipsController < ApplicationController
 
   def index
     plip_repository = PlipRepository.new
-    @plips = plip_repository.all_initiated(filters: filters)
+    @plips = plip_repository.all_initiated(filters: filters, limit: 100)
   end
 
   def filters
