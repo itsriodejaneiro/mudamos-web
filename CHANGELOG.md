@@ -1,5 +1,6 @@
 ## Next
 
+* [PR 416]: Return empty pdf signature list if national cause
 * [PR 414]: Add a high limit for now when listing plips
 * [PR 412]: Hide pdf signature list link when national cause
 * [PR 409]: Handle national cause goals (Issue 408)

@@ -71,6 +71,10 @@ class PetitionService
     cache_key = "mobile_petition_signatures:#{petition_id}"
 
     Rails.cache.fetch(cache_key, force: fresh) do
+      petition = petition_repository.find_by_id!(petition_id)
+      # For now national cause won't list the pdf signatures
+      return [] if petition.national_cause?
+
       mobile_service.petition_signatures(petition_id)
     end
   end
