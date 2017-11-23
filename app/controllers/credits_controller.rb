@@ -1,5 +1,5 @@
 class CreditsController < ApplicationController
-	def index
+  def index
     @categories = CreditCategory.includes(:credits).all
-	end
+  end
 end
