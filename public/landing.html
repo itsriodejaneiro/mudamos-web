@@ -68,6 +68,22 @@
     <div class="clearfix"></div>
 
     <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Event snippet for Download do app conversion page
+    In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-846743393/xFdjCJmGzHsQ4Y7hkwM',
+            'event_callback': callback
+        });
+        return false;
+      }
+    </script>
     <script type="text/javascript">
       (function($) {
         $(function() {
@@ -86,6 +102,12 @@
             $("#download-links #download").removeClass("hidden");
             $("#download-links #download").attr("href", APP_STORE_URL);
           }
+
+          $(".store-link").click(function (event){
+            event.preventDefault();
+
+            gtag_report_conversion($(event.target).attr("href"));
+          });
         });
 
         $(function() {
@@ -103,6 +125,16 @@
           }
         });
       })(window.jQuery);
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google AdWords: 846743393 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-846743393"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-846743393');
     </script>
   </body>
 </html>
