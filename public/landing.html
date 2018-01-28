@@ -106,7 +106,7 @@
           $(".store-link").click(function (event){
             event.preventDefault();
 
-            gtag_report_conversion($(event.target).attr("href"));
+            gtag_report_conversion($(event.currentTarget).attr("href"));
           });
         });
 
