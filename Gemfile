@@ -75,6 +75,7 @@ gem 'rails-assets-numeraljs', source: 'https://rails-assets.org'
 gem 'simplemde-rails'
 gem 'prawn'
 gem 'prawn-table'
+gem 'mini_magick'
 gem 'shoryuken'
 gem 'aws-sdk', '~> 2'
 

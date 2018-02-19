@@ -1,6 +1,13 @@
 ## Next
 
 * [PR 428]: Update omniauth
+* [PR 429]: Generate the plip cover
+  - App depends now on [ImageMagick](https://www.imagemagick.org/script/index.php)
+  - Add heroku build pack: `https://github.com/ello/heroku-buildpack-imagemagick`
+  - Set env `PETITION_COVER_BUCKET` to the mudamos images bucket
+  - Set env `PETITION_COVER_GENERATION_QUEUE` to the cover generation queue
+  - Set env `SHORYUKEN_CONCURRENCY` to `2`
+  - run rake to schedule all covers generation `rake petitions:generate_covers`. A specific plip id can be given eg. `rake petitions:generate_covers[9]`
 
 ## [1.23.0] - 23/02/2018
 
