@@ -1,5 +1,6 @@
 ## Next
 
+* [PR 424]: Add new signature goal calculation
 * [PR 420]: Bump gems with known CVEs
 
 ## [1.22.0] - 24/11/2017

@@ -32,7 +32,7 @@ class PetitionPlugin::Detail < ActiveRecord::Base
   validates :call_to_action, presence: true
   validates :signatures_required, presence: true, numericality: { greater_than_or_equal_to: :initial_signatures_goal }
   validates :initial_signatures_goal, presence: true
-  validates :signatures_required, :initial_signatures_goal, numericality: { greater_than_or_equal_to: 1_000 }
+  validates :signatures_required, :initial_signatures_goal, numericality: { greater_than_or_equal_to: 1 }
   validates :presentation, presence: true
   validates :scope_coverage, presence: true, inclusion: { in: SCOPE_COVERAGES }
   validates :uf, inclusion: { in: UFS, allow_blank: true }, if: -> { scope_coverage == STATEWIDE_SCOPE }
