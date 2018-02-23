@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.10'
 
 gem 'pg'
 # Use SCSS for stylesheets
@@ -97,8 +97,8 @@ group :development, :test, :staging do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'rspec'
-  gem 'rspec-rails'
+  gem 'rspec', '~> 3.7'
+  gem 'rspec-rails', '~> 3.7'
   gem 'rspec-its'
   gem 'rspec-collection_matchers'
   gem 'pry-rails'

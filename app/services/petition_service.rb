@@ -96,19 +96,57 @@ class PetitionService
   # Clamps the goal to a 1_000 multiplier
   def compute_current_signatures_goal(ratio: 1.25, signatures_count:, initial_signatures_goal:, total_signatures_required:)
     signatures_count ||= 0
+    return initial_signatures_goal if signatures_count.zero?
+
     current_goal = initial_signatures_goal
 
-    loop do
-      if signatures_count >= current_goal
-        current_goal = (current_goal * ratio).round
-      else
-        # Normalize #000
-        adjust = current_goal % 1000
-        adjust = adjust > 0 ? 1000 - adjust : adjust
-        current_goal = current_goal + adjust
+    clamp = -> signature { [signature, total_signatures_required].min }
 
-        return [current_goal, total_signatures_required].min
+    # Double the signature target until the target is greater than the current signature count
+    #
+    # @example
+    #   signatures_count = 58
+    #   initial_signatures_goal = 15
+    #   initial_signatures_goal * 2 ^ ceil(ln(signatures_count / initial_signatures_goal) / ln(2)) => 60
+    #
+    #   The target would try 15, 30 and finally 60
+    #
+    # @see https://www.wolframalpha.com/input/?i=x+*+2+%5E+ceil(ln(y+%2F+x)+%2F+ln(2)) for a visual equation
+    #
+    # A loop representaion of this equation resolving equal terms is
+    # @example
+    #   loop do
+    #     if signatures_count >= current_goal
+    #       current_goal *= 2
+    #     else
+    #       return [current_goal, total_signatures_required].min
+    #     end
+    #   end
+    low_method = -> {
+      target = initial_signatures_goal * (2 ** (Math.log(signatures_count / initial_signatures_goal.to_f) / Math.log(2)).ceil)
+      target = target * 2 if target == signatures_count
+      clamp.call target.zero? ? initial_signatures_goal : target
+    }
+
+    high_method = -> {
+      loop do
+        if signatures_count >= current_goal
+          current_goal = (current_goal * ratio).round
+        else
+          # Normalize #000
+          adjust = current_goal % 1000
+          adjust = adjust > 0 ? 1000 - adjust : adjust
+          current_goal = current_goal + adjust
+
+          return clamp.call current_goal
+        end
       end
+    }
+
+    if current_goal < 1_000
+      low_method.call
+    else
+      high_method.call
     end
   end
 end

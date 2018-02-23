@@ -1,5 +1,8 @@
 ## Next
 
+* [PR 424]: Add new signature goal calculation
+* [PR 420]: Bump gems with known CVEs
+
 ## [1.22.0] - 24/11/2017
 
 * [PR 416]: Return empty pdf signature list if national cause
