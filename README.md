@@ -54,6 +54,8 @@ Follow the instructions, and use the created user to access the admin area.
   - 'ONESIGNAL_APP_ID': The one signal app id (push message)
   - `API_CACHE_EXPIRES_IN`: The ammount in minutes that the system will use to expire requests from the Mobile API
   - `MOBILE_API_ID_IOS`: The iOs Mobile app id
+  - 'MUDAMOS_VIDEO_BUCKET': mudamos video bucket
+  - 'DB_POOL': databat pool
 
 
 ### Partners api
