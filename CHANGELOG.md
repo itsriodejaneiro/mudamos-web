@@ -1,5 +1,7 @@
 ## Next
 
+* [PR 431]: Add landing page toggle by env var
+  - Set env `LANDING_PAGE_ENABLED` to `true`
 * [PR 428]: Update omniauth
 * [PR 429]: Generate the plip cover
   - App depends now on [ImageMagick](https://www.imagemagick.org/script/index.php)
