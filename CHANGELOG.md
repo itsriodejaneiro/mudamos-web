@@ -1,5 +1,7 @@
 ## Next
 
+* [PR 428]: Update omniauth
+
 ## [1.23.0] - 23/02/2018
 
 * [PR 424]: Add new signature goal calculation
