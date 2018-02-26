@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_user, if: -> { cookies[:omniauth_auth].present? and not user_signed_in? }
 
-  before_action :app_landing_page
+  before_action :app_landing_page, if: -> { ENV["LANDING_PAGE_ENABLED"] =~ /\Atrue\z/i }
 
   def send_csv data, filename
     send_data(
@@ -92,7 +92,7 @@ class ApplicationController < ActionController::Base
           else
             flash.now[:error] = "Não foi possível criar seu comentário."
           end
-        rescue Exception => e
+        rescue Exception
           clear_cookies
         end
       end
@@ -124,7 +124,7 @@ class ApplicationController < ActionController::Base
         @user = User.find_for_oauth(JSON.parse(cookies.delete(:omniauth_auth)))
 
         cookies[:omniauth_identity] = { value: @user.omniauth_identities.first.attributes.to_json, expires: 5.minutes.from_now }
-      rescue Exception => e
+      rescue Exception
         clear_cookies
       end
     end
