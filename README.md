@@ -66,7 +66,10 @@ Follow the instructions, and use the created user to access the admin area.
   - `MOBILE_API_ID_IOS`: The iOs Mobile app id
   - 'MUDAMOS_VIDEO_BUCKET': mudamos video bucket
   - 'DB_POOL': database pool
-  - 'LANDING_PAGE_ENABLED': whether or not the landing page is enabled
+  - 'RAILS_MAX_THREADS': web server max threads
+  - 'RAILS_MIN_THREADS': web server min threads
+  - 'RACK_TIMEOUT': request timeout forced by middleware in seconds
+  - 'WEB_CONCURRENCY': number of web server workers
 
 ### Partners api
 
