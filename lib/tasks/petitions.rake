@@ -117,4 +117,41 @@ namespace :petitions do
       end
     end
   end
+
+  desc "Generate all (or the given id) current plip pdf covers"
+  task :generate_covers, [:plip_id] => :environment do |_, args|
+    log = -> message {
+      puts message
+      Rails.logger.info message
+    }
+
+    error = -> message {
+      puts message
+      Rails.logger.error message
+    }
+
+    plip_id = args[:plip_id]
+
+    plips = -> &block {
+      if plip_id
+        Array.wrap(PetitionPlugin::Detail.find(plip_id)).tap(&block)
+      else
+        PetitionPlugin::Detail.all.find_in_batches(&block)
+      end
+    }
+
+    plips.call do |batch|
+      batch.each do |detail|
+        begin
+          log.call "Scheduling cover for plip id: #{detail.id}"
+          version = detail.current_version
+
+          PetitionCoverGeneratorWorker.perform_async id: version.id
+        rescue => e
+          error.call "Error scheduling cover generation for plip: #{detail.id}"
+          error.call e
+        end
+      end
+    end
+  end
 end

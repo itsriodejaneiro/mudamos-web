@@ -12,6 +12,16 @@ If the sample env file does not require any change, you can just run the setup s
 
 - `bin/setup` -- installs dependencies and prepares the database
 
+#### Dependencies
+
+Mudamos depends on the following softwares:
+
+  - ImageMagick: used by the pdf cover generation
+    - Project info: https://www.imagemagick.org/script/index.php
+    - Tested version: 6.9.x
+    - on Mac install via: `brew install imagemagick`
+    - on Heroku add the following build pack `https://github.com/ello/heroku-buildpack-imagemagick`
+
 #### Accessing the admin area
 
 In order to access the admin area, an admin user must be created.
