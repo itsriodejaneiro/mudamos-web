@@ -1,6 +1,6 @@
 ## Next
 
-* [PR xxx]: xxx
+* [PR 433]: Add puma web server
   - Set env `RAILS_MAX_THREADS` to `16`
   - Set env `RAILS_MIN_THREADS` to `5`
   - Set env `WEB_CONCURRENCY` to `4`
