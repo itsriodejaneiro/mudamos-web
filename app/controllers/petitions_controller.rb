@@ -1,11 +1,13 @@
 class PetitionsController < ApplicationController
   before_action :set_page_title, only: %i(verify)
-  before_action :petition, :cycle, only: %i(signatures)
+  caches_action :signatures, expires_in: 10.minutes
+  caches_action :verify, expires_in: 3.hours
 
   def verify
   end
 
   def signatures
+    cycle
     @signatures = petition_service.fetch_petition_signatures(params[:petition_id])
   end
 
@@ -31,7 +33,7 @@ class PetitionsController < ApplicationController
   end
 
   def cycle
-    @cycle ||= @petition.plugin_relation.cycle
+    @cycle ||= petition.plugin_relation.cycle
   end
 
   def petition_service
