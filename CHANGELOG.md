@@ -1,5 +1,10 @@
 ## Next
 
+* [PR 433]: Add puma web server
+  - Set env `RAILS_MAX_THREADS` to `16`
+  - Set env `RAILS_MIN_THREADS` to `5`
+  - Set env `WEB_CONCURRENCY` to `4`
+  - Set env `RACK_TIMEOUT` to `29`
 * [PR 431]: Add landing page toggle by env var
   - Set env `LANDING_PAGE_ENABLED` to `true`
 * [PR 428]: Update omniauth
