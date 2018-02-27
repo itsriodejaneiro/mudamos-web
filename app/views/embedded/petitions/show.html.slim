@@ -55,7 +55,7 @@ javascript:
     var isNationalCause = #{petition.national_cause?};
 
     if ($(".petition-container").is(".has_signers")) {
-      $(".signers").muPetitionSignersSmall(#{@petition.id}, petitionInProgress, apiClient, { size: 9 });
+      $(".signers").muPetitionSignersSmall(#{petition.id}, petitionInProgress, apiClient, { size: 9 });
     }
 
     function updateSignaturesCount() {

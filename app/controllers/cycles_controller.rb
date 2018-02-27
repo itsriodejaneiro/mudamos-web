@@ -1,6 +1,8 @@
 class CyclesController < ApplicationController
   before_action :home_blocks, only: %i(index)
 
+  caches_action :show, expires_in: 10.minutes
+
   def home_block_repository
     @home_block_repository ||= HomeBlockRepository.new
   end

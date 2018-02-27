@@ -1,6 +1,11 @@
 class PlipsController < ApplicationController
   layout "static"
 
+  caches_action :index, expires_in: 10.minutes, cache_path: -> do
+    keys = %w(scope_coverage)
+    params.select { |k| keys.include? k }
+  end
+
   def index
     plip_repository = PlipRepository.new
     @plips = plip_repository.all_initiated(filters: filters, limit: 100)

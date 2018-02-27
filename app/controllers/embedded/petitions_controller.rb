@@ -1,5 +1,8 @@
 class Embedded::PetitionsController < Embedded::ApplicationController
-  before_action :set_petition, only: [:show]
+  caches_action :show, expires_in: 5.minutes, cache_path: -> do
+    keys = %w(flags)
+    params.select { |k| keys.include? k }
+  end
 
   attr_reader :petition_detail_repository
 
@@ -20,7 +23,7 @@ class Embedded::PetitionsController < Embedded::ApplicationController
 
   helper_method :petition
   def petition
-    @petition
+    @petition ||= petition_detail_repository.find_by_id!(params[:id])
   end
 
   helper_method :phase
@@ -31,11 +34,5 @@ class Embedded::PetitionsController < Embedded::ApplicationController
   helper_method :cycle
   def cycle
     phase.cycle
-  end
-
-  private
-
-  def set_petition
-    @petition = petition_detail_repository.find_by_id!(params[:id])
   end
 end

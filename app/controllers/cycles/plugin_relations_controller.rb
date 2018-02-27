@@ -4,6 +4,8 @@ class Cycles::PluginRelationsController < ApplicationController
     action_name == "show" && plugin_relation.plugin.plugin_type == "Petição"
   end
 
+  caches_action :show, expires_in: 5.minutes
+
   attr_writer :presignature_repository
   attr_accessor :petition_service
 
