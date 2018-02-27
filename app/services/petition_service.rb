@@ -54,7 +54,7 @@ class PetitionService
       petition = petition_repository.find_by_id!(petition_id)
 
       if petition.published_version.present?
-        return mobile_service.petition_version_signers petition.published_version.id, limit
+        mobile_service.petition_version_signers petition.published_version.id, limit
       end
     end
   end
@@ -73,9 +73,11 @@ class PetitionService
     Rails.cache.fetch(cache_key, force: fresh) do
       petition = petition_repository.find_by_id!(petition_id)
       # For now national cause won't list the pdf signatures
-      return [] if petition.national_cause?
-
-      mobile_service.petition_signatures(petition_id)
+      if petition.national_cause?
+        Array.new
+      else
+        mobile_service.petition_signatures(petition_id)
+      end
     end
   end
 
