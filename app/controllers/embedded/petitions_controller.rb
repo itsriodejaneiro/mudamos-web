@@ -1,7 +1,6 @@
 class Embedded::PetitionsController < Embedded::ApplicationController
   caches_action :show, expires_in: 5.minutes, cache_path: -> do
-    keys = %w(flags)
-    params.select { |k| keys.include? k }
+    params.slice(:flags)
   end
 
   attr_reader :petition_detail_repository

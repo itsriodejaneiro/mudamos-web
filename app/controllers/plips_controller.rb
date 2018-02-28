@@ -2,8 +2,7 @@ class PlipsController < ApplicationController
   layout "static"
 
   caches_action :index, expires_in: 10.minutes, cache_path: -> do
-    keys = %w(scope_coverage)
-    params.select { |k| keys.include? k }
+    params.slice(:scope_coverage)
   end
 
   def index
