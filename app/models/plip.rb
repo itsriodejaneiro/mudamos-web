@@ -53,4 +53,13 @@ class Plip
   def petition_info
     @petition_info ||= petition_service.fetch_petition_info_with(petition: detail)
   end
+
+  def marshal_dump
+    [detail, phase, plip_url]
+  end
+
+  def marshal_load(args)
+    attrs = %w(detail phase plip_url).zip args
+    initialize(**Hash[attrs].deep_symbolize_keys)
+  end
 end
