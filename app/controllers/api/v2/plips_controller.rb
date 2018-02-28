@@ -79,11 +79,39 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
   end
 
   def index
-    plips = paginated_plips
-    render json: paginated_response(Api::V2::Entities::Plip.represent(plips.items), plips)
+    ttl = Rails.application.secrets.http_cache["api_expires_in"].minutes
+
+    # Caching for better performance
+    # Because the pagination is handled by http headers, we must manually provide them when caching
+    plips_pagination = Rails.cache.fetch(index_cache_key, expires_in: ttl) do
+      plips = paginated_plips
+      json = paginated_response(Api::V2::Entities::Plip.represent(plips.items), plips).to_json
+
+      {
+        response: json,
+        headers: headers.slice("X-Page", "X-Next-Page"),
+      }
+    end
+
+    # Sets pagination headers even if there was a cache hit
+    plips_pagination[:headers].each { |k, v| headers[k.to_s] = v }
+
+    render json: plips_pagination[:response]
   end
 
   private
+
+  def index_cache_key
+    query = params.slice(
+      :limit,
+      :page,
+      :uf,
+      :city_id,
+      :scope,
+      :include_causes
+    )
+    ActionController::Caching::Actions::ActionCachePath.new(self, query).path
+  end
 
   def paginated_plips
     limit = params[:limit]

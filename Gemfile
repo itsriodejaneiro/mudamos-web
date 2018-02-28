@@ -94,6 +94,8 @@ gem 'browser'
 
 gem "one_signal" # Mobile push message service
 
+gem "actionpack-action_caching"
+
 group :development, :test, :staging do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   #gem 'byebug'

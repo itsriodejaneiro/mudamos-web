@@ -56,7 +56,7 @@ class Api::V2::PetitionsController < Api::V2::ApplicationController
       end
     end
   end
- 
+
   swagger_path "/petitions/{sha}/status" do
     operation :get do
       extend Api::V2::SwaggerResponses::InternalError
@@ -108,7 +108,7 @@ class Api::V2::PetitionsController < Api::V2::ApplicationController
     render json: { status: petition_status }
     expires_in expires_time.minutes, public: true
   rescue MobileApiService::ValidationError => e
-    render json: e.validations, status: 422 
+    render json: e.validations, status: 422
   end
 
   private
