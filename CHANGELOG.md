@@ -1,5 +1,6 @@
 ## Next
 
+* [PR 435]: Improve app cache
 * [PR 433]: Add puma web server
   - Set env `RAILS_MAX_THREADS` to `16`
   - Set env `RAILS_MIN_THREADS` to `5`
