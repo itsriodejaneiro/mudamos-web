@@ -1,5 +1,9 @@
 ## Next
 
+## [1.25.1] - 01/03/2018
+
+* Add missing apple touch icon
+
 ## [1.25.0] - 01/03/2018
 
 * [PR 438]: Add apple touch icons
