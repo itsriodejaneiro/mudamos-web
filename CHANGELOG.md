@@ -1,5 +1,7 @@
 ## Next
 
+* [PR 438]: Add apple touch icons
+
 ## [1.24.0] - 01/03/2018
 
 * [PR 435]: Improve app cache
