@@ -23,6 +23,8 @@ html lang="pt-br"
     = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Arvo:400,700", media: "all"
     = stylesheet_link_tag "static", media: "all"
 
+    = render "layouts/shared/apple_touch"
+
   body class="#{controller_name} #{action_name}"
     .main
       .custom-container

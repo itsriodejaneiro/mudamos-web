@@ -15,6 +15,7 @@ html
 
     = metamagic site: "Mudamos", title: [:title, :site], separator: " | "
     = metamagic
+    = render "layouts/shared/apple_touch"
   body class="#{params[:controller]}-#{params[:action]}" data-controller="#{params[:controller]}" data-action="#{params[:action]}" data-logged-in=user_signed_in?.to_s data-cycle=(@cycle.id if @cycle) data-subject=(@subject.id if @subject) data-plugin-relation=(@plugin_relation.id if @plugin_relation)
 
     #fb-root
