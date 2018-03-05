@@ -38,6 +38,10 @@ class Plip
     @petition_service = petition_service
   end
 
+  def detail_id
+    detail.id
+  end
+
   def content
     published_version.body
   end

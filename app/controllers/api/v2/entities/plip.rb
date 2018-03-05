@@ -7,6 +7,7 @@ module Api
         root 'plips', 'plip'
 
         expose :id
+        expose :detail_id
         expose :document_url
         expose :plip_url
         expose :content
@@ -23,6 +24,10 @@ module Api
         swagger_schema :'Api::V2::Entities::Plip' do
           property :id do
             key :type, :integer
+          end
+
+          property :detail_id do
+            key :type, :string
           end
 
           property :document_url do
