@@ -21,6 +21,23 @@
         .title
           h3 Chamada para ação
         = @petition.call_to_action
+
+    .col-xs-5
+      .card-module
+        .title
+          h3 Tag de assinatura mobile
+        = signed_plip_mobile_tag @petition.id
+
+        ul
+          li
+            | Assinado:
+            em<
+              | #{signed_plip_mobile_tag @petition.id} = true
+          li
+            | Não assinado:
+            em<
+              | #{signed_plip_mobile_tag @petition.id} = false
+
   .row
     .col-xs-6
       .card-module

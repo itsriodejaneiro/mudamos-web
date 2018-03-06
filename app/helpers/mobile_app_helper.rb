@@ -11,10 +11,15 @@ module MobileAppHelper
   end
 
   def android_store_page
-    Rails.application.secrets.mobile_app["store_page"]["android"] 
+    Rails.application.secrets.mobile_app["store_page"]["android"]
   end
 
   def apple_store_page
-    Rails.application.secrets.mobile_app["store_page"]["ios"] 
+    Rails.application.secrets.mobile_app["store_page"]["ios"]
+  end
+
+  def signed_plip_mobile_tag(detail_id)
+    prefix = Rails.application.secrets.mobile_app["signed_plip_tag"]["prefix"]
+    "#{prefix}#{detail_id}"
   end
 end
