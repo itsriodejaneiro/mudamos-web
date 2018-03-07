@@ -1,5 +1,6 @@
 ## Next
 
+* [PR 442]: Add signed plip mobile tag to the petition interface
 * [PR 440]: Add detail id to the plips api
 
 ## [1.25.1] - 01/03/2018
