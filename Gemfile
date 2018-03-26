@@ -3,6 +3,9 @@ source 'http://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.10'
 
+# Fix security issue
+gem 'rails-html-sanitizer'
+
 gem 'pg'
 
 gem 'puma'
@@ -86,7 +89,7 @@ gem 'aws-sdk', '~> 2'
 
 gem 'faraday', "~> 0.9"
 gem 'net-http-persistent', "~> 2.9.4"
-gem 'doorkeeper'
+gem 'doorkeeper', '~> 4.2.6'
 gem 'doorkeeper-i18n'
 
 gem 'ejs'
