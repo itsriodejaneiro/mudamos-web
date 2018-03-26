@@ -1,5 +1,7 @@
 ## Next
 
+* [PR 444]: Fix loofah and doorkeeper known vunerabilities
+
 ## [1.26.0] - 14/03/2018
 
 * [PR 442]: Add signed plip mobile tag to the petition interface
