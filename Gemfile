@@ -3,6 +3,9 @@ source 'http://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.10'
 
+# Fix security issue
+gem 'rails-html-sanitizer'
+
 gem 'pg'
 
 gem 'puma'
