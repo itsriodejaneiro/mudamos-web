@@ -1,5 +1,6 @@
 ## Next
 
+* [PR 445]: Upgrade ruby to 2.5.0
 * [PR 444]: Fix loofah and doorkeeper known vunerabilities
 
 ## [1.26.0] - 14/03/2018
