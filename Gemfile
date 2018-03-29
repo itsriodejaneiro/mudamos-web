@@ -164,4 +164,4 @@ gem 'cocoon'
 gem 'delayed_job_active_record'
 gem 'delayed_paperclip'
 
-ruby '2.5.0'
+ruby '2.5.1'
