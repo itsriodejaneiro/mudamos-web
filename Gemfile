@@ -15,7 +15,7 @@ gem 'connection_pool'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -103,9 +103,6 @@ group :development, :test, :staging do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   #gem 'byebug'
 
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
-
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'rspec', '~> 3.7'
@@ -121,6 +118,9 @@ end
 gem 'factory_girl_rails'
 
 group :development do
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'web-console', '~> 2.0'
+
   gem 'better_errors'
   gem 'annotate'
   gem 'bullet'
@@ -164,4 +164,4 @@ gem 'cocoon'
 gem 'delayed_job_active_record'
 gem 'delayed_paperclip'
 
-ruby '2.2.1'
+ruby '2.5.1'
