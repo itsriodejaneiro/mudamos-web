@@ -78,6 +78,31 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
     end
   end
 
+  swagger_path "/plips/{slug}" do
+    operation :get do
+      extend Api::V2::SwaggerResponses::InternalError
+
+      key :description, "Returns the information of the plip"
+      key :operationId, "v2findPlip"
+      key :produces, ["application/json"]
+      key :tags, ["plip"]
+
+      response 200 do
+        key :description, "plip success response"
+        schema do
+          extend Api::V2::SwaggerResponses::SuccessResponse
+
+          property :data do
+            key :type, :object
+            property 'plip' do
+              key :'$ref', :'Api::V2::Entities::Plip'
+            end
+          end
+        end
+      end
+    end
+  end
+
   def index
     ttl = Rails.application.secrets.http_cache["api_expires_in"].minutes
 
@@ -97,6 +122,16 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
     plips_pagination[:headers].each { |k, v| headers[k.to_s] = v }
 
     render json: plips_pagination[:response]
+  end
+
+  def find_by_slug
+    ttl = Rails.application.secrets.http_cache["api_expires_in"].minutes
+
+    slug = params[:slug]
+    plip = plip_repository.find_plip_by_slug(slug)
+
+    render json: success_response(Api::V2::Entities::Plip.represent(plip))
+    expires_in ttl, public: true
   end
 
   private
