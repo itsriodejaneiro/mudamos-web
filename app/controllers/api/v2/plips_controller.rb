@@ -124,10 +124,10 @@ class Api::V2::PlipsController < Api::V2::ApplicationController
     render json: plips_pagination[:response]
   end
 
-  def find_by_slug
+  def show
     ttl = Rails.application.secrets.http_cache["api_expires_in"].minutes
 
-    slug = params[:slug]
+    slug = params[:id]
     plip = plip_repository.find_plip_by_slug(slug)
 
     render json: success_response(Api::V2::Entities::Plip.represent(plip))

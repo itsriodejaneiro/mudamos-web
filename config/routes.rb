@@ -110,8 +110,7 @@ Rails.application.routes.draw do
 
     namespace :v2 do
       resources :apidocs, only: %i(index)
-      resources :plips, only: %i(index)
-      get "/plips/:slug" => "plips#find_by_slug"
+      resources :plips, only: %i(index show)
       resources :petitions, only: [] do
         get :info
         get :signers
