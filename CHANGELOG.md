@@ -1,6 +1,6 @@
 ## Next
 
-* [PR 446]: Add API call to get one plip by slug
+* [PR 447]: Add API call to get one plip by slug
 
 ## [1.27.0] - 12/04/2018
 
