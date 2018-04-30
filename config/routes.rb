@@ -24,7 +24,6 @@ include BaseRouting::RoutingMethods
 
 Rails.application.routes.draw do
   get 'plips' => 'plips#index', path: 'projetos'
-  get 'plips/:id_or_slug' => 'plips#find', path: 'projetos'
 
   use_doorkeeper
   devise_for :admin_users, controllers: {
@@ -112,7 +111,7 @@ Rails.application.routes.draw do
     namespace :v2 do
       resources :apidocs, only: %i(index)
       resources :plips, only: %i(index)
-      match '/plips/:slug', to: 'plips#find_by_slug', via: :get
+      get "/plips/:slug" => "plips#find_by_slug"
       resources :petitions, only: [] do
         get :info
         get :signers

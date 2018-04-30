@@ -8,7 +8,16 @@ class PlipRepository
   end
 
   def find_plip_by_slug(slug)
-    phase = Cycle.find_by_slug(slug).phases.last
+    phase = Phase
+        .includes(:cycle)
+        .where(cycle: Cycle.find(slug))
+        .includes(:plugin_relation)
+        .joins(plugin_relation: :plugin)
+        .includes(plugin_relation: :petition_detail)
+        .includes(plugin_relation: { petition_detail: %i(petition_detail_versions city) })
+        .where(plugin_relation: { plugin: { plugin_type: PluginTypeRepository::ALL_TYPES[:petition] }})
+        .first
+
     petition = phase.plugin_relation.petition_detail
 
     Plip.new detail: petition,
