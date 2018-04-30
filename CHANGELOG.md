@@ -1,5 +1,7 @@
 ## Next
 
+* [PR 446]: Add API call to get one plip by slug
+
 ## [1.27.0] - 12/04/2018
 
 * [PR 445]: Upgrade ruby to 2.5.1
