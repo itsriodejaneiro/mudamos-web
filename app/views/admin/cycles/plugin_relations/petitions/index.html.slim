@@ -55,6 +55,16 @@
         .title
           h3= PetitionPlugin::Detail.human_attribute_name(:video_id)
         = you_tube_link_to @petition.video_id
+    .col-xs-6
+      .card-module
+        .title
+          h3= PetitionPlugin::Detail.human_attribute_name(:share_link)
+        - if @petition.share_link.present?
+          a href= @petition.share_link = @petition.share_link
+        - else
+          = "Processando App link"
+
+
   .row
     .col-xs-6
       .card-module

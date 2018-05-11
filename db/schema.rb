@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509115010) do
+ActiveRecord::Schema.define(version: 20180502131815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "unaccent"
-  enable_extension "pg_trgm"
   enable_extension "fuzzystrmatch"
   enable_extension "pg_stat_statements"
+  enable_extension "pg_trgm"
+  enable_extension "unaccent"
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
@@ -369,6 +369,7 @@ ActiveRecord::Schema.define(version: 20170509115010) do
     t.string   "scope_coverage",          default: "nationwide", null: false
     t.string   "uf"
     t.integer  "initial_signatures_goal", default: 10000,        null: false
+    t.string   "share_link"
   end
 
   add_index "petition_plugin_details", ["city_id"], name: "index_petition_plugin_details_on_city_id", using: :btree

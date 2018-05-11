@@ -1,5 +1,13 @@
 ## Next
 
+* [PR 450]: Add share link
+  - Set env `FIREBASE_API_KEY` to the Firebase's Web API key
+  - Set env `FIREBASE_DYNAMIC_LINK_DOMAIN` to Firebase's dynamic link domain
+  - Set env `FIREBASE_ANDROID_PACKAGE` to the android package of mudamos mobile
+  - Set env `FIREBASE_IOS_PACKAGE` to the ios package of mudamos mobile
+  - Set env `PETITION_SHARE_LINK_GENERATION_QUEUE` to the create share link queue
+  - Run `rake db:migrate`
+  - Run `rake petitions:generate_share_links`
 * [PR 447]: Add API call to get one plip by slug
 
 ## [1.27.0] - 12/04/2018
