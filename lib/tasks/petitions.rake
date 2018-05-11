@@ -170,8 +170,7 @@ namespace :petitions do
     PetitionPlugin::Detail.where(share_link: nil).map do |petition_detail|
       begin
         log.call "Generating share link for petition: #{petition_detail.id}"
-        # PetitionShareLinkGenerationWorker.perform_async id: petition_detail.id
-        PetitionShareLinkGenerationWorker.new.perform "petition_detail", JSON.dump({id: petition_detail.id})
+        PetitionShareLinkGenerationWorker.perform_async id: petition_detail.id
       rescue => e
         error.call "Error generating share link for petition: #{petition_detail.id}"
         error.call e
