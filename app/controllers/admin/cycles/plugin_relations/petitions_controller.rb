@@ -1,5 +1,3 @@
-require 'net/https'
-
 class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationController
   def index
     @petition = @plugin_relation.petition_detail

@@ -1,4 +1,8 @@
 class PetitionShareLinkService
+
+  class RequestError < StandardError; end
+  class InvalidRequest < RequestError; end
+
   def initialize(
     api_key: Rails.application.secrets.firebase['api_key'],
     timeout: Rails.application.secrets.apis['mobile']['timeout'],
@@ -39,7 +43,7 @@ class PetitionShareLinkService
       },
     })
 
-    JSON.parse(response.body)["shortLink"]
+    response["shortLink"]
   end
 
   private
@@ -53,7 +57,7 @@ class PetitionShareLinkService
 
   [:post].each do |verb|
     define_method(verb) do |path, body, headers = nil|
-      body = connection.send(verb) do |req|
+      response = connection.send(verb) do |req|
         req.url path
         req.body = JSON.generate(body) if body
         req.options.timeout = timeout if timeout
@@ -62,7 +66,13 @@ class PetitionShareLinkService
         req.headers.merge! headers if headers
       end
 
-      body
+      validate_response response
     end
+  end
+
+  def validate_response(response)
+    fail RequestError.new("Got #{response.status} from #{response.env.url}") unless response.status >= 200 && response.status <= 299
+
+    JSON.parse(response.body)
   end
 end
