@@ -154,4 +154,28 @@ namespace :petitions do
       end
     end
   end
+
+  desc "Generate app link for all petitions"
+  task generate_share_links: :environment do
+    log = -> message {
+      puts message
+      Rails.logger.info message
+    }
+
+    error = -> message {
+      puts message
+      Rails.logger.error message
+    }
+
+    PetitionPlugin::Detail.where(share_link: nil).map do |petition_detail|
+      begin
+        log.call "Generating share link for petition: #{petition_detail.id}"
+        # PetitionShareLinkGenerationWorker.perform_async id: petition_detail.id
+        PetitionShareLinkGenerationWorker.new.perform "petition_detail", JSON.dump({id: petition_detail.id})
+      rescue => e
+        error.call "Error generating share link for petition: #{petition_detail.id}"
+        error.call e
+      end
+    end
+  end
 end
