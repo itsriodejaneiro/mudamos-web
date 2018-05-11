@@ -17,6 +17,7 @@ module Api
         expose :signatures_required
         expose :call_to_action
         expose :video_id
+        expose :share_link
         expose :cycle, using: Api::V2::Entities::Cycle
         expose :phase, using: Api::V2::Entities::Phase
         expose :scope_coverage, using: Api::V2::Entities::ScopeCoverage
@@ -60,6 +61,10 @@ module Api
           end
 
           property :video_id do
+            key :type, :string
+          end
+
+          property :share_link do
             key :type, :string
           end
 

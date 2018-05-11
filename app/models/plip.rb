@@ -6,7 +6,8 @@ class Plip
                           :call_to_action,
                           :video_id,
                           :uf,
-                          :city
+                          :city,
+                          :share_link
   def_delegators :published_version, :id, :document_url
   def_delegators :phase, :cycle
 
