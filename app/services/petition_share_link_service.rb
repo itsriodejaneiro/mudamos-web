@@ -1,7 +1,6 @@
 class PetitionShareLinkService
 
   class RequestError < StandardError; end
-  class InvalidRequest < RequestError; end
 
   def initialize(
     api_key: Rails.application.secrets.firebase['api_key'],
