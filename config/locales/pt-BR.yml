@@ -229,6 +229,13 @@ pt-BR:
           statewide: Estadual
           citywide: Municipal
         share_link: App link
+        metric: App Link - Informações dos últimos 7 dias
+        metrics:
+          click: Cliques
+          redirect: Redirecionamentos
+          app_install: Instalações do app
+          app_first_open: Primeira abertura do app
+          app_re_open: Reabertura do app
         signatures_required: Meta final de assinaturas
         state_cause?: Causa nacional nos estados
         uf: Estado

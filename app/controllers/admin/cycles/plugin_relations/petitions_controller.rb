@@ -1,6 +1,12 @@
 class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationController
   def index
     @petition = @plugin_relation.petition_detail
+    dynamic_link_metrics = get_dynamic_link_metrics @petition
+    if dynamic_link_metrics
+      @android_metrics = dynamic_link_metrics.select { |metric| metric.platform == "ANDROID"}
+      @ios_metrics = dynamic_link_metrics.select { |metric| metric.platform == "IOS"}
+      @other_metrics = dynamic_link_metrics.select { |metric| metric.platform == "OTHER"}
+    end
   end
 
   def new
@@ -80,6 +86,11 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
 
   def shared_link_generation(response)
     PetitionShareLinkGenerationWorker.perform_async id: response.detail.id
+  end
+
+  def get_dynamic_link_metrics(petition)
+    metricsShareLinkService = ShareLinkMetricsService.new
+    metricsShareLinkService.getMetrics petition.share_link, 7
   end
 
   def detail_updater

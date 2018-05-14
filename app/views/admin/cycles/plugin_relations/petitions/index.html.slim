@@ -63,7 +63,31 @@
           a href= @petition.share_link = @petition.share_link
         - else
           = "Processando App link"
-
+  - if @android_metrics || @ios_metrics || @other_metrics
+    .row
+      .col-xs-12
+        .card-module
+          .title
+            h3= PetitionPlugin::Detail.human_attribute_name(:metric)
+          .row
+            .col-xs-4
+              .sub-title Android
+              - @android_metrics.map do |metric|
+                .row
+                  span.col-xs-6= @petition.translated_app_link_metrics metric.event
+                  span.col-xs-6= metric.count
+            .col-xs-4
+              .title IOS
+              - @ios_metrics.map do |metric|
+                .row
+                  span.col-xs-6= @petition.translated_app_link_metrics metric.event
+                  span.col-xs-6= metric.count
+            .col-xs-4
+              .sub-title Outros
+              - @other_metrics.map do |metric|
+                .row
+                  span.col-xs-6= @petition.translated_app_link_metrics metric.event
+                  span.col-xs-6= metric.count
 
   .row
     .col-xs-6

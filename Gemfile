@@ -53,7 +53,8 @@ gem 'koala'
 gem 'omniauth-twitter'
 gem 'twitter'
 gem 'omniauth-google-oauth2'
-gem 'google-api-client', :require => 'google/api_client'
+gem 'google-api-client'
+gem 'googleauth'
 
 gem 'cpf_cnpj'
 

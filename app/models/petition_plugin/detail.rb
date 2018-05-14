@@ -91,4 +91,12 @@ class PetitionPlugin::Detail < ActiveRecord::Base
   def self.translate_scope_coverage(value)
     I18n.t("activerecord.attributes.#{model_name.i18n_key}.scope_coverages.#{value}")
   end
+
+  def translated_app_link_metrics(value)
+    self.class.translate_app_link_metrics(value)
+  end
+
+  def self.translate_app_link_metrics(value)
+    I18n.t("activerecord.attributes.#{model_name.i18n_key}.metrics.#{value.downcase}")
+  end
 end
