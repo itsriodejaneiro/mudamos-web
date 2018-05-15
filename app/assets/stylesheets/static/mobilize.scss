@@ -1,0 +1,140 @@
+.static {
+  .mobilize {
+    .general-info {
+      padding: 60px;
+      margin-top: -180px;
+      padding-top: 180px !important;
+
+      .section {
+        padding-bottom: 120px;
+        text-align: justify;
+        width: 66%;
+
+        &.mobilize-intro {
+          width: 80%;
+          margin: auto;
+        }
+
+        &.guide,
+        &.papers,
+        &.social-midia,
+        &.sticks {
+          width: 95%;
+          display: flex;
+          flex-flow: row;
+        }
+
+        .major-title {
+          text-align: center;
+        }
+
+        .title {
+          padding-bottom: 25px;
+          color: #704299;
+        }
+
+        .download {
+          border-bottom: 5px solid;
+          padding: 15px 0 6px 0;
+          text-decoration: none;
+          float: right;
+        }
+      }
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .main-section {
+      margin: 0 auto;
+    }
+
+    .icon {
+      flex: 1;
+      order: 1;
+
+      img {
+        max-width: 250px;
+      }
+    }
+
+    .content {
+      flex: 3;
+      order: 2;
+    }
+
+    .mobilize-logo img {
+      max-width: 375px;
+      width: 33vw;
+      margin-bottom: 80px;
+      box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.47);
+    }
+  }
+
+	@media only screen and (max-width: 1365px) {
+		.mobilize .main-section {
+			width: 100%;
+		}
+	}
+
+	@media only screen and (max-width: 1199px) {
+	  .mobilize .general-info .section {
+	    margin: 0;
+	    padding-bottom: 50px;
+	    text-align: center;
+	    width: 100% !important;
+
+		  &:nth-child(odd) {
+		    margin: 0;
+		  }
+
+      &.guide,
+      &.papers,
+      &.social-midia,
+      &.sticks,
+       {
+        flex-flow: column;
+      }
+	  }
+
+	}
+
+	@media only screen and (max-width: 770px) {
+    .link,
+    .major-title,
+    .title,
+    .text {
+      font-size: 16px;
+    }
+
+		nav span {
+			display: block;
+		}
+
+		.link {
+			margin: 0 auto;
+		}
+
+		.text-mobile {
+			text-align: center;
+		}
+
+    .section .mobile-img {
+      padding: 0;
+
+      img {
+        max-width: 180px;
+      }
+    }
+
+    .mobilize .mobilize-logo img {
+      margin-bottom: 40px;
+    }
+
+    .mobilize .general-info,
+    .mobilize .header {
+      padding: 30px;
+    }
+	}
+}
