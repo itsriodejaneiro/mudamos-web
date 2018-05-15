@@ -1,0 +1,32 @@
+version: '3.4'
+services:
+  db:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_PASSWORD=abcd1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  app: &app_base
+    build:
+      context: .
+    env_file:
+      - .env.development
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    volumes:
+      - .:/app
+
+#  worker:
+#    <<: *app_base
+#    command: bundle exec sidekiq
+#    ports: []
+#    depends_on:
+#      - app
+
+volumes:
+  db-data:
