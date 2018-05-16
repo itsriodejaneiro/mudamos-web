@@ -74,20 +74,20 @@
               .sub-title Android
               - @android_metrics.map do |metric|
                 .row
-                  span.col-xs-6= @petition.translated_app_link_metrics metric.event
-                  span.col-xs-6= metric.count
+                  span.col-xs-8= @petition.translated_app_link_metrics metric.event
+                  span.col-xs-4= metric.count
             .col-xs-4
               .title IOS
               - @ios_metrics.map do |metric|
                 .row
-                  span.col-xs-6= @petition.translated_app_link_metrics metric.event
-                  span.col-xs-6= metric.count
+                  span.col-xs-8= @petition.translated_app_link_metrics metric.event
+                  span.col-xs-4= metric.count
             .col-xs-4
               .sub-title Outros
               - @other_metrics.map do |metric|
                 .row
-                  span.col-xs-6= @petition.translated_app_link_metrics metric.event
-                  span.col-xs-6= metric.count
+                  span.col-xs-8= @petition.translated_app_link_metrics metric.event
+                  span.col-xs-4= metric.count
 
   .row
     .col-xs-6
