@@ -3,7 +3,6 @@ class ShareLinkMetricsService
   class RequestError < StandardError; end
 
   def initialize(
-    api_key: Rails.application.secrets.firebase['api_key'],
     timeout: Rails.application.secrets.apis['mobile']['timeout'],
     url: "https://www.googleapis.com/auth/firebase",
     logger: Rails.logger
@@ -39,7 +38,7 @@ class ShareLinkMetricsService
       Rails.cache.fetch('google_api_access_token')
     else
       puts "Gerating new google api access token"
-      auth = Google::Auth::ServiceAccountCredentials.make_creds(scope: "https://www.googleapis.com/auth/firebase")
+      auth = Google::Auth::ServiceAccountCredentials.make_creds(scope: url)
       token = auth.fetch_access_token!
       Rails.cache.write('google_api_access_token', token, expires_in: 59.minute)
       token
