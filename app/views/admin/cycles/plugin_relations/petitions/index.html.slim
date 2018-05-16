@@ -60,7 +60,7 @@
         .title
           h3= PetitionPlugin::Detail.human_attribute_name(:share_link)
         - if @petition.share_link.present?
-          a href= @petition.share_link = @petition.share_link
+          a target='_blank' href= @petition.share_link = @petition.share_link
         - else
           = "Processando App link"
   - if @android_metrics || @ios_metrics || @other_metrics
