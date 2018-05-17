@@ -1,5 +1,11 @@
 ## Next
 
+* [PR 454]: Add app link analytics to admin interface
+  - Run `bundle update --source google-api-client`
+  - Run `bundle install`
+  - Set env `GOOGLE_ACCOUNT_TYPE` to the google account type
+  - Set env `GOOGLE_CLIENT_EMAIL` to the google client email
+  - Set env `6GOOGLE_PRIVATE_KEY` to the google private key
 * [PR 450]: Add share link
   - Set env `FIREBASE_API_KEY` to the Firebase's Web API key
   - Set env `FIREBASE_DYNAMIC_LINK_DOMAIN` to Firebase's dynamic link domain
