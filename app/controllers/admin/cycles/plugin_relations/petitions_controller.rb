@@ -2,13 +2,9 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
   def index
     @petition = @plugin_relation.petition_detail
     dynamic_link_metrics = get_dynamic_link_metrics @petition
+
     if dynamic_link_metrics
-      android_metrics = dynamic_link_metrics.select { |metric| metric.platform == "ANDROID"}
-      @android_metrics_with_default = add_defaults_to_dynamic_link_metrics android_metrics, "ANDROID"
-      ios_metrics = dynamic_link_metrics.select { |metric| metric.platform == "IOS"}
-      @ios_metrics_with_default = add_defaults_to_dynamic_link_metrics ios_metrics, "IOS"
-      other_metrics = dynamic_link_metrics.select { |metric| metric.platform == "OTHER"}
-      @other_metrics_with_default = add_defaults_to_dynamic_link_metrics other_metrics, "OTHER"
+      @dynamic_link_metrics_with_default = dynamic_link_metrics_dafault.perform dynamic_link_metrics
     end
   end
 
@@ -96,23 +92,11 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
     metricsShareLinkService.getMetrics petition.share_link, 30
   end
 
-  def add_defaults_to_dynamic_link_metrics(metrics, platform)
-    metrics_with_defaults = []
-    metrics_with_defaults << get_metric_with_default(metrics, "CLICK", platform)
-    metrics_with_defaults << get_metric_with_default(metrics, "REDIRECT", platform)
-    metrics_with_defaults << get_metric_with_default(metrics, "APP_INSTALL", platform)
-    metrics_with_defaults << get_metric_with_default(metrics, "APP_FIRST_OPEN", platform)
-    metrics_with_defaults << get_metric_with_default(metrics, "APP_RE_OPEN", platform)
-
-    metrics_with_defaults
-  end
-
-  def get_metric_with_default(metrics, event, platform)
-    metric = metrics.select { |metric| metric.event == event }
-    metric.any? ? metric.first : OpenStruct.new(:count => "0", :event => event, :platform => platform)
-  end
-
   def detail_updater
     @detail_updater ||= PetitionPlugin::DetailUpdater.new
+  end
+
+  def dynamic_link_metrics_dafault
+    @dynamic_link_metrics_dafault ||= PetitionPlugin::DynamicLinkMetricsDefault.new
   end
 end

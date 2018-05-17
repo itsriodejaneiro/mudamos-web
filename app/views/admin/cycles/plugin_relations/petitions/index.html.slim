@@ -63,7 +63,7 @@
           a target='_blank' href= @petition.share_link = @petition.share_link
         - else
           = "Processando App link"
-  - if @android_metrics_with_default || @ios_metrics_with_default || @other_metrics_with_default
+  - if @dynamic_link_metrics_with_default
     .row
       .col-xs-12
         .card-module
@@ -72,21 +72,21 @@
           .row
             .col-xs-4
               .sub-title Android
-              - @android_metrics_with_default.map do |metric|
+              - @dynamic_link_metrics_with_default.android.map do |metric|
                 .row
-                  span.col-xs-8= @petition.translated_app_link_metrics metric.event
+                  span.col-xs-8= translate_dynamic_link_metrics metric.event
                   span.col-xs-4= metric.count
             .col-xs-4
               .title IOS
-              - @ios_metrics_with_default.map do |metric|
+              - @dynamic_link_metrics_with_default.ios.map do |metric|
                 .row
-                  span.col-xs-8= @petition.translated_app_link_metrics metric.event
+                  span.col-xs-8= translate_dynamic_link_metrics metric.event
                   span.col-xs-4= metric.count
             .col-xs-4
               .sub-title Outros
-              - @other_metrics_with_default.map do |metric|
+              - @dynamic_link_metrics_with_default.other.map do |metric|
                 .row
-                  span.col-xs-8= @petition.translated_app_link_metrics metric.event
+                  span.col-xs-8= translate_dynamic_link_metrics metric.event
                   span.col-xs-4= metric.count
 
   .row
