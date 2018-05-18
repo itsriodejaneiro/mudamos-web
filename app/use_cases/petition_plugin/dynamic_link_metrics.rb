@@ -12,7 +12,7 @@ module PetitionPlugin
     def perform(petition)
       response = Response.new
 
-      @metrics = share_link_metrics_service.getMetrics petition.share_link, 30
+      @metrics = share_link_metrics_service.get_metrics petition.share_link, 30
 
       response.android = android
       response.ios = ios
@@ -24,7 +24,7 @@ module PetitionPlugin
     private
 
     def metrics
-      @metrics
+      @metrics || []
     end
 
     def android
