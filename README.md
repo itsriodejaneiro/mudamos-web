@@ -51,7 +51,7 @@ Follow the instructions, and use the created user to access the admin area.
   - 'DB_POOL': database pool
   - 'GOOGLE_ACCOUNT_TYPE': Type of google account(used by gem 'googleauth')
   - 'GOOGLE_CLIENT_EMAIL': E-mail of google account(used by gem 'googleauth')
-  - '6GOOGLE_PRIVATE_KEY': Private key of google account(used by gem 'googleauth')
+  - 'GOOGLE_PRIVATE_KEY': Private key of google account(used by gem 'googleauth')
   - `MOBILE_API_ID_IOS`: The iOs Mobile app id
   - 'MOBILE_API_SECRET': The Mobile secret key
   - 'MOBILE_API_TIMEOUT': The ammount in seconds the system will use as timeout when trying to communicate with the Mobile API
