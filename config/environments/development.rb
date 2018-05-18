@@ -6,7 +6,15 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
-  config.cache_store = :dalli_store, ENV["MEMCACHED_HOST"], { pool_size: (ENV["RAILS_MAX_THREADS"] || 5).to_i } if ENV["MEMCACHED_HOST"]
+  config.cache_store = :dalli_store, (ENV["MEMCACHE_SERVERS"] || "").split(","), {
+    username: ENV["MEMCACHE_USERNAME"],
+    password: ENV["MEMCACHE_PASSWORD"],
+    failover: true,
+    socket_timeout: 1.5,
+    socket_failure_delay: 0.2,
+    down_retry_delay: 60,
+    pool_size: (ENV["RAILS_MAX_THREADS"] || 5).to_i
+  } if ENV["MEMCACHE_SERVERS"]
 
   # Do not eager load code on boot.
   config.eager_load = false
