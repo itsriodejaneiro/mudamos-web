@@ -2,12 +2,14 @@ module PetitionPlugin
 
   Response = Struct.new(:android, :ios, :other)
 
-  class DynamicLinkMetricsDefault
+  class DynamicLinkMetrics
     attr_accessor :metrics
 
-    def perform(data)
+    def perform(petition)
       response = Response.new
-      @metrics = data
+
+      metricsShareLinkService = ShareLinkMetricsService.new
+      @metrics = metricsShareLinkService.getMetrics petition.share_link, 30
 
       response.android = android
       response.ios = ios

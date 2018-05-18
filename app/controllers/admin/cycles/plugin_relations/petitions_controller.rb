@@ -1,11 +1,7 @@
 class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationController
   def index
     @petition = @plugin_relation.petition_detail
-    dynamic_link_metrics = get_dynamic_link_metrics @petition
-
-    if dynamic_link_metrics
-      @dynamic_link_metrics_with_default = dynamic_link_metrics_dafault.perform dynamic_link_metrics
-    end
+    @dynamic_link_metrics = dynamic_link_metrics.perform @petition
   end
 
   def new
@@ -87,16 +83,11 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
     PetitionShareLinkGenerationWorker.perform_async id: response.detail.id
   end
 
-  def get_dynamic_link_metrics(petition)
-    metricsShareLinkService = ShareLinkMetricsService.new
-    metricsShareLinkService.getMetrics petition.share_link, 30
-  end
-
   def detail_updater
     @detail_updater ||= PetitionPlugin::DetailUpdater.new
   end
 
-  def dynamic_link_metrics_dafault
-    @dynamic_link_metrics_dafault ||= PetitionPlugin::DynamicLinkMetricsDefault.new
+  def dynamic_link_metrics
+    @dynamic_link_metrics_dafault ||= PetitionPlugin::DynamicLinkMetrics.new
   end
 end

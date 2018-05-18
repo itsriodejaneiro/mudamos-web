@@ -5,17 +5,18 @@ class ShareLinkMetricsService
 
   def initialize(
     timeout: Rails.application.secrets.apis['mobile']['timeout'],
-    url: "https://www.googleapis.com/auth/firebase",
     logger: Rails.logger
   )
 
     @timeout = timeout
-    @url = url
+    @url = "https://www.googleapis.com/auth/firebase"
     @logger = logger
+    @max_retries = 3
   end
 
-  attr_accessor :timeout
+  attr_reader :timeout
   attr_reader :url
+  attr_reader :max_retries
   attr_reader :logger
 
   def connection
@@ -27,7 +28,7 @@ class ShareLinkMetricsService
 
   def getMetrics(share_link, days)
     share_link_addressable = CGI.escape(share_link)
-    response = get("https://firebasedynamiclinks.googleapis.com/v1/#{share_link_addressable}/linkStats?durationDays=7")
+    response = get("https://firebasedynamiclinks.googleapis.com/v1/#{share_link_addressable}/linkStats?durationDays=#{days}")
     if response
       JSON.parse(response.body, object_class: OpenStruct).linkEventStats
     end
@@ -36,8 +37,7 @@ class ShareLinkMetricsService
   private
 
   def get_token(force: false)
-    Rails.cache.fetch('google_api_access_token', force: force, expires_in: 59.minutes) do
-      puts "Gerating new google api access token"
+    Rails.cache.fetch('google_api_access_token', force: force) do
       auth = Google::Auth::ServiceAccountCredentials.make_creds(scope: url)
       auth.fetch_access_token!
     end
@@ -52,15 +52,15 @@ class ShareLinkMetricsService
     define_method(verb) do |path, headers = {}, authorization = true|
       begin
         retries ||= 0
-        headers.merge! authorization_header if authorization
         response = connection.send(verb, path) do |req|
-          req.options.timeout = @timeout if @timeout
+          req.options.timeout = timeout if timeout
           req.headers.merge! headers if headers
+          req.headers.merge! authorization_header if authorization_header
         end
 
         validate_response response
       rescue InvalidToken
-        retry if (retries += 1 ) < 3
+        retry if (retries += 1) < max_retries
       end
     end
   end
