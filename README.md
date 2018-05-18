@@ -42,33 +42,36 @@ Follow the instructions, and use the created user to access the admin area.
 
 ### Environment variables
 
-  - 'PETITION_PUBLISHER_QUEUE': Name of the sqs queue used for publishing the petitions
-  - 'PETITION_PUBLISHER_PRIORITY': The priority of the sqs queue for the publication the petitions
-  - 'USER_SYNC_QUEUE': Name of the sqs queue used for the user synchronization with the mobile platform
-  - 'PETITION_MOBILE_SYNC_QUEUE': Name of the sqs queue used for the synchronization of the petitions versions with the mobile api
-  - 'PETITION_MOBILE_SYNC_QUEUE_PRIORITY': The priority of the sqs queue for the synchronization of the petitions versions with the mobile api
-  - 'PETITION_PDF_GENERATION_QUEUE': Name of the sqs queue used for the generation of the PDFs of the petitions
-  - 'PETITION_PDF_GENERATION_QUEUE_PRIORITY': The priority of the sqs queue for the generation of the PDFs of the petitions
-  - 'PETITION_PDF_BUCKET': Name of the bucket where the petition's pdfs are stored
-  - 'PETITION_NOTIFIER_QUEUE': Name of the bucket where push messages are sent
-  - 'PETITION_NOTIFIER_QUEUE_PRIORITY': The priority of the notifier queue
-  - 'AWS_ACCESS_KEY_ID': AWS access key id used to access the aws resources
-  - 'AWS_SECRET_ACCESS_KEY': AWS secret access key used to access the aws resources
-  - 'AWS_REGION': The region where the AWS resources are
+  - `API_CACHE_EXPIRES_IN`: The ammount in minutes that the system will use to expire requests from the Mobile API
   - `APP_DEFAULT_HOST`: Which url the application is hosted
   - `APP_DEFAULT_SCHEME`: Which scheme the application uses (http or https)
-  - 'MOBILE_API_URL': The Mobile API url
+  - 'AWS_ACCESS_KEY_ID': AWS access key id used to access the aws resources
+  - 'AWS_REGION': The region where the AWS resources are
+  - 'AWS_SECRET_ACCESS_KEY': AWS secret access key used to access the aws resources
+  - 'DB_POOL': database pool
+  - 'GOOGLE_ACCOUNT_TYPE': Type of google account(used by gem 'googleauth')
+  - 'GOOGLE_CLIENT_EMAIL': E-mail of google account(used by gem 'googleauth')
+  - 'GOOGLE_PRIVATE_KEY': Private key of google account(used by gem 'googleauth')
+  - `MOBILE_API_ID_IOS`: The iOs Mobile app id
   - 'MOBILE_API_SECRET': The Mobile secret key
-  - 'MOBILE_API_TIMEOUT': The ammount in seconds the system will use as timeout when trying to communicate with the Mobile API 
+  - 'MOBILE_API_TIMEOUT': The ammount in seconds the system will use as timeout when trying to communicate with the Mobile API
+  - 'MOBILE_API_URL': The Mobile API url
+  - 'MUDAMOS_VIDEO_BUCKET': mudamos video bucket
   - 'ONESIGNAL_API_KEY': The one signal api key (push message)
   - 'ONESIGNAL_APP_ID': The one signal app id (push message)
-  - `API_CACHE_EXPIRES_IN`: The ammount in minutes that the system will use to expire requests from the Mobile API
-  - `MOBILE_API_ID_IOS`: The iOs Mobile app id
-  - 'MUDAMOS_VIDEO_BUCKET': mudamos video bucket
-  - 'DB_POOL': database pool
+  - 'PETITION_MOBILE_SYNC_QUEUE': Name of the sqs queue used for the synchronization of the petitions versions with the mobile api
+  - 'PETITION_MOBILE_SYNC_QUEUE_PRIORITY': The priority of the sqs queue for the synchronization of the petitions versions with the mobile api
+  - 'PETITION_NOTIFIER_QUEUE': Name of the bucket where push messages are sent
+  - 'PETITION_NOTIFIER_QUEUE_PRIORITY': The priority of the notifier queue
+  - 'PETITION_PDF_BUCKET': Name of the bucket where the petition's pdfs are stored
+  - 'PETITION_PDF_GENERATION_QUEUE': Name of the sqs queue used for the generation of the PDFs of the petitions
+  - 'PETITION_PDF_GENERATION_QUEUE_PRIORITY': The priority of the sqs queue for the generation of the PDFs of the petitions
+  - 'PETITION_PUBLISHER_QUEUE': Name of the sqs queue used for publishing the petitions
+  - 'PETITION_PUBLISHER_PRIORITY': The priority of the sqs queue for the publication the petitions
+  - 'RACK_TIMEOUT': request timeout forced by middleware in seconds
   - 'RAILS_MAX_THREADS': web server max threads
   - 'RAILS_MIN_THREADS': web server min threads
-  - 'RACK_TIMEOUT': request timeout forced by middleware in seconds
+  - 'USER_SYNC_QUEUE': Name of the sqs queue used for the user synchronization with the mobile platform
   - 'WEB_CONCURRENCY': number of web server workers
 
 ### Partners api

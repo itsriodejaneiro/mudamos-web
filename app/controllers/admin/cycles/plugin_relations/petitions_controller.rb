@@ -1,6 +1,7 @@
 class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationController
   def index
     @petition = @plugin_relation.petition_detail
+    @dynamic_link_metrics = dynamic_link_metrics.perform @petition
   end
 
   def new
@@ -84,5 +85,9 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
 
   def detail_updater
     @detail_updater ||= PetitionPlugin::DetailUpdater.new
+  end
+
+  def dynamic_link_metrics
+    @dynamic_link_metrics_dafault ||= PetitionPlugin::DynamicLinkMetrics.new
   end
 end
