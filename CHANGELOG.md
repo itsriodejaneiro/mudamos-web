@@ -1,7 +1,7 @@
 ## Next
 
 * [PR 454]: Add app link analytics to admin interface
-  - Set env `GOOGLE_ACCOUNT_TYPE` to the google account type
+  - Set env `GOOGLE_ACCOUNT_TYPE` to `service`
   - Set env `GOOGLE_CLIENT_EMAIL` to the google client email
   - Set env `6GOOGLE_PRIVATE_KEY` to the google private key
 * [PR 450]: Add share link
