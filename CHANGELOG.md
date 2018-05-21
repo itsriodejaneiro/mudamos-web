@@ -1,5 +1,9 @@
 ## Next
 
+* [PR 457]: Docker file with app config
+  - Set env `MEMCACHE_SERVERS`
+  - Set env `MEMCACHE_USERNAME` 
+  - Set env `MEMCACHE_PASSWORD`
 * [PR 454]: Add app link analytics to admin interface
   - Set env `GOOGLE_ACCOUNT_TYPE` to `service`
   - Set env `GOOGLE_CLIENT_EMAIL` to the google client email

@@ -32,9 +32,11 @@ staging:
   database: mudamos_staging
   username: mudamos
   password: <%= ENV['MUDAMOS_DATABASE_PASSWORD'] %>
+  url: <%= ENV["DATABASE_URL"] %>
 
 production:
   <<: *default
   database: mudamos_production
   username: mudamos
   password: <%= ENV['MUDAMOS_DATABASE_PASSWORD'] %>
+  url: <%= ENV["DATABASE_URL"] %>
