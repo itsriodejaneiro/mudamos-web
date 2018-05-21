@@ -18,7 +18,9 @@
         &.guide,
         &.papers,
         &.social-midia,
-        &.sticks {
+        &.sticks,
+        &.presentation,
+        &.logo-mudamos {
           width: 95%;
           display: flex;
           flex-flow: row;
@@ -55,7 +57,7 @@
       order: 1;
 
       img {
-        max-width: 250px;
+        width: 250px;
       }
     }
 
@@ -93,6 +95,8 @@
       &.papers,
       &.social-midia,
       &.sticks,
+      &.presentation,
+      &.logo-mudamos
       {
         flex-flow: column;
       }
