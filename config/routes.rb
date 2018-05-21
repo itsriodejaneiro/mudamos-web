@@ -161,6 +161,8 @@ Rails.application.routes.draw do
 
   match "/quem-somos", to: "static#about", via: :get
 
+  get "/mobilizacao", to: "static#mobilize"
+
   root "static#index"
 
   resources :cycles, only: [:show], path: 'temas' do
