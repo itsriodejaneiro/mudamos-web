@@ -1,5 +1,6 @@
 ## Next
 
+* [PR 459]: Temporarily remove links to mobilize page
 * [PR 455]: Add mobilize static page
 * [PR 457]: Docker file with app config
   - Set env `MEMCACHE_SERVERS`
