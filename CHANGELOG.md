@@ -1,5 +1,7 @@
 ## Next
 
+## [1.28.0] - 25/05/2018
+
 * [PR 459]: Temporarily remove links to mobilize page
 * [PR 455]: Add mobilize static page
 * [PR 457]: Docker file with app config
