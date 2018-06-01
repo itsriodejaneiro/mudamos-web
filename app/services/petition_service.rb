@@ -125,7 +125,7 @@ class PetitionService
     #     end
     #   end
     low_method = -> {
-      target = initial_signatures_goal * (2 ** (Math.log(signatures_count / initial_signatures_goal.to_f) / Math.log(2)).ceil)
+      target = initial_signatures_goal * (2 ** (Math.log(signatures_count / initial_signatures_goal.to_f) / Math.log(2)).ceil).to_f
       target = target * 2 if target == signatures_count
       clamp.call target.zero? ? initial_signatures_goal : target
     }
