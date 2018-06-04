@@ -1,5 +1,7 @@
 ## Next
 
+* [PR 462]: Bug fix at plip info
+
 ## [1.28.0] - 25/05/2018
 
 * [PR 459]: Temporarily remove links to mobilize page
