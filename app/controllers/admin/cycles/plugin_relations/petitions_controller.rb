@@ -18,6 +18,8 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
     response = detail_updater.perform @petition, petition_params, petition_body
     if response.success
       enqueue_pdf_generation response
+      enqueue_plip_sync response
+
       flash[:success] = "Projeto de Lei salvo com sucesso."
       redirect_to [:admin, @cycle, @plugin_relation, :petitions]
     else
@@ -77,6 +79,10 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
 
   def enqueue_pdf_generation(use_case_response)
     PetitionPdfGenerationWorker.perform_async id: use_case_response.version.id if use_case_response.version
+  end
+
+  def enqueue_plip_sync(use_case_response)
+    PlipChangedSyncWorker.perform_async id: use_case_response.detail.id unless use_case_response.version
   end
 
   def shared_link_generation(response)

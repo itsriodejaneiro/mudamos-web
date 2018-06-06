@@ -8,9 +8,7 @@ module Api
         root 'plips', 'plip'
 
         expose :id
-        expose :version_id do |plip|
-          plip.detail_id
-        end
+        expose :detail_id
 
         with_options format_with: :iso_date_time do
           expose :created_at

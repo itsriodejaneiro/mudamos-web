@@ -78,7 +78,7 @@ class Admin::CyclesController < Admin::ApplicationController
       flash[:error] = "Erro ao criar Ciclo."
       return render :new
     end
-    
+
     empty_plugin_relation = false
     @cycle.phases.map do |x|
       x.final_date = x.final_date.try(:end_of_day)
@@ -145,6 +145,8 @@ class Admin::CyclesController < Admin::ApplicationController
     # @cycle.plugin_relations = @cycle_plugin_relations
 
     if @cycle.save
+      enqueue_plip_sync @cycle
+
       flash[:success] = "Ciclo atualizado com sucesso."
       redirect_to [:admin, @cycle]
     else
@@ -155,24 +157,29 @@ class Admin::CyclesController < Admin::ApplicationController
 
   private
 
-    def cycle_params
-      params.require(:cycle).permit(
-        :title,
+  def enqueue_plip_sync(cycle)
+    detail = cycle.plugin_relations.where(slug: PluginTypeRepository.plip_slug).first&.petition_detail
+    PlipChangedSyncWorker.perform_async id: detail.id if detail && detail.published_version
+  end
+
+  def cycle_params
+    params.require(:cycle).permit(
+      :title,
+      :description,
+      :color,
+      :picture,
+      phases_attributes: [
+        :id,
+        :name,
         :description,
-        :color,
-        :picture,
-        phases_attributes: [
+        :initial_date,
+        :final_date,
+        :_destroy,
+        plugin_relation_attributes: [
           :id,
-          :name,
-          :description,
-          :initial_date,
-          :final_date,
-          :_destroy,
-          plugin_relation_attributes: [
-            :id,
-            :plugin_id
-          ]
+          :plugin_id
         ]
-      )
-    end
+      ]
+    )
+  end
 end
