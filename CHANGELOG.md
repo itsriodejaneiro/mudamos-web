@@ -1,5 +1,7 @@
 ## Next
 
+## [1.28.1] - 06/06/2018
+
 * [PR 465]: Fix share link when unavailable
 * [PR 462]: Bug fix at plip info
 
