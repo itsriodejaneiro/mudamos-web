@@ -68,6 +68,7 @@ Follow the instructions, and use the created user to access the admin area.
   - 'PETITION_PDF_GENERATION_QUEUE_PRIORITY': The priority of the sqs queue for the generation of the PDFs of the petitions
   - 'PETITION_PUBLISHER_QUEUE': Name of the sqs queue used for publishing the petitions
   - 'PETITION_PUBLISHER_PRIORITY': The priority of the sqs queue for the publication the petitions
+  - 'PLIP_CHANGED_SYNC_QUEUE': The queue which announces plip changes to the mobile api
   - 'RACK_TIMEOUT': request timeout forced by middleware in seconds
   - 'RAILS_MAX_THREADS': web server max threads
   - 'RAILS_MIN_THREADS': web server min threads
