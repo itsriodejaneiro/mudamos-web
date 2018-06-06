@@ -118,6 +118,10 @@ Rails.application.routes.draw do
       end
       resources :signatures, only: [:show]
     end
+
+    namespace :v3 do
+      resources :plips, only: %i(show)
+    end
   end
 
   namespace :partners_api do

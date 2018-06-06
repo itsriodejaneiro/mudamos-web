@@ -7,12 +7,14 @@ class Plip
                           :video_id,
                           :uf,
                           :city,
-                          :share_link
+                          :share_link,
+                          :created_at
   def_delegators :published_version, :id, :document_url
-  def_delegators :phase, :cycle
+  def_delegators :phase, :cycle,
+                         :initial_date,
+                         :final_date
 
-  def_delegators :petition_info, :total_signatures_required,
-                                 :initial_signatures_goal
+  def_delegators :petition_info, :initial_signatures_goal
 
   ScopeCoverage = Struct.new(:scope, :uf, :city)
 
@@ -53,6 +55,10 @@ class Plip
 
   def signatures_required
     petition_info.current_signatures_goal
+  end
+
+  def total_signatures_required
+    detail.signatures_required
   end
 
   def petition_info
