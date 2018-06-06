@@ -1,5 +1,8 @@
 ## Next
 
+* [PR xxx]: XXXXXX
+  - Set env `PLIP_CHANGED_SYNC_QUEUE`
+
 ## [1.28.1] - 06/06/2018
 
 * [PR 465]: Fix share link when unavailable
