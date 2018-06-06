@@ -1,8 +1,8 @@
 module PetitionPlugin
 
-  Response = Struct.new(:android, :ios, :other)
-
   class DynamicLinkMetrics
+    Response = Struct.new(:android, :ios, :other)
+
     attr_accessor :share_link_metrics_service
 
     def initialize(share_link_metrics_service: ShareLinkMetricsService.new)

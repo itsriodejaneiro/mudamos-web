@@ -1,8 +1,8 @@
 module PetitionPlugin
 
-  Response = Struct.new(:success, :detail, :version)
-
   class DetailUpdater
+    Response = Struct.new(:success, :detail, :version)
+
     def perform(detail, attrs, detail_body)
       response = Response.new
 

@@ -27,6 +27,7 @@ class ShareLinkMetricsService
   end
 
   def get_metrics(share_link, days)
+    return if share_link.blank?
     share_link_addressable = CGI.escape(share_link)
     response = get("https://firebasedynamiclinks.googleapis.com/v1/#{share_link_addressable}/linkStats?durationDays=#{days}")
     if response
