@@ -19,5 +19,7 @@ class PetitionShareLinkGenerationWorker
 
     petition_detail.share_link = url
     petition_detail.save!
+
+    PlipChangedSyncWorker.perform_async id: petition_detail.id if petition_detail.published_version
   end
 end
