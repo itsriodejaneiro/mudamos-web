@@ -1,6 +1,6 @@
 ## Next
 
-* [PR xxx]: XXXXXX
+* [PR 467]: Sync plip worker
   - Set env `PLIP_CHANGED_SYNC_QUEUE`
 
 ## [1.28.1] - 06/06/2018
