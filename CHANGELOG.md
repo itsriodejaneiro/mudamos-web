@@ -1,5 +1,7 @@
 ## Next
 
+* [PR 469]: Add links to mobilize page
+
 ## [1.28.1] - 06/06/2018
 
 * [PR 465]: Fix share link when unavailable
