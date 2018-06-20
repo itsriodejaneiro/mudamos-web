@@ -66,6 +66,13 @@
       order: 2;
     }
 
+    .video {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 70px;
+    }
+
     .mobilize-logo img {
       max-width: 375px;
       width: 33vw;
