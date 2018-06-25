@@ -1,5 +1,6 @@
 ## Next
 
+* [PR 471]: Bug fix when create a petition
 * [PR 469]: Add links to mobilize page
 
 ## [1.28.1] - 06/06/2018
