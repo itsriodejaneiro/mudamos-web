@@ -10,6 +10,8 @@ module PetitionPlugin
     end
 
     def perform(petition)
+      return if !petition
+
       response = Response.new
 
       @metrics = share_link_metrics_service.get_metrics petition.share_link, 30
