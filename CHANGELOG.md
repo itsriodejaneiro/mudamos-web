@@ -2,6 +2,8 @@
 
 * [PR 467]: Sync plip worker
   - Set env `PLIP_CHANGED_SYNC_QUEUE`
+* [PR 471]: Bug fix when create a petition
+* [PR 469]: Add links to mobilize page
 
 ## [1.28.1] - 06/06/2018
 
