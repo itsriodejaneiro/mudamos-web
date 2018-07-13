@@ -33,4 +33,8 @@ class PluginTypeRepository
     when "Petição" then PluginType::Petition.new
     end
   end
+
+  def self.plip_slug
+    "peticao"
+  end
 end

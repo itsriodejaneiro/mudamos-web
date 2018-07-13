@@ -7,6 +7,20 @@ class PlipRepository
     plips.last
   end
 
+  def find_plip_by_id(id)
+    detail = PetitionPlugin::Detail
+      .where(id: id)
+      .includes(plugin_relation: { related: %i(cycle plugin_relation) }).first
+
+    return if !detail || !detail.published_version
+
+    phase = detail.plugin_relation.related
+
+    Plip.new detail: detail,
+             phase: phase,
+             plip_url: generate_plip_url(phase)
+  end
+
   def find_plip_by_slug(slug)
     phase = Phase
         .includes(:cycle)
@@ -17,6 +31,8 @@ class PlipRepository
         .includes(plugin_relation: { petition_detail: %i(petition_detail_versions city) })
         .where(plugin_relation: { plugin: { plugin_type: PluginTypeRepository::ALL_TYPES[:petition] }})
         .first
+
+    return unless phase
 
     petition = phase.plugin_relation.petition_detail
 
