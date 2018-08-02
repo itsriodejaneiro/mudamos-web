@@ -1,6 +1,6 @@
 ## Next
 
-* [PR xxx]: Call api to sync the updated petition
+* [PR 472]: Call api to sync the updated petition
 * [PR 467]: Sync plip worker
   - Set env `PLIP_CHANGED_SYNC_QUEUE`
 * [PR 471]: Bug fix when create a petition
