@@ -86,7 +86,7 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
   end
 
   def shared_link_generation(response)
-    PetitionShareLinkGenerationWorker.perform_async id: response.detail.id
+    PetitionShareLinkGenerationWorker.perform_async id: response.detail.id unless use_case_response.version
   end
 
   def detail_updater
