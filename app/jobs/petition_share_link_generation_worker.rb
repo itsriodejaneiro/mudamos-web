@@ -21,12 +21,6 @@ class PetitionShareLinkGenerationWorker
     petition_detail.save!
 
     PlipChangedSyncWorker.perform_async id: petition_detail.id if petition_detail.published_version
-
-    enqueue_plip_sync(petition_detail.id)
-  end
-
-  def enqueue_plip_sync(detail_id)
-    PlipChangedSyncWorker.perform_async id: detail_id
     Rails.logger.info "Plip sync enqueued. ID: #{detail_id}"
   end
 end
