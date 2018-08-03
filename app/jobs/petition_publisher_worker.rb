@@ -22,7 +22,7 @@ class PetitionPublisherWorker
       version.update! published: true
       Rails.logger.info "Version published #{petition_detail_version_id}"
 
-      enqueue_plip_sync version.petition_plugin_detail_id
+      enqueue_share_link version.petition_plugin_detail_id
 
       refresh_caches version
     else
@@ -30,9 +30,9 @@ class PetitionPublisherWorker
     end
   end
 
-  def enqueue_plip_sync(detail_id)
-    PlipChangedSyncWorker.perform_async id: detail_id
-    Rails.logger.info "Plip sync enqueued. ID: #{detail_id}"
+  def enqueue_share_link(detail_id)
+    PetitionShareLinkGenerationWorker.perform_async id: detail_id
+    Rails.logger.info "Generate Share link enqueued. ID: #{detail_id}"
   end
 
   def refresh_caches(version)

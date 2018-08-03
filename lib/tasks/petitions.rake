@@ -177,4 +177,29 @@ namespace :petitions do
       end
     end
   end
+
+  desc "Sync all petitions details to mobile api"
+  task sync_plips: :environment do
+    log = -> message {
+      puts message
+      Rails.logger.info message
+    }
+
+    error = -> message {
+      puts message
+      Rails.logger.error message
+    }
+
+    PetitionPlugin::Detail.find_in_batches do |batch|
+      batch.each do |detail|
+        begin
+          PlipChangedSyncWorker.perform_async id: detail.id
+          log.call "Enqueue sync petition #{detail.id} to mobile api"
+        rescue => e
+          error.call "Could not enqueue sync petition #{detail.id} to mobile api"
+          error.call e
+        end
+      end
+    end
+  end
 end

@@ -181,6 +181,25 @@ This diagram shows the flow of the petition, from the user creation, to its publ
         |   |                      |   |    Publishes the petition |   |                          |   |                         |   |
         |   |                      |   | <-------------------------+   |                          |   |                         |   |
         |   |                      |   |                           |   |                          |   |                         |   |
+        |   |                      |   |                           |   |                          |   |                         |   |
+        |   |                      |   |  Schedule share link      |   |                          |   |                         |   |
+        |   |                      |   |  generation               |   |                          |   |                         |   |
+        |   |                      |   +------------------------>  |   |                          |   |                         |   |
+        |   |                      |   |                           |   |                          |   |                         |   |
+        |   |                      |   |  Generate share link and  |   |                          |   |                         |   |
+        |   |                      |   |  stores it                |   |                          |   |                         |   |
+        |   |                      |   | <-------------------------+   |                          |   |                         |   |
+        |   |                      |   |                           |   |                          |   |                         |   |
+        |   |                      |   |                           |   |                          |   |                         |   |
+        |   |                      |   | Schedule sync petition    |   |                          |   |                         |   |
+        |   |                      |   +-------------------------> |   |                          |   |                         |   |
+        |   |                      |   |                           |   |                          |   |                         |   |
+        |   |                      |   |  Start the petition sync  |   |                          |   |                         |   |
+        |   |                      |   | <-------------------------+   |                          |   |                         |   |
+        |   |                      |   |                           |   |  Sync petition info      |   |                         |   |
+        |   |                      |   |                           |   |  on the mobile api       |   |                         |   |
+        |   |                      |   +--------------------------------------------------------> |   |                         |   |
+        |   |                      |   |                           |   |                          |   |                         |   |
         +---+                      +---+                           +---+                          +---+                         +---+
 
 ```

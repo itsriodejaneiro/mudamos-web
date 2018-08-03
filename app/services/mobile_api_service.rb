@@ -45,10 +45,7 @@ class MobileApiService
     json = Api::V3::Entities::Plip.represent(plip).as_json
     headers = authorization_header
 
-    # TODO: call sync api
-    # post("/api/v3/plip/sync", json, headers)
-    puts json
-    puts headers
+    post("/api/v3/petitions/sync", json, headers)
   end
 
   PetitionVersion = Struct.new(
