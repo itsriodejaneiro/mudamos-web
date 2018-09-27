@@ -1,5 +1,7 @@
 ## Next
 
+## [1.29.0] - 27/09/2018
+
 * [PR 475]: Fix multiline env var
 * [PR 472]: Call api to sync the updated petition
   - run `rake petitions:sync_plips`
