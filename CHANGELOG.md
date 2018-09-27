@@ -1,5 +1,6 @@
 ## Next
 
+* [PR 475]: Fix multiline env var
 * [PR 472]: Call api to sync the updated petition
   - run `rake petitions:sync_plips`
 * [PR 467]: Sync plip worker
