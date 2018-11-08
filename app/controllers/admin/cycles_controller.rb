@@ -121,14 +121,23 @@ class Admin::CyclesController < Admin::ApplicationController
     @cycle.assign_attributes(cycle_params)
 
     empty_plugin_relation = false
-    @cycle.phases.map do |x|
-      x.final_date = x.final_date.try(:end_of_day)
-      x.cycle = @cycle
+    @cycle.phases.map do |phase|
+      phase.initial_date = phase.initial_date.try(:beginning_of_day)
+      phase.final_date = phase.final_date.try(:end_of_day)
+      phase.cycle = @cycle
 
-      if x.plugin_relation
-        x.plugin_relation.related = x
+      if @cycle.initial_date > phase.initial_date
+        @cycle.initial_date = phase.initial_date
+      end
+
+      if @cycle.final_date < phase.final_date
+        @cycle.final_date = phase.final_date
+      end
+
+      if phase.plugin_relation
+        phase.plugin_relation.related = phase
       else
-        x.errors[:plugin_relation] << I18n.t("errors.messages.blank")
+        phase.errors[:plugin_relation] << I18n.t("errors.messages.blank")
         empty_plugin_relation = true
       end
     end
