@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180502131815) do
+ActiveRecord::Schema.define(version: 20190507130540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,6 +190,18 @@ ActiveRecord::Schema.define(version: 20180502131815) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  create_table "faqs", force: :cascade do |t|
+    t.string   "title",                      null: false
+    t.string   "description",                null: false
+    t.boolean  "published",   default: true
+    t.integer  "user_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "faqs", ["user_id"], name: "index_faqs_on_user_id", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
@@ -648,6 +660,7 @@ ActiveRecord::Schema.define(version: 20180502131815) do
   add_foreign_key "credits", "credit_categories"
   add_foreign_key "dislikes", "comments"
   add_foreign_key "dislikes", "users"
+  add_foreign_key "faqs", "users"
   add_foreign_key "likes", "comments"
   add_foreign_key "likes", "users"
   add_foreign_key "materials", "cycles"
