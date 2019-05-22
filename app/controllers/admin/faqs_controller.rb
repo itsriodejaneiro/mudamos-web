@@ -21,10 +21,10 @@ class Admin::FaqsController < Admin::ApplicationController
 
     if @faq.save
       @faq.insert_at_sequence(@faq.sequence)
-      flash[:success] = "FAQ criado com sucesso."
+      flash[:success] = "Dúvida criada com sucesso."
       redirect_to [:admin, @faq]
     else
-      flash[:error] = "Ocorreu algum erro ao criar o FAQ."
+      flash[:error] = "Ocorreu algum erro ao criar a dúvida."
       render :new
     end
   end
@@ -38,7 +38,7 @@ class Admin::FaqsController < Admin::ApplicationController
     end
 
     if @faq.save
-      flash[:success] = "FAQ atualizado com sucesso."
+      flash[:success] = "Dúvida atualizada com sucesso."
 
       fast_updated = @faq.published_changed?
 
@@ -48,7 +48,7 @@ class Admin::FaqsController < Admin::ApplicationController
         redirect_to [:admin, @faq]
       end
     else
-      flash[:error] = "Ocorreu algum erro ao atualizar o FAQ."
+      flash[:error] = "Ocorreu algum erro ao atualizar a dúvida."
       render :edit
     end
   end
@@ -57,9 +57,9 @@ class Admin::FaqsController < Admin::ApplicationController
     @faq = Faq.find(params[:id])
 
     if @faq.destroy
-      flash[:success] = "FAQ apagado com sucesso."
+      flash[:success] = "Dúvida apagada com sucesso."
     else
-      flash[:error] = "Ocorreu algum erro ao apagar o FAQ."
+      flash[:error] = "Ocorreu algum erro ao apagar a dúvida."
     end
     redirect_to [:admin, :faqs]
   end
