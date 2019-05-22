@@ -1,0 +1,38 @@
+= stylesheet_link_tag "faqs", media: "all"
+header.header.clearfix
+  = stylesheet_link_tag "plips", media: "all"
+  - content_for :javascript
+    = javascript_include_tag "plips"
+
+  nav.links
+    span
+      a.link.def-text-color.underscore#btn-home href=root_path Home
+    span
+      a.link.def-text-color.underscore href=plips_path Assine um projeto
+    span
+      a.link.def-text-color.underscore#btn-mobilizacao href=mobilizacao_path Guia de mobilização
+    span
+      a.link.def-text-color.underscore#btn-quemsomos href=quem_somos_path Quem somos
+    span
+      a.link.def-text-color.underscore#btn-envie href="https://itsrio2.typeform.com/to/iulNZI" target="_blank" Envie seu projeto
+
+
+  .logos.small
+    =link_to root_path do
+      = image_tag "static/logo.png", class: "logo"
+
+section
+  .container
+    .title
+      h1
+        strong Dúvidas
+    - @faqs.map.with_index do |faq, i|
+      .row
+        .col-xs-12
+          h3
+            strong.faq-title
+              = "#{faq.sequence + 1}. #{faq.title}"
+      .row
+        .col-xs-12
+          .jumbotron.faq-content
+            = faq.content.html_safe

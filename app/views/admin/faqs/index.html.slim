@@ -1,0 +1,12 @@
+- breadcrumb :faqs
+
+.row
+  .col-xs-12
+    .card-module
+      .pull-right
+        = link_to 'Criar dúvida', [:new, :admin, :faq], class: 'btn'
+      p
+        b.status-number= @faqs.count
+        | Número total de dúvidas
+
+= render partial: 'admin/faqs/thumb', collection: @faqs, as: :faq

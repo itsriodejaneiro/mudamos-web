@@ -1,0 +1,30 @@
+- breadcrumb :faq, @faq
+
+.row
+  .col-xs-9
+    .row
+      .col-xs-12
+        .card-module
+          = @faq.content.html_safe
+  .col-xs-3
+    .card-module.admin-faq-actions.bordered
+      .faq-actions-card
+        = link_to [:edit, :admin, @faq] do
+          i.icon-edit
+          span Editar
+      .faq-actions-card
+        = link_to [:admin, @faq], method: :delete do
+          i.icon-deletar
+          span Apagar
+      .faq-actions-card
+        = semantic_form_for [:admin, @faq], method: :put do |f|
+          = f.input :published, as: :hidden, input_html: { value: !@faq.published }
+          button
+            - if @faq.published
+              i.icon-desabilitar
+              span Desabilitar
+            - else
+              i.icon-publicar
+              span Publicar
+    .card-module.bordered.admin-blog-show-box
+      = "Criado em #{@faq.created_at.strftime('%d/%m/%Y')}"

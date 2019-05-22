@@ -249,6 +249,7 @@ small {
     display: inline-block;
     font-weight: normal;
     margin-left: 20px;
+    font-size: 20px;
   }
 }
 
@@ -434,11 +435,11 @@ a .right, .carousel-control, .desktop{
   height: 400px;
   margin-left: 15px;
   margin-right: 5px;
-  width: 230px; 
+  width: 230px;
   border-radius: 5px 5px 0 0;
   padding-left: 0;
   padding-right: 0;
-  
+
 }
 
 .row.flex .center-mobile {
@@ -448,11 +449,11 @@ a .right, .carousel-control, .desktop{
   flex-direction: column;
   height: 400px;
   margin: 0 auto;
-  max-width: 250px; 
+  max-width: 250px;
   border-radius: 5px 5px 0 0;
   padding-left: 0;
   padding-right: 0;
-  
+
 }
 
 .card {
@@ -494,7 +495,7 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto; 
+  margin: 0 auto;
   align-self: center;
   margin-top: $card-img;
 }
@@ -555,7 +556,7 @@ h4 {
 }
 
 .section-carousel{
-  padding-bottom: 20px; 
+  padding-bottom: 20px;
 }
 
 .footer{

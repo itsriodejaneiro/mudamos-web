@@ -13,3 +13,4 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( static.css )
 Rails.application.config.assets.precompile += %w( plips.css )
 Rails.application.config.assets.precompile += %w( plips.js )
+Rails.application.config.assets.precompile += %w( faqs/index.css )

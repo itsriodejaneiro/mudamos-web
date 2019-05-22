@@ -63,6 +63,8 @@ Rails.application.routes.draw do
 
     resources :cities, only: %i(index)
 
+    resources :faqs, path: 'duvidas'
+
     match 'users/:id/comments', to: 'users#user_comment_csv', via: :get
 
     resources :users, only: [:index, :show], path: 'usuarios'
@@ -166,6 +168,8 @@ Rails.application.routes.draw do
   match "/quem-somos", to: "static#about", via: :get
 
   get "/mobilizacao", to: "static#mobilize"
+
+  get "/duvidas", to: "faqs#index"
 
   root "static#index"
 

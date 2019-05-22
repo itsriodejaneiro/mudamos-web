@@ -1,0 +1,27 @@
+.row.admin-faq-thumb
+  .col-xs-12
+    .card-module
+      .row.row-same-height
+        .col-xs-8.col-xs-height.faq-thumb-header
+          .faq-background style="background: rgba(0, 0, 0, 0.6); border-left-color: #{faq.published ? '#1BC98E' : '#E64759'}"
+          h3.title= link_to faq.title, [:admin, faq]
+        .col-xs-4.col-xs-height.col-middle
+          ul.actions
+            li= semantic_form_for [:admin, faq], method: :put do |f|
+              = f.input :published, as: :hidden, input_html: { value: !faq.published }
+              button
+                - if faq.published
+                  i.icon-desabilitar
+                  span Desabilitar
+                - else
+                  i.icon-publicar
+                  span Publicar
+            li= link_to [:edit, :admin, faq] do
+              i.icon-edit
+              span Editar
+            li= link_to [:admin, faq], method: :delete, data: { confirm: 'Você tem certeza?' } do
+              i.icon-deletar
+              span Apagar
+    .row
+      .col-xs-12
+        p.faq-id= "ID: #{faq.id}"

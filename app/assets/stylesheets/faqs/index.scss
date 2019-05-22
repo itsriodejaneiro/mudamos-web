@@ -1,0 +1,27 @@
+@import "bootstrap/variables";
+
+.custom-container {
+  background-color: #eaeaea;
+}
+
+section {
+  background: url(image-path("static/background.png")) no-repeat left top;
+  background-color: #eaeaea;
+  background-size: cover;
+  padding: 30px;
+
+  .container {
+    max-width: 750px;
+    padding: 0;
+
+    .title {
+      margin-bottom: 24px;
+    }
+
+    .faq-content {
+      margin: 0 0 0 36px;
+      padding: 10px 0;
+      background-color: transparent;
+    }
+  }
+}
