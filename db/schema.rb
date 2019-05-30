@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190507130540) do
+ActiveRecord::Schema.define(version: 20190530130321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(version: 20190507130540) do
   end
 
   add_index "faqs", ["admin_user_id"], name: "index_faqs_on_admin_user_id", using: :btree
+  add_index "faqs", ["sequence"], name: "index_faqs_on_sequence", using: :btree
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false

@@ -4,7 +4,7 @@ class Admin::FaqsController < Admin::ApplicationController
   end
 
   def show
-    @faq = Faq.find params[:id]
+    @faq = Faq.find(params[:id])
   end
 
   def new
@@ -16,7 +16,7 @@ class Admin::FaqsController < Admin::ApplicationController
   end
 
   def create
-    @faq = Faq.new faq_params
+    @faq = Faq.new(faq_params)
     @faq.admin_user = current_admin_user
 
     if @faq.save
@@ -31,7 +31,7 @@ class Admin::FaqsController < Admin::ApplicationController
 
   def update
     @faq = Faq.find(params[:id])
-    @faq.assign_attributes faq_params
+    @faq.assign_attributes(faq_params)
 
     if @faq.sequence_changed?
       @faq.insert_at_sequence(faq_params["sequence"].to_i)
