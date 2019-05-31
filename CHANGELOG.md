@@ -1,6 +1,6 @@
 ## Next
 
-# [1.29.1] - 31/05/2019
+# [1.30.0] - 31/05/2019
 
 * [PR 482]: Add FAQ
 * [PR 477]: Update cycle update logic
