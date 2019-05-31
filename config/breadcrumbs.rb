@@ -259,6 +259,25 @@ crumb :charts do |c|
   parent :cycle, c
 end
 
+crumb :faqs do
+  link 'Dúvidas', admin_faqs_path
+end
+
+crumb :faq do |faq|
+  link faq.title, admin_faq_path(faq)
+  parent :faqs
+end
+
+crumb :new_faq do |c|
+  link 'Nova dúvida', new_admin_faq_path
+  parent :faqs, c
+end
+
+crumb :edit_faq do |faq|
+  link "Editar dúvida", edit_admin_faq_path(faq)
+  parent :faq, faq
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end

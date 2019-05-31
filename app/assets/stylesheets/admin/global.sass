@@ -803,6 +803,126 @@ a.action-button
       font-size: 40px
       right: -4px
 
+.admin-faq-thumb
+  color: white
+
+  .card-module
+    z-index: 1
+    margin-bottom: 0
+
+  .faq-thumb-header
+    padding-right: 50px
+
+  .faq-background
+    z-index: -1
+    position: absolute
+    left: -15px
+    top: -20px
+    width: calc(100%)
+    height: calc(100% + 40px)
+    border-left: 8px solid $color-blue
+
+  .title
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow: hidden
+
+  h3, h4
+    margin: 15px 0
+
+    a
+      color: white
+
+  h3
+    text-transform: uppercase
+    font-size: 18px
+    font-weight: 300
+
+  ul.actions
+    display: flex
+    justify-content: space-between
+    margin: 0
+    padding: 0
+    text-align: center
+    vertical-align: middle
+
+    form, button
+      margin: 0
+
+    li
+      display: inline-block
+      margin: 0 10px
+      font-size: 10px
+      vertical-align: middle
+
+      a, input[type="submit"], button
+        border: none
+        background-color: transparent
+        color: #4A4A4A
+        padding: 0
+
+        i
+          display: block
+          font-size: 26px
+          margin-bottom: 10px
+
+        span
+          font-size: 10px
+          text-transform: none
+
+        &:hover
+          text-decoration: none
+
+          span
+            text-decoration: underline
+
+  .faq-id
+    color: black
+    font-size: 12px
+    margin-top: 5px
+
+
+.admin-faq-actions
+  padding: 0
+  display: flex
+  flex-wrap: wrap
+
+  .faq-actions-card
+    align-items: center
+    padding: 20px 0
+    justify-content: center
+    display: flex
+    min-width: 50%
+
+    form
+      text-align: center
+      margin: 0
+      display: inline-block
+
+    a, input[type="submit"], button
+      text-align: center
+      border: none
+      background-color: transparent
+      color: #4A4A4A
+      padding: 0
+      display: inline-block
+      margin: 0
+
+      i
+        display: block
+        font-size: 30px
+        margin-bottom: 10px
+        line-height: 50px
+
+      span
+        font-size: 10px
+        text-transform: none
+
+      &:hover
+        text-decoration: none
+
+        span
+          text-decoration: underline
 
 .admin-blog-post-thumb
   color: white

@@ -35,7 +35,7 @@ body {
 
   .download {
     text-align: center;
-    
+
     .btn {
       background: linear-gradient(to right, #713aa6 0%, #7f3f98 30%, #7f3f98 70%, #713aa6 100%);
       border-radius: 41px;
@@ -47,11 +47,15 @@ body {
     }
   }
 
+  .home-links {
+    max-width: 860px;
+  }
+
   .link,
   .text,
   .title {
     color: #252525;
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .link,
@@ -72,7 +76,7 @@ body {
   .header .links {
     float: right;
     margin-top: -15px;
-    
+
     .link {
       display: inline-block;
       font-weight: normal;
@@ -117,10 +121,15 @@ body {
     display: none !important;
   }
 
-  .underscore:hover {
-    border-bottom: 8px #6f00a7 solid;
-    box-shadow: 13px 18px 23px -4px rgba(111, 0, 167, 0.2);
-    text-decoration: none;
+  .underscore {
+    margin-bottom: 8px;
+
+    &:hover {
+      border-bottom: 8px #6f00a7 solid;
+      box-shadow: 13px 18px 23px -4px rgba(111, 0, 167, 0.2);
+      text-decoration: none;
+      margin-bottom: 0;
+    }
   }
 
   @media only screen and (max-width: 1365px) {
@@ -193,7 +202,7 @@ body {
       display: none;
     }
     #mobile{
-      display: block;      
+      display: block;
     }
     .mobile{
       padding: 40px 0 20px 0;

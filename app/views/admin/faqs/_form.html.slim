@@ -1,0 +1,57 @@
+javascript:
+  tinyMCE.init({
+    selector: "textarea#faq_content",
+    plugins: ["autolink lists link image preview anchor", "fullscreen hr code visualblocks visualchars", "table paste"],
+    file_browser_callback: function(field_name, url, type, win) {
+      return this.set_amazon_direct_upload($('#' + field_name));
+    },
+    toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    content_css: "#{ActionController::Base.helpers.asset_path('tinymce.css')}",
+    setup: function(ed){
+      ed.on('init', function(){
+        $(ed.getBody()).on('focus', function(){
+          parent = $(this).parents('li#faq_content_input:first');
+          parent.find('p.inline-errors').slideUp(300, function(){
+            $(this).remove();
+          })
+        })
+      })
+    }
+  });
+
+= semantic_form_for [:admin, @faq], as: :faq do |f|
+  .row
+    .col-xs-8
+      .row
+        .col-xs-12
+          .title
+            h2 Título
+      .row
+        .col-xs-12
+          = f.input :title, label: false, placeholder: 'Título'
+    .col-xs-4
+      .row
+        .col-xs-12
+          .title
+            h2 Sequência
+      .row
+        .col-xs-12
+          - if @faq.persisted?
+            = f.input :sequence, as: :select, label: false, collection: Faq.pluck(Arel.sql("sequence + 1"),:sequence)
+          - else
+            = f.input :sequence, as: :select, label: false, collection: Faq.pluck(Arel.sql("sequence + 1"),:sequence).concat([[Faq.count + 1, Faq.count]])
+  .row
+    .col-xs-12
+      .row
+        .col-xs-12
+          .title
+            h2 Conteúdo
+      .row
+        .col-xs-12
+          = f.input :content, label: false, input_html: { class: "tinymce", rows: 8 }
+  .row
+    .col-xs-12
+      = f.button onclick: 'javascript: document.start_loading();'
+  .row
+    .col-xs-12
+      = f.input :published, as: :hidden, input_html: { value: true }
