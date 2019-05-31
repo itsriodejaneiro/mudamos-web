@@ -1,5 +1,10 @@
 ## Next
 
+# [1.29.1] - 31/05/2019
+
+* [PR 482]: Add FAQ
+* [PR 477]: Update cycle update logic
+
 ## [1.29.0] - 27/09/2018
 
 * [PR 475]: Fix multiline env var
