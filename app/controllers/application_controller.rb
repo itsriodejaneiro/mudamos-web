@@ -51,6 +51,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def asset_url(path)
+    host_url = request.path == "/" ? request.url : request.original_url.split(request.path).first
+    asset_path = ActionController::Base.helpers.asset_url(path)
+    host_url.chomp("/") + asset_path
+  end
+
   private
 
     def plugin_type_repository

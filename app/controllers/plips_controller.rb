@@ -28,12 +28,4 @@ class PlipsController < ApplicationController
   def include_causes
     scope == "all"
   end
-
-  private
-
-  def asset_url(path)
-    host_url = request.path == "/" ? request.url : request.original_url.split(request.path).first
-    asset_path = ActionController::Base.helpers.asset_url(path)
-    host_url.chomp("/") + asset_path
-  end
 end
