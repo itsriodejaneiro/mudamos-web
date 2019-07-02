@@ -6,6 +6,10 @@ class PlipsController < ApplicationController
   end
 
   def index
+    @title = "Mudamos | Assine um projeto"
+    @image = asset_url("screenshot_plips.png")
+    @description= "Transforme a sua cidade, o seu estado e o país."
+
     plip_repository = PlipRepository.new
     @plips = plip_repository.all_initiated(filters: filters, limit: 100)
   end
@@ -23,5 +27,13 @@ class PlipsController < ApplicationController
 
   def include_causes
     scope == "all"
+  end
+
+  private
+
+  def asset_url(path)
+    host_url = request.path == "/" ? request.url : request.original_url.split(request.path).first
+    asset_path = ActionController::Base.helpers.asset_url(path)
+    host_url.chomp("/") + asset_path
   end
 end
