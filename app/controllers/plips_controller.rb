@@ -6,6 +6,10 @@ class PlipsController < ApplicationController
   end
 
   def index
+    @title = "Mudamos | Assine um projeto"
+    @image = asset_url("screenshot_plips.png")
+    @description= "Transforme a sua cidade, o seu estado e o país."
+
     plip_repository = PlipRepository.new
     @plips = plip_repository.all_initiated(filters: filters, limit: 100)
   end
