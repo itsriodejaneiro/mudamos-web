@@ -1,5 +1,9 @@
 ## Next
 
+# [1.31.0] - 05/06/2019
+
+* [PR 485] Add meta tag for some pages
+
 # [1.30.0] - 31/05/2019
 
 * [PR 482]: Add FAQ
