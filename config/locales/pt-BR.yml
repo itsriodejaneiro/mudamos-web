@@ -2,6 +2,10 @@
 pt-BR:
   national_cause: Causa nacional
 
+  bool:
+    "true": Sim
+    "false": Não
+
   date:
     abbr_day_names:
     - Dom
@@ -223,6 +227,7 @@ pt-BR:
         city_cause?: Causa nacional nos municípios
         current_signatures_goal: Meta atual de assinaturas
         initial_signatures_goal: Meta inicial de assinaturas
+        requires_mobile_validation: Verificação de celular requerida?
         scope_coverage: Abrangência
         scope_coverages:
           nationwide: Nacional

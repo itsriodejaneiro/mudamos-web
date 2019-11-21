@@ -8,6 +8,7 @@ class Plip
                           :uf,
                           :city,
                           :share_link,
+                          :requires_mobile_validation,
                           :created_at
   def_delegators :published_version, :id, :document_url
   def_delegators :phase, :cycle,

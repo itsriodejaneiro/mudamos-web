@@ -36,6 +36,7 @@ class PetitionPlugin::Detail < ActiveRecord::Base
   validates :presentation, presence: true
   validates :scope_coverage, presence: true, inclusion: { in: SCOPE_COVERAGES }
   validates :uf, inclusion: { in: UFS, allow_blank: true }, if: -> { scope_coverage == STATEWIDE_SCOPE }
+  validates :requires_mobile_validation, inclusion: { in: [true, false] }
 
   validate :ensure_scope_coverage_detail
 
