@@ -461,7 +461,7 @@ GEM
       pry (>= 0.9.10, < 0.11.0)
     pry-rails (0.3.6)
       pry (>= 0.10.4)
-    puma (3.11.2)
+    puma (3.12.2)
     rack (1.6.9)
     rack-cors (0.4.0)
     rack-test (0.6.3)
