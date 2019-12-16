@@ -1,5 +1,8 @@
 ## Next
 
+* [PR 491] Add new plip requires mobile validation attribute
+  - run `rake db:migrate`
+
 # [1.31.0] - 05/06/2019
 
 * [PR 485] Add meta tag for some pages

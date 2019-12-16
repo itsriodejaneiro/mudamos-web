@@ -175,7 +175,7 @@ This diagram shows the flow of the petition, from the user creation, to its publ
         |   |                      |   |                           |   |                          |   |  Register the petition  |   |
         |   |                      |   |                           |   |                          |   |  on the blockchain      |   |
         |   |                      |   |                           |   |  Schedule the petition   |   +-----------------------> |   |
-        |   |                      |   |                           |   |  publication             |   |                         |   |
+        |   |                      |   |                           |   |  publication (async, SQS)|   |                         |   |
         |   |                      |   |                           |   |<-------------------------+   |                         |   |
         |   |                      |   |                           |   |                          |   |                         |   |
         |   |                      |   |    Publishes the petition |   |                          |   |                         |   |

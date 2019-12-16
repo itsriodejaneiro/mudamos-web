@@ -39,16 +39,21 @@
               | #{signed_plip_mobile_tag @petition.id} = false
 
   .row
-    .col-xs-6
+    .col-xs-4
       .card-module
         .title
           h3= @petition.class.human_attribute_name(:signatures_required)
         = number_with_delimiter @petition.signatures_required
-    .col-xs-6
+    .col-xs-4
       .card-module
         .title
           h3= @petition.class.human_attribute_name(:initial_signatures_goal)
         = number_with_delimiter @petition.initial_signatures_goal
+    .col-xs-4
+      .card-module
+        .title
+          h3= @petition.class.human_attribute_name(:requires_mobile_validation)
+        = t "bool.#{@petition.requires_mobile_validation}"
   .row
     .col-xs-6
       .card-module

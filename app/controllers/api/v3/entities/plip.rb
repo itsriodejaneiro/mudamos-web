@@ -22,6 +22,7 @@ module Api
         expose :call_to_action
         expose :video_id
         expose :share_link
+        expose :requires_mobile_validation
 
         expose :pictures do
           expose :original do |plip|

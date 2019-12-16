@@ -64,6 +64,7 @@ class Admin::Cycles::PluginRelations::PetitionsController < Admin::ApplicationCo
         call_to_action
         initial_signatures_goal
         signatures_required
+        requires_mobile_validation
         presentation
         video_id
         scope_coverage
