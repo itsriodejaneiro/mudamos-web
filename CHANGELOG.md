@@ -1,5 +1,7 @@
 ## Next
 
+# [1.32.0] - 16/12/2019
+
 * [PR 491] Add new plip requires mobile validation attribute
   - run `rake db:migrate`
 
