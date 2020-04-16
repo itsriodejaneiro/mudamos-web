@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -euo pipefail
+
+if [[ -z "${HUB_APP_URI:-}" ]]; then
+  echo "Error: Env HUB_APP_URI must be given. Eg. get it from aws" && exit 1
+fi
+
+PROFILE="${PROFILE_NAME:-mudamos}"
+echo "Pushing staging image to AWS using profile $PROFILE"
+
+aws ecr get-login --no-include-email --profile $PROFILE
+
+docker push $HUB_APP_URI:staging

@@ -210,3 +210,30 @@ This diagram shows the flow of the petition, from the user creation, to its publ
 ```
 $ rake push:message["A title", "A body"]
 ```
+
+## Release
+
+Inorder to build a new app image version, you need to provide the script both APP_VERSION and HUB_APP_URI.
+
+- APP_VERSION: the version to build eg. 4.56.99
+- HUB_APP_URI: the image repository eg. xpto.dkr.ecr.a-region.amazonaws.com/image-name
+
+This command below will build the image and apply the version, staging and latest tags.
+The version tag will be pushed to the HUB (image repository).
+
+```
+$ APP_VERSION=x.xx.x HUB_APP_URI=some-uri ./bin/release
+```
+
+In order to push the staging image do:
+
+```
+$ HUB_APP_URI=some-uri ./bin/push-staging
+```
+
+In order to push the latest image (production).
+
+
+```
+$ HUB_APP_URI=some-uri ./bin/push-latest
+```
