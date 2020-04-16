@@ -1,0 +1,33 @@
+#!/bin/sh
+
+set -euo pipefail
+
+if [[ -z "${APP_VERSION:-}" ]]; then
+  echo "Error: Env APP_VERSION must be given" && exit 1
+fi
+
+if [[ -z "${HUB_APP_URI:-}" ]]; then
+  echo "Error: Env HUB_APP_URI must be given. Eg. get it from aws" && exit 1
+fi
+
+PROFILE="${PROFILE_NAME:-mudamos}"
+echo "===Start building $APP_VERSION using aws profile $PROFILE==="
+
+`aws ecr get-login --no-include-email --profile $PROFILE`
+
+# Build image
+docker build --rm --force-rm -t mudamos:latest .
+
+echo "===Tagging==="
+
+# Tag and push the new version
+docker tag mudamos:latest mudamos:$APP_VERSION
+docker tag mudamos:latest mudamos:staging
+docker tag mudamos:latest $HUB_APP_URI:$APP_VERSION
+docker tag mudamos:latest $HUB_APP_URI:staging
+docker push $HUB_APP_URI:$APP_VERSION
+
+echo "===Tagging latest==="
+docker tag mudamos:latest $HUB_APP_URI:latest
+
+echo "===Done==="
