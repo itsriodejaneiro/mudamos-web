@@ -215,6 +215,8 @@ $ rake push:message["A title", "A body"]
 
 Inorder to build a new app image version, you need to provide the script both APP_VERSION and HUB_APP_URI.
 
+ps. aws cli v1 required.
+
 - APP_VERSION: the version to build eg. 4.56.99
 - HUB_APP_URI: the image repository eg. xpto.dkr.ecr.a-region.amazonaws.com/image-name
 
@@ -236,4 +238,13 @@ In order to push the latest image (production).
 
 ```
 $ HUB_APP_URI=some-uri ./bin/push-latest
+```
+
+## Troubleshoting
+If libv8 and therubyracer fails to install on mac, try:
+
+```
+$ brew install v8@3.15
+$ bundle config build.libv8 --with-system-v8
+$ bundle config build.therubyracer --with-v8-dir=$(brew --prefix v8@3.15)
 ```
