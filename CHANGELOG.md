@@ -1,5 +1,6 @@
 ## Next
 * [PR XXX] Add ibge data to city table
+* [PR 506] Add ibge data to city table
   - Set env `IBGE_CITIES_LIST_URL`
   - Set env `IBGE_CITIES_POPULATION_URL`
 
