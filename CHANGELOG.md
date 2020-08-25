@@ -4,6 +4,8 @@
   - Set env `IBGE_CITIES_POPULATION_URL`
 
 * [PR XXX] Add new PL PDF generation
+  - Set env `LAI_PDF_GENERATION_QUEUE`
+  - Set env `LAI_PDF_BUCKET`
   - Set env `WEB_AUTH_TOKEN`
 
 # [1.32.0] - 16/12/2019
