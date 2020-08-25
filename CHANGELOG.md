@@ -3,6 +3,9 @@
   - Set env `IBGE_CITIES_LIST_URL`
   - Set env `IBGE_CITIES_POPULATION_URL`
 
+* [PR XXX] Add new PL PDF generation
+  - Set env `WEB_AUTH_TOKEN`
+
 # [1.32.0] - 16/12/2019
 
 * [PR 491] Add new plip requires mobile validation attribute

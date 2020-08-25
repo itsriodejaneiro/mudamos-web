@@ -76,6 +76,7 @@ Follow the instructions, and use the created user to access the admin area.
   - 'RAILS_MIN_THREADS': web server min threads
   - 'USER_SYNC_QUEUE': Name of the sqs queue used for the user synchronization with the mobile platform
   - 'WEB_CONCURRENCY': number of web server workers
+  - 'WEB_AUTH_TOKEN': Static token used to authorize some external APIs
 
 ### Partners api
 
