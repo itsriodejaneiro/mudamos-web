@@ -95,6 +95,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    combine_pdf (1.0.18)
+      ruby-rc4 (>= 0.1.5)
     commonjs (0.2.7)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
@@ -553,6 +555,7 @@ GEM
     rspec-support (3.7.1)
     ruby_parser (3.14.2)
       sexp_processor (~> 4.9)
+    ruby-rc4 (0.1.5)
     sass (3.5.5)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -677,6 +680,7 @@ DEPENDENCIES
   bullet
   cocoon
   coffee-rails (~> 4.1.0)
+  combine_pdf
   connection_pool
   cpf_cnpj
   dalli
