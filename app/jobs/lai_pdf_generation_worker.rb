@@ -5,17 +5,20 @@ class LaiPdfGenerationWorker
 
   attr_accessor :lai_repository
   attr_accessor :city_repository
+  attr_accessor :mailer
   attr_accessor :s3
   attr_accessor :pdf_generator
 
   def initialize(
     lai_repository: LaiPdfRepository.new,
     city_repository: CityRepository.new,
+    mailer: LaiPdfMailer,
     s3: AwsService::S3.new,
     pdf_generator: Pdf::LaiGenerator.new
   )
     @lai_repository = lai_repository
     @city_repository = city_repository
+    @mailer = mailer
     @s3 = s3
     @pdf_generator = pdf_generator
   end
@@ -37,6 +40,8 @@ class LaiPdfGenerationWorker
 
     lai.pdf_url = obj.public_url
     lai.save!
+
+    mailer.send_mail(lai.pdf_url, lai_payload).deliver_now
   end
 
   def logger

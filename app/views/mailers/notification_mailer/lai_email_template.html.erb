@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Regulamentação da Lei do Acesso à Informação</title>
+    <style type="text/css">
+      @import url("//fonts.googleapis.com/css?family=Merriweather+Sans:300,700");
+            @media yahoo {
+              -webkit-padding-start: none; /* Stops Yahoo webmail from removing cellpadings */
+            }
+            @media only screen and (max-width: 480px){
+              #templateContainer {
+                width: 100% !important;
+              }
+              #templateBody {
+                border-radius: 0 !important;
+                width: 100% !important;
+                font-size: 15px !important;
+                line-height: 25px !important;
+              }
+              #templateBody .greeting {
+                font-size: 20px !important;
+              }
+              #templateBody .primary-button {
+                font-size: 15px !important;
+                padding: 18px 30px !important;
+                min-width: 0 !important;
+              }
+              #templateBody .signature {
+                font-size: 19px !important;
+              }
+              #templateHeader {
+                width: 100% !important;
+              }
+              #templateFooter {
+                width: 100% !important;
+                font-size: 9px !important;
+              }
+              #templateBody .panel {
+                padding: 30px 0 !important;
+              }
+              #templateHeader .logo {
+                height: 60px !important;
+              }
+            }
+    </style>
+  </head>
+  <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style='margin:0;padding:0;background-color:#f9f9f9;color:#646464;font-family:"Merriweather Sans", sans-serif;font-weight:300;height:100% !important;width:100% !important;'>
+    <center>
+      <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable" style='margin:0;padding:0;background-color:#f9f9f9;color:#646464;font-family:"Merriweather Sans", sans-serif;font-weight:300;border-collapse:collapse !important;height:100% !important;width:100% !important;'>
+        <tr>
+          <td align="center" valign="top" id="bodyCell" style="margin:0;padding:0;height:100% !important;width:100% !important;">
+            <table border="0" cellpadding="0" cellspacing="0" id="templateContainer" style="width:620px;border-collapse:collapse !important;">
+              <tr>
+                <td valign="top">
+                  <table border="0" cellpadding="18" cellspacing="0" id="templateHeader" width="100%" style="border-collapse:collapse !important;">
+                    <tr>
+                      <td valign="top">
+                        <img src="https://s3-sa-east-1.amazonaws.com/mudamos-images/images/logo-2.png" class="logo" style="border:0;height:auto;line-height:100%;outline:none;text-decoration:none;padding-left:22px;"/>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" valign="top">
+                  <table border="0" cellpadding="40" cellspacing="0" width="100%" id="templateBody" style="background-color:#ffffff;border-radius:6px;font-size:20px;line-height:34px;border-collapse:collapse !important;">
+                    <tr>
+                      <td valign="top">
+                        <p class="greeting" style="margin:0;font-size:28px;padding-bottom:12px;">Olá <strong><%= @name %></strong>,</p>
+                        <p style="margin:0;">
+                          Parabéns! 👏👏 Aqui está o seu projeto de lei de iniciativa popular para regulamentação da Lei de Acesso à Informação no seu município. Clique no botão abaixo para exibir o documento:
+                       </p>
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse !important;">
+                          <tr>
+                            <td align="center" valign="top" class="panel" style="padding:50px 0;">
+                              <a href="<%= @pdf_url %>" class="primary-button" style="background-color:#7f3f98;border-bottom:3px solid #713aa6;border-radius:40px;color:#ffffff;display:inline-block;font-size:20px;font-weight:bold;line-height:1em;min-width:340px;padding:25px;text-align:center;text-decoration:none;text-transform:uppercase;">
+                                Ver PDF
+                              </a>
+                            </td>
+                          </tr>
+                        </table>
+                        <p style="margin:0;">Atenciosamente,</p>
+                        <p class="signature" style="margin:0;font-size:26px;">
+                          <strong>Mudamos.org</strong>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" valign="top">
+                  <table border="0" cellpadding="32" cellspacing="0" width="100%" id="templateFooter" style="font-size:12px;text-align:center;width:352px;border-collapse:collapse !important;">
+                    <tr>
+                      <td valign="top">
+                        Você recebeu esse email por ter preenchido um formulário da <a href="https://www.mudamos.org/">Mudamos</a>.
+                        Caso você não tenha preenchido o formulário, por favor ignore essa mensagem.
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>
