@@ -55,6 +55,8 @@ Follow the instructions, and use the created user to access the admin area.
   - 'IBGE_CITIES_LIST_URL': IBGE url which returns all cities in Brazil
   - 'IBGE_CITIES_POPULATION_URL': IBGE url which returns the city population sensus
   - `MOBILE_API_ID_IOS`: The iOs Mobile app id
+  - 'LAI_PDF_GENERATION_QUEUE': Name of the sqs queue used to generate access to information law pdf
+  - 'LAI_PDF_BUCKET': Name of the S3 bucket which contains all LAI pdfs
   - 'MOBILE_API_SECRET': The Mobile secret key
   - 'MOBILE_API_TIMEOUT': The ammount in seconds the system will use as timeout when trying to communicate with the Mobile API
   - 'MOBILE_API_URL': The Mobile API url

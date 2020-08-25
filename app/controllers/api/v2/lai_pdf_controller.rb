@@ -4,6 +4,8 @@ class Api::V2::LaiPdfController < Api::V2::ApplicationController
   def index
     lai = LaiPdf.create(request_payload: JSON.parse(request.body.read), pdf_id: SecureRandom.uuid)
 
+    LaiPdfGenerationWorker.perform_async id: lai.id
+
     head :no_content
   end
 
