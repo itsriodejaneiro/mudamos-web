@@ -81,6 +81,7 @@ gem 'rails-assets-numeraljs', source: 'https://rails-assets.org'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'amatch'
 gem 'simplemde-rails'
 gem 'prawn'
 gem 'prawn-table'
