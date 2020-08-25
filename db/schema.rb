@@ -239,6 +239,17 @@ ActiveRecord::Schema.define(version: 20200825200236) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "lai_pdfs", force: :cascade do |t|
+    t.json     "request_payload", null: false
+    t.uuid     "pdf_id",          null: false
+    t.string   "pdf_url"
+    t.integer  "city_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "lai_pdfs", ["city_id"], name: "index_lai_pdfs_on_city_id", using: :btree
+
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "comment_id"
@@ -666,6 +677,7 @@ ActiveRecord::Schema.define(version: 20200825200236) do
   add_foreign_key "dislikes", "comments"
   add_foreign_key "dislikes", "users"
   add_foreign_key "faqs", "admin_users"
+  add_foreign_key "lai_pdfs", "cities"
   add_foreign_key "likes", "comments"
   add_foreign_key "likes", "users"
   add_foreign_key "materials", "cycles"
