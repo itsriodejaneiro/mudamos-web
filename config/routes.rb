@@ -111,6 +111,7 @@ Rails.application.routes.draw do
     end
 
     namespace :v2 do
+      match '/lai-pdf', to: 'lai_pdf#index', via: :post
       resources :apidocs, only: %i(index)
       resources :plips, only: %i(index show)
       resources :petitions, only: [] do
