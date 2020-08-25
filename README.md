@@ -52,6 +52,8 @@ Follow the instructions, and use the created user to access the admin area.
   - 'GOOGLE_ACCOUNT_TYPE': Type of google account(used by gem 'googleauth')
   - 'GOOGLE_CLIENT_EMAIL': E-mail of google account(used by gem 'googleauth')
   - 'GOOGLE_PRIVATE_KEY': Private key of google account(used by gem 'googleauth')
+  - 'IBGE_CITIES_LIST_URL': IBGE url which returns all cities in Brazil
+  - 'IBGE_CITIES_POPULATION_URL': IBGE url which returns the city population sensus
   - `MOBILE_API_ID_IOS`: The iOs Mobile app id
   - 'MOBILE_API_SECRET': The Mobile secret key
   - 'MOBILE_API_TIMEOUT': The ammount in seconds the system will use as timeout when trying to communicate with the Mobile API
