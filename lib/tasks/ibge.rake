@@ -1,6 +1,6 @@
 namespace :ibge do
   desc "Get cities from IBGE"
-  task get_cities: :environment do
+  task :get_cities do
     ibge_cities = Net::HTTP.get(URI.parse(ENV["IBGE_CITIES_LIST_URL"]))
     ibge_cities_json = JSON.parse(ibge_cities)
 
@@ -17,7 +17,7 @@ namespace :ibge do
   end
 
   desc "Get population from IBGE"
-  task get_population: :environment do
+  task :get_population do
     cities = CSV.read("app/assets/docs/ibge_cities.csv", headers: true)
     batch = 100
 
@@ -44,7 +44,7 @@ namespace :ibge do
   end
 
   desc "Update table cities"
-  task update_database: :environment do
+  task set_in_database: :environment do
     ibge_cities = CSV.read("app/assets/docs/ibge_population.csv", headers: true)
     blacklist = [
       'Januário Cicco',
