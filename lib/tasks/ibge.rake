@@ -58,6 +58,7 @@ namespace :ibge do
       'Embu das Artes',
       'Quarto Centenário',
       'Balneário Rincão'
+      'Assis'
     ]
 
     success = 0
@@ -70,7 +71,7 @@ namespace :ibge do
       ibge_city_name_and_uf =  "#{ibge_city["name"]}/#{ibge_city["uf"]}"
 
       city = City.find_by(ibge_id: ibge_city["id"])
-      city = City.find_best_match(ibge_city_name, ibge_city_uf) if city.nil?
+      city = City.find_best_match(city: ibge_city_name, uf: ibge_city_uf) if city.nil?
 
       city_name_and_uf =  "#{city.name}/#{city.uf}"
 

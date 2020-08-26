@@ -13,13 +13,24 @@
 class City < ActiveRecord::Base
   default_scope { order('name ASC') }
 
-  def self.find_best_match(searched_city, searched_uf = nil)
-    cities = searched_uf ? City.where(uf: searched_uf) : City.all
-    ranks = searched_city.squeeze.strip.downcase.no_accent.pair_distance_similar(
+  def self.find_best_match(city:, uf: nil)
+    self.find_best_matches(city: city, uf: uf, max_results: 1)[:city]
+  end
+
+  def self.find_best_matches(city:, uf: nil, max_results: 1)
+    cities = uf ? City.where(uf: uf) : City.all
+    probabilities = city.squeeze.strip.downcase.no_accent.pair_distance_similar(
       cities.map { |city| city.name.downcase.no_accent }
     )
-    max_rank = ranks.max
-    best_match_index = ranks.index { |r| r == max_rank }
-    cities[best_match_index]
+    probabilities_with_cities = probabilities.each_with_index.map do |probability, i|
+      { city: cities[i], probability: probability }
+    end
+    sorted_probabilities_with_cities = probabilities_with_cities.sort_by { |r| r[:probability] }.reverse
+
+    if max_results == 1
+      sorted_probabilities_with_cities[0]
+    else
+      sorted_probabilities_with_cities.first(max_results)
+    end
   end
 end
