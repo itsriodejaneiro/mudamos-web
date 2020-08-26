@@ -1,8 +1,8 @@
 namespace :ibge do
   desc "Get cities from IBGE"
   task :get_cities do
-    ibge_cities = Net::HTTP.get(URI.parse(ENV["IBGE_CITIES_LIST_URL"]))
-    ibge_cities_json = JSON.parse(ibge_cities)
+    ibge_cities_response = Faraday.get ENV["IBGE_CITIES_LIST_URL"]
+    ibge_cities_json = JSON.parse(ibge_cities_response.body)
 
     CSV.open("app/assets/docs/ibge_cities.csv", "wb", headers: true) do |csv|
       csv << ["id", "name", "uf"]
@@ -27,8 +27,8 @@ namespace :ibge do
       cities.map(&:to_h).in_groups_of(batch, false) do |batch_cities|
         cities_id = batch_cities.map { |city| city["id"] }
 
-        population = Net::HTTP.get(URI.parse("#{ENV["IBGE_CITIES_POPULATION_URL"]}#{cities_id.join("%7C")}"))
-        population_json = JSON.parse(population)
+        population_response = Faraday.get "#{ENV["IBGE_CITIES_POPULATION_URL"]}#{cities_id.join("%7C")}"
+        population_json = JSON.parse(population_response.body)
         population_formatted = population_json[0]["res"].map { |x| x["res"][x["res"].keys.max] }
 
         batch_cities.each.with_index do |city, index|
