@@ -34,10 +34,6 @@ Follow the instructions, and use the created user to access the admin area.
 
 - `rails s`
 
-If you're using a Postgres docker, you need to set `PGGSSENCMODE=disable`
-
-- `PGGSSENCMODE=disable rails s`
-
 ### Testing emails on development
 
  1 - Run `gem install mailcatcher`
@@ -246,11 +242,17 @@ In order to push the latest image (production).
 $ HUB_APP_URI=some-uri ./bin/push-latest
 ```
 
-## Troubleshoting
+## Troubleshooting
 If libv8 and therubyracer fails to install on mac, try:
 
 ```
 $ brew install v8@3.15
 $ bundle config build.libv8 --with-system-v8
 $ bundle config build.therubyracer --with-v8-dir=$(brew --prefix v8@3.15)
+```
+
+If you're using a Postgres docker, you may need to set `PGGSSENCMODE=disable`
+
+```
+$ PGGSSENCMODE=disable bundle exec rails s
 ```

@@ -27,7 +27,7 @@ namespace :ibge do
       cities.map(&:to_h).in_groups_of(batch, false) do |batch_cities|
         cities_id = batch_cities.map { |city| city["id"] }
 
-        # IBGE population api accept pass multiple city_id in patch separating with "|"
+        # IBGE population api accepts multiple city_id in patch separating with "|"
         # Since "|" character is not valid to URI, we used the correspondent URI caracter ("%7C")
         population_response = Faraday.get "#{ENV["IBGE_CITIES_POPULATION_URL"]}#{cities_id.join("%7C")}"
         population_json = JSON.parse(population_response.body)
