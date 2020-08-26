@@ -27,6 +27,8 @@ namespace :ibge do
       cities.map(&:to_h).in_groups_of(batch, false) do |batch_cities|
         cities_id = batch_cities.map { |city| city["id"] }
 
+        # IBGE population api accept pass multiple city_id in patch separating with "|"
+        # Since "|" character is not valid to URI, we used the correspondent URI caracter ("%7C")
         population_response = Faraday.get "#{ENV["IBGE_CITIES_POPULATION_URL"]}#{cities_id.join("%7C")}"
         population_json = JSON.parse(population_response.body)
         population_formatted = population_json[0]["res"].map { |x| x["res"][x["res"].keys.max] }
@@ -46,6 +48,9 @@ namespace :ibge do
   desc "Update table cities"
   task set_in_database: :environment do
     ibge_cities = CSV.read("app/assets/docs/ibge_population.csv", headers: true)
+
+    # blacklist is an array containing all cities that hasn't a obvious match or
+    # aren't even found in our database comparing to IBGE cities
     blacklist = [
       'Januário Cicco',
       'Joca Claudino',
