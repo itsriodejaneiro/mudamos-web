@@ -34,7 +34,7 @@ Follow the instructions, and use the created user to access the admin area.
 
 - `rails s`
 
-If you're using a Posgres docker, you need to set `PGGSSENCMODE=disable`
+If you're using a Postgres docker, you need to set `PGGSSENCMODE=disable`
 
 - `PGGSSENCMODE=disable rails s`
 
