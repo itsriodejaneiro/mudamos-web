@@ -46,7 +46,7 @@ class LaiPdfGenerationWorker
   def send_email(lai)
     mailer.send_mail(lai.pdf_url, lai.request_payload).deliver_now
 
-    lai.email_sent_at = DateTime.now
+    lai.email_sent_at = Time.current
     lai.save!
   end
 end
