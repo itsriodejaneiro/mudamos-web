@@ -22,7 +22,7 @@ class Pdf::LaiGenerator
   end
 
   def build_justification(justification, city_name)
-    return build_default_justification(city_name) if justification.nil?
+    return build_default_justification(city_name) if justification.nil? || justification.empty?
 
     justification = Prawn::Document.new({ page_size: "A4", page_layout: :portrait, margin: [80, 75] }) do |pdf|
       pdf.text "Justificativa do Projeto", size: 11, style: :bold, align: :left
