@@ -52,6 +52,8 @@ Follow the instructions, and use the created user to access the admin area.
   - 'GOOGLE_ACCOUNT_TYPE': Type of google account(used by gem 'googleauth')
   - 'GOOGLE_CLIENT_EMAIL': E-mail of google account(used by gem 'googleauth')
   - 'GOOGLE_PRIVATE_KEY': Private key of google account(used by gem 'googleauth')
+  - 'IBGE_CITIES_LIST_URL': IBGE url which returns all cities in Brazil
+  - 'IBGE_CITIES_POPULATION_URL': IBGE url which returns the city population sensus
   - `MOBILE_API_ID_IOS`: The iOs Mobile app id
   - 'MOBILE_API_SECRET': The Mobile secret key
   - 'MOBILE_API_TIMEOUT': The ammount in seconds the system will use as timeout when trying to communicate with the Mobile API
@@ -240,11 +242,17 @@ In order to push the latest image (production).
 $ HUB_APP_URI=some-uri ./bin/push-latest
 ```
 
-## Troubleshoting
+## Troubleshooting
 If libv8 and therubyracer fails to install on mac, try:
 
 ```
 $ brew install v8@3.15
 $ bundle config build.libv8 --with-system-v8
 $ bundle config build.therubyracer --with-v8-dir=$(brew --prefix v8@3.15)
+```
+
+If you're using a Postgres docker, you may need to set `PGGSSENCMODE=disable`
+
+```
+$ PGGSSENCMODE=disable bundle exec rails s
 ```
