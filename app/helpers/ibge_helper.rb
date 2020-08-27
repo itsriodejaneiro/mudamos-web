@@ -1,10 +1,20 @@
 module IbgeHelper
-  def get_population
-    CSV.read("app/assets/docs/ibge_population.csv", headers: true)
+  include UserInput
+
+  def get_all_census
+    Rails.cache.fetch("ibge:population:all", expires_in: 24.hours) do
+      CSV.read("app/assets/docs/ibge_population.csv", headers: true)
+    end
+  end
+
+  def get_census_by_uf(uf)
+    Rails.cache.fetch("ibge:population:#{uf}", expires_in: 24.hours) do
+      get_all_census.delete_if { |row| row["uf"] != uf }
+    end
   end
 
   def find_city_best_match(city:, uf: nil)
-    ibge_cities = uf ? get_population.delete_if { |row| row["uf"] != uf } : get_population
+    ibge_cities = uf ? get_census_by_uf(uf) : get_all_census
     probabilities = clean_up_name(city).pair_distance_similar(
       ibge_cities.map { |row| clean_up_name(row["name"]) }
     )
