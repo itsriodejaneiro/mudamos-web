@@ -1,56 +1,46 @@
 class Pdf::LaiGenerator
-  include MarkdownHelper
-
-  def from_lai_request_payload(lai, is_big_city)
+  def from_lai_request_payload(city_name:, is_big_city:, justification: nil)
     template = is_big_city ? 'lai_template_big_cities.pdf' : 'lai_template_small_cities.pdf'
 
     lai_file_template = CombinePDF.load(Rails.root.join('app', 'assets', 'docs', template))
 
-    result = fill_gaps lai_file_template, lai
+    lai_pdf = fill_gaps lai_file_template, city_name
+    justification_page = build_justification justification, city_name
 
-    # pdf.render_file("/tmp/rofl.pdf")
-    # pdf_result = pdf.render
-    # result = CombinePDF.parse(pdf_result) << CombinePDF.load("/Users/guimello/Downloads/table.pdf")
-    # pdf_result.save Rails.root.join('tmb', 'output.pdf')
+    result = lai_pdf << justification_page
 
     result.to_pdf
   end
 
   private
 
-  # def setup(pdf)
-  #   font_path = Rails.root.join("app", "assets", "fonts")
-  #   pdf.font_families.update(
-  #     "Roboto" => {
-  #       normal: "#{font_path.to_s}/Roboto-Light.ttf",
-  #       italic: "#{font_path.to_s}/Roboto-LightItalic.ttf",
-  #       bold: "#{font_path.to_s}/Roboto-Bold.ttf",
-  #       bold_italic: "#{font_path.to_s}/Roboto-BoldItalic.ttf",
-  #     }
-  #   )
-  #
-  #   pdf.font "Roboto"
-  # end
-
-  def fill_gaps(template, lai)
-    template.pages[0].textbox lai["name"], height: 10, y: 50, x: 0, text_align: :left
+  def fill_gaps(template, city_name)
+    template.pages[0].textbox "#{city_name.no_accent}.", height: 11, width: -1, y: 714, x: 326.5, font_size: 11, text_align: :left
+    template.pages[0].textbox "#{city_name.no_accent};", height: 11, width: -1, y: 489.5, x: 148, font_size: 11, text_align: :left
 
     template
-    # html_document = Nokogiri::HTML(markdown(text))
-    # pdf.span(pdf.cursor, position: :left) do
-      # pdf.bounding_box([20, pdf.cursor - 30], width: 505) do
-        # html_document.css("body").children.each do |element|
+  end
 
-          # case element.name
-          # when "p" then Pdf::Elements::P.render pdf, element
-          # when "blockquote" then Pdf::Elements::Blockquote.render pdf, element
-          # when /h[1-6]/ then Pdf::Elements::H.render pdf, element
-          # when /ul|ol/ then Pdf::Elements::List.render pdf, element
-          # end
+  def build_justification(justification, city_name)
+    return build_default_justification(city_name) if justification.nil?
 
-          # pdf.move_down 10
-        # end
-      # end
-    # end
+    justification = Prawn::Document.new({ page_size: "A4", page_layout: :portrait, margin: [80, 75] }) do |pdf|
+      pdf.text "Justificativa do Projeto", size: 11, style: :bold, align: :left
+      pdf.move_down 10
+      justification.split("\n").map do |line|
+        pdf.text line, size: 11, align: :left
+      end
+    end
+
+    justification_result = justification.render
+    CombinePDF.parse(justification_result)
+  end
+
+  def build_default_justification(city_name)
+    template = CombinePDF.load(Rails.root.join('app', 'assets', 'docs', 'lai_template_default_justification.pdf'))
+
+    template.pages[0].textbox "#{city_name.no_accent}", height: 11, width: -1, y: 564, x: 232, font_size: 11, text_align: :left
+
+    template
   end
 end
