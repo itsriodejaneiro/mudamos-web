@@ -8,10 +8,6 @@ module UserInput
   end
 
   def clean_up_name(value)
-    case value.is_a?
-    when String, value.squeeze.strip.downcase.no_accent
-    else
-      value
-    end
+    value.squeeze.strip.downcase.no_accent
   end
 end
