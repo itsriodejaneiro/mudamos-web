@@ -1,5 +1,6 @@
 class LaiPdfGenerationWorker
   include Shoryuken::Worker
+  include IbgeHelper
 
   shoryuken_options queue: Rails.application.secrets.queues['lai_pdf_generation'], auto_delete: true
 
@@ -23,13 +24,14 @@ class LaiPdfGenerationWorker
   def perform(sqs_msg, body)
     id = JSON.parse(body)['id']
 
-    lai = lai_repository.find(id)
 
+    lai = lai_repository.find_by_id(id)
     return if lai.nil?
 
     lai_payload = lai.request_payload
+    ibge_city = find_city_best_match(city: lai_payload["city"], uf: lai_payload["uf"])
 
-    is_big_city = true
+    is_big_city = ibge_city["population"] > 10000
 
     pdf = pdf_generator.from_lai_request_payload(lai_payload, is_big_city)
     obj = s3.upload(Rails.application.secrets.buckets["lai_pdf"], "#{lai.pdf_id}.pdf", pdf, acl: "public-read")
