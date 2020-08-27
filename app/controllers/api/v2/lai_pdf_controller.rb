@@ -12,7 +12,7 @@ class Api::V2::LaiPdfController < Api::V2::ApplicationController
   private
 
   def is_token_valid
-    head :unauthorized unless bearer_token == Rails.application.secrets.apis["web"]["auth_token"]
+    head :unauthorized unless bearer_token == Rails.application.secrets.apis["lai"]["auth_token"]
   end
 
   def bearer_token
