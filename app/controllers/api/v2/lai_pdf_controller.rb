@@ -2,7 +2,7 @@ class Api::V2::LaiPdfController < Api::V2::ApplicationController
   before_filter :is_token_valid
 
   def index
-    lai = LaiPdf.create(request_payload: JSON.parse(request.body.read), pdf_id: SecureRandom.uuid)
+    lai = LaiPdf.create(request_payload: lai_params, pdf_id: SecureRandom.uuid)
 
     LaiPdfGenerationWorker.perform_async id: lai.id
 
@@ -20,4 +20,18 @@ class Api::V2::LaiPdfController < Api::V2::ApplicationController
     authorization = request.authorization
     authorization.gsub(pattern, '') if authorization && authorization.match(pattern)
   end
+
+  def lai_params
+      params
+        .permit(%i(
+          uf
+          city
+          create_lai
+          city_confirm
+          has_justification
+          justification
+          name
+          email
+        ))
+    end
 end
