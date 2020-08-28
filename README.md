@@ -57,6 +57,7 @@ Follow the instructions, and use the created user to access the admin area.
   - `MOBILE_API_ID_IOS`: The iOs Mobile app id
   - 'LAI_PDF_GENERATION_QUEUE': Name of the sqs queue used to generate access to information law pdf
   - 'LAI_PDF_BUCKET': Name of the S3 bucket which contains all LAI pdfs
+  - 'LAI_WEB_AUTH_TOKEN': Static token used to authorize LAI APIs
   - 'MOBILE_API_SECRET': The Mobile secret key
   - 'MOBILE_API_TIMEOUT': The ammount in seconds the system will use as timeout when trying to communicate with the Mobile API
   - 'MOBILE_API_URL': The Mobile API url
@@ -78,7 +79,6 @@ Follow the instructions, and use the created user to access the admin area.
   - 'RAILS_MIN_THREADS': web server min threads
   - 'USER_SYNC_QUEUE': Name of the sqs queue used for the user synchronization with the mobile platform
   - 'WEB_CONCURRENCY': number of web server workers
-  - 'WEB_AUTH_TOKEN': Static token used to authorize some external APIs
 
 ### Partners api
 
