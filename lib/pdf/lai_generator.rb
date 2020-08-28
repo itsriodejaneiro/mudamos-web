@@ -8,6 +8,7 @@ class Pdf::LaiGenerator
     justification_page = build_justification justification, city_name
 
     result = lai_pdf << justification_page
+    result.new_page
 
     result.to_pdf
   end
