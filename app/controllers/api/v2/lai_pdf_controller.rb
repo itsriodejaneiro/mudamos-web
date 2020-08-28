@@ -30,7 +30,7 @@ class Api::V2::LaiPdfController < Api::V2::ApplicationController
   end
 
   def lai_params
-    params
+    @lai_params ||= params
       .permit(%i(
         uf
         city
