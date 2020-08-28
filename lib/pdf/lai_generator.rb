@@ -1,10 +1,10 @@
 class Pdf::LaiGenerator
-  def from_lai_request_payload(city_name:, is_big_city:, justification: nil)
+  def generate(city_name:, is_big_city:, justification: nil)
     template = is_big_city ? 'lai_template_big_cities.pdf' : 'lai_template_small_cities.pdf'
 
     lai_file_template = CombinePDF.load(Rails.root.join('app', 'assets', 'docs', template))
 
-    lai_pdf = fill_gaps lai_file_template, city_name
+    lai_pdf = fill_lai_gaps lai_file_template, city_name
     justification_page = build_justification justification, city_name
 
     result = lai_pdf << justification_page
@@ -15,7 +15,7 @@ class Pdf::LaiGenerator
 
   private
 
-  def fill_gaps(template, city_name)
+  def fill_lai_gaps(template, city_name)
     template.pages[0].textbox "#{city_name.no_accent}.", height: 11, width: -1, y: 715, x: 326.5, font_size: 11, text_align: :left
     template.pages[0].textbox "#{city_name.no_accent};", height: 11, width: -1, y: 490, x: 148, font_size: 11, text_align: :left
 

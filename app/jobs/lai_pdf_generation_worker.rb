@@ -32,7 +32,7 @@ class LaiPdfGenerationWorker
     ibge_city = get_city(lai)
     is_big_city = ibge_city["population"].to_i > 10000
 
-    pdf = pdf_generator.from_lai_request_payload(
+    pdf = pdf_generator.generate(
       city_name: ibge_city["name"],
       is_big_city: is_big_city,
       justification: lai_payload["justification"]
