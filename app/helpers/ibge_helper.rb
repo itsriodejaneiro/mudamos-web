@@ -14,7 +14,11 @@ module IbgeHelper
   end
 
   def find_city_best_match(city:, uf: nil)
-    ibge_cities = uf ? get_census_by_uf(uf) : get_all_census
+    clean_up_uf = clean_up_name(uf).upcase
+    ibge_cities = uf ? get_census_by_uf(clean_up_uf) : get_all_census
+
+    return if ibge_cities.empty?
+
     probabilities = clean_up_name(city).pair_distance_similar(
       ibge_cities.map { |row| clean_up_name(row["name"]) }
     )
