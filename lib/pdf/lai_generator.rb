@@ -8,7 +8,7 @@ class Pdf::LaiGenerator
     justification_page = build_justification justification, city_name
 
     result = lai_pdf << justification_page
-    result.new_page
+    result.new_page [0, 0, 595, 842] # A4 mediabox
 
     result.to_pdf
   end
