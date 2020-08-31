@@ -8,7 +8,7 @@ class LaiPdfMailer < ActionMailer::Base
 
     mail(
       to: email,
-      bcc: "contato@mudamos.org",
+      bcc: ENV["LAI_EMAIL_BCC"],
       subject: "Regulamentação da Lei do Acesso à Informação de #{city_name}",
       template_path: 'mailers/notification_mailer',
       template_name: 'lai_email_template'

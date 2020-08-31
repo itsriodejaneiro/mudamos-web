@@ -55,6 +55,7 @@ Follow the instructions, and use the created user to access the admin area.
   - 'IBGE_CITIES_LIST_URL': IBGE url which returns all cities in Brazil
   - 'IBGE_CITIES_POPULATION_URL': IBGE url which returns the city population sensus
   - `MOBILE_API_ID_IOS`: The iOs Mobile app id
+  - 'LAI_EMAIL_BCC': BCC Email to send when create a LAI PDF
   - 'LAI_PDF_GENERATION_QUEUE': Name of the sqs queue used to generate access to information law pdf
   - 'LAI_PDF_BUCKET': Name of the S3 bucket which contains all LAI pdfs
   - 'LAI_WEB_AUTH_TOKEN': Static token used to authorize LAI APIs

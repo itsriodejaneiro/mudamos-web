@@ -6,6 +6,7 @@
   - Set env `LAI_PDF_GENERATION_QUEUE`
   - Set env `LAI_PDF_BUCKET`
   - Set env `LAI_WEB_AUTH_TOKEN`
+  - Set env `LAI_EMAIL_BCC`
 * [PR 506] Add ibge data to city table
   - Set env `IBGE_CITIES_LIST_URL`
   - Set env `IBGE_CITIES_POPULATION_URL`
