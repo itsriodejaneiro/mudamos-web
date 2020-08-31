@@ -1,5 +1,7 @@
 ## Next
 
+# [1.33.0] - 31/08/2020
+
 * [PR 508] Add new PL PDF generation
   - Set env `LAI_PDF_GENERATION_QUEUE`
   - Set env `LAI_PDF_BUCKET`
