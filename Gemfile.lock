@@ -136,7 +136,7 @@ GEM
     equalizer (0.0.10)
     erubi (1.7.1)
     erubis (2.7.0)
-    excon (0.61.0)
+    excon (0.71.0)
     execjs (2.7.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
