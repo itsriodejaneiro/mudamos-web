@@ -26,6 +26,7 @@ ENV RAILS_ENV=production
 RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
 
+RUN gem install bundler -v 1.17.3 --no-ri --no-rdoc
 COPY Gemfile Gemfile.lock ./
 RUN bundle install --deployment --binstubs --without test:development --jobs 4 --retry 5
 

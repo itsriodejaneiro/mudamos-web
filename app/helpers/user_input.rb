@@ -6,4 +6,8 @@ module UserInput
       false
     end
   end
+
+  def clean_up_name(value)
+    value.squeeze.strip.downcase.no_accent
+  end
 end
