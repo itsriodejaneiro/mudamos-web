@@ -33,3 +33,6 @@
 
 # Local storage
 public/uploads
+
+# Mac OS folder management
+.DS_Store
