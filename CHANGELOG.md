@@ -1,5 +1,9 @@
 ## Next
 
+# [1.34.0] - 25/09/2020
+
+* [PR 511] Update LAI pdf template
+
 # [1.33.0] - 31/08/2020
 
 * [PR 508] Add new PL PDF generation
