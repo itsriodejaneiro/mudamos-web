@@ -1,5 +1,7 @@
 ## Next
 
+# [1.35.0] - 14/12/2020
+
 * [PR 513] Allow skipping the app landing page when the url contains a special key
 
 # [1.34.0] - 25/09/2020
