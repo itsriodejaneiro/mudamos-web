@@ -1,5 +1,7 @@
 ## Next
 
+* [PR 513] Allow skipping the app landing page when the url contains a special key
+
 # [1.34.0] - 25/09/2020
 
 * [PR 511] Update LAI pdf template

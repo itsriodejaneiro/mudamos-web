@@ -39,13 +39,13 @@ class ApplicationController < ActionController::Base
   end
 
   def app_landing_page
+    if params.key? :no_app_landing_page
+      set_app_landing_page_seen
+      return
+    end
+
     if !cookies[:has_seen_app_landing] || request.host =~ %r{app.mudamos.org}
-      cookies[:has_seen_app_landing] = {
-        value: true,
-        expires: 1.year.from_now,
-        secure: !Rails.env.development?,
-        httponly: true
-      }
+      set_app_landing_page_seen
 
       render file: Rails.public_path.join("landing.html"), layout: false
     end
@@ -58,6 +58,15 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+    def set_app_landing_page_seen
+      cookies[:has_seen_app_landing] = {
+        value: true,
+        expires: 1.year.from_now,
+        secure: !Rails.env.development?,
+        httponly: true
+      }
+    end
 
     def plugin_type_repository
       @plugin_type_repository ||= PluginTypeRepository.new
