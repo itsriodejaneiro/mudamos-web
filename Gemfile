@@ -47,7 +47,7 @@ gem 'grape-entity'
 
 gem 'js-routes'
 
-gem 'omniauth', '1.8.1'
+gem 'omniauth', '1.9.2'
 gem 'omniauth-facebook'
 gem 'koala'
 gem 'omniauth-twitter'
