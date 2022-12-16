@@ -26,7 +26,7 @@ IMAGE_MAGICK_DIR="ImageMagick-$IMAGE_MAGICK_VERSION"
 IMAGE_MAGICK_URL="http://www.imagemagick.org/download/releases/$IMAGE_MAGICK_FILE"
 
 echo "-----> Downloading ImageMagick from $IMAGE_MAGICK_URL"
-wget $IMAGE_MAGICK_URL -P $BUILD_DIR | indent
+wget --no-check-certificate $IMAGE_MAGICK_URL -P $BUILD_DIR | indent
 
 echo "-----> Extracting ImageMagick from $BUILD_DIR/$IMAGE_MAGICK_FILE"
 if [ ! -f $BUILD_DIR/$IMAGE_MAGICK_FILE ]; then
