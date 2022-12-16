@@ -411,7 +411,7 @@ GEM
     newrelic_rpm (3.14.0.305)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
-    oauth (0.4.7)
+    oauth (0.5.6)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
