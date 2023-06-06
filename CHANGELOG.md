@@ -1,5 +1,9 @@
 ## Next
 
+# [1.36.0] - 06/06/2023
+
+* [PR 535] feat: Add Google analytics 4 tag
+
 # [1.35.1] - 08/12/2022
 
 * [PR 530] Redirect admin user to admin context
